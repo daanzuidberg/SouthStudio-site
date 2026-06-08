@@ -1,0 +1,66 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"/>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400;1,6..72,500;1,6..72,600&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+:root{--paper:#faf8f2;--paper2:#f1ebdd;--ink:#1c1a16;--ink2:#46413a;--dim:#736b5f;--line:#ddd4c2;--line2:#c8bda6;--red:#d2392a;--serif:"Newsreader",Georgia,serif;--mono:"IBM Plex Mono",ui-monospace,monospace;}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:#54514b;}
+body{font-family:var(--serif);color:var(--ink);-webkit-font-smoothing:antialiased;}
+.book{display:flex;flex-direction:column;align-items:center;gap:22px;padding:28px 14px;}
+.page{width:7in;height:10in;background:var(--paper);position:relative;overflow:hidden;box-shadow:0 8px 30px rgba(0,0,0,.32);}
+.page.recto{padding:.62in .55in .55in .85in;}
+.run-head{position:absolute;top:.34in;left:0;right:0;padding:0 .55in 0 .85in;display:flex;justify-content:space-between;font-family:var(--mono);font-size:8.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);}
+.run-foot{position:absolute;bottom:.32in;left:0;right:0;padding:0 .55in 0 .85in;display:flex;justify-content:space-between;font-family:var(--mono);font-size:8.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);}
+.solpage{margin-top:.42in;display:flex;flex-direction:column;}
+.solcard{border:1px solid var(--line);background:var(--paper2);display:flex;flex-direction:column;justify-content:flex-start;padding:14px 17px;overflow:hidden;}
+.sc-head{display:flex;align-items:baseline;gap:11px;margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid var(--line2);}
+.sc-code{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.13em;color:var(--red);white-space:nowrap;}
+.sc-title{font-size:17px;font-weight:600;letter-spacing:-.01em;line-height:1.08;}
+
+/* NEW stacked layout */
+.sc-body{display:flex;flex-direction:column;gap:12px;flex:1;min-height:0;}
+.sc-left{display:flex;flex-direction:column;gap:9px;min-width:0;}
+.sol-tab{width:100%;border-collapse:collapse;font-size:10px;table-layout:auto;}
+.sol-tab th,.sol-tab td{border:1px solid var(--line2);padding:2.5px 8px;text-align:left;line-height:1.2;white-space:nowrap;}
+.sol-tab thead th{font-family:var(--mono);font-size:8px;letter-spacing:.04em;text-transform:uppercase;background:var(--paper);color:var(--ink);}
+.sol-tab .ans-yr{font-family:var(--mono);font-weight:600;color:var(--red);background:var(--paper);font-size:9.5px;white-space:nowrap;width:1%;}
+.sc-key{font-size:11px;line-height:1.4;color:var(--ink2);}
+.sc-key-l{font-family:var(--mono);font-size:7.5px;font-weight:700;letter-spacing:.1em;color:var(--ink);background:var(--paper);border:1px solid var(--line2);padding:1px 5px;border-radius:2px;margin-right:6px;}
+.sc-right{min-width:0;border-top:1px solid var(--line2);padding-top:11px;}
+.sc-wt-h{font-family:var(--mono);font-size:8px;font-weight:700;letter-spacing:.16em;color:var(--red);margin-bottom:8px;}
+.sc-wt{margin:0;padding:0;list-style:none;counter-reset:wt;column-count:2;column-gap:26px;}
+.sc-wt li{position:relative;padding-left:22px;font-size:10.5px;line-height:1.32;color:var(--ink);text-wrap:pretty;margin-bottom:6px;break-inside:avoid;-webkit-column-break-inside:avoid;}
+.sc-wt li::before{counter-increment:wt;content:counter(wt,decimal-leading-zero);position:absolute;left:0;top:1px;font-family:var(--mono);font-size:8px;font-weight:600;color:#9a8f7e;}
+.sc-wt li b{font-weight:700;}
+.sc-wt .wt-why{color:#8a8172;font-family:var(--mono);font-size:8.5px;letter-spacing:.01em;}
+.sc-wt .wt-liar{color:var(--red);font-style:italic;}
+.sc-wt li:has(.wt-liar)::before{content:"!";color:var(--red);}
+</style></head>
+<body><div class="book">
+<section class="page recto p-solutions"><div class="run-head"><span>CASE RESOLUTIONS</span><span>RESTRICTED</span></div>
+ <div class="solpage" style="height:818px;gap:18px"><div class="solcard" style="height:400px">
+ <div class="sc-head"><span class="sc-code">CASE 01 · DST-2579-B</span><span class="sc-title">Gears in the Pyramid</span></div>
+ <div class="sc-body">
+ <div class="sc-left">
+ <div class="sc-tab"><table class="sol-tab"><thead><tr><th class="ans-yr">Year</th><th class="">Figure</th><th class="">Artifact</th></tr></thead><tbody><tr><th class="ans-yr">2579 BCE</th><td>Hemiunu</td><td>water escapement</td></tr><tr><th class="ans-yr">2569 BCE</th><td>Merit</td><td>lodestone</td></tr><tr><th class="ans-yr">2561 BCE</th><td>Khafre</td><td>bronze gear</td></tr><tr><th class="ans-yr">2510 BCE</th><td>Iunu</td><td>star dial</td></tr></tbody></table></div>
+ <p class="sc-key"><span class="sc-key-l">KEYSTONE</span> The keystone is the water escapement, fixed to 2579 BCE, the earliest anomaly in the chain. Remove it and the whole cascade unwinds.</p>
+ </div>
+ <div class="sc-right">
+ <div class="sc-wt-h">HOW TO GET THERE</div>
+ <ol class="sc-wt"><li><b>water escapement</b> &rarr; <b>2579 BCE</b> <span class="wt-why">(clue 03, shared entry)</span></li><li><b>Merit</b> &rarr; <b>2569 BCE</b> <span class="wt-why">(clue 06, shared entry)</span></li><li><b>lodestone</b> &rarr; <b>2569 BCE</b> <span class="wt-why">(clue 05, shared entry)</span></li><li><b>Khafre</b> &rarr; <b>2561 BCE</b> <span class="wt-why">(clue 01, shared entry)</span></li><li><b>bronze gear</b> &rarr; <b>2561 BCE</b> <span class="wt-why">(clue 04, shared entry)</span></li><li>The rest follows by elimination.</li></ol>
+ </div>
+ </div>
+ </div><div class="solcard" style="height:400px">
+ <div class="sc-head"><span class="sc-code">CASE 69 · CLP-1960-R</span><span class="sc-title">Null Meridian</span></div>
+ <div class="sc-body">
+ <div class="sc-left">
+ <div class="sc-tab"><table class="sol-tab"><thead><tr><th class="ans-yr">Year</th><th class="">Controller</th><th class="">Payload</th><th class="">Pad</th></tr></thead><tbody><tr><th class="ans-yr">1960</th><td>Sato</td><td>fuel cell</td><td>Woomera</td></tr><tr><th class="ans-yr">1962</th><td>Korolev</td><td>antenna dish</td><td>Tanegashima</td></tr><tr><th class="ans-yr">1965</th><td>Kovács</td><td>guidance computer</td><td>Cape Canaveral</td></tr><tr><th class="ans-yr">1966</th><td>Mbeki</td><td>telemetry pod</td><td>Baikonur</td></tr><tr><th class="ans-yr">1979</th><td>Glennan</td><td>solar array</td><td>Kourou</td></tr></tbody></table></div>
+ <p class="sc-key"><span class="sc-key-l">KEYSTONE</span> The keystone is the fuel cell, fixed to 1960, the earliest anomaly in the chain. Remove it and the whole cascade unwinds.</p>
+ </div>
+ <div class="sc-right">
+ <div class="sc-wt-h">HOW TO GET THERE</div>
+ <ol class="sc-wt"><li><span class="wt-liar">Record 08 can&rsquo;t be reconciled with the rest &mdash; it&rsquo;s the false record. Discard it, then:</span></li><li><b>Sato</b> &rarr; <b>1960</b> <span class="wt-why">(clue 03, ordering)</span></li><li><b>fuel cell</b> &rarr; <b>1960</b> <span class="wt-why">(clue 07, rules it out)</span></li><li><b>antenna dish</b> &rarr; <b>1962</b> <span class="wt-why">(clue 01, adjacency)</span></li><li><b>Tanegashima</b> &rarr; <b>1962</b> <span class="wt-why">(clue 11, ordering)</span></li><li><b>Kovács</b> &rarr; <b>1965</b> <span class="wt-why">(clue 09, ordering)</span></li><li>The rest follows by elimination.</li></ol>
+ </div>
+ </div>
+ </div></div>
+ <div class="run-foot"><span class="folio">211</span><span>TIMELINE</span></div></section>
+</div></body></html>

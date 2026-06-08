@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Timeline — Book Mockup (3D)</title>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,700;0,6..72,800;1,6..72,400;1,6..72,500&family=IBM+Plex+Mono:wght@400;600;700&display=swap" rel="stylesheet" />
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --ink:   #1c1a16;
+  --spine: #131210;
+  --paper: #faf8f2;
+  --dim:   #736b5f;
+  --line:  #ddd4c2;
+  --red:   #d2392a;
+  --ink2:  #46413a;
+  --serif: 'Newsreader', Georgia, serif;
+  --mono:  'IBM Plex Mono', ui-monospace, monospace;
+  /* page-block depth */
+  --dx: 34px;
+  --dy: 20px;
+}
+
+html, body {
+  width: 100%; height: 100%;
+  background: #e8e3da;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  font-family: var(--mono);
+  gap: 30px;
+  padding: 40px 20px 60px;
+}
+
+.bar {
+  display: flex; gap: 12px; align-items: center;
+  font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--dim);
+}
+.btn {
+  font-family: var(--mono); font-size: 11px; letter-spacing: .12em; text-transform: uppercase;
+  padding: 10px 18px; border: 1px solid var(--ink); background: var(--ink); color: var(--paper);
+  cursor: pointer; border-radius: 2px; transition: background .15s;
+}
+.btn:hover { background: var(--red); border-color: var(--red); }
+.btn.ghost { background: transparent; color: var(--ink); }
+.btn.ghost:hover { background: var(--ink); color: var(--paper); }
+
+.stage {
+  background-image:
+    linear-gradient(45deg, #ccc5b8 25%, transparent 25%),
+    linear-gradient(-45deg, #ccc5b8 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #ccc5b8 75%),
+    linear-gradient(-45deg, transparent 75%, #ccc5b8 75%);
+  background-size: 20px 20px;
+  background-position: 0 0, 0 10px, 10px -10px, -10px 0;
+  background-color: #ddd8cf;
+  padding: 70px 90px;
+  border-radius: 4px;
+}
+
+/* ============================================================
+   THE BOOK — 2.5D axonometric (flat shapes, exports cleanly)
+   cover 340×480, page blocks on RIGHT (fore-edge) + TOP
+   ============================================================ */
+.book {
+  position: relative;
+  width: calc(340px + var(--dx));
+  height: calc(480px + var(--dy));
+  filter: drop-shadow(0 34px 44px rgba(0,0,0,.40)) drop-shadow(0 8px 14px rgba(0,0,0,.22));
+}
+
+/* ---- TOP page block ---- */
+.pg-top {
+  position: absolute; inset: 0;
+  background: #f2ebdc;
+  clip-path: polygon(0 var(--dy), var(--dx) 0, 100% 0, calc(100% - var(--dx)) var(--dy));
+}
+.pg-top::after {
+  content: ""; position: absolute; inset: 0;
+  background-image: repeating-linear-gradient(116deg, transparent 0 2px, rgba(0,0,0,.05) 2px 3px);
+}
+
+/* ---- RIGHT page block (fore-edge) ---- */
+.pg-right {
+  position: absolute; inset: 0;
+  background: linear-gradient(90deg, #e6dcc4, #f0e8d6);
+  clip-path: polygon(calc(100% - var(--dx)) var(--dy), 100% 0, 100% calc(100% - var(--dy)), calc(100% - var(--dx)) 100%);
+}
+.pg-right::after {
+  content: ""; position: absolute; inset: 0;
+  background-image: repeating-linear-gradient(to bottom, transparent 0 2px, rgba(0,0,0,.055) 2px 3px);
+}
+
+/* ---- FRONT COVER ---- */
+.cover {
+  position: absolute;
+  left: 0; top: var(--dy);
+  width: 340px; height: 480px;
+  background: var(--paper);
+  overflow: hidden;
+}
+
+/* subtle grid bg */
+.cover::before {
+  content: ""; position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(0,0,0,.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,0,0,.06) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+/* light sheen */
+.cover::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(120deg, rgba(255,255,255,.4) 0%, transparent 32%, rgba(0,0,0,.05) 100%);
+}
+
+.frame { position: absolute; inset: 20px; border: 1px solid var(--line); pointer-events: none; }
+.frame::before, .frame::after { content: ""; position: absolute; width: 14px; height: 14px; border: 2px solid var(--red); }
+.frame::before { left: -1px; top: -1px; border-right: 0; border-bottom: 0; }
+.frame::after  { right: -1px; bottom: -1px; border-left: 0; border-top: 0; }
+
+.f-kicker {
+  position: absolute; top: 30px; left: 0; right: 0; text-align: center;
+  font-family: var(--mono); font-size: 8px; font-weight: 600;
+  letter-spacing: .22em; text-transform: uppercase; color: var(--dim); z-index: 2;
+}
+.f-stamp {
+  position: absolute; top: 46px; right: 38px; z-index: 2;
+  font-family: var(--mono); font-size: 7.5px; font-weight: 700;
+  letter-spacing: .12em; text-transform: uppercase;
+  color: var(--red); border: 2px solid var(--red);
+  padding: 3px 7px; transform: rotate(-7deg); border-radius: 2px;
+}
+.f-center {
+  position: absolute; inset: 0; z-index: 2;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px;
+}
+.gm { display: grid; grid-template-columns: repeat(3, 14px); grid-template-rows: repeat(3, 14px); gap: 3px; margin-bottom: 10px; }
+.gm i { border: 1.8px solid var(--ink); display: block; }
+.gm i.r { background: var(--red); border-color: var(--red); }
+.gm i.k { background: var(--ink); border-color: var(--ink); }
+.f-title { font-family: var(--serif); font-weight: 800; font-size: 54px; letter-spacing: -.04em; line-height: .84; color: var(--ink); text-align: center; }
+.f-title span { color: var(--red); }
+.f-tagline { font-family: var(--serif); font-style: italic; font-weight: 400; font-size: 14px; color: var(--ink2); text-align: center; line-height: 1.45; white-space: nowrap; margin-top: 2px; }
+.f-rule { width: 80px; border-top: 1.5px solid var(--ink); position: relative; margin-top: 4px; }
+.f-rule::after { content: ""; position: absolute; left: 50%; top: -5px; width: 8px; height: 8px; background: var(--red); transform: translateX(-50%) rotate(45deg); }
+.f-meta { position: absolute; bottom: 28px; left: 0; right: 0; z-index: 2; display: flex; flex-direction: column; align-items: center; gap: 5px; }
+.f-cases { font-family: var(--mono); font-size: 7.5px; letter-spacing: .2em; text-transform: uppercase; color: var(--ink2); }
+.f-byline { font-family: var(--mono); font-size: 9px; font-weight: 600; letter-spacing: .34em; color: var(--ink); }
+
+.note { font-size: 10px; letter-spacing: .08em; color: var(--dim); text-align: center; max-width: 400px; line-height: 1.7; }
+</style>
+</head>
+<body>
+
+<div class="bar">
+  <span>Timeline · Book Mockup · 3D thickness</span>
+  <button class="btn ghost" onclick="toggleBg()">Toggle background</button>
+  <button class="btn" onclick="downloadPNG()">Download PNG →</button>
+</div>
+
+<div class="stage" id="stage">
+  <div class="book" id="book">
+
+    <!-- page blocks (behind cover) -->
+    <div class="pg-top"></div>
+    <div class="pg-right"></div>
+
+    <!-- front cover -->
+    <div class="cover">
+      <div class="frame"></div>
+      <div class="f-kicker">Time Correction Agency · Field Manual</div>
+      <div class="f-stamp">● Debut Title</div>
+      <div class="f-center">
+        <div class="gm">
+          <i></i><i class="r"></i><i></i>
+          <i></i><i></i><i class="k"></i>
+          <i class="k"></i><i></i><i></i>
+        </div>
+        <h1 class="f-title">TIME<span>LINE</span></h1>
+        <p class="f-tagline">History has been edited.<br>You are the correction.</p>
+        <div class="f-rule"></div>
+      </div>
+      <div class="f-meta">
+        <span class="f-cases">80 Deduction Cases · Five Clearances</span>
+        <span class="f-byline">SOUTHSTUDIO</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<p class="note">
+  A book seen from the front-right, showing real thickness · Click "Download PNG" for a transparent-background image ready for the website
+</p>
+
+<script src="https://unpkg.com/html-to-image@1.11.11/dist/html-to-image.js"></script>
+<script>
+var bgOn = false;
+function toggleBg(){
+  var s = document.getElementById('stage');
+  bgOn = !bgOn;
+  if(bgOn){ s.style.background = '#1c1a16'; s.style.backgroundImage = 'none'; }
+  else { s.style.background = ''; s.style.backgroundImage = ''; }
+}
+function downloadPNG(){
+  var book = document.getElementById('book');
+  var btn = document.querySelector('.btn:not(.ghost)');
+  btn.textContent = 'Generating…';
+  htmlToImage.toPng(book, { pixelRatio: 3, backgroundColor: null, style: { margin: '0' } })
+    .then(function(dataUrl){
+      var a = document.createElement('a');
+      a.download = 'timeline-book-3d.png';
+      a.href = dataUrl; a.click();
+      btn.textContent = 'Download PNG →';
+    }).catch(function(){
+      btn.textContent = 'Download PNG →';
+    });
+}
+</script>
+
+</body>
+</html>
