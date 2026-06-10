@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SouthStudio — Instagram Inkt</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,700&family=IBM+Plex+Mono:wght@600&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html,body{
+    width:100%;height:100vh;
+    background:#0e0b09;
+    display:flex;align-items:center;justify-content:center;
+    overflow:hidden;
+  }
+  .stage{
+    width:1080px;height:1080px;
+    background:#1A1612;
+    display:flex;align-items:center;justify-content:center;
+    transform-origin:center center;
+    flex-shrink:0;
+  }
+  .lockup{
+    display:flex;flex-direction:column;align-items:center;
+    gap:80px;
+  }
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    grid-template-rows:repeat(3,1fr);
+    gap:18px;
+    width:280px;height:280px;
+  }
+  .cell{border:5px solid #FAF7EF;}
+  .cell.red{background:#D2362B;border-color:#D2362B;}
+  .cell.paper{background:#FAF7EF;}
+  .wordmark{
+    display:flex;flex-direction:column;align-items:center;gap:22px;
+  }
+  .name{
+    font-family:'Newsreader',Georgia,serif;
+    font-weight:700;font-size:148px;
+    letter-spacing:-2px;line-height:1;
+  }
+  .south{color:#FAF7EF;}
+  .studio{color:#D2362B;}
+  .kicker{
+    font-family:'IBM Plex Mono','Courier New',monospace;
+    font-weight:600;font-size:30px;
+    text-transform:uppercase;letter-spacing:13px;
+    color:#C8BDA6;white-space:nowrap;
+  }
+</style>
+</head>
+<body>
+  <div class="stage" id="stage">
+    <div class="lockup">
+      <div class="grid">
+        <div class="cell"></div><div class="cell red"></div><div class="cell"></div>
+        <div class="cell"></div><div class="cell"></div><div class="cell paper"></div>
+        <div class="cell paper"></div><div class="cell"></div><div class="cell"></div>
+      </div>
+      <div class="wordmark">
+        <div class="name"><span class="south">South</span><span class="studio">Studio</span></div>
+        <div class="kicker">Independent Studio</div>
+      </div>
+    </div>
+  </div>
+  <script>
+    function scale(){
+      var s=document.getElementById('stage');
+      var fit=Math.min(window.innerWidth,window.innerHeight)/1080;
+      s.style.transform='scale('+fit+')';
+    }
+    scale();
+    window.addEventListener('resize',scale);
+  </script>
+</body>
+</html>

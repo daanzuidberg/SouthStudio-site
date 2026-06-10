@@ -36,11 +36,11 @@ Every one of the **80 book puzzles** was machine-verified, not eyeballed:
 
 **Real contact email.** The site currently uses a placeholder:
 - Visible text reads `hello@southstudio` (no `.com`/`.nl` — looks unfinished).
-- The `mailto:` uses `hello@southstudio.example` (a reserved placeholder; mail bounces).
+- The `mailto:` uses `info@southstudio.online` (a reserved placeholder; mail bounces).
 - Form fallback + error messages repeat it.
 
 This is the email that newsletter/pre-order submissions fall back to, and that the
-privacy policy points people to. **Tell me the real address** (e.g. `hello@southstudio.nl`)
+privacy policy points people to. **Tell me the real address** (e.g. `info@southstudio.onlinenl`)
 and I'll wire it everywhere in one pass.
 
 ---

@@ -334,6 +334,19 @@ h1, h2, h3 { font-weight: 700; line-height: 1.04; letter-spacing: -0.015em; }
 .principle { background: var(--paper); padding: clamp(24px,3vw,36px); display: flex; flex-direction: column; gap: 14px; min-height: 220px; }
 .principle .pn { font-family: var(--mono); font-size: 12px; letter-spacing: 0.2em; color: var(--red); }
 
+/* four shelves */
+.shelves { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--line-2); border: 1px solid var(--line-2); }
+.shelf { background: var(--paper); padding: clamp(22px,2.6vw,32px); display: flex; flex-direction: column; gap: 12px; min-height: 230px; color: inherit; }
+a.shelf { transition: background .18s ease; }
+a.shelf:hover { background: var(--paper-2); }
+.shelf .sn { font-family: var(--mono); font-size: 11px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--red); }
+.shelf h3 { font-size: 21px; font-weight: 700; letter-spacing: -0.01em; }
+.shelf .shelf-status { margin-top: auto; font-family: var(--mono); font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft); border-top: 1px solid var(--line); padding-top: 12px; transition: color .16s ease; }
+.shelf .shelf-status b { color: var(--ink); font-weight: 600; }
+a.shelf:hover .shelf-status { color: var(--ink); }
+@media (max-width: 1020px) { .shelves { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 600px) { .shelves { grid-template-columns: 1fr; } .shelf { min-height: 0; } }
+
 /* newsletter */
 .news-form { display: flex; gap: 12px; flex-wrap: wrap; max-width: 520px; }
 .field {
@@ -493,6 +506,34 @@ h1, h2, h3 { font-weight: 700; line-height: 1.04; letter-spacing: -0.015em; }
 .host-slot .hs-code { font-family: var(--mono); font-size: 12px; background: var(--ink); color: #E6DECE; padding: 2px 7px; border-radius: 3px; }
 .host-frame { width: 100%; height: 100%; min-height: 540px; border: 0; display: block; }
 
+/* ---------- intro opener ---------- */
+#intro { position: fixed; inset: 0; z-index: 200; display: flex; align-items: center; justify-content: center; }
+#intro.done { display: none; }
+#intro .intro-bg { position: absolute; inset: 0; background: var(--paper); }
+#intro .intro-bg::after { content: ""; position: absolute; inset: 0; background-image: linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px); background-size: 34px 34px; background-position: center; opacity: .45; }
+.intro-logo { width: min(72vw, 520px); height: auto; display: block; position: relative; }
+.intro-logo rect, .intro-logo text { opacity: 0; }
+.intro-logo rect { transform-box: fill-box; transform-origin: center; }
+#intro.play .intro-logo rect:nth-of-type(1) { animation: introCell .5s cubic-bezier(.2,.7,.2,1) .10s forwards; }
+#intro.play .intro-logo rect:nth-of-type(3) { animation: introCell .5s cubic-bezier(.2,.7,.2,1) .19s forwards; }
+#intro.play .intro-logo rect:nth-of-type(4) { animation: introCell .5s cubic-bezier(.2,.7,.2,1) .28s forwards; }
+#intro.play .intro-logo rect:nth-of-type(5) { animation: introCell .5s cubic-bezier(.2,.7,.2,1) .37s forwards; }
+#intro.play .intro-logo rect:nth-of-type(8) { animation: introCell .5s cubic-bezier(.2,.7,.2,1) .46s forwards; }
+#intro.play .intro-logo rect:nth-of-type(9) { animation: introCell .5s cubic-bezier(.2,.7,.2,1) .55s forwards; }
+#intro.play .intro-logo rect:nth-of-type(6) { animation: introInk .45s ease .80s forwards; }
+#intro.play .intro-logo rect:nth-of-type(7) { animation: introInk .45s ease .92s forwards; }
+#intro.play .intro-logo rect:nth-of-type(2) { animation: introStamp .5s cubic-bezier(.2,.7,.2,1) 1.18s forwards; }
+#intro.play .intro-logo text:nth-of-type(1) { animation: introText .6s cubic-bezier(.2,.7,.2,1) 1.52s forwards; }
+#intro.play .intro-logo text:nth-of-type(2) { animation: introText .6s cubic-bezier(.2,.7,.2,1) 1.66s forwards; }
+@keyframes introCell { from { opacity: 0; transform: scale(.55); } to { opacity: 1; transform: none; } }
+@keyframes introInk { from { opacity: 0; } to { opacity: 1; } }
+@keyframes introStamp { 0% { opacity: 0; transform: scale(1.8) rotate(-7deg); } 62% { opacity: 1; transform: scale(.92) rotate(1.5deg); } 100% { opacity: 1; transform: none; } }
+@keyframes introText { from { opacity: 0; transform: translateY(7px); } to { opacity: 1; transform: none; } }
+.intro-hint { position: absolute; bottom: 34px; left: 0; right: 0; text-align: center; font-family: var(--mono); font-size: 11px; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; color: var(--ink-soft); opacity: 0; transition: opacity .5s ease; }
+#intro.play .intro-hint { opacity: .75; transition-delay: 1.2s; }
+body.intro-hold .reveal { opacity: 0 !important; transform: translateY(22px) !important; transition: none !important; }
+@media (prefers-reduced-motion: reduce) { #intro { display: none; } }
+
 /* ---------- responsive ---------- */
 @media (max-width: 900px) {
  .split { grid-template-columns: 1fr; }
@@ -511,6 +552,26 @@ h1, h2, h3 { font-weight: 700; line-height: 1.04; letter-spacing: -0.015em; }
 </style>
 </head>
 <body>
+
+<!-- ============ INTRO OPENER ============ -->
+<div id="intro" aria-hidden="true" data-screen-label="Intro opener">
+ <div class="intro-bg"></div>
+ <svg class="intro-logo" viewBox="0 0 282 84" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="SouthStudio">
+ <rect x="3.8" y="16.8" width="17" height="17" fill="none" stroke="#1A1612" stroke-width="1.7"></rect>
+ <rect x="23.8" y="16.8" width="17" height="17" fill="#D2362B" stroke="#D2362B" stroke-width="1.7"></rect>
+ <rect x="43.8" y="16.8" width="17" height="17" fill="none" stroke="#1A1612" stroke-width="1.7"></rect>
+ <rect x="3.8" y="36.8" width="17" height="17" fill="none" stroke="#1A1612" stroke-width="1.7"></rect>
+ <rect x="23.8" y="36.8" width="17" height="17" fill="none" stroke="#1A1612" stroke-width="1.7"></rect>
+ <rect x="43.8" y="36.8" width="17" height="17" fill="#1A1612" stroke="#1A1612" stroke-width="1.7"></rect>
+ <rect x="3.8" y="56.8" width="17" height="17" fill="#1A1612" stroke="#1A1612" stroke-width="1.7"></rect>
+ <rect x="23.8" y="56.8" width="17" height="17" fill="none" stroke="#1A1612" stroke-width="1.7"></rect>
+ <rect x="43.8" y="56.8" width="17" height="17" fill="none" stroke="#1A1612" stroke-width="1.7"></rect>
+ <text x="76" y="48" font-family="'Spectral', Georgia, serif" font-size="33" font-weight="700" letter-spacing="-0.5"><tspan fill="#1A1612">South</tspan><tspan fill="#D2362B">Studio</tspan></text>
+ <text x="77.5" y="66.5" font-family="'IBM Plex Mono', ui-monospace, monospace" font-size="8.6" font-weight="600" letter-spacing="3.1" fill="#1A1612" opacity="0.5">INDEPENDENT STUDIO</text>
+ </svg>
+ <div class="intro-hint">{{intro_1}}</div>
+</div>
+<script>(function(){try{if(sessionStorage.getItem('ss-intro-played')==='1'){document.getElementById('intro').className='done';}}catch(e){}})();</script>
 
 <!-- ============ HEADER ============ -->
 <header class="site-head" data-screen-label="Home">
@@ -599,6 +660,49 @@ h1, h2, h3 { font-weight: 700; line-height: 1.04; letter-spacing: -0.015em; }
  <span class="bc-byline">SOUTHSTUDIO</span>
  </div>
  </div>
+ </div>
+ </div>
+ </div>
+</section>
+
+<hr class="thick-rule" />
+
+<!-- ============ THE FOUR SHELVES ============ -->
+<section class="section section--tight" data-screen-label="The Four Shelves">
+ <div class="wrap">
+ <div class="reveal eyebrow-rule" style="margin-bottom:36px">
+ <span class="kicker kicker--red"><span class="dot"></span>{{shelves_1}}</span>
+ <span class="ln"></span>
+ <span class="kicker">{{shelves_2}}</span>
+ </div>
+ <div class="split" style="align-items:baseline;margin-bottom:38px">
+ <h2 class="h2 reveal">{{shelves_3}}</h2>
+ <p class="lead muted reveal d1">{{shelves_4}}</p>
+ </div>
+ <div class="shelves reveal d1">
+ <a class="shelf" href="timeline.html">
+ <span class="sn">{{shelves_5}}</span>
+ <h3>{{shelves_6}}</h3>
+ <p class="muted" style="font-size:15px">{{shelves_7}}</p>
+ <span class="shelf-status"><b>{{shelves_8}}</b> →</span>
+ </a>
+ <a class="shelf" href="play.html">
+ <span class="sn">{{shelves_9}}</span>
+ <h3>{{shelves_10}}</h3>
+ <p class="muted" style="font-size:15px">{{shelves_11}}</p>
+ <span class="shelf-status"><b>{{shelves_12}}</b> →</span>
+ </a>
+ <div class="shelf">
+ <span class="sn">{{shelves_13}}</span>
+ <h3>{{shelves_14}}</h3>
+ <p class="muted" style="font-size:15px">{{shelves_15}}</p>
+ <span class="shelf-status">{{shelves_16}}</span>
+ </div>
+ <div class="shelf">
+ <span class="sn">{{shelves_17}}</span>
+ <h3>{{shelves_18}}</h3>
+ <p class="muted" style="font-size:15px">{{shelves_19}}</p>
+ <span class="shelf-status">{{shelves_20}}</span>
  </div>
  </div>
  </div>
@@ -842,7 +946,7 @@ h1, h2, h3 { font-weight: 700; line-height: 1.04; letter-spacing: -0.015em; }
  <h4>Studio</h4>
  <div class="foot-links">
  <a data-open-preorder href="#">{{footer_7}}</a>
- <a href="mailto:hello@southstudio.example">hello@southstudio</a>
+ <a href="mailto:info@southstudio.online">info@southstudio.online</a>
  <a href="#">{{footer_8}}</a>
  <a href="#">{{footer_9}}</a>
  </div>
@@ -1003,6 +1107,58 @@ h1, h2, h3 { font-weight: 700; line-height: 1.04; letter-spacing: -0.015em; }
  }
 })();
 
+</script>
+
+<script>
+/* ===== Intro opener: plays once per session, skippable, reduced-motion safe ===== */
+(function () {
+ var intro = document.getElementById('intro');
+ if (!intro || intro.classList.contains('done')) return;
+ var bg = intro.querySelector('.intro-bg');
+ var hint = intro.querySelector('.intro-hint');
+ var introLogo = intro.querySelector('.intro-logo');
+ var headerLogo = document.querySelector('.site-head .logo');
+ var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+ var done = false, flyTimer = null;
+
+ function finish(instant) {
+  if (done) return;
+  done = true;
+  clearTimeout(flyTimer);
+  document.body.classList.remove('intro-hold');
+  document.body.style.overflow = '';
+  if (instant) {
+   intro.classList.add('done');
+   if (headerLogo) headerLogo.style.opacity = '';
+   return;
+  }
+  var t = headerLogo.getBoundingClientRect();
+  var s = introLogo.getBoundingClientRect();
+  var scale = t.width / s.width;
+  var dx = t.left - s.left, dy = t.top - s.top;
+  introLogo.style.transformOrigin = 'top left';
+  introLogo.style.transition = 'transform .68s cubic-bezier(.7,0,.18,1)';
+  introLogo.style.transform = 'translate(' + dx + 'px,' + dy + 'px) scale(' + scale + ')';
+  hint.style.opacity = '0';
+  bg.style.transition = 'opacity .55s ease .18s';
+  bg.style.opacity = '0';
+  setTimeout(function () {
+   if (headerLogo) headerLogo.style.opacity = '';
+   intro.classList.add('done');
+  }, 700);
+ }
+
+ if (reduce || window.scrollY > 50 || !headerLogo) { finish(true); return; }
+ try { sessionStorage.setItem('ss-intro-played', '1'); } catch (e) {}
+
+ document.body.classList.add('intro-hold');
+ document.body.style.overflow = 'hidden';
+ headerLogo.style.opacity = '0';
+ requestAnimationFrame(function () { intro.classList.add('play'); });
+ flyTimer = setTimeout(function () { finish(false); }, 2350);
+ intro.addEventListener('click', function () { finish(false); });
+ window.addEventListener('keydown', function () { finish(false); }, { once: true });
+})();
 </script>
 </body>
 </html>

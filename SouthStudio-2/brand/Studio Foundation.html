@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="nl" data-lang="nl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>SouthStudio — Studio Foundation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400;1,6..72,500;1,6..72,600&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet" />
+<style>
+:root{
+  --paper:#FAF7EF; --paper2:#F1EBDD; --ink:#1A1612; --ink2:#46413A; --dim:#6B6256;
+  --line:#DDD4C2; --line2:#C8BDA6; --red:#D2362B;
+  --serif:"Newsreader",Georgia,serif; --mono:"IBM Plex Mono",ui-monospace,monospace;
+}
+*,*::before,*::after{box-sizing:border-box;}
+body{margin:0;background:#E9E4D8;font-family:var(--serif);color:var(--ink2);
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;}
+.page{max-width:920px;margin:40px auto 80px;background:var(--paper);
+  border:1px solid var(--line2);box-shadow:0 2px 24px rgba(26,22,18,.08);}
+a{color:inherit;}
+
+/* language switching */
+[data-lang="nl"] .only-en{display:none !important;}
+[data-lang="en"] .only-nl{display:none !important;}
+.langbar{position:fixed;top:18px;right:18px;z-index:10;display:flex;gap:0;
+  border:1px solid var(--line2);background:var(--paper);box-shadow:0 1px 8px rgba(26,22,18,.10);}
+.langbar button{font:600 11px/1 var(--mono);letter-spacing:.14em;padding:9px 14px;
+  border:none;background:none;color:var(--dim);cursor:pointer;text-transform:uppercase;}
+.langbar button.active{background:var(--ink);color:var(--paper);}
+
+/* masthead */
+.masthead{display:flex;justify-content:space-between;align-items:flex-start;
+  padding:46px 60px 36px;border-bottom:2px solid var(--ink);}
+.idblock{display:flex;gap:17px;align-items:center;}
+.wordmark{font:700 26px/1 var(--serif);letter-spacing:-.02em;color:var(--ink);}
+.wordmark span{color:var(--red);}
+.kick-sub{font:600 9px/1 var(--mono);letter-spacing:.28em;text-transform:uppercase;color:var(--dim);margin-top:5px;}
+.meta{text-align:right;font:400 9.5px/1.85 var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--dim);}
+
+/* the line */
+.theline{padding:60px 60px 54px;text-align:center;}
+.kicker{font:600 10.5px/1 var(--mono);letter-spacing:.22em;text-transform:uppercase;color:var(--red);}
+.theline h1{font:700 58px/1.02 var(--serif);letter-spacing:-.03em;color:var(--ink);margin:20px 0 0;}
+.theline h1 em{font-style:italic;font-weight:500;}
+.theline .under{font:400 11px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--dim);margin-top:24px;}
+
+/* numbered section */
+.sec{display:grid;grid-template-columns:54px 1fr;gap:26px;padding:36px 60px;border-top:1px solid var(--line);}
+.sec .no{font:600 11px/1 var(--mono);letter-spacing:.1em;color:var(--dim);padding-top:7px;}
+.sec h2{font:600 26px/1.12 var(--serif);letter-spacing:-.01em;color:var(--ink);margin:0 0 16px;}
+.sec p{font:400 15.5px/1.62 var(--serif);margin:0 0 14px;text-wrap:pretty;}
+.sec p:last-child{margin-bottom:0;}
+.sec p.lead{font-size:18.5px;line-height:1.55;color:var(--ink);}
+.sec strong{font-weight:600;color:var(--ink);}
+.pull{margin:18px 0 4px;padding:14px 20px;border-left:2px solid var(--red);
+  font:500 17px/1.5 var(--serif);font-style:italic;color:var(--ink);background:var(--paper2);}
+
+/* pillar cards */
+.pillars{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:6px;}
+.pillar{border:1px solid var(--line);background:var(--paper);padding:20px 22px 18px;position:relative;}
+.pillar::before,.pillar::after{content:"";position:absolute;width:9px;height:9px;}
+.pillar::before{top:-1px;left:-1px;border-top:2px solid var(--red);border-left:2px solid var(--red);}
+.pillar::after{bottom:-1px;right:-1px;border-bottom:2px solid var(--red);border-right:2px solid var(--red);}
+.pillar .pno{font:600 10px/1 var(--mono);letter-spacing:.2em;color:var(--red);text-transform:uppercase;}
+.pillar h3{font:600 21px/1.1 var(--serif);letter-spacing:-.01em;color:var(--ink);margin:9px 0 8px;}
+.pillar p{font-size:14px;line-height:1.58;margin:0 0 10px;}
+.pillar .role{font:500 10px/1.7 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--dim);
+  border-top:1px solid var(--line);padding-top:9px;margin-top:2px;}
+.pillar .role b{color:var(--ink);font-weight:600;}
+
+/* tables */
+table{width:100%;border-collapse:collapse;margin-top:4px;}
+th{font:600 10px/1.4 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--dim);
+  text-align:left;padding:0 14px 9px 0;border-bottom:1px solid var(--line2);}
+td{font:400 14.5px/1.55 var(--serif);color:var(--ink2);padding:11px 14px 11px 0;
+  border-bottom:1px solid var(--line);vertical-align:top;}
+td.mono{font:500 11px/1.7 var(--mono);letter-spacing:.06em;color:var(--ink);white-space:nowrap;}
+td b{font-weight:600;color:var(--ink);}
+
+/* lanes (video formats) */
+.lanes{display:grid;gap:0;margin-top:6px;border-top:1px solid var(--line2);}
+.lane{display:grid;grid-template-columns:170px 1fr;gap:20px;padding:15px 0;border-bottom:1px solid var(--line);}
+.lane .lname{font:600 15.5px/1.3 var(--serif);color:var(--ink);}
+.lane .lname small{display:block;font:500 9.5px/1.6 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--dim);margin-top:3px;}
+.lane p{font-size:14px;line-height:1.58;margin:0;}
+
+/* compass questions */
+.compass{display:grid;gap:10px;margin-top:6px;}
+.q{display:grid;grid-template-columns:34px 1fr;gap:16px;align-items:baseline;
+  border:1px solid var(--line);background:var(--paper2);padding:14px 18px;}
+.q .qn{font:600 14px/1 var(--mono);color:var(--red);}
+.q .qt{font:600 16.5px/1.35 var(--serif);color:var(--ink);}
+.q .qs{font:400 13.5px/1.55 var(--serif);color:var(--ink2);margin-top:4px;}
+
+/* horizon */
+.horizon{display:grid;gap:0;border-top:1px solid var(--line2);margin-top:6px;}
+.year{display:grid;grid-template-columns:96px 1fr;gap:22px;padding:16px 0;border-bottom:1px solid var(--line);}
+.year .y{font:700 24px/1 var(--serif);color:var(--ink);letter-spacing:-.02em;}
+.year .y small{display:block;font:500 9px/1.6 var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--red);margin-top:5px;}
+.year p{font-size:14.5px;line-height:1.6;margin:0;}
+
+.footnote{font:400 12.5px/1.7 var(--serif);font-style:italic;color:var(--dim);margin-top:14px;}
+footer.colophon{padding:30px 60px 40px;border-top:2px solid var(--ink);
+  display:flex;justify-content:space-between;align-items:center;
+  font:400 9.5px/1.8 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--dim);}
+
+@media print{
+  body{background:var(--paper);}
+  .page{margin:0;border:none;box-shadow:none;max-width:none;}
+  .langbar{display:none;}
+  .sec{break-inside:avoid;}
+}
+@media (max-width:720px){
+  .masthead,.theline,.sec,footer.colophon{padding-left:24px;padding-right:24px;}
+  .sec{grid-template-columns:1fr;gap:8px;}
+  .pillars{grid-template-columns:1fr;}
+  .theline h1{font-size:40px;}
+  .lane{grid-template-columns:1fr;gap:6px;}
+}
+</style>
+</head>
+<body>
+
+<div class="langbar" role="group" aria-label="Taal / Language">
+  <button id="btn-nl" type="button" onclick="setLang('nl')">NL</button>
+  <button id="btn-en" type="button" onclick="setLang('en')">EN</button>
+</div>
+
+<div class="page">
+
+  <header class="masthead" data-screen-label="Masthead">
+    <div class="idblock">
+      <svg width="46" height="46" viewBox="0 0 132 132" aria-hidden="true">
+        <rect x="2" y="2" width="40" height="40" fill="none" stroke="#1A1612" stroke-width="4"></rect>
+        <rect x="46" y="2" width="40" height="40" fill="#D2362B" stroke="#D2362B" stroke-width="4"></rect>
+        <rect x="90" y="2" width="40" height="40" fill="none" stroke="#1A1612" stroke-width="4"></rect>
+        <rect x="2" y="46" width="40" height="40" fill="none" stroke="#1A1612" stroke-width="4"></rect>
+        <rect x="46" y="46" width="40" height="40" fill="none" stroke="#1A1612" stroke-width="4"></rect>
+        <rect x="90" y="46" width="40" height="40" fill="#1A1612" stroke="#1A1612" stroke-width="4"></rect>
+        <rect x="2" y="90" width="40" height="40" fill="#1A1612" stroke="#1A1612" stroke-width="4"></rect>
+        <rect x="46" y="90" width="40" height="40" fill="none" stroke="#1A1612" stroke-width="4"></rect>
+        <rect x="90" y="90" width="40" height="40" fill="none" stroke="#1A1612" stroke-width="4"></rect>
+      </svg>
+      <div>
+        <div class="wordmark">South<span>Studio</span></div>
+        <div class="kick-sub">Independent Studio</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="only-nl">Studio Foundation<br />v1 · juni 2026<br />Intern kompas</span>
+      <span class="only-en">Studio Foundation<br />v1 · June 2026<br />Internal compass</span>
+    </div>
+  </header>
+
+  <!-- ================= NL ================= -->
+  <main class="only-nl" lang="nl">
+
+    <div class="theline" data-screen-label="NL · De lijn">
+      <div class="kicker">De lijn</div>
+      <h1>Dingen die het<br /><em>denken waard zijn.</em></h1>
+      <div class="under">Things worth thinking about — één zin, twee talen, alles antwoordt eraan</div>
+    </div>
+
+    <section class="sec" data-screen-label="NL · 01 Eén studio">
+      <div class="no">01</div>
+      <div>
+        <h2>Eén studio, veel vormen</h2>
+        <p class="lead">SouthStudio is één studio onder één naam. Geen puzzelmerk met zijprojecten — één sensibiliteit, uitgedrukt in de vorm die het idee vraagt: een boek, een browser, een video, een object in je handen.</p>
+        <p>Timeline is niet de studio. Timeline is <strong>No. 001</strong> — het eerste bewijs. De studio is wat de nummers uitdeelt, en dit document beschrijft de plank waar ze op komen te staan.</p>
+        <div class="pull">De vorm is nooit het punt. Het denken is het punt.</div>
+      </div>
+    </section>
+
+    <section class="sec" data-screen-label="NL · 02 De vier planken">
+      <div class="no">02</div>
+      <div>
+        <h2>De vier planken</h2>
+        <p>Alles wat de studio ooit uitbrengt valt op één van vier planken. Elke plank heeft een eigen rol; allemaal moeten ze door dezelfde vijf normen (Brand Identity §4). Een plank mag jaren leeg blijven — hij mag nooit met vulling worden gevuld.</p>
+        <div class="pillars">
+          <div class="pillar">
+            <div class="pno">Plank I · Print</div>
+            <h3>Boeken &amp; puzzels</h3>
+            <p>Puzzelboeken, veldgidsen, gedrukt denkwerk. Traag gemaakt, af, om te houden.</p>
+            <div class="role"><b>Rol</b> — het vlaggenschip-formaat · <b>Bewijs</b> — Timeline, No. 001</div>
+          </div>
+          <div class="pillar">
+            <div class="pno">Plank II · Scherm</div>
+            <h3>Digitale ervaringen</h3>
+            <p>Spellen en ervaringen gebouwd vóór het scherm — nooit ports, nooit apps die zeuren.</p>
+            <div class="role"><b>Rol</b> — de open deur: gratis, direct, een proeverij · <b>Bewijs</b> — Timeline online</div>
+          </div>
+          <div class="pillar">
+            <div class="pno">Plank III · Video</div>
+            <h3>Video</h3>
+            <p>Faceless video's over dingen die het denken waard zijn. De studio die hardop denkt, in het openbaar.</p>
+            <div class="role"><b>Rol</b> — hoe nieuwe mensen ons vinden · <b>Status</b> — in oprichting, zie §04</div>
+          </div>
+          <div class="pillar">
+            <div class="pno">Plank IV · Objecten</div>
+            <h3>Objecten</h3>
+            <p>Legpuzzels, oplospuzzels, prints — dingen waarvan het antwoord in je handen ligt.</p>
+            <div class="role"><b>Rol</b> — de studio, fysiek; om te geven en te houden · <b>Status</b> — op de werkbank</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec" data-screen-label="NL · 03 Eén catalogus">
+      <div class="no">03</div>
+      <div>
+        <h2>Eén naam, één catalogus</h2>
+        <p>Alles verschijnt als <strong>SouthStudio</strong>. Geen subnamen, geen spin-offs. De catalogusnummers lopen door over alle vormen heen: No. 002 kan een spel zijn, No. 004 een legpuzzel. Het nummer vertelt het verhaal van een studio met een koers — niet van een eenmalig product.</p>
+        <table>
+          <tbody>
+            <tr><td class="mono">REGEL 1</td><td>Een catalogusnummer markeert een <b>afgerond werk</b>, ongeacht de vorm — boek, spel of object.</td></tr>
+            <tr><td class="mono">REGEL 2</td><td>Video's zijn geen genummerde werken; zij zijn <b>het kanaal</b>. Afleveringen tellen als E01, E02, …</td></tr>
+            <tr><td class="mono">REGEL 3</td><td>In-world werelden (zoals de Time Correction Agency) horen bij <b>werken</b>, nooit bij de studio zelf.</td></tr>
+            <tr><td class="mono">REGEL 4</td><td>Een nummer wordt nooit hergebruikt en nooit overgeslagen. De catalogus beweegt alleen vooruit.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="sec" data-screen-label="NL · 04 Video">
+      <div class="no">04</div>
+      <div>
+        <h2>Video — de nieuwe plank</h2>
+        <p class="lead">De slogan is de kanaalbrief. Elke video is zelf een ding dat het denken waard is — niet reclame voor iets anders.</p>
+        <p><strong>Faceless</strong> betekent: het werk praat, niet een gezicht. Dezelfde stem als op papier — kalm, precies, droog. Drie lanen om mee te beginnen, te toetsen tegen de praktijk:</p>
+        <div class="lanes">
+          <div class="lane">
+            <div class="lname">De Casus<small>De kernlaan</small></div>
+            <p>Eén puzzel, paradox of probleem, visueel uitgepakt tot het klikt. Pauzeerbaar: de kijker mag eerst zelf.</p>
+          </div>
+          <div class="lane">
+            <div class="lname">Het Maken<small>Achter de schermen</small></div>
+            <p>Hoe iets uit de catalogus ontstaat — van raster tot drukpers. Handen en werk in beeld, geen gezicht.</p>
+          </div>
+          <div class="lane">
+            <div class="lname">De Trailer<small>Bij elke release</small></div>
+            <p>Als een werk verschijnt, krijgt het een film die op zichzelf de moeite waard is.</p>
+          </div>
+        </div>
+        <table>
+          <tbody>
+            <tr><td class="mono">VORM</td><td>Papier-en-inkt als bewegingstaal. Mono-bijschriften. Het rood spaarzaam — één keer per frame is genoeg.</td></tr>
+            <tr><td class="mono">TITELS</td><td>Een titel is een zin die het klikken waard is. Geen clickbait-gezichten, geen pijlen, geen hoofdletters die schreeuwen.</td></tr>
+            <tr><td class="mono">RITME</td><td>Eerlijk ritme boven streaks: een haalbare cadans (bijv. tweewekelijks) die nooit een video door de vijf normen duwt.</td></tr>
+            <tr><td class="mono">TAAL</td><td>Nog te beslissen: Engels gesproken met NL-ondertiteling is de grootste vijver; één taal per kanaal houdt het schoon.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="sec" data-screen-label="NL · 05 Vast en vrij">
+      <div class="no">05</div>
+      <div>
+        <h2>Wat vast staat, wat mag bewegen</h2>
+        <p>De identiteit (Brand Identity v2) blijft de basis. Per plank is er speelruimte — maar de speelruimte is benoemd, niet vrij.</p>
+        <table>
+          <thead><tr><th style="width:38%;">Vast — overal, altijd</th><th>Vrij — per plank</th></tr></thead>
+          <tbody>
+            <tr><td>De naam en het merk-raster (nooit hertekenen)</td><td>Video mag inverteren: inkt-donkere vlakken, papierkleurige letters — gemaakt vóór het scherm.</td></tr>
+            <tr><td>Newsreader + IBM Plex Mono</td><td>Objecten mogen terug naar twee kleuren waar materiaal of kosten daarom vragen.</td></tr>
+            <tr><td>Papier, inkt, één rood (#D2362B)</td><td>Werken mogen een in-world huid dragen (zoals de TCA) — één laag bóven de studiobasis.</td></tr>
+            <tr><td>De stem: zeker, droog, precies, van gelijke aan gelijke</td><td>Digitaal mag een functionele tweede kleur voeren waar interactie dat eist (het bestaande speel-blauw).</td></tr>
+            <tr><td>De genummerde catalogus</td><td></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="sec" data-screen-label="NL · 06 Het kompas">
+      <div class="no">06</div>
+      <div>
+        <h2>Het kompas — vier vragen vóór iets nieuws</h2>
+        <p>Elk idee — product, video, object, samenwerking — beantwoordt eerst deze vier. Eén nee, en het wacht of vervalt.</p>
+        <div class="compass">
+          <div class="q"><div class="qn">1</div><div><div class="qt">Is het het denken waard?</div><div class="qs">Geldt de lijn hier eerlijk — of praat je hem goed?</div></div></div>
+          <div class="q"><div class="qn">2</div><div><div class="qt">Haalt het de vijf normen?</div><div class="qs">Eerlijk · mooi · dieper dan het lijkt · gemaakt om te blijven · respectvol.</div></div></div>
+          <div class="q"><div class="qn">3</div><div><div class="qt">Kan één persoon het uitstekend maken?</div><div class="qs">Schaal naar de maker, niet naar de ambitie. Liever klein en af dan groot en half.</div></div></div>
+          <div class="q"><div class="qn">4</div><div><div class="qt">Op welke plank ligt het?</div><div class="qs">Past het op geen van de vier — dan is het een idee voor een andere studio.</div></div></div>
+        </div>
+        <div class="pull">Eén ding af is meer waard dan drie dingen begonnen.</div>
+      </div>
+    </section>
+
+    <section class="sec" data-screen-label="NL · 07 Horizon">
+      <div class="no">07</div>
+      <div>
+        <h2>De horizon — 2026 → 2028</h2>
+        <p>Drie jaar, richtinggevend. De data dienen het werk, niet andersom.</p>
+        <div class="horizon">
+          <div class="year">
+            <div class="y">2026<small>Funderen</small></div>
+            <p>No. 001 verschijnt — Timeline in druk en online. Het kanaal opent stil: de trailer, de eerste Casussen. De website toont de studio, niet alleen het boek.</p>
+          </div>
+          <div class="year">
+            <div class="y">2027<small>Ritme</small></div>
+            <p>De videocadans houdt stand. No. 002 komt in de catalogus. Het eerste object — een legpuzzel of oplospuzzel — wordt geprototyped en handgetest.</p>
+          </div>
+          <div class="year">
+            <div class="y">2028<small>De plank is echt</small></div>
+            <p>Drie genummerde werken, over ten minste drie planken. Een eigen studiowinkel. De catalogus spreekt voor zichzelf.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec" data-screen-label="NL · 08 Kanalen">
+      <div class="no">08</div>
+      <div>
+        <h2>Kanalen — waar elk voor dient</h2>
+        <table>
+          <tbody>
+            <tr><td class="mono">WEBSITE</td><td>De plank zelf: catalogus, de vier planken, gratis spelen. <b>Eerste taak die uit dit document volgt:</b> de homepage laat de hele studio zien, niet alleen Timeline.</td></tr>
+            <tr><td class="mono">THE DISPATCH</td><td>Zeldzame brieven, alleen als er iets verschijnt. Eén klik eruit.</td></tr>
+            <tr><td class="mono">YOUTUBE</td><td>Hoe vreemden ons vinden. Elke video staat op zichzelf.</td></tr>
+            <tr><td class="mono">SOCIAL</td><td>Wegwijzers, geen woonplaats. Verwijst naar het werk.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="sec" data-screen-label="NL · 09 Gebruik">
+      <div class="no">09</div>
+      <div>
+        <h2>Hoe dit document te gebruiken</h2>
+        <p>Dit is een kompas, geen kooi. Bij twijfel beslist de lijn. Bij conflicten: <strong>Brand Identity v2</strong> gaat over hoe de studio eruitziet en klinkt; <strong>dit document</strong> gaat over wat de studio maakt en waarom. Herzie het wanneer de werkelijkheid erom vraagt — niet wanneer een idee er niet doorheen komt.</p>
+        <p class="footnote">Gemaakt door iemand, niet door een comité. Voor de lange weg.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ================= EN ================= -->
+  <main class="only-en" lang="en">
+
+    <div class="theline" data-screen-label="EN · The line">
+      <div class="kicker">The line</div>
+      <h1>Things worth<br /><em>thinking about.</em></h1>
+      <div class="under">Dingen die het denken waard zijn — one line, two languages, everything answers to it</div>
+    </div>
+
+    <section class="sec" data-screen-label="EN · 01 One studio">
+      <div class="no">01</div>
+      <div>
+        <h2>One studio, many forms</h2>
+        <p class="lead">SouthStudio is one studio under one name. Not a puzzle brand with side projects — a single sensibility, expressed in whatever form the idea asks for: a book, a browser, a video, an object in your hands.</p>
+        <p>Timeline is not the studio. Timeline is <strong>No. 001</strong> — the first proof. The studio is the thing that hands out the numbers, and this document describes the shelf they go on.</p>
+        <div class="pull">The form is never the point. The thinking is.</div>
+      </div>
+    </section>
+
+    <section class="sec" data-screen-label="EN · 02 The four shelves">
+      <div class="no">02</div>
+      <div>
+        <h2>The four shelves</h2>
+        <p>Everything the studio ever releases lives on one of four shelves. Each has its own role; all of them pass the same five standards (Brand Identity §4). A shelf may stay empty for years — it may never be filled with filler.</p>
+        <div class="pillars">
+          <div class="pillar">
+            <div class="pno">Shelf I · Print</div>
+            <h3>Books &amp; puzzles</h3>
+            <p>Puzzle books, field manuals, printed thinking. Slowly made, finished, made to keep.</p>
+            <div class="role"><b>Role</b> — the flagship format · <b>Proof</b> — Timeline, No. 001</div>
+          </div>
+          <div class="pillar">
+            <div class="pno">Shelf II · Screen</div>
+            <h3>Digital experiences</h3>
+            <p>Games and experiences built <em>for</em> the screen — never ports, never apps that nag.</p>
+            <div class="role"><b>Role</b> — the open door: free, instant, a taste · <b>Proof</b> — Timeline online</div>
+          </div>
+          <div class="pillar">
+            <div class="pno">Shelf III · Video</div>
+            <h3>Video</h3>
+            <p>Faceless videos about things worth thinking about. The studio thinking out loud, in public.</p>
+            <div class="role"><b>Role</b> — how new people find us · <b>Status</b> — being founded, see §04</div>
+          </div>
+          <div class="pillar">
+            <div class="pno">Shelf IV · Objects</div>
+            <h3>Objects</h3>
+            <p>Jigsaws, solving puzzles, prints — things whose answer sits in your hands.</p>
+            <div class="role"><b>Role</b> — the studio, physical; to give and to keep · <b>Status</b> — on the bench</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec" data-screen-label="EN · 03 One catalog">
+      <div class="no">03</div>
+      <div>
+        <h2>One name, one catalog</h2>
+        <p>Everything ships as <strong>SouthStudio</strong>. No sub-brands, no spin-offs. The catalog numbers run across every form: No. 002 may be a game, No. 004 a jigsaw. The number tells the story of a studio with a trajectory — not of a one-off product.</p>
+        <table>
+          <tbody>
+            <tr><td class="mono">RULE 1</td><td>A catalog number marks a <b>finished work</b>, whatever its form — book, game, or object.</td></tr>
+            <tr><td class="mono">RULE 2</td><td>Videos are not numbered works; they are <b>the channel</b>. Episodes count as E01, E02, …</td></tr>
+            <tr><td class="mono">RULE 3</td><td>In-world framings (like the Time Correction Agency) belong to <b>works</b>, never to the studio itself.</td></tr>
+            <tr><td class="mono">RULE 4</td><td>A number is never reused and never skipped. The catalog only moves forward.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="sec" data-screen-label="EN · 04 Video">
+      <div class="no">04</div>
+      <div>
+        <h2>Video — the new shelf</h2>
+        <p class="lead">The line is the channel brief. Every video is itself a thing worth thinking about — not an advertisement for something else.</p>
+        <p><strong>Faceless</strong> means: the work talks, not a face. The same voice as on paper — calm, precise, dry. Three lanes to start with, to be tested against practice:</p>
+        <div class="lanes">
+          <div class="lane">
+            <div class="lname">The Case<small>The core lane</small></div>
+            <p>One puzzle, paradox, or problem, unpacked visually until it clicks. Pausable: the viewer gets to try first.</p>
+          </div>
+          <div class="lane">
+            <div class="lname">The Making<small>Behind the work</small></div>
+            <p>How a thing in the catalog comes to be — from grid to press. Hands and work on screen, no face.</p>
+          </div>
+          <div class="lane">
+            <div class="lname">The Trailer<small>At every release</small></div>
+            <p>When a work ships, it gets a film that is worth watching on its own.</p>
+          </div>
+        </div>
+        <table>
+          <tbody>
+            <tr><td class="mono">FORM</td><td>Paper-and-ink as a motion language. Mono captions. The red used sparingly — once per frame is plenty.</td></tr>
+            <tr><td class="mono">TITLES</td><td>A title is a sentence worth clicking. No clickbait faces, no arrows, no capital letters that shout.</td></tr>
+            <tr><td class="mono">RHYTHM</td><td>Honest rhythm over streaks: a sustainable cadence (say, fortnightly) that never pushes a video past the five standards.</td></tr>
+            <tr><td class="mono">LANGUAGE</td><td>To be decided: English spoken with NL subtitles is the bigger pond; one language per channel keeps it clean.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="sec" data-screen-label="EN · 05 Fixed and flexible">
+      <div class="no">05</div>
+      <div>
+        <h2>What stays fixed, what may move</h2>
+        <p>The identity (Brand Identity v2) remains the base. Each shelf gets room to move — but the room is named, not open-ended.</p>
+        <table>
+          <thead><tr><th style="width:38%;">Fixed — everywhere, always</th><th>Flexible — per shelf</th></tr></thead>
+          <tbody>
+            <tr><td>The name and the grid mark (never redrawn)</td><td>Video may invert: ink-dark surfaces, paper-coloured type — built for the screen.</td></tr>
+            <tr><td>Newsreader + IBM Plex Mono</td><td>Objects may reduce to two colours where material or cost asks for it.</td></tr>
+            <tr><td>Paper, ink, one red (#D2362B)</td><td>Works may wear an in-world skin (like the TCA) — one layer above the studio base.</td></tr>
+            <tr><td>The voice: confident, dry, precise, peer to peer</td><td>Digital may carry a functional second colour where interaction demands it (the existing play blue).</td></tr>
+            <tr><td>The numbered catalog</td><td></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="sec" data-screen-label="EN · 06 The compass">
+      <div class="no">06</div>
+      <div>
+        <h2>The compass — four questions before anything new</h2>
+        <p>Every idea — product, video, object, collaboration — answers these four first. One no, and it waits or dies.</p>
+        <div class="compass">
+          <div class="q"><div class="qn">1</div><div><div class="qt">Is it worth thinking about?</div><div class="qs">Does the line honestly apply — or are you talking it into applying?</div></div></div>
+          <div class="q"><div class="qn">2</div><div><div class="qt">Does it pass the five?</div><div class="qs">Honest · beautiful · deeper than it looks · made to last · respectful.</div></div></div>
+          <div class="q"><div class="qn">3</div><div><div class="qt">Can one person make it excellent?</div><div class="qs">Scale to the maker, not the ambition. Small and finished beats big and half.</div></div></div>
+          <div class="q"><div class="qn">4</div><div><div class="qt">Which shelf does it live on?</div><div class="qs">If it fits none of the four — it's an idea for a different studio.</div></div></div>
+        </div>
+        <div class="pull">One thing finished is worth more than three things started.</div>
+      </div>
+    </section>
+
+    <section class="sec" data-screen-label="EN · 07 Horizon">
+      <div class="no">07</div>
+      <div>
+        <h2>The horizon — 2026 → 2028</h2>
+        <p>Three years, directional. The dates serve the work, not the other way round.</p>
+        <div class="horizon">
+          <div class="year">
+            <div class="y">2026<small>Foundations</small></div>
+            <p>No. 001 ships — Timeline in print and online. The channel opens quietly: the trailer, the first Cases. The website shows the studio, not just the book.</p>
+          </div>
+          <div class="year">
+            <div class="y">2027<small>Rhythm</small></div>
+            <p>The video cadence holds. No. 002 enters the catalog. The first object — a jigsaw or solving puzzle — is prototyped and hand-tested.</p>
+          </div>
+          <div class="year">
+            <div class="y">2028<small>The shelf is real</small></div>
+            <p>Three numbered works, across at least three shelves. A studio shop of its own. The catalog speaks for itself.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec" data-screen-label="EN · 08 Channels">
+      <div class="no">08</div>
+      <div>
+        <h2>Channels — what each is for</h2>
+        <table>
+          <tbody>
+            <tr><td class="mono">WEBSITE</td><td>The shelf itself: catalog, the four shelves, free play. <b>First task that follows from this document:</b> the homepage shows the whole studio, not only Timeline.</td></tr>
+            <tr><td class="mono">THE DISPATCH</td><td>Rare letters, only when something ships. One click out.</td></tr>
+            <tr><td class="mono">YOUTUBE</td><td>How strangers find us. Every video stands on its own.</td></tr>
+            <tr><td class="mono">SOCIAL</td><td>Signposts, not a home. Points back to the work.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="sec" data-screen-label="EN · 09 Use">
+      <div class="no">09</div>
+      <div>
+        <h2>How to use this document</h2>
+        <p>This is a compass, not a cage. When in doubt, the line decides. On conflicts: <strong>Brand Identity v2</strong> governs how the studio looks and sounds; <strong>this document</strong> governs what the studio makes and why. Revise it when reality asks — not when an idea fails to get through.</p>
+        <p class="footnote">Made by someone, not assembled by a committee. For the long way round.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="colophon">
+    <span>© 2026 SouthStudio · Studio Foundation v1</span>
+    <span class="only-nl">Gezet in Newsreader &amp; IBM Plex Mono</span>
+    <span class="only-en">Set in Newsreader &amp; IBM Plex Mono</span>
+  </footer>
+
+</div>
+
+<script>
+function setLang(l){
+  document.documentElement.setAttribute('data-lang', l);
+  document.documentElement.setAttribute('lang', l);
+  document.getElementById('btn-nl').classList.toggle('active', l === 'nl');
+  document.getElementById('btn-en').classList.toggle('active', l === 'en');
+  try { localStorage.setItem('ss-foundation-lang', l); } catch(e) {}
+}
+(function(){
+  var l = 'nl';
+  try { l = localStorage.getItem('ss-foundation-lang') || 'nl'; } catch(e) {}
+  setLang(l === 'en' ? 'en' : 'nl');
+})();
+</script>
+
+</body>
+</html>

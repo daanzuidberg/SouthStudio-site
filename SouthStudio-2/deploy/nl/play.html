@@ -673,7 +673,7 @@ h1, h2, h3 { font-weight: 700; line-height: 1.04; letter-spacing: -0.015em; }
  <h4>Studio</h4>
  <div class="foot-links">
  <a data-open-preorder href="#">Reserveer Timeline</a>
- <a href="mailto:hello@southstudio.example">hello@southstudio</a>
+ <a href="mailto:info@southstudio.online">info@southstudio.online</a>
  <a href="#">Verkooppunten &amp; rechten</a>
  <a href="#">Perskit</a>
  </div>
@@ -777,7 +777,7 @@ h1, h2, h3 { font-weight: 700; line-height: 1.04; letter-spacing: -0.015em; }
  var ep = LQendpoint();
  if (!ep) {
  var body = Object.keys(data).map(function (k) { return k + ": " + data[k]; }).join("\n");
- window.location.href = "mailto:hello@southstudio.example?subject=" +
+ window.location.href = "mailto:info@southstudio.online?subject=" +
  encodeURIComponent("SouthStudio, " + type) + "&body=" + encodeURIComponent(body);
  setTimeout(onOk, 300);
  return;
@@ -813,7 +813,7 @@ h1, h2, h3 { font-weight: 700; line-height: 1.04; letter-spacing: -0.015em; }
  input.value = ""; input.setAttribute("placeholder", "jij@aangemeld.nu");
  if (nbtn) nbtn.disabled = false;
  }, function () {
- note.textContent = "// Er ging iets mis, probeer het opnieuw of mail hello@southstudio.";
+ note.textContent = "// Er ging iets mis, probeer het opnieuw of mail info@southstudio.online";
  note.className = "form-note err";
  if (nbtn) nbtn.disabled = false;
  });
