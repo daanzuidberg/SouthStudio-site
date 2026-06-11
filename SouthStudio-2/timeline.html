@@ -266,10 +266,10 @@ h1, h2, h3 { font-weight: 700; line-height: 1.04; letter-spacing: -0.015em; }
  position: fixed; inset: var(--header-h) 0 0 0; z-index: 55;
  background: var(--paper); padding: 32px var(--gut);
  display: flex; flex-direction: column; gap: 6px;
- transform: translateY(-12px); opacity: 0; pointer-events: none;
- transition: transform .25s ease, opacity .25s ease;
+ transform: translateY(-12px); opacity: 0; pointer-events: none; visibility: hidden;
+ transition: transform .25s ease, opacity .25s ease, visibility 0s linear .25s;
 }
-.mobile-menu.open { transform: none; opacity: 1; pointer-events: auto; }
+.mobile-menu.open { transform: none; opacity: 1; pointer-events: auto; visibility: visible; transition: transform .25s ease, opacity .25s ease, visibility 0s; }
 .mobile-menu a {
  font-family: var(--serif); font-weight: 600; font-size: 30px;
  padding: 14px 0; border-bottom: 1px solid var(--line);
@@ -572,8 +572,7 @@ h1, h2, h3 { font-weight: 700; line-height: 1.04; letter-spacing: -0.015em; }
 <section class="section" style="padding-top:clamp(40px,5vw,72px);padding-bottom:clamp(40px,5vw,64px)">
  <div class="wrap">
  <a class="link muted reveal" href="index.html" style="margin-bottom:28px"><span aria-hidden="true">←</span> Back to the studio</a>
- <div class="split" style="margin-top:24px;align-items:center">
- <div class="reveal">
+ <div class="reveal" style="margin-top:24px">
  <div class="row gap-12 wrap-gap" style="margin-bottom:22px">
  <span class="tag tag--solid-ink">No. 001</span>
  <span class="tag tag--red">Pre-order open</span>
@@ -594,31 +593,42 @@ h1, h2, h3 { font-weight: 700; line-height: 1.04; letter-spacing: -0.015em; }
  <a class="btn btn--ghost" href="#sample">Try a case <span class="arr">→</span></a>
  </div>
  </div>
- <div class="reveal d1" style="position:relative;padding:10px 30px 30px 0">
- <div class="book">
- <span class="bc-grid" aria-hidden="true"></span>
- <span class="bc-frame" aria-hidden="true"></span>
- <div class="bc-topkick">Time Correction Agency · Field Manual</div>
- <div class="bc-stamp">● Debut Title</div>
- <div class="bc-center">
- <span class="mark" aria-hidden="true">
- <span></span><span class="fill"></span><span></span>
- <span></span><span></span><span class="fill-ink"></span>
- <span class="fill-ink"></span><span></span><span></span>
- </span>
- <h2 class="bc-title">TIME<span>LINE</span></h2>
- <p class="bc-tag">History has been edited.<br />You are the correction.</p>
- <span class="bc-rule" aria-hidden="true"></span>
  </div>
- <div class="bc-meta">
- <span class="bc-cases">80 Deduction Cases · Five Clearances</span>
- <span class="bc-byline">SOUTHSTUDIO</span>
+</section>
+
+<hr class="thick-rule" />
+
+<!-- ============ 360 BOOK ============ -->
+<style>
+.book360{border:1.5px solid var(--ink);background:var(--paper);box-shadow:12px 12px 0 var(--ink);overflow:hidden;}
+.book360-frame{display:block;width:100%;height:min(78vh,720px);border:0;background:var(--paper-2);}
+@media (max-width:600px){.book360{box-shadow:8px 8px 0 var(--ink);}.book360-frame{height:78vh;min-height:460px;}}
+</style>
+<section class="section" data-screen-label="360 book">
+ <div class="wrap">
+ <div class="center reveal" style="max-width:640px;margin-inline:auto">
+ <span class="kicker kicker--red"><span class="dot"></span>In 3D<span class="dot"></span></span>
+ <h2 class="h2 mt-12">Turn it over in your hands.</h2>
+ <p class="lead muted mt-12" style="margin-inline:auto">Drag to spin the cover, spine and back, the same object you get in print.</p>
  </div>
- </div>
- </div>
+ <div class="book360 reveal d1 mt-40">
+ <iframe class="book360-frame" data-book360frame src="book-360.html?lang=en" title="Timeline, 360 degree book viewer" loading="lazy"></iframe>
  </div>
  </div>
 </section>
+<script>
+/* Pass the preview auth token through to the embedded 360 viewer so its relative
+ request is authorized. In production (no ?t= token) this is a no-op. */
+(function(){
+ var t = new URLSearchParams(location.search).get("t");
+ if (!t) return;
+ document.querySelectorAll("[data-book360frame]").forEach(function(f){
+ var base = f.getAttribute("src");
+ var join = base.indexOf("?") === -1 ? "?" : "&";
+ f.setAttribute("src", base + join + "t=" + encodeURIComponent(t));
+ });
+})();
+</script>
 
 <hr class="thick-rule" />
 
@@ -637,7 +647,7 @@ h1, h2, h3 { font-weight: 700; line-height: 1.04; letter-spacing: -0.015em; }
  object that shouldn't exist yet. Your job is to find the single edit
  to the record and reason your way to the only timeline that holds together.
  </p>
- <div class="row gap-32 wrap-gap mt-40">
+ <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(14px,3vw,32px);margin-top:40px;align-items:start">
  <div class="stack gap-8">
  <span class="display" style="font-size:clamp(44px,6vw,72px);line-height:.8">80</span>
  <span class="kicker">Cases, warm-up to fiendish</span>
@@ -1008,7 +1018,6 @@ h1, h2, h3 { font-weight: 700; line-height: 1.04; letter-spacing: -0.015em; }
  <div class="foot-bottom">
  <span class="fine">© 2026 SouthStudio · An independent studio</span>
  <a class="fine" href="privacy.html" style="border-bottom:1px solid rgba(255,255,255,.22)">Privacy policy</a>
- <span class="fine">Set in Spectral &amp; IBM Plex Mono</span>
  </div>
  </div>
 </footer>
@@ -1396,9 +1405,7 @@ body{background:#211d18;font-family:&quot;IBM Plex Mono&quot;,ui-monospace,monos
  <div class="input-row" style="margin-bottom:18px">
  <label>Edition</label>
  <select name="edition">
- <option>Standard · €24</option>
- <option>Signed first edition · €29</option>
- <option>Book + online, gift-wrapped · €32</option>
+ <option>First edition · €24</option>
  </select>
  <span class="input-err"></span>
  </div>
@@ -1460,7 +1467,7 @@ body{background:#211d18;font-family:&quot;IBM Plex Mono&quot;,ui-monospace,monos
  var ep = LQendpoint();
  if (!ep) {
  var body = Object.keys(data).map(function (k) { return k + ": " + data[k]; }).join("\n");
- window.location.href = "mailto:hello@southstudio.example?subject=" +
+ window.location.href = "mailto:info@southstudio.online?subject=" +
  encodeURIComponent("SouthStudio, " + type) + "&body=" + encodeURIComponent(body);
  setTimeout(onOk, 300);
  return;
@@ -1496,7 +1503,7 @@ body{background:#211d18;font-family:&quot;IBM Plex Mono&quot;,ui-monospace,monos
  input.value = ""; input.setAttribute("placeholder", "you@subscribed.now");
  if (nbtn) nbtn.disabled = false;
  }, function () {
- note.textContent = "// Something went wrong, please try again or email hello@southstudio.";
+ note.textContent = "// Something went wrong, please try again or email info@southstudio.online.";
  note.className = "form-note err";
  if (nbtn) nbtn.disabled = false;
  });

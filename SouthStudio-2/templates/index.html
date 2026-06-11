@@ -240,10 +240,10 @@ h1, h2, h3 { font-weight: 700; line-height: 1.04; letter-spacing: -0.015em; }
  position: fixed; inset: var(--header-h) 0 0 0; z-index: 55;
  background: var(--paper); padding: 32px var(--gut);
  display: flex; flex-direction: column; gap: 6px;
- transform: translateY(-12px); opacity: 0; pointer-events: none;
- transition: transform .25s ease, opacity .25s ease;
+ transform: translateY(-12px); opacity: 0; pointer-events: none; visibility: hidden;
+ transition: transform .25s ease, opacity .25s ease, visibility 0s linear .25s;
 }
-.mobile-menu.open { transform: none; opacity: 1; pointer-events: auto; }
+.mobile-menu.open { transform: none; opacity: 1; pointer-events: auto; visibility: visible; transition: transform .25s ease, opacity .25s ease, visibility 0s; }
 .mobile-menu a {
  font-family: var(--serif); font-weight: 600; font-size: 30px;
  padding: 14px 0; border-bottom: 1px solid var(--line);
@@ -955,7 +955,6 @@ body.intro-hold .reveal { opacity: 0 !important; transform: translateY(22px) !im
  <div class="foot-bottom">
  <span class="fine">{{footer_10}}</span>
  <a class="fine" href="privacy.html" style="border-bottom:1px solid rgba(255,255,255,.22)">{{footer_11}}</a>
- <span class="fine">{{footer_12}}</span>
  </div>
  </div>
 </footer>
@@ -987,8 +986,6 @@ body.intro-hold .reveal { opacity: 0 !important; transform: translateY(22px) !im
  <label>{{pre_order_modal_9}}</label>
  <select name="edition">
  <option>{{pre_order_modal_10}}</option>
- <option>{{pre_order_modal_11}}</option>
- <option>{{pre_order_modal_12}}</option>
  </select>
  <span class="input-err"></span>
  </div>

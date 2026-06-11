@@ -266,10 +266,10 @@ h1, h2, h3 { font-weight: 700; line-height: 1.04; letter-spacing: -0.015em; }
  position: fixed; inset: var(--header-h) 0 0 0; z-index: 55;
  background: var(--paper); padding: 32px var(--gut);
  display: flex; flex-direction: column; gap: 6px;
- transform: translateY(-12px); opacity: 0; pointer-events: none;
- transition: transform .25s ease, opacity .25s ease;
+ transform: translateY(-12px); opacity: 0; pointer-events: none; visibility: hidden;
+ transition: transform .25s ease, opacity .25s ease, visibility 0s linear .25s;
 }
-.mobile-menu.open { transform: none; opacity: 1; pointer-events: auto; }
+.mobile-menu.open { transform: none; opacity: 1; pointer-events: auto; visibility: visible; transition: transform .25s ease, opacity .25s ease, visibility 0s; }
 .mobile-menu a {
  font-family: var(--serif); font-weight: 600; font-size: 30px;
  padding: 14px 0; border-bottom: 1px solid var(--line);
@@ -705,7 +705,7 @@ body.intro-hold .reveal { opacity: 0 !important; transform: translateY(22px) !im
  </div>
  <div class="split" style="align-items:baseline;margin-bottom:38px">
  <h2 class="h2 reveal">Eén studio, vier planken.</h2>
- <p class="lead muted reveal d1">Alles wat we uitbrengen ligt op één van vier planken. Een plank mag jaren leeg blijven — hij wordt nooit met vulling gevuld.</p>
+ <p class="lead muted reveal d1">Alles wat we uitbrengen ligt op één van vier planken. Een plank mag jaren leeg blijven, hij wordt nooit met vulling gevuld.</p>
  </div>
  <div class="shelves reveal d1">
  <a class="shelf" href="timeline.html">
@@ -717,7 +717,7 @@ body.intro-hold .reveal { opacity: 0 !important; transform: translateY(22px) !im
  <a class="shelf" href="play.html">
  <span class="sn">Plank II · Scherm</span>
  <h3>Digitale ervaringen</h3>
- <p class="muted" style="font-size:15px">Spellen gebouwd vóór de browser — nooit ports, nooit apps die zeuren.</p>
+ <p class="muted" style="font-size:15px">Spellen gebouwd vóór de browser, nooit ports, nooit apps die zeuren.</p>
  <span class="shelf-status"><b>Speel gratis online</b> →</span>
  </a>
  <div class="shelf">
@@ -729,7 +729,7 @@ body.intro-hold .reveal { opacity: 0 !important; transform: translateY(22px) !im
  <div class="shelf">
  <span class="sn">Plank IV · Objecten</span>
  <h3>Objecten</h3>
- <p class="muted" style="font-size:15px">Legpuzzels, oplospuzzels, prints — dingen waarvan het antwoord in je handen ligt.</p>
+ <p class="muted" style="font-size:15px">Legpuzzels, oplospuzzels, prints, dingen waarvan het antwoord in je handen ligt.</p>
  <span class="shelf-status">Op de werkbank</span>
  </div>
  </div>
@@ -999,7 +999,6 @@ body.intro-hold .reveal { opacity: 0 !important; transform: translateY(22px) !im
  <div class="foot-bottom">
  <span class="fine">© 2026 SouthStudio · Een onafhankelijke studio</span>
  <a class="fine" href="privacy.html" style="border-bottom:1px solid rgba(255,255,255,.22)">Privacyverklaring</a>
- <span class="fine">Gezet in Spectral &amp; IBM Plex Mono</span>
  </div>
  </div>
 </footer>
@@ -1030,9 +1029,7 @@ body.intro-hold .reveal { opacity: 0 !important; transform: translateY(22px) !im
  <div class="input-row" style="margin-bottom:18px">
  <label>Editie</label>
  <select name="edition">
- <option>Standaard · €24</option>
- <option>Gesigneerde eerste editie · €29</option>
- <option>Cadeau-editie, ingepakt · €32</option>
+ <option>Eerste editie · €24</option>
  </select>
  <span class="input-err"></span>
  </div>
@@ -1094,7 +1091,7 @@ body.intro-hold .reveal { opacity: 0 !important; transform: translateY(22px) !im
  var ep = LQendpoint();
  if (!ep) {
  var body = Object.keys(data).map(function (k) { return k + ": " + data[k]; }).join("\n");
- window.location.href = "mailto:hello@southstudio.example?subject=" +
+ window.location.href = "mailto:info@southstudio.online?subject=" +
  encodeURIComponent("SouthStudio, " + type) + "&body=" + encodeURIComponent(body);
  setTimeout(onOk, 300);
  return;
@@ -1130,7 +1127,7 @@ body.intro-hold .reveal { opacity: 0 !important; transform: translateY(22px) !im
  input.value = ""; input.setAttribute("placeholder", "jij@aangemeld.nu");
  if (nbtn) nbtn.disabled = false;
  }, function () {
- note.textContent = "// Er ging iets mis, probeer het opnieuw of mail hello@southstudio.";
+ note.textContent = "// Er ging iets mis, probeer het opnieuw of mail info@southstudio.online.";
  note.className = "form-note err";
  if (nbtn) nbtn.disabled = false;
  });

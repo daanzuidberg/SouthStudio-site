@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Timeline, 360 book viewer</title>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,700;0,800;1,400;1,500&family=IBM+Plex+Mono:wght@400;600;700&display=swap" rel="stylesheet" />
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --ink:   #1A1612;
+  --ink2:  #423B32;
+  --spine: #15130f;
+  --paper: #FAF7EF;
+  --dim:   #6B6256;
+  --line:  #E2D9C6;
+  --red:   #D2362B;
+  --serif: 'Spectral', Georgia, serif;
+  --mono:  'IBM Plex Mono', ui-monospace, monospace;
+}
+
+html, body {
+  width: 100%; height: 100%;
+  background: radial-gradient(120% 120% at 50% 18%, #F3EEE3 0%, #ECE4D4 60%, #E2D9C6 100%);
+  font-family: var(--mono);
+  overflow: hidden;
+}
+body {
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: clamp(14px, 3vh, 26px);
+  padding: clamp(16px, 4vh, 40px) 14px clamp(18px, 4vh, 44px);
+}
+
+/* ---- viewer ---- */
+.stage { width: 100%; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+.viewer {
+  width: 460px; height: 600px;
+  perspective: 2200px;
+  perspective-origin: 50% 42%;
+  display: flex; align-items: center; justify-content: center;
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+  transform-origin: center center;
+  flex: none;
+}
+.viewer.dragging { cursor: grabbing; }
+
+.book {
+  position: relative;
+  width: 340px; height: 480px;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+/* ground shadow (flat, under the book) */
+.shadow {
+  position: absolute;
+  left: 50%; bottom: 36px;
+  width: 320px; height: 60px;
+  transform: translateX(-50%);
+  background: radial-gradient(50% 50% at 50% 50%, rgba(0,0,0,.30), transparent 72%);
+  filter: blur(6px);
+  z-index: 0;
+}
+
+/* every face centered on the book's middle */
+.face { position: absolute; top: 50%; left: 50%; overflow: hidden; }
+
+/* ============ FRONT COVER ============ */
+.front {
+  width: 340px; height: 480px;
+  margin: -240px 0 0 -170px;
+  transform: translateZ(23px);
+  background: var(--paper);
+}
+.front::before {
+  content: ""; position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(0,0,0,.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,0,0,.06) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+.front::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(120deg, rgba(255,255,255,.35) 0%, transparent 34%, rgba(0,0,0,.05) 100%);
+}
+.frame { position: absolute; inset: 20px; border: 1px solid var(--line); pointer-events: none; }
+.frame::before, .frame::after { content: ""; position: absolute; width: 14px; height: 14px; border: 2px solid var(--red); }
+.frame::before { left: -1px; top: -1px; border-right: 0; border-bottom: 0; }
+.frame::after  { right: -1px; bottom: -1px; border-left: 0; border-top: 0; }
+.f-kicker { position: absolute; top: 30px; left: 0; right: 0; text-align: center; font-family: var(--mono); font-size: 8px; font-weight: 600; letter-spacing: .22em; text-transform: uppercase; color: var(--dim); z-index: 2; }
+.f-stamp { position: absolute; top: 46px; right: 38px; z-index: 2; font-family: var(--mono); font-size: 7.5px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--red); border: 2px solid var(--red); padding: 3px 7px; transform: rotate(-7deg); border-radius: 2px; }
+.f-center { position: absolute; inset: 0; z-index: 2; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; }
+.gm { display: grid; grid-template-columns: repeat(3, 14px); grid-template-rows: repeat(3, 14px); gap: 3px; margin-bottom: 10px; }
+.gm i { border: 1.8px solid var(--ink); display: block; }
+.gm i.r { background: var(--red); border-color: var(--red); }
+.gm i.k { background: var(--ink); border-color: var(--ink); }
+.f-title { font-family: var(--serif); font-weight: 800; font-size: 54px; letter-spacing: -.04em; line-height: .84; color: var(--ink); text-align: center; }
+.f-title span { color: var(--red); }
+.f-tagline { font-family: var(--serif); font-style: italic; font-weight: 400; font-size: 14px; color: var(--ink2); text-align: center; line-height: 1.45; margin-top: 2px; }
+.f-rule { width: 80px; border-top: 1.5px solid var(--ink); position: relative; margin-top: 4px; }
+.f-rule::after { content: ""; position: absolute; left: 50%; top: -5px; width: 8px; height: 8px; background: var(--red); transform: translateX(-50%) rotate(45deg); }
+.f-meta { position: absolute; bottom: 28px; left: 0; right: 0; z-index: 2; display: flex; flex-direction: column; align-items: center; gap: 5px; }
+.f-cases { font-family: var(--mono); font-size: 7.5px; letter-spacing: .2em; text-transform: uppercase; color: var(--ink2); text-align: center; }
+.f-byline { font-family: var(--mono); font-size: 9px; font-weight: 600; letter-spacing: .34em; color: var(--ink); }
+
+/* ============ BACK COVER ============ */
+.back {
+  width: 340px; height: 480px;
+  margin: -240px 0 0 -170px;
+  transform: rotateY(180deg) translateZ(23px);
+  background: var(--ink);
+  color: var(--paper);
+  display: flex; flex-direction: column;
+  padding: 40px 36px;
+}
+.back .b-frame { position: absolute; inset: 20px; border: 1px solid rgba(255,255,255,.12); pointer-events: none; }
+.back .b-frame::before, .back .b-frame::after { content: ""; position: absolute; width: 14px; height: 14px; border: 2px solid var(--red); }
+.back .b-frame::before { left: -1px; top: -1px; border-right: 0; border-bottom: 0; }
+.back .b-frame::after  { right: -1px; bottom: -1px; border-left: 0; border-top: 0; }
+.back .b-top { font-family: var(--mono); font-size: 8px; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: rgba(255,255,255,.45); display: flex; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,.15); padding-bottom: 12px; }
+.back .b-blurb { font-family: var(--serif); font-size: 13px; line-height: 1.6; color: rgba(255,255,255,.78); margin-top: 22px; }
+.back .b-blurb strong { color: #fff; font-weight: 600; }
+.back .b-list { list-style: none; margin-top: 18px; display: flex; flex-direction: column; gap: 9px; }
+.back .b-list li { font-family: var(--mono); font-size: 9.5px; letter-spacing: .04em; color: rgba(255,255,255,.65); display: flex; gap: 9px; align-items: baseline; }
+.back .b-list li::before { content: ""; width: 6px; height: 6px; background: var(--red); transform: rotate(45deg); flex: none; }
+.back .b-foot { margin-top: auto; display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; border-top: 1px solid rgba(255,255,255,.15); padding-top: 16px; }
+.back .b-mark { display: flex; align-items: center; gap: 9px; }
+.back .b-mark .gm i { border-color: rgba(255,255,255,.6); }
+.back .b-mark .gm i.r { background: var(--red); border-color: var(--red); }
+.back .b-mark .gm i.k { background: rgba(255,255,255,.8); border-color: rgba(255,255,255,.8); }
+.back .b-mark .gm { grid-template-columns: repeat(3, 9px); grid-template-rows: repeat(3, 9px); gap: 2px; margin: 0; }
+.back .b-name { font-family: var(--serif); font-weight: 700; font-size: 15px; }
+.back .b-name b { color: var(--red); }
+.back .barcode { width: 92px; height: 52px; background: #fff; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; }
+.back .barcode .bars { display: flex; gap: 1px; align-items: flex-end; height: 26px; }
+.back .barcode .bars i { display: block; width: 1.5px; background: #b3a892; }
+.back .barcode .isbn { font-family: var(--mono); font-size: 6px; letter-spacing: .08em; color: #8d8472; }
+
+/* ============ SPINE (left) ============ */
+.spine {
+  width: 46px; height: 480px;
+  margin: -240px 0 0 -23px;
+  transform: rotateY(-90deg) translateZ(170px);
+  background: var(--spine);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: space-between;
+  padding: 24px 0;
+}
+.spine .gm { grid-template-columns: repeat(3, 7px); grid-template-rows: repeat(3, 7px); gap: 1.5px; margin: 0; }
+.spine .gm i { border: 1px solid rgba(255,255,255,.45); }
+.spine .gm i.r { background: var(--red); border-color: var(--red); }
+.spine .gm i.k { background: rgba(255,255,255,.7); border-color: rgba(255,255,255,.7); }
+.spine-title { writing-mode: vertical-rl; font-family: var(--serif); font-weight: 800; font-size: 24px; letter-spacing: -.02em; color: var(--paper); }
+.spine-title span { color: var(--red); }
+.spine-logo { writing-mode: vertical-rl; font-family: var(--mono); font-size: 8px; font-weight: 600; letter-spacing: .26em; text-transform: uppercase; color: rgba(255,255,255,.4); }
+
+/* ============ FORE-EDGE (right, pages) ============ */
+.fore {
+  width: 46px; height: 480px;
+  margin: -240px 0 0 -23px;
+  transform: rotateY(90deg) translateZ(170px);
+  background: linear-gradient(90deg, #e2d7bd, #f1e9d6);
+}
+.fore::after {
+  content: ""; position: absolute; inset: 0;
+  background-image: repeating-linear-gradient(to bottom, transparent 0 2px, rgba(0,0,0,.06) 2px 3px);
+}
+
+/* ============ TOP & BOTTOM (pages) ============ */
+.top {
+  width: 340px; height: 46px;
+  margin: -23px 0 0 -170px;
+  transform: rotateX(90deg) translateZ(240px);
+  background: linear-gradient(to bottom, #f1e9d6, #e2d7bd);
+}
+.top::after {
+  content: ""; position: absolute; inset: 0;
+  background-image: repeating-linear-gradient(90deg, transparent 0 2px, rgba(0,0,0,.05) 2px 3px);
+}
+.bottom {
+  width: 340px; height: 46px;
+  margin: -23px 0 0 -170px;
+  transform: rotateX(-90deg) translateZ(240px);
+  background: linear-gradient(to top, #d8cdb2, #e2d7bd);
+}
+.bottom::after {
+  content: ""; position: absolute; inset: 0;
+  background-image: repeating-linear-gradient(90deg, transparent 0 2px, rgba(0,0,0,.045) 2px 3px);
+}
+
+/* ---- controls ---- */
+.bar { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; justify-content: center; }
+.btn { font-family: var(--mono); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; padding: 10px 18px; border: 1px solid var(--ink); background: transparent; color: var(--ink); cursor: pointer; border-radius: 2px; transition: background .15s, color .15s; }
+.btn:hover { background: var(--ink); color: var(--paper); }
+.btn.on { background: var(--red); border-color: var(--red); color: #fff; }
+.hint { font-size: 10.5px; letter-spacing: .1em; color: var(--dim); display: flex; align-items: center; gap: 8px; text-align: center; }
+.hint .drag-ico { display: inline-block; width: 26px; height: 14px; border: 1.5px solid var(--dim); border-radius: 8px; position: relative; flex: none; }
+.hint .drag-ico::after { content: ""; position: absolute; top: 50%; left: 50%; width: 4px; height: 4px; background: var(--dim); border-radius: 50%; transform: translate(-50%,-50%); }
+</style>
+</head>
+<body>
+
+<div class="stage">
+<div class="viewer" id="viewer">
+  <div class="shadow"></div>
+  <div class="book" id="book">
+
+    <!-- pages -->
+    <div class="face top"></div>
+    <div class="face bottom"></div>
+    <div class="face fore"></div>
+
+    <!-- back cover -->
+    <div class="face back">
+      <div class="b-frame"></div>
+      <div class="b-top"><span>Time Correction Agency</span><span>No. 001</span></div>
+      <p class="b-blurb" data-t="blurb"></p>
+      <ul class="b-list">
+        <li data-t="li1"></li>
+        <li data-t="li2"></li>
+        <li data-t="li3"></li>
+      </ul>
+      <div class="b-foot">
+        <div>
+          <div class="b-mark">
+            <span class="gm"><i></i><i class="r"></i><i></i><i></i><i></i><i class="k"></i><i class="k"></i><i></i><i></i></span>
+            <span class="b-name">South<b>Studio</b></span>
+          </div>
+        </div>
+        <div class="barcode">
+          <div class="bars" id="bars"></div>
+          <span class="isbn">ISBN 000-0-000000-00-0</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- spine -->
+    <div class="face spine">
+      <span class="gm"><i></i><i class="r"></i><i></i><i></i><i></i><i class="k"></i><i class="k"></i><i></i><i></i></span>
+      <span class="spine-title">TIME<span>LINE</span></span>
+      <span class="spine-logo">SouthStudio</span>
+    </div>
+
+    <!-- front cover -->
+    <div class="face front">
+      <div class="frame"></div>
+      <div class="f-kicker">Time Correction Agency · Field Manual</div>
+      <div class="f-stamp" data-t="stamp"></div>
+      <div class="f-center">
+        <div class="gm"><i></i><i class="r"></i><i></i><i></i><i></i><i class="k"></i><i class="k"></i><i></i><i></i></div>
+        <h1 class="f-title">TIME<span>LINE</span></h1>
+        <p class="f-tagline" data-t="tagline"></p>
+        <div class="f-rule"></div>
+      </div>
+      <div class="f-meta">
+        <span class="f-cases" data-t="cases"></span>
+        <span class="f-byline">SOUTHSTUDIO</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+</div>
+
+<div class="bar">
+  <button class="btn on" id="spinBtn"></button>
+  <button class="btn" id="resetBtn"></button>
+</div>
+<div class="hint"><span class="drag-ico"></span> <span data-t="hint"></span></div>
+
+<script>
+(function(){
+  var DICT = {
+    en: {
+      stamp: "● Debut Title",
+      tagline: "History has been edited.<br>You are the correction.",
+      cases: "80 Deduction Cases · Five Clearances",
+      blurb: "Somewhere upstream, history was edited. As a new investigator you find the single anomaly in each record and reason your way back to the only timeline that holds. <strong>80 original logic-deduction cases</strong>, one provable answer each.",
+      li1: "Five rising clearances, Recruit to Chronovist",
+      li2: "Full worked solutions for every case",
+      li3: "A free companion edition online",
+      spinOn: "Auto-spin: on", spinOff: "Auto-spin: off",
+      reset: "Reset",
+      hint: "Drag the book to turn it · 360°"
+    },
+    nl: {
+      stamp: "● Debuuttitel",
+      tagline: "De geschiedenis is bewerkt.<br>Jij bent de correctie.",
+      cases: "80 deductiezaken · Vijf niveaus",
+      blurb: "Ergens stroomopwaarts is de geschiedenis bewerkt. Als nieuwe onderzoeker vind je in elk dossier de ene afwijking en redeneer je terug naar de enige tijdlijn die klopt. <strong>80 originele logische deductiezaken</strong>, telkens één bewijsbaar antwoord.",
+      li1: "Vijf oplopende niveaus, Recruit tot Chronovist",
+      li2: "Volledig uitgewerkte oplossingen bij elke zaak",
+      li3: "Een gratis online editie als aanvulling",
+      spinOn: "Auto-draai: aan", spinOff: "Auto-draai: uit",
+      reset: "Herstel",
+      hint: "Sleep het boek om het te draaien · 360°"
+    }
+  };
+  var lang = (new URLSearchParams(location.search).get('lang') === 'nl') ? 'nl' : 'en';
+  document.documentElement.lang = lang;
+  var T = DICT[lang];
+  document.querySelectorAll('[data-t]').forEach(function(el){
+    var v = T[el.getAttribute('data-t')];
+    if (v != null) el.innerHTML = v;
+  });
+
+  var book = document.getElementById('book');
+  var viewer = document.getElementById('viewer');
+  var stage = document.querySelector('.stage');
+  var spinBtn = document.getElementById('spinBtn');
+  var resetBtn = document.getElementById('resetBtn');
+  resetBtn.textContent = T.reset;
+
+  var rotY = -28, rotX = -10;
+  var autoSpin = true;
+  var dragging = false;
+  var lastX = 0, lastY = 0;
+  var velY = 0;
+
+  spinBtn.textContent = T.spinOn;
+
+  // barcode
+  var bars = document.getElementById('bars'), s = '';
+  for (var i=0;i<30;i++){ var h=[12,18,24,26][Math.floor(Math.random()*4)]; var w=Math.random()<.3?2.5:1.5; s+='<i style="height:'+h+'px;width:'+w+'px"></i>'; }
+  bars.innerHTML = s;
+
+  // responsive fit: scale the whole viewer to fit the available width/height
+  function fit(){
+    var availW = window.innerWidth - 28;
+    var availH = window.innerHeight - 150;
+    var sc = Math.min(1, availW/460, availH/600);
+    sc = Math.max(0.42, sc);
+    viewer.style.transform = 'scale(' + sc + ')';
+    stage.style.height = (600 * sc) + 'px';
+  }
+  fit();
+  window.addEventListener('resize', fit);
+
+  function apply(){
+    book.style.transform = 'rotateX(' + rotX + 'deg) rotateY(' + rotY + 'deg)';
+  }
+  apply();
+
+  function frame(){
+    if (!dragging) {
+      if (autoSpin) { rotY += 0.32; velY = 0; }
+      else if (Math.abs(velY) > 0.02) { rotY += velY; velY *= 0.94; }
+    }
+    apply();
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+
+  function down(e){
+    dragging = true; autoSpinPause();
+    viewer.classList.add('dragging');
+    var p = point(e); lastX = p.x; lastY = p.y; velY = 0;
+    e.preventDefault();
+  }
+  function move(e){
+    if (!dragging) return;
+    var p = point(e);
+    var dx = p.x - lastX, dy = p.y - lastY;
+    rotY += dx * 0.55;
+    rotX = Math.max(-55, Math.min(55, rotX - dy * 0.35));
+    velY = dx * 0.55;
+    lastX = p.x; lastY = p.y;
+    apply();
+    e.preventDefault();
+  }
+  function up(){ dragging = false; viewer.classList.remove('dragging'); }
+  function point(e){ return e.touches ? {x:e.touches[0].clientX, y:e.touches[0].clientY} : {x:e.clientX, y:e.clientY}; }
+
+  function autoSpinPause(){ if (autoSpin){ autoSpin = false; spinBtn.classList.remove('on'); spinBtn.textContent = T.spinOff; } }
+
+  viewer.addEventListener('mousedown', down);
+  window.addEventListener('mousemove', move);
+  window.addEventListener('mouseup', up);
+  viewer.addEventListener('touchstart', down, {passive:false});
+  window.addEventListener('touchmove', move, {passive:false});
+  window.addEventListener('touchend', up);
+
+  spinBtn.addEventListener('click', function(){
+    autoSpin = !autoSpin;
+    spinBtn.classList.toggle('on', autoSpin);
+    spinBtn.textContent = autoSpin ? T.spinOn : T.spinOff;
+  });
+  resetBtn.addEventListener('click', function(){
+    rotY = -28; rotX = -10; velY = 0;
+    autoSpin = false; spinBtn.classList.remove('on'); spinBtn.textContent = T.spinOff;
+    apply();
+  });
+})();
+</script>
+
+</body>
+</html>

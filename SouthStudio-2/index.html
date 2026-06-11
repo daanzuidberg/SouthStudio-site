@@ -266,10 +266,10 @@ h1, h2, h3 { font-weight: 700; line-height: 1.04; letter-spacing: -0.015em; }
  position: fixed; inset: var(--header-h) 0 0 0; z-index: 55;
  background: var(--paper); padding: 32px var(--gut);
  display: flex; flex-direction: column; gap: 6px;
- transform: translateY(-12px); opacity: 0; pointer-events: none;
- transition: transform .25s ease, opacity .25s ease;
+ transform: translateY(-12px); opacity: 0; pointer-events: none; visibility: hidden;
+ transition: transform .25s ease, opacity .25s ease, visibility 0s linear .25s;
 }
-.mobile-menu.open { transform: none; opacity: 1; pointer-events: auto; }
+.mobile-menu.open { transform: none; opacity: 1; pointer-events: auto; visibility: visible; transition: transform .25s ease, opacity .25s ease, visibility 0s; }
 .mobile-menu a {
  font-family: var(--serif); font-weight: 600; font-size: 30px;
  padding: 14px 0; border-bottom: 1px solid var(--line);
@@ -706,7 +706,7 @@ body.intro-hold .reveal { opacity: 0 !important; transform: translateY(22px) !im
  </div>
  <div class="split" style="align-items:baseline;margin-bottom:38px">
  <h2 class="h2 reveal">One studio, four shelves.</h2>
- <p class="lead muted reveal d1">Everything we release lives on one of four shelves. A shelf can stay empty for years — it never gets filled with filler.</p>
+ <p class="lead muted reveal d1">Everything we release lives on one of four shelves. A shelf can stay empty for years, it never gets filled with filler.</p>
  </div>
  <div class="shelves reveal d1">
  <a class="shelf" href="timeline.html">
@@ -718,7 +718,7 @@ body.intro-hold .reveal { opacity: 0 !important; transform: translateY(22px) !im
  <a class="shelf" href="play.html">
  <span class="sn">Shelf II · Screen</span>
  <h3>Digital experiences</h3>
- <p class="muted" style="font-size:15px">Games built for the browser — never ports, never apps that nag.</p>
+ <p class="muted" style="font-size:15px">Games built for the browser, never ports, never apps that nag.</p>
  <span class="shelf-status"><b>Play free online</b> →</span>
  </a>
  <div class="shelf">
@@ -730,7 +730,7 @@ body.intro-hold .reveal { opacity: 0 !important; transform: translateY(22px) !im
  <div class="shelf">
  <span class="sn">Shelf IV · Objects</span>
  <h3>Objects</h3>
- <p class="muted" style="font-size:15px">Jigsaws, solving puzzles, prints — things whose answer sits in your hands.</p>
+ <p class="muted" style="font-size:15px">Jigsaws, solving puzzles, prints, things whose answer sits in your hands.</p>
  <span class="shelf-status">On the bench</span>
  </div>
  </div>
@@ -1000,7 +1000,6 @@ body.intro-hold .reveal { opacity: 0 !important; transform: translateY(22px) !im
  <div class="foot-bottom">
  <span class="fine">© 2026 SouthStudio · An independent studio</span>
  <a class="fine" href="privacy.html" style="border-bottom:1px solid rgba(255,255,255,.22)">Privacy policy</a>
- <span class="fine">Set in Spectral &amp; IBM Plex Mono</span>
  </div>
  </div>
 </footer>
@@ -1031,9 +1030,7 @@ body.intro-hold .reveal { opacity: 0 !important; transform: translateY(22px) !im
  <div class="input-row" style="margin-bottom:18px">
  <label>Edition</label>
  <select name="edition">
- <option>Standard · €24</option>
- <option>Signed first edition · €29</option>
- <option>Book + online, gift-wrapped · €32</option>
+ <option>First edition · €24</option>
  </select>
  <span class="input-err"></span>
  </div>
@@ -1095,7 +1092,7 @@ body.intro-hold .reveal { opacity: 0 !important; transform: translateY(22px) !im
  var ep = LQendpoint();
  if (!ep) {
  var body = Object.keys(data).map(function (k) { return k + ": " + data[k]; }).join("\n");
- window.location.href = "mailto:hello@southstudio.example?subject=" +
+ window.location.href = "mailto:info@southstudio.online?subject=" +
  encodeURIComponent("SouthStudio, " + type) + "&body=" + encodeURIComponent(body);
  setTimeout(onOk, 300);
  return;
@@ -1131,7 +1128,7 @@ body.intro-hold .reveal { opacity: 0 !important; transform: translateY(22px) !im
  input.value = ""; input.setAttribute("placeholder", "you@subscribed.now");
  if (nbtn) nbtn.disabled = false;
  }, function () {
- note.textContent = "// Something went wrong, please try again or email hello@southstudio.";
+ note.textContent = "// Something went wrong, please try again or email info@southstudio.online.";
  note.className = "form-note err";
  if (nbtn) nbtn.disabled = false;
  });
