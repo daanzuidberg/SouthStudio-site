@@ -1,7 +1,9 @@
 import React from "react";
 import {
   AbsoluteFill,
+  Audio,
   Series,
+  staticFile,
   useCurrentFrame,
   useVideoConfig,
 } from "remotion";
@@ -10,24 +12,26 @@ import { fontVars } from "./fonts";
 import { Hook } from "./scenes/Hook";
 import { TitleBook } from "./scenes/TitleBook";
 import { Facts } from "./scenes/Facts";
+import { CasePreview } from "./scenes/CasePreview";
 import { Method } from "./scenes/Method";
 import { CorrectionStamp } from "./scenes/CorrectionStamp";
 import { EndCard } from "./scenes/EndCard";
 import { DustMotes, Grain, LampVignette } from "./components/Atmosphere";
 
-// Scene durations (at 30fps) → ~35s total.
+// Scene durations (at 30fps) → ~35s total matching the VO.
 export const SCENES = [
-  { C: Hook, frames: 120 },
-  { C: TitleBook, frames: 150 },
-  { C: Facts, frames: 180 },
-  { C: Method, frames: 270 },
-  { C: CorrectionStamp, frames: 90 },
-  { C: EndCard, frames: 240 },
+  { C: Hook, frames: 105 },        // 3.5s  hook
+  { C: TitleBook, frames: 135 },   // 4.5s  book reveal
+  { C: Facts, frames: 150 },       // 5.0s  80 cases / 5 levels
+  { C: CasePreview, frames: 150 }, // 5.0s  real case file preview
+  { C: Method, frames: 225 },      // 7.5s  deduction grid + method
+  { C: CorrectionStamp, frames: 90 }, // 3.0s payoff
+  { C: EndCard, frames: 225 },     // 7.5s  CTA
 ];
 
-export const PROMO_DURATION = SCENES.reduce((a, s) => a + s.frames, 0); // 1050
+export const PROMO_DURATION = SCENES.reduce((a, s) => a + s.frames, 0); // 1080 = 36s
 
-// Running timecode in the corner — the "found archive footage" tic.
+// Running timecode — "found archive footage" tic.
 const Timecode: React.FC = () => {
   const frame = useCurrentFrame();
   const { fps, durationInFrames } = useVideoConfig();
@@ -49,7 +53,6 @@ const Timecode: React.FC = () => {
         display: "flex",
         alignItems: "center",
         gap: 12,
-        mixBlendMode: "difference",
       }}
     >
       <span
@@ -69,7 +72,6 @@ const Timecode: React.FC = () => {
   );
 };
 
-// Thin progress bar along the bottom.
 const Progress: React.FC = () => {
   const frame = useCurrentFrame();
   const { durationInFrames } = useVideoConfig();
@@ -91,6 +93,9 @@ const Progress: React.FC = () => {
 export const TimelinePromo: React.FC = () => {
   return (
     <AbsoluteFill style={{ ...fontVars, background: COLORS.ink }}>
+      {/* Voice-over — full track starting from frame 0 */}
+      <Audio src={staticFile("vo.wav")} />
+
       <Series>
         {SCENES.map(({ C, frames }, i) => (
           <Series.Sequence key={i} durationInFrames={frames}>
