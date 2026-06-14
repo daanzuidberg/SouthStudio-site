@@ -174,7 +174,7 @@ right.
 - Standard — **€24**
 - Signed first edition — **€29**
 - Book + online, gift-wrapped — **€32**
-- Ships **Q4 2026**. Pre-orders: no charge until it ships.
+- Ships **Q3 2026**. Pre-orders: no charge until it ships.
 
 ---
 

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TIMELINE — Promo-campagne (NL + EN)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;0,6..72,800;1,6..72,400;1,6..72,500;1,6..72,600&amp;family=IBM+Plex+Mono:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 100%; height: 100%; }
+  #root { position: fixed; inset: 0; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+<script type="text/babel" src="../brand/design-canvas.jsx"></script>
+<script type="text/babel" src="promo-shared.jsx"></script>
+<script type="text/babel" src="feed-posts.jsx"></script>
+<script type="text/babel" src="stories.jsx"></script>
+<script type="text/babel" src="captions.jsx"></script>
+
+<script type="text/babel">
+  /* Poster-kaart die doorlinkt naar de geanimeerde TikTok-video */
+  function TikTokCard() {
+    return (
+      <a href="TikTok — Zaak 074.html" style={{ display: 'flex', width: 560, height: 340,
+        background: `radial-gradient(120% 120% at 50% 36%, ${P.ink} 0%, ${P.inkDeep} 100%)`,
+        color: P.paper, textDecoration: 'none', position: 'relative', overflow: 'hidden',
+        fontFamily: P.serif, flexDirection: 'column', alignItems: 'center',
+        justifyContent: 'center', gap: 13, textAlign: 'center' }}>
+        <PBrackets inset={24} len={26} w={2} />
+        <PGridMark size={52} dark />
+        <div style={{ fontFamily: P.mono, fontSize: 11, fontWeight: 600, letterSpacing: '.24em',
+          textTransform: 'uppercase', color: P.line2 }}>ZAAK №074 · HET KOERIERSLOGBOEK</div>
+        <div style={{ fontSize: 24, fontWeight: 600 }}>Geanimeerde video · 23 s · NL/EN</div>
+        <div style={{ fontFamily: P.mono, fontSize: 12, fontWeight: 700, letterSpacing: '.18em',
+          textTransform: 'uppercase', color: P.red, border: `1.5px solid ${P.red}`,
+          padding: '10px 18px', marginTop: 6 }}>OPEN DE VIDEO →</div>
+      </a>
+    );
+  }
+
+  ReactDOM.createRoot(document.getElementById('root')).render(
+    <DesignCanvas>
+      <DCSection id="feed" title="01 · Instagram feed" subtitle="Teaser-zaak (4:5) en pre-order (1:1) — beide talen">
+        <DCArtboard id="teaser-nl" label="Zaak №041 · NL · 1080×1350" width={1080} height={1350}>
+          <TeaserPost lang="nl" />
+        </DCArtboard>
+        <DCArtboard id="teaser-en" label="Case №041 · EN · 1080×1350" width={1080} height={1350}>
+          <TeaserPost lang="en" />
+        </DCArtboard>
+        <DCArtboard id="preorder-nl" label="Pre-order · NL · 1080×1080" width={1080} height={1080}>
+          <PreorderPost lang="nl" />
+        </DCArtboard>
+        <DCArtboard id="preorder-en" label="Pre-order · EN · 1080×1080" width={1080} height={1080}>
+          <PreorderPost lang="en" />
+        </DCArtboard>
+      </DCSection>
+
+      <DCSection id="stories" title="02 · Stories / Reels (9:16)" subtitle="Safe zones aangehouden: ±250 px boven, ±300 px onder">
+        <DCArtboard id="story-teaser-nl" label="Story · Zaak №041 · NL" width={1080} height={1920}>
+          <TeaserStory lang="nl" />
+        </DCArtboard>
+        <DCArtboard id="story-teaser-en" label="Story · Case №041 · EN" width={1080} height={1920}>
+          <TeaserStory lang="en" />
+        </DCArtboard>
+        <DCArtboard id="story-preorder-nl" label="Story · Pre-order · NL" width={1080} height={1920}>
+          <PreorderStory lang="nl" />
+        </DCArtboard>
+        <DCArtboard id="story-preorder-en" label="Story · Pre-order · EN" width={1080} height={1920}>
+          <PreorderStory lang="en" />
+        </DCArtboard>
+      </DCSection>
+
+      <DCSection id="og" title="03 · Open Graph / share-afbeeldingen" subtitle="1200×630 — voor southstudio.nl en southstudio.online">
+        <DCArtboard id="og-nl" label="OG · NL · 1200×630" width={1200} height={630}>
+          <OGImage lang="nl" />
+        </DCArtboard>
+        <DCArtboard id="og-en" label="OG · EN · 1200×630" width={1200} height={630}>
+          <OGImage lang="en" />
+        </DCArtboard>
+      </DCSection>
+
+      <DCSection id="tiktok" title="04 · TikTok (geanimeerd)" subtitle="Tweede zaak, met opbouw, onthulling en bewijs — opent in een eigen tab">
+        <DCArtboard id="tiktok-card" label="Zaak №074 · video" width={560} height={340}>
+          <TikTokCard />
+        </DCArtboard>
+      </DCSection>
+
+      <DCSection id="captions" title="05 · Captions & plaatsing" subtitle="Bijschriften, hashtags en sticker-instructies per taal">
+        <DCArtboard id="captions-nl" label="Captions · NL" width={760} height={1330}>
+          <CaptionsCard lang="nl" />
+        </DCArtboard>
+        <DCArtboard id="captions-en" label="Captions · EN" width={760} height={1330}>
+          <CaptionsCard lang="en" />
+        </DCArtboard>
+      </DCSection>
+    </DesignCanvas>
+  );
+</script>
+</body>
+</html>

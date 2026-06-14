@@ -104,7 +104,7 @@
  push('p-colophon',
  `<div class="run-head"><span></span><span></span></div>
  <div class="colo">
- <p>TIMELINE, The Field Manual</p>
+ <p>TIMELINE, The Puzzlebook</p>
  <p class="dim">A casebook of the Time Correction Agency.<br>Eighty deduction cases across five clearances.</p>
  <hr>
  <p class="dim">Published by SouthStudio · First edition, 2026<br>An independent studio.</p>
@@ -137,7 +137,7 @@
  <div class="run-foot"><span class="folio"></span><span>TIMELINE</span></div>`);
  // 5 recto: how to play
  push('p-howto',
- `<div class="run-head"><span>FIELD MANUAL</span><span>PROCEDURE</span></div>
+ `<div class="run-head"><span>PUZZLEBOOK</span><span>PROCEDURE</span></div>
  <div class="howto">
  <div class="kick red">// HOW TO WORK A CASE</div>
  <h2 class="sec-h">Reading the grid</h2>
@@ -259,7 +259,6 @@
  <div class="sc-body">
  <div class="sc-left">
  <div class="sc-tab">${renderSolvedTable(p)}</div>
- <p class="sc-key"><span class="sc-key-l">KEYSTONE</span> ${p.divergence.text}</p>
  </div>
  <div class="sc-right">
  <div class="sc-wt-h">${SOL_WALK_LABEL}</div>
@@ -286,7 +285,7 @@
  <p>You've worked eighty corrections. The Agency's archive runs deeper, and the interactive edition adds auto-checking, hints, and a new case every week.</p>
  <p class="dim">Play TIMELINE online, and find more from the studio, at <strong>southstudio</strong>.</p>
  <hr>
- <p class="dim small">TIMELINE, The Field Manual · © 2026 SouthStudio · An independent studio.<br>All cases generated and verified for unique solvability. Set in Newsreader &amp; IBM Plex Mono.</p>
+ <p class="dim small">TIMELINE, The Puzzlebook · © 2026 SouthStudio · An independent studio.<br>All cases generated and verified for unique solvability. Set in Newsreader &amp; IBM Plex Mono.</p>
  </div>
  <div class="run-foot"><span class="folio"></span><span>TIMELINE</span></div>`);
 
@@ -298,14 +297,14 @@
  const css = STYLE();
  return `<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>TIMELINE, The Field Manual · SouthStudio</title>
+<title>TIMELINE, The Puzzlebook · SouthStudio</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400;1,6..72,500;1,6..72,600&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet"/>
 <style>${css}</style></head>
 <body>
 <div class="toolbar" data-toolbar>
- <span class="tb-title">TIMELINE, Field Manual · ${pages.length} pp</span>
+ <span class="tb-title">TIMELINE, Puzzlebook · ${pages.length} pp</span>
  <span class="tb-actions"><button onclick="window.print()">Print / Save PDF</button></span>
 </div>
 <div class="book">${pages.join('\n')}</div>
@@ -399,8 +398,8 @@ em{font-style:italic;} strong{font-weight:600;}
 .scenario p:first-child::first-letter{font-size:3em;float:left;line-height:.76;padding:5px 9px 0 0;color:var(--red);font-weight:600;}
 .scenario .directive{font-family:var(--mono);font-size:11px;line-height:1.5;color:var(--ink2);border-left:2px solid var(--red);padding-left:11px;margin-top:13px;letter-spacing:.01em;background:var(--paper2);padding-top:9px;padding-bottom:9px;padding-right:9px;}
 .scenario .directive::first-letter{font-size:inherit;float:none;padding:0;color:inherit;font-weight:inherit;}
-.evidence{margin-top:auto;padding-top:18px;}
-.case-l.dense .evidence{margin-top:13px;padding-top:13px;}
+.evidence{margin-top:18px;padding-top:0;}
+.case-l.dense .evidence{margin-top:13px;padding-top:0;}
 .case-l.dense .case-title{font-size:26px;margin:6px 0 8px;}
 .case-l.dense .scenario p{font-size:11.5px;line-height:1.42;margin-bottom:6px;}
 .case-l.dense .scenario .directive{font-size:10px;line-height:1.45;margin-top:9px;padding:7px 8px;}

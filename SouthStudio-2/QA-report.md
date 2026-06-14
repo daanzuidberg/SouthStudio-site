@@ -1,5 +1,5 @@
 # SouthStudio — QA Report (error sweep)
-_Last run: June 2026 · covers the Field Manual (book) + the website (EN + NL)._
+_Last run: June 2026 · covers the Puzzlebook (book) + the website (EN + NL)._
 
 This sweep ran in three passes: **automated** (puzzle proofs + consistency scan),
 **language** (needs your eye), and **technical** (links + render).
