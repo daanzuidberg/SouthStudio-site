@@ -1,0 +1,125 @@
+SouthStudio — No. 001
+"Why has silence become uncomfortable?"
+Narration script · Voice: calm, measured, unhurried
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+SEGMENT 1 — Intro + Chapter I: The Question
+Stage: 8.6s – 50.0s
+File: audio/ch-intro-I.wav
+Status: GENERATED ✓
+
+[TITLE CARD — no narration, 0–8.5s]
+
+Why has silence become uncomfortable?
+
+No. 001 · A film by SouthStudio
+
+There is a small experiment you can try right now.
+Put down your phone.
+Close the tabs you don't need.
+Don't play anything.
+
+Just sit.
+
+How long before something in you wanted to reach for something?
+That low, almost imperceptible discomfort —
+is what this film is about.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+SEGMENT 2 — Chapter II: The Assumption
+Stage: 50.5s – 82.0s
+File: audio/ch-II.wav
+Status: GENERATED ✓
+
+The obvious answer is that we've been trained out of it.
+Smartphones. Social media. Infinite scroll.
+The standard list. It isn't wrong.
+
+But look back far enough, and silence was never entirely comfortable.
+
+Maybe the question isn't why technology broke something whole —
+but why we were always looking for sound to begin with.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+SEGMENT 3 — Chapter III: The Unfolding
+Stage: 82.5s – 128.0s
+File: audio/ch-III.wav
+Status: NEEDED — generate and place in audio/ folder
+
+Here is what happens in your brain when you are genuinely silent.
+Not asleep. Not meditating with a voice in your ear.
+Just — nothing happening, for a few minutes.
+
+The default mode network activates.
+It is the part of you that reflects.
+
+And reflection is not always pleasant.
+The mind wanders to where things are unresolved.
+
+A significant number of people preferred a mild electric shock
+to sitting alone with their thoughts
+for fifteen minutes.
+
+A shock. Rather than silence.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+SEGMENT 4 — Chapter IV: The Turn
+Stage: 128.5s – 165.0s
+File: audio/ch-IV.wav
+Status: NEEDED — generate and place in audio/ folder
+
+Silence isn't only an absence of noise.
+It is a particular kind of presence.
+
+In music, the space between the notes
+is where the meaning settles.
+
+A pause in conversation is not a failure of language —
+it is often the most honest moment in it.
+
+When we eliminate every gap,
+we don't fill our lives with more thought.
+
+We fill them with less.
+
+There is a kind of boredom that used to be essential.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+SEGMENT 5 — Chapter V: The Open Ending
+Stage: 165.5s – 192.0s
+File: audio/ch-V.wav
+Status: NEEDED — generate and place in audio/ folder
+
+I'm not going to tell you to put your phone away.
+You've heard that.
+
+What is it you're avoiding —
+the moment the silence begins?
+
+I don't have a clean answer.
+I'm not sure there is one.
+
+But I think it's worth thinking about.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+HOW TO GENERATE REMAINING SEGMENTS
+
+Option A — ElevenLabs (recommended for quality):
+  1. Go to elevenlabs.io
+  2. Use a calm, measured English voice (e.g. "Daniel" or "George")
+  3. Paste each segment's text above
+  4. Export as MP3 or WAV
+  5. Save to: SouthStudio-2/ui_kits/video/audio/ch-III.wav (etc.)
+
+Option B — Higgsfield TTS (when credits refill):
+  model: inworld_text_to_speech
+  voice: Oliver (en)
+  (costs 2 credits per segment)
+
+The video's audio sync will pick up the files automatically.

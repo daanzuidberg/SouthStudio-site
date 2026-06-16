@@ -19,11 +19,84 @@
 </head>
 <body>
 <div id="root" data-screen-label="00:00"></div>
-<script type="text/babel">
-function App() {
-  const rootEl = React.useRef(null);
 
-  // Update data-screen-label with the current timestamp each second (for commenting)
+<!--
+  AUDIO SEGMENTS
+  Generated with Higgsfield Inworld TTS (voice: Oliver).
+  Drop WAV/MP3 files into audio/ to enable. CDN fallbacks expire — re-generate if needed.
+
+  Segments generated:
+    audio/ch-intro-I.wav   → 8.6s  (Intro + Chapter I: The Question)
+    audio/ch-II.wav        → 50.5s (Chapter II: The Assumption)
+
+  Still needed (generate via ElevenLabs or Higgsfield when credits refill):
+    audio/ch-III.wav       → 82.5s (Chapter III: The Unfolding)
+    audio/ch-IV.wav        → 128.5s (Chapter IV: The Turn)
+    audio/ch-V.wav         → 165.5s (Chapter V: The Open Ending)
+
+  Full script: narration-script.txt
+-->
+<audio id="vo-0" preload="auto" src="audio/ch-intro-I.wav" onerror="this.src='https://d8j0ntlcm91z4.cloudfront.net/user_3EMhjh98b83Bmj0pEXeUvQhAVlY/hf_20260616_181106_d95b41d0-dd20-4459-a2fd-fcd0c8f03495.wav'"></audio>
+<audio id="vo-1" preload="auto" src="audio/ch-II.wav" onerror="this.src='https://d8j0ntlcm91z4.cloudfront.net/user_3EMhjh98b83Bmj0pEXeUvQhAVlY/hf_20260616_181143_31236fbf-d8a1-4453-b450-ad4c97983906.wav'"></audio>
+<audio id="vo-2" preload="auto" src="audio/ch-III.wav"></audio>
+<audio id="vo-3" preload="auto" src="audio/ch-IV.wav"></audio>
+<audio id="vo-4" preload="auto" src="audio/ch-V.wav"></audio>
+
+<script type="text/babel">
+// Audio segments: [elementId, stageStartTime, stageEndTime]
+const VO_SEGMENTS = [
+  ['vo-0',   8.6,  50.0],
+  ['vo-1',  50.5,  82.0],
+  ['vo-2',  82.5, 128.0],
+  ['vo-3', 128.5, 165.0],
+  ['vo-4', 165.5, 192.0],
+];
+
+// Sync audio elements to the Stage playhead (stored in localStorage by the Stage component)
+function useAudioSync(persistKey) {
+  React.useEffect(() => {
+    const els = VO_SEGMENTS.map(([id]) => document.getElementById(id));
+    let lastT = -1;
+    let lastPlaying = false;
+
+    function tick() {
+      try {
+        const raw = localStorage.getItem(`${persistKey}:t`);
+        const playing = localStorage.getItem(`${persistKey}:playing`) !== 'false';
+        const t = parseFloat(raw || '0');
+        const seeked = Math.abs(t - lastT) > 0.25;
+        lastT = t;
+
+        VO_SEGMENTS.forEach(([id, start, end], i) => {
+          const el = els[i];
+          if (!el || el.error) return;
+          const inRange = t >= start && t < end;
+          const localT = t - start;
+
+          if (inRange) {
+            if (seeked || Math.abs(el.currentTime - localT) > 0.4) {
+              el.currentTime = Math.max(0, localT);
+            }
+            if (playing && el.paused) el.play().catch(() => {});
+            if (!playing && !el.paused) el.pause();
+          } else {
+            if (!el.paused) el.pause();
+          }
+        });
+
+        lastPlaying = playing;
+      } catch {}
+      rafId = requestAnimationFrame(tick);
+    }
+
+    let rafId = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(rafId);
+  }, []);
+}
+
+function App() {
+  useAudioSync('ss-silence');
+
   React.useEffect(() => {
     const id = setInterval(() => {
       try {
