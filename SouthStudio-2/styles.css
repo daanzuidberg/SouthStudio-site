@@ -1,0 +1,29 @@
+/* SouthStudio Design System — Global Entry Point */
+@import url('https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;0,6..72,800;1,6..72,400;1,6..72,500;1,6..72,600;1,6..72,700&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap');
+
+:root {
+  --paper:     #FAF7EF;
+  --paper-2:   #F3EDDF;
+  --paper-3:   #ECE4D2;
+  --ink:       #1A1612;
+  --ink-2:     #423B32;
+  --ink-soft:  #6B6256;
+  --line:      #E2D9C6;
+  --line-2:    #D3C8B1;
+  --red:       #D2362B;
+  --red-deep:  #A8261D;
+  --blue:      #2C52CC;
+  --blue-deep: #1E3DA0;
+  --font-serif: "Newsreader", Georgia, "Times New Roman", serif;
+  --font-mono:  "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+* { margin: 0; padding: 0; }
+body {
+  font-family: var(--font-serif);
+  background: var(--paper);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+}
+::selection { background: var(--red); color: var(--paper); }

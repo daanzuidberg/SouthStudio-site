@@ -1,0 +1,56 @@
+<!-- @dsCard group="Video" viewport="1280x720" name="No. 001 — Silence (film)" subtitle="Kinetic-typography video essay · studio intro + 5 chapters + end card" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>SouthStudio — No. 001 · Why has silence become uncomfortable?</title>
+<link rel="stylesheet" href="../../styles.css" />
+<style>
+  html, body { margin: 0; height: 100%; background: #0a0a0a; overflow: hidden; }
+  #root { position: fixed; inset: 0; }
+</style>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script type="text/babel" src="animations.jsx"></script>
+<script type="text/babel" src="scenes.jsx"></script>
+<script type="text/babel" src="video.jsx"></script>
+</head>
+<body>
+<div id="root" data-screen-label="00:00"></div>
+<script type="text/babel">
+function App() {
+  const rootEl = React.useRef(null);
+
+  // Update data-screen-label with the current timestamp each second (for commenting)
+  React.useEffect(() => {
+    const id = setInterval(() => {
+      try {
+        const t = parseFloat(localStorage.getItem('ss-silence:t') || '0');
+        const m = Math.floor(t / 60), s = Math.floor(t % 60);
+        const el = document.getElementById('root');
+        if (el) el.dataset.screenLabel = `${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+      } catch {}
+    }, 1000);
+    return () => clearInterval(id);
+  }, []);
+
+  return (
+    <Stage
+      width={STAGE_W}
+      height={STAGE_H}
+      duration={200}
+      background="#FAF7EF"
+      loop={false}
+      autoplay={true}
+      persistKey="ss-silence"
+    >
+      <SilenceVideo />
+    </Stage>
+  );
+}
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+</body>
+</html>
