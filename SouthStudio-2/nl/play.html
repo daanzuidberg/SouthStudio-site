@@ -266,10 +266,10 @@ h1, h2, h3 { font-weight: 700; line-height: 1.04; letter-spacing: -0.015em; }
  position: fixed; inset: var(--header-h) 0 0 0; z-index: 55;
  background: var(--paper); padding: 32px var(--gut);
  display: flex; flex-direction: column; gap: 6px;
- transform: translateY(-12px); opacity: 0; pointer-events: none;
- transition: transform .25s ease, opacity .25s ease;
+ transform: translateY(-12px); opacity: 0; pointer-events: none; visibility: hidden;
+ transition: transform .25s ease, opacity .25s ease, visibility 0s linear .25s;
 }
-.mobile-menu.open { transform: none; opacity: 1; pointer-events: auto; }
+.mobile-menu.open { transform: none; opacity: 1; pointer-events: auto; visibility: visible; transition: transform .25s ease, opacity .25s ease, visibility 0s; }
 .mobile-menu a {
  font-family: var(--serif); font-weight: 600; font-size: 30px;
  padding: 14px 0; border-bottom: 1px solid var(--line);
@@ -674,15 +674,14 @@ h1, h2, h3 { font-weight: 700; line-height: 1.04; letter-spacing: -0.015em; }
  <div class="foot-links">
  <a data-open-preorder href="#">Reserveer Timeline</a>
  <a href="mailto:info@southstudio.online">info@southstudio.online</a>
- <a href="#">Verkooppunten &amp; rechten</a>
- <a href="#">Perskit</a>
+ <a href="../stockists.html">Verkooppunten &amp; rechten</a>
+ <a href="about.html">Over de studio</a>
  </div>
  </div>
  </div>
  <div class="foot-bottom">
  <span class="fine">© 2026 SouthStudio · Een onafhankelijke studio</span>
  <a class="fine" href="privacy.html" style="border-bottom:1px solid rgba(255,255,255,.22)">Privacyverklaring</a>
- <span class="fine">Gezet in Spectral &amp; IBM Plex Mono</span>
  </div>
  </div>
 </footer>
@@ -713,9 +712,7 @@ h1, h2, h3 { font-weight: 700; line-height: 1.04; letter-spacing: -0.015em; }
  <div class="input-row" style="margin-bottom:18px">
  <label>Editie</label>
  <select name="edition">
- <option>Standaard · €24</option>
- <option>Gesigneerde eerste editie · €29</option>
- <option>Cadeau-editie, ingepakt · €32</option>
+ <option>Eerste editie · €24</option>
  </select>
  <span class="input-err"></span>
  </div>
@@ -813,7 +810,7 @@ h1, h2, h3 { font-weight: 700; line-height: 1.04; letter-spacing: -0.015em; }
  input.value = ""; input.setAttribute("placeholder", "jij@aangemeld.nu");
  if (nbtn) nbtn.disabled = false;
  }, function () {
- note.textContent = "// Er ging iets mis, probeer het opnieuw of mail info@southstudio.online";
+ note.textContent = "// Er ging iets mis, probeer het opnieuw of mail info@southstudio.online.";
  note.className = "form-note err";
  if (nbtn) nbtn.disabled = false;
  });

@@ -266,10 +266,10 @@ h1, h2, h3 { font-weight: 700; line-height: 1.04; letter-spacing: -0.015em; }
  position: fixed; inset: var(--header-h) 0 0 0; z-index: 55;
  background: var(--paper); padding: 32px var(--gut);
  display: flex; flex-direction: column; gap: 6px;
- transform: translateY(-12px); opacity: 0; pointer-events: none;
- transition: transform .25s ease, opacity .25s ease;
+ transform: translateY(-12px); opacity: 0; pointer-events: none; visibility: hidden;
+ transition: transform .25s ease, opacity .25s ease, visibility 0s linear .25s;
 }
-.mobile-menu.open { transform: none; opacity: 1; pointer-events: auto; }
+.mobile-menu.open { transform: none; opacity: 1; pointer-events: auto; visibility: visible; transition: transform .25s ease, opacity .25s ease, visibility 0s; }
 .mobile-menu a {
  font-family: var(--serif); font-weight: 600; font-size: 30px;
  padding: 14px 0; border-bottom: 1px solid var(--line);
@@ -586,12 +586,12 @@ h1, h2, h3 { font-weight: 700; line-height: 1.04; letter-spacing: -0.015em; }
  <h1 class="h1 mt-12">Privacy policy</h1>
  <p class="lead measure mt-12">SouthStudio respects your privacy. This page explains what we collect when you subscribe to our dispatch or pre-order Timeline, why we collect it, and the rights you have over your data.</p>
  <div class="measure" style="display:flex;flex-direction:column;gap:26px;margin-top:52px">
- <div><h3 class="h3">Who we are</h3><p class="muted mt-12" style="font-size:16px">SouthStudio is an independent studio. For any privacy question, email info@southstudio.online</p></div>
+ <div><h3 class="h3">Who we are</h3><p class="muted mt-12" style="font-size:16px">SouthStudio is an independent studio. For any privacy question, email info@southstudio.online.</p></div>
  <div><h3 class="h3">What we collect</h3><p class="muted mt-12" style="font-size:16px">Newsletter: your email address. Pre-orders: your name, email address and the edition you chose. We never ask for more than we need, and we don't collect payment details on this site.</p></div>
  <div><h3 class="h3">Why we collect it &amp; legal basis</h3><p class="muted mt-12" style="font-size:16px">We use your details only to send the dispatch you asked for, or to reserve and later fulfil your pre-order. The legal basis is your consent, which you give by submitting the form.</p></div>
  <div><h3 class="h3">How long we keep it</h3><p class="muted mt-12" style="font-size:16px">We keep your data only as long as needed for that purpose, until you unsubscribe, or until your pre-order is fulfilled or cancelled.</p></div>
  <div><h3 class="h3">Who we share it with</h3><p class="muted mt-12" style="font-size:16px">Only the service that delivers our email and forms on our behalf. We never sell your data or share it for advertising.</p></div>
- <div><h3 class="h3">Your rights</h3><p class="muted mt-12" style="font-size:16px">You can ask to see, correct or delete your data, or withdraw consent, at any time, every email has a one-click unsubscribe, and you can reach us at info@southstudio.online You may also contact your data protection authority.</p></div>
+ <div><h3 class="h3">Your rights</h3><p class="muted mt-12" style="font-size:16px">You can ask to see, correct or delete your data, or withdraw consent, at any time, every email has a one-click unsubscribe, and you can reach us at info@southstudio.online. You may also contact your data protection authority.</p></div>
  <div><h3 class="h3">Cookies &amp; analytics</h3><p class="muted mt-12" style="font-size:16px">This site stores a little information in your browser to remember your game progress and language preference. We keep tracking to a minimum.</p></div>
  <div><h3 class="h3">Changes</h3><p class="muted mt-12" style="font-size:16px">If this policy changes, we'll update this page and its date. Last updated: June 2026.</p></div>
  </div>
@@ -635,15 +635,14 @@ h1, h2, h3 { font-weight: 700; line-height: 1.04; letter-spacing: -0.015em; }
  <div class="foot-links">
  <a data-open-preorder href="#">Pre-order Timeline</a>
  <a href="mailto:info@southstudio.online">info@southstudio.online</a>
- <a href="#">Stockists &amp; rights</a>
- <a href="#">Press kit</a>
+ <a href="stockists.html">Stockists &amp; rights</a>
+ <a href="about.html">About the studio</a>
  </div>
  </div>
  </div>
  <div class="foot-bottom">
  <span class="fine">© 2026 SouthStudio · An independent studio</span>
  <a class="fine" href="privacy.html" style="border-bottom:1px solid rgba(255,255,255,.22)">Privacy policy</a>
- <span class="fine">Set in Spectral &amp; IBM Plex Mono</span>
  </div>
  </div>
 </footer>
@@ -674,9 +673,7 @@ h1, h2, h3 { font-weight: 700; line-height: 1.04; letter-spacing: -0.015em; }
  <div class="input-row" style="margin-bottom:18px">
  <label>Edition</label>
  <select name="edition">
- <option>Standard · €24</option>
- <option>Signed first edition · €29</option>
- <option>Book + online, gift-wrapped · €32</option>
+ <option>First edition · €24</option>
  </select>
  <span class="input-err"></span>
  </div>
@@ -774,7 +771,7 @@ h1, h2, h3 { font-weight: 700; line-height: 1.04; letter-spacing: -0.015em; }
  input.value = ""; input.setAttribute("placeholder", "you@subscribed.now");
  if (nbtn) nbtn.disabled = false;
  }, function () {
- note.textContent = "// Something went wrong, please try again or email info@southstudio.online";
+ note.textContent = "// Something went wrong, please try again or email info@southstudio.online.";
  note.className = "form-note err";
  if (nbtn) nbtn.disabled = false;
  });

@@ -4,8 +4,8 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="form-endpoint" content="" />
-<title>Timeline, A book of deduction · SouthStudio</title>
-<meta name="description" content="Timeline: 80 unique deduction cases set inside the Time Correction Agency. Pre-order the book or try a free case online." />
+<title>Timeline: Deduction Puzzle Book — 80 Logic Cases · SouthStudio</title>
+<meta name="description" content="Timeline is a puzzle book of 80 unique logic deduction cases. Rigorous, story-led, beautifully printed. Pre-order the book (€24) or try a free case online." />
 <link rel="canonical" href="https://southstudio.online/timeline.html" />
 <link rel="alternate" hreflang="en" href="https://southstudio.online/timeline.html" />
 <link rel="alternate" hreflang="nl" href="https://southstudio.nl/timeline.html" />
@@ -32,7 +32,7 @@
 <link rel="manifest" href="site.webmanifest" />
 <meta name="theme-color" content="#1A1612" />
 
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Book","name":"Timeline","author":{"@type":"Organization","name":"SouthStudio"},"publisher":{"@type":"Organization","name":"SouthStudio"},"numberOfPages":200,"bookFormat":"https://schema.org/Paperback","inLanguage":"en","url":"https://southstudio.online/timeline.html","image":"https://southstudio.online/icons/og-timeline.png","description":"Timeline: 80 unique deduction cases set inside the Time Correction Agency. Pre-order the book or try a free case online."}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Book","name":"Timeline","author":{"@type":"Organization","name":"SouthStudio"},"publisher":{"@type":"Organization","name":"SouthStudio"},"numberOfPages":218,"bookFormat":"https://schema.org/Paperback","inLanguage":"en","url":"https://southstudio.online/timeline.html","image":"https://southstudio.online/icons/og-timeline.png","description":"Timeline is a puzzle book of 80 unique logic deduction cases inside the Time Correction Agency. Rigorous, story-led, beautifully made.","offers":{"@type":"Offer","price":"24","priceCurrency":"EUR","availability":"https://schema.org/PreOrder","url":"https://southstudio.online/timeline.html"}}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -266,10 +266,10 @@ h1, h2, h3 { font-weight: 700; line-height: 1.04; letter-spacing: -0.015em; }
  position: fixed; inset: var(--header-h) 0 0 0; z-index: 55;
  background: var(--paper); padding: 32px var(--gut);
  display: flex; flex-direction: column; gap: 6px;
- transform: translateY(-12px); opacity: 0; pointer-events: none;
- transition: transform .25s ease, opacity .25s ease;
+ transform: translateY(-12px); opacity: 0; pointer-events: none; visibility: hidden;
+ transition: transform .25s ease, opacity .25s ease, visibility 0s linear .25s;
 }
-.mobile-menu.open { transform: none; opacity: 1; pointer-events: auto; }
+.mobile-menu.open { transform: none; opacity: 1; pointer-events: auto; visibility: visible; transition: transform .25s ease, opacity .25s ease, visibility 0s; }
 .mobile-menu a {
  font-family: var(--serif); font-weight: 600; font-size: 30px;
  padding: 14px 0; border-bottom: 1px solid var(--line);
@@ -572,8 +572,7 @@ h1, h2, h3 { font-weight: 700; line-height: 1.04; letter-spacing: -0.015em; }
 <section class="section" style="padding-top:clamp(40px,5vw,72px);padding-bottom:clamp(40px,5vw,64px)">
  <div class="wrap">
  <a class="link muted reveal" href="index.html" style="margin-bottom:28px"><span aria-hidden="true">←</span> Back to the studio</a>
- <div class="split" style="margin-top:24px;align-items:center">
- <div class="reveal">
+ <div class="reveal" style="margin-top:24px">
  <div class="row gap-12 wrap-gap" style="margin-bottom:22px">
  <span class="tag tag--solid-ink">No. 001</span>
  <span class="tag tag--red">Pre-order open</span>
@@ -594,31 +593,42 @@ h1, h2, h3 { font-weight: 700; line-height: 1.04; letter-spacing: -0.015em; }
  <a class="btn btn--ghost" href="#sample">Try a case <span class="arr">→</span></a>
  </div>
  </div>
- <div class="reveal d1" style="position:relative;padding:10px 30px 30px 0">
- <div class="book">
- <span class="bc-grid" aria-hidden="true"></span>
- <span class="bc-frame" aria-hidden="true"></span>
- <div class="bc-topkick">Time Correction Agency · Puzzlebook</div>
- <div class="bc-stamp">● Debut Title</div>
- <div class="bc-center">
- <span class="mark" aria-hidden="true">
- <span></span><span class="fill"></span><span></span>
- <span></span><span></span><span class="fill-ink"></span>
- <span class="fill-ink"></span><span></span><span></span>
- </span>
- <h2 class="bc-title">TIME<span>LINE</span></h2>
- <p class="bc-tag">History has been edited.<br />You are the correction.</p>
- <span class="bc-rule" aria-hidden="true"></span>
  </div>
- <div class="bc-meta">
- <span class="bc-cases">80 Deduction Cases · Five Clearances</span>
- <span class="bc-byline">SOUTHSTUDIO</span>
+</section>
+
+<hr class="thick-rule" />
+
+<!-- ============ 360 BOOK ============ -->
+<style>
+.book360{border:1.5px solid var(--ink);background:var(--paper);box-shadow:12px 12px 0 var(--ink);overflow:hidden;}
+.book360-frame{display:block;width:100%;height:min(78vh,720px);border:0;background:var(--paper-2);}
+@media (max-width:600px){.book360{box-shadow:8px 8px 0 var(--ink);}.book360-frame{height:78vh;min-height:460px;}}
+</style>
+<section class="section" data-screen-label="360 book">
+ <div class="wrap">
+ <div class="center reveal" style="max-width:640px;margin-inline:auto">
+ <span class="kicker kicker--red"><span class="dot"></span>In 3D<span class="dot"></span></span>
+ <h2 class="h2 mt-12">Turn it over in your hands.</h2>
+ <p class="lead muted mt-12" style="margin-inline:auto">Drag to spin the cover, spine and back, the same object you get in print.</p>
  </div>
- </div>
- </div>
+ <div class="book360 reveal d1 mt-40">
+ <iframe class="book360-frame" data-book360frame src="book-360.html?lang=en" title="Timeline, 360 degree book viewer" loading="lazy"></iframe>
  </div>
  </div>
 </section>
+<script>
+/* Pass the preview auth token through to the embedded 360 viewer so its relative
+ request is authorized. In production (no ?t= token) this is a no-op. */
+(function(){
+ var t = new URLSearchParams(location.search).get("t");
+ if (!t) return;
+ document.querySelectorAll("[data-book360frame]").forEach(function(f){
+ var base = f.getAttribute("src");
+ var join = base.indexOf("?") === -1 ? "?" : "&";
+ f.setAttribute("src", base + join + "t=" + encodeURIComponent(t));
+ });
+})();
+</script>
 
 <hr class="thick-rule" />
 
@@ -637,7 +647,7 @@ h1, h2, h3 { font-weight: 700; line-height: 1.04; letter-spacing: -0.015em; }
  object that shouldn't exist yet. Your job is to find the single edit
  to the record and reason your way to the only timeline that holds together.
  </p>
- <div class="row gap-32 wrap-gap mt-40">
+ <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(14px,3vw,32px);margin-top:40px;align-items:start">
  <div class="stack gap-8">
  <span class="display" style="font-size:clamp(44px,6vw,72px);line-height:.8">80</span>
  <span class="kicker">Cases, warm-up to fiendish</span>
@@ -930,8 +940,7 @@ h1, h2, h3 { font-weight: 700; line-height: 1.04; letter-spacing: -0.015em; }
  <h3 class="h3">Physical book</h3>
  <p class="muted" style="font-size:16px">The full puzzlebook, 80 unique cases, printed and bound.</p>
  <ul>
- <li>200-page sewn hardback feel</li>
- <li>Signed by the studio (pre-order)</li>
+ <li>218-page sewn hardback feel</li>
  <li>80 unique cases, only in print</li>
  <li>Ships Q3 2026, no charge until then</li>
  </ul>
@@ -946,11 +955,9 @@ h1, h2, h3 { font-weight: 700; line-height: 1.04; letter-spacing: -0.015em; }
  <span class="way-num">INSTANT</span>
  </div>
  <h3 class="h3">A free set to try</h3>
- <p class="muted" style="font-size:16px">Start solving in your browser right now, a free set of cases to try, with a fresh one every week.</p>
+ <p class="muted" style="font-size:16px">Start solving in your browser right now, a free set of cases to try.</p>
  <ul>
  <li>Auto-checking &amp; smart hints</li>
- <li>Progress that saves itself</li>
- <li>New free case weekly</li>
  <li>Works on phone, tablet, desktop</li>
  </ul>
  <div class="row gap-16 wrap-gap" style="margin-top:auto">
@@ -1000,15 +1007,14 @@ h1, h2, h3 { font-weight: 700; line-height: 1.04; letter-spacing: -0.015em; }
  <div class="foot-links">
  <a data-open-preorder href="#">Pre-order Timeline</a>
  <a href="mailto:info@southstudio.online">info@southstudio.online</a>
- <a href="#">Stockists &amp; rights</a>
- <a href="#">Press kit</a>
+ <a href="stockists.html">Stockists &amp; rights</a>
+ <a href="about.html">About the studio</a>
  </div>
  </div>
  </div>
  <div class="foot-bottom">
  <span class="fine">© 2026 SouthStudio · An independent studio</span>
  <a class="fine" href="privacy.html" style="border-bottom:1px solid rgba(255,255,255,.22)">Privacy policy</a>
- <span class="fine">Set in Spectral &amp; IBM Plex Mono</span>
  </div>
  </div>
 </footer>
@@ -1397,9 +1403,7 @@ body{background:#211d18;font-family:&quot;IBM Plex Mono&quot;,ui-monospace,monos
  <div class="input-row" style="margin-bottom:18px">
  <label>Edition</label>
  <select name="edition">
- <option>Standard · €24</option>
- <option>Signed first edition · €29</option>
- <option>Book + online, gift-wrapped · €32</option>
+ <option>First edition · €24</option>
  </select>
  <span class="input-err"></span>
  </div>
@@ -1497,7 +1501,7 @@ body{background:#211d18;font-family:&quot;IBM Plex Mono&quot;,ui-monospace,monos
  input.value = ""; input.setAttribute("placeholder", "you@subscribed.now");
  if (nbtn) nbtn.disabled = false;
  }, function () {
- note.textContent = "// Something went wrong, please try again or email info@southstudio.online";
+ note.textContent = "// Something went wrong, please try again or email info@southstudio.online.";
  note.className = "form-note err";
  if (nbtn) nbtn.disabled = false;
  });

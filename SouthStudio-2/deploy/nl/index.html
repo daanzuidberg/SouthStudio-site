@@ -1094,7 +1094,7 @@ body.intro-hold .reveal { opacity: 0 !important; transform: translateY(22px) !im
  var ep = LQendpoint();
  if (!ep) {
  var body = Object.keys(data).map(function (k) { return k + ": " + data[k]; }).join("\n");
- window.location.href = "mailto:hello@southstudio.example?subject=" +
+ window.location.href = "mailto:info@southstudio.online?subject=" +
  encodeURIComponent("SouthStudio, " + type) + "&body=" + encodeURIComponent(body);
  setTimeout(onOk, 300);
  return;
@@ -1130,7 +1130,7 @@ body.intro-hold .reveal { opacity: 0 !important; transform: translateY(22px) !im
  input.value = ""; input.setAttribute("placeholder", "jij@aangemeld.nu");
  if (nbtn) nbtn.disabled = false;
  }, function () {
- note.textContent = "// Er ging iets mis, probeer het opnieuw of mail hello@southstudio.";
+ note.textContent = "// Er ging iets mis, probeer het opnieuw of mail info@southstudio.online.";
  note.className = "form-note err";
  if (nbtn) nbtn.disabled = false;
  });

@@ -4,8 +4,8 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="form-endpoint" content="" />
-<title>SouthStudio, An independent studio for things worth thinking about</title>
-<meta name="description" content="SouthStudio is an independent studio making games, books, and objects worth thinking about. Meet Timeline, our debut: 80 deduction cases in print, plus a free set online." />
+<title>Deduction Puzzle Books &amp; Logic Games · SouthStudio</title>
+<meta name="description" content="SouthStudio makes logic deduction games, puzzle books, and objects worth thinking about. Timeline — our debut: 80 unique cases to solve. Pre-order the book or play free online.ine." />
 <link rel="canonical" href="https://southstudio.online/" />
 <link rel="alternate" hreflang="en" href="https://southstudio.online/" />
 <link rel="alternate" hreflang="nl" href="https://southstudio.nl/" />
@@ -32,7 +32,7 @@
 <link rel="manifest" href="site.webmanifest" />
 <meta name="theme-color" content="#1A1612" />
 
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"SouthStudio","url":"https://southstudio.online","logo":"https://southstudio.online/icons/icon-512.png","description":"An independent studio making things worth thinking about — games, books, and objects, beautifully made."}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"SouthStudio","url":"https://southstudio.online","logo":"https://southstudio.online/icons/icon-512.png","description":"An independent studio making logic deduction games, puzzle books, and objects worth thinking about.","foundingDate":"2026","foundingLocation":{"@type":"Place","addressCountry":"NL"},"contactPoint":{"@type":"ContactPoint","email":"info@southstudio.online","contactType":"customer support"}}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -266,10 +266,10 @@ h1, h2, h3 { font-weight: 700; line-height: 1.04; letter-spacing: -0.015em; }
  position: fixed; inset: var(--header-h) 0 0 0; z-index: 55;
  background: var(--paper); padding: 32px var(--gut);
  display: flex; flex-direction: column; gap: 6px;
- transform: translateY(-12px); opacity: 0; pointer-events: none;
- transition: transform .25s ease, opacity .25s ease;
+ transform: translateY(-12px); opacity: 0; pointer-events: none; visibility: hidden;
+ transition: transform .25s ease, opacity .25s ease, visibility 0s linear .25s;
 }
-.mobile-menu.open { transform: none; opacity: 1; pointer-events: auto; }
+.mobile-menu.open { transform: none; opacity: 1; pointer-events: auto; visibility: visible; transition: transform .25s ease, opacity .25s ease, visibility 0s; }
 .mobile-menu a {
  font-family: var(--serif); font-weight: 600; font-size: 30px;
  padding: 14px 0; border-bottom: 1px solid var(--line);
@@ -624,7 +624,7 @@ body.intro-hold .reveal { opacity: 0 !important; transform: translateY(22px) !im
  <a class="navlink" href="#dispatch">Dispatch</a>
  </nav>
  <div class="head-cta">
- <a class="navlink" href="nl/" hreflang="nl" aria-label="Schakel naar Nederlands" style="opacity:.55;align-self:center">NL</a>
+ <a class="navlink" href="nl/index.html" hreflang="nl" aria-label="Schakel naar Nederlands" style="opacity:.55;align-self:center">NL</a>
  <a class="btn btn--red btn--sm" data-open-preorder href="#">Pre-order <span class="arr">→</span></a>
  <button class="burger" aria-label="Menu"><span></span><span></span><span></span></button>
  </div>
@@ -653,9 +653,8 @@ body.intro-hold .reveal { opacity: 0 !important; transform: translateY(22px) !im
 
  <div class="split mt-40" style="align-items:flex-start;gap:clamp(28px,5vw,64px)">
  <div class="reveal d2">
- <p class="lead measure">
- SouthStudio creates with intention. Timeless in design, meaningful in use, and made to last.
- </p>
+ <p class="lead measure">SouthStudio creates with intention. Timeless in design, meaningful in use, and made to last.
+</p>
  <div class="row gap-16 wrap-gap mt-32">
  <a class="btn btn--ink" href="timeline.html">Meet Timeline <span class="arr">→</span></a>
  <a class="btn btn--ghost" href="play.html">Play online <span class="arr">→</span></a>
@@ -706,7 +705,7 @@ body.intro-hold .reveal { opacity: 0 !important; transform: translateY(22px) !im
  </div>
  <div class="split" style="align-items:baseline;margin-bottom:38px">
  <h2 class="h2 reveal">One studio, four shelves.</h2>
- <p class="lead muted reveal d1">Everything we release lives on one of four shelves. A shelf can stay empty for years — it never gets filled with filler.</p>
+ <p class="lead muted reveal d1">Everything we release lives on one of four shelves. A shelf can stay empty for years, it never gets filled with filler.</p>
  </div>
  <div class="shelves reveal d1">
  <a class="shelf" href="timeline.html">
@@ -718,7 +717,7 @@ body.intro-hold .reveal { opacity: 0 !important; transform: translateY(22px) !im
  <a class="shelf" href="play.html">
  <span class="sn">Shelf II · Screen</span>
  <h3>Digital experiences</h3>
- <p class="muted" style="font-size:15px">Games built for the browser — never ports, never apps that nag.</p>
+ <p class="muted" style="font-size:15px">Games built for the browser, never ports, never apps that nag.</p>
  <span class="shelf-status"><b>Play free online</b> →</span>
  </a>
  <div class="shelf">
@@ -730,7 +729,7 @@ body.intro-hold .reveal { opacity: 0 !important; transform: translateY(22px) !im
  <div class="shelf">
  <span class="sn">Shelf IV · Objects</span>
  <h3>Objects</h3>
- <p class="muted" style="font-size:15px">Jigsaws, solving puzzles, prints — things whose answer sits in your hands.</p>
+ <p class="muted" style="font-size:15px">Jigsaws, solving puzzles, prints, things whose answer sits in your hands.</p>
  <span class="shelf-status">On the bench</span>
  </div>
  </div>
@@ -992,15 +991,14 @@ body.intro-hold .reveal { opacity: 0 !important; transform: translateY(22px) !im
  <div class="foot-links">
  <a data-open-preorder href="#">Pre-order Timeline</a>
  <a href="mailto:info@southstudio.online">info@southstudio.online</a>
- <a href="#">Stockists &amp; rights</a>
- <a href="#">Press kit</a>
+ <a href="stockists.html">Stockists &amp; rights</a>
+ <a href="about.html">About the studio</a>
  </div>
  </div>
  </div>
  <div class="foot-bottom">
  <span class="fine">© 2026 SouthStudio · An independent studio</span>
  <a class="fine" href="privacy.html" style="border-bottom:1px solid rgba(255,255,255,.22)">Privacy policy</a>
- <span class="fine">Set in Spectral &amp; IBM Plex Mono</span>
  </div>
  </div>
 </footer>
@@ -1031,9 +1029,7 @@ body.intro-hold .reveal { opacity: 0 !important; transform: translateY(22px) !im
  <div class="input-row" style="margin-bottom:18px">
  <label>Edition</label>
  <select name="edition">
- <option>Standard · €24</option>
- <option>Signed first edition · €29</option>
- <option>Book + online, gift-wrapped · €32</option>
+ <option>First edition · €24</option>
  </select>
  <span class="input-err"></span>
  </div>
