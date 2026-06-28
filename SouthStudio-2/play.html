@@ -4,8 +4,8 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="form-endpoint" content="" />
-<title>Free Logic Deduction Puzzles Online — Play Timeline · SouthStudio</title>
-<meta name="description" content="Solve free logic deduction puzzles in your browser — no install, no account needed. A free set of Timeline cases from SouthStudio, the independent puzzle studio." />
+<title>Play Timeline online · SouthStudio</title>
+<meta name="description" content="Play a free set of Timeline cases in your browser, a taste of the deduction. All 80 unique cases live in the book." />
 <link rel="canonical" href="https://southstudio.online/play.html" />
 <link rel="alternate" hreflang="en" href="https://southstudio.online/play.html" />
 <link rel="alternate" hreflang="nl" href="https://southstudio.nl/play.html" />
@@ -32,7 +32,7 @@
 <link rel="manifest" href="site.webmanifest" />
 <meta name="theme-color" content="#1A1612" />
 
-<script type="application/ld+json">[{"@context":"https://schema.org","@type":"WebApplication","name":"Timeline — Free Logic Deduction Puzzles","applicationCategory":"GameApplication","operatingSystem":"any","offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"},"description":"Play free logic deduction puzzles in your browser. A free set of Timeline cases from SouthStudio, no install required.","url":"https://southstudio.online/play.html","author":{"@type":"Organization","name":"SouthStudio","url":"https://southstudio.online"}},{"@context":"https://schema.org","@type":"Organization","name":"SouthStudio","url":"https://southstudio.online"}]</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"SouthStudio","url":"https://southstudio.online","logo":"https://southstudio.online/icons/icon-512.png","description":"An independent studio making things worth thinking about — games, books, and objects, beautifully made."}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -266,10 +266,10 @@ h1, h2, h3 { font-weight: 700; line-height: 1.04; letter-spacing: -0.015em; }
  position: fixed; inset: var(--header-h) 0 0 0; z-index: 55;
  background: var(--paper); padding: 32px var(--gut);
  display: flex; flex-direction: column; gap: 6px;
- transform: translateY(-12px); opacity: 0; pointer-events: none; visibility: hidden;
- transition: transform .25s ease, opacity .25s ease, visibility 0s linear .25s;
+ transform: translateY(-12px); opacity: 0; pointer-events: none;
+ transition: transform .25s ease, opacity .25s ease;
 }
-.mobile-menu.open { transform: none; opacity: 1; pointer-events: auto; visibility: visible; transition: transform .25s ease, opacity .25s ease, visibility 0s; }
+.mobile-menu.open { transform: none; opacity: 1; pointer-events: auto; }
 .mobile-menu a {
  font-family: var(--serif); font-weight: 600; font-size: 30px;
  padding: 14px 0; border-bottom: 1px solid var(--line);
@@ -565,11 +565,12 @@ h1, h2, h3 { font-weight: 700; line-height: 1.04; letter-spacing: -0.015em; }
  <div class="row gap-12 wrap-gap reveal" style="margin-bottom:22px">
  <span class="tag tag--blue">Free to play</span>
  <span class="tag">No install</span>
+ <span class="tag">Auto-save</span>
  </div>
  <h1 class="h1 reveal d1" style="max-width:20ch">
  Play <span style="color:var(--ink)">TIME</span><span class="red">LINE</span> in your browser.
  </h1>
- <p class="lead measure mt-12 reveal d1">A free set of Time Correction Agency cases, playable right in your browser, a taste of the deduction. Solve in the field console below or launch it fullscreen. The full 80 unique cases live in the book.</p>
+ <p class="lead measure mt-12 reveal d1">A free set of Time Correction Agency cases, playable right in your browser, a taste of the deduction. Solve in the field console below or launch it fullscreen; your progress is kept for you. The full 80 unique cases live in the book.</p>
  </div>
 </section>
 
@@ -593,7 +594,7 @@ h1, h2, h3 { font-weight: 700; line-height: 1.04; letter-spacing: -0.015em; }
  <iframe class="host-frame" data-gameframe src="game/index.html" title="Play Timeline, Time Correction Agency" style="min-height:80vh;height:80vh" allow="fullscreen"></iframe>
  </div>
 
- <p class="muted reveal d1 mt-24" style="font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-align:center">// Live build · 30 cases across three tiers.</p>
+ <p class="muted reveal d1 mt-24" style="font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-align:center">// Live build · 30 cases across three tiers. Your progress saves automatically on this device.</p>
  </div>
 </section>
 
@@ -617,8 +618,8 @@ h1, h2, h3 { font-weight: 700; line-height: 1.04; letter-spacing: -0.015em; }
  </div>
  <div class="principle">
  <span class="pn" style="color:var(--blue)">03</span>
- <h3 style="font-size:21px;font-weight:700">No account needed</h3>
- <p class="muted" style="font-size:15px">Play straight from the browser, no sign-up, no install, nothing to download.</p>
+ <h3 style="font-size:21px;font-weight:700">Saves itself</h3>
+ <p class="muted" style="font-size:15px">Close the tab mid-case and come back later. Your progress is kept on this device.</p>
  </div>
  </div>
 
@@ -681,6 +682,7 @@ h1, h2, h3 { font-weight: 700; line-height: 1.04; letter-spacing: -0.015em; }
  <div class="foot-bottom">
  <span class="fine">© 2026 SouthStudio · An independent studio</span>
  <a class="fine" href="privacy.html" style="border-bottom:1px solid rgba(255,255,255,.22)">Privacy policy</a>
+ <span class="fine">Set in Spectral &amp; IBM Plex Mono</span>
  </div>
  </div>
 </footer>
@@ -711,7 +713,9 @@ h1, h2, h3 { font-weight: 700; line-height: 1.04; letter-spacing: -0.015em; }
  <div class="input-row" style="margin-bottom:18px">
  <label>Edition</label>
  <select name="edition">
- <option>First edition · €24</option>
+ <option>Standard · €24</option>
+ <option>Signed first edition · €29</option>
+ <option>Book + online, gift-wrapped · €32</option>
  </select>
  <span class="input-err"></span>
  </div>
@@ -809,7 +813,7 @@ h1, h2, h3 { font-weight: 700; line-height: 1.04; letter-spacing: -0.015em; }
  input.value = ""; input.setAttribute("placeholder", "you@subscribed.now");
  if (nbtn) nbtn.disabled = false;
  }, function () {
- note.textContent = "// Something went wrong, please try again or email info@southstudio.online.";
+ note.textContent = "// Something went wrong, please try again or email info@southstudio.online";
  note.className = "form-note err";
  if (nbtn) nbtn.disabled = false;
  });
