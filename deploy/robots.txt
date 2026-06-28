@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://southstudio.online/sitemap.xml
+Sitemap: https://southstudio.nl/sitemap.xml

@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Timeline — TikTok Production Brief</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400;1,6..72,500;1,6..72,600&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --paper:  #FAF7EF;
+  --paper2: #F1EBDD;
+  --ink:    #1A1612;
+  --ink2:   #46413A;
+  --dim:    #6B6256;
+  --line:   #DDD4C2;
+  --line2:  #C8BDA6;
+  --red:    #D2362B;
+  --serif:  'Newsreader', Georgia, serif;
+  --mono:   'IBM Plex Mono', ui-monospace, monospace;
+}
+html { background: #E8E1D3; }
+body { font-family: var(--serif); color: var(--ink); min-height: 100vh; padding: 40px 24px 80px; }
+
+.doc { max-width: 860px; margin: 0 auto; background: var(--paper); }
+
+/* ---- masthead ---- */
+.masthead {
+  padding: 40px 52px 32px;
+  border-bottom: 2px solid var(--ink);
+  display: flex; justify-content: space-between; align-items: flex-start; gap: 24px;
+}
+.masthead-left { display: flex; gap: 16px; align-items: center; }
+.masthead-mark { flex-shrink: 0; }
+.masthead-title { font-size: 22px; font-weight: 700; letter-spacing: -.02em; }
+.masthead-title span { color: var(--red); }
+.masthead-sub { font-family: var(--mono); font-size: 9px; font-weight: 600; letter-spacing: .28em; text-transform: uppercase; color: var(--dim); margin-top: 3px; }
+.masthead-meta { font-family: var(--mono); font-size: 9.5px; letter-spacing: .12em; text-transform: uppercase; color: var(--dim); line-height: 1.9; text-align: right; }
+
+/* ---- body padding ---- */
+.body { padding: 0 52px; }
+
+/* ---- section headers ---- */
+.sec-rule { border: none; border-top: 1px solid var(--line); margin: 0; }
+.sec { padding: 36px 0 32px; border-top: 1px solid var(--line); }
+.sec:first-child { border-top: none; padding-top: 44px; }
+.sec-kicker { font-family: var(--mono); font-size: 10px; font-weight: 600; letter-spacing: .22em; text-transform: uppercase; color: var(--red); margin-bottom: 10px; }
+.sec-title { font-size: 30px; font-weight: 600; letter-spacing: -.015em; line-height: 1.1; margin-bottom: 18px; }
+.body-text { font-size: 15.5px; line-height: 1.65; color: var(--ink2); }
+.body-text + .body-text { margin-top: 12px; }
+
+/* ---- callout box ---- */
+.callout { background: var(--paper2); border: 1px solid var(--line); border-radius: 4px; padding: 20px 22px; margin-top: 20px; }
+.callout-label { font-family: var(--mono); font-size: 9.5px; letter-spacing: .16em; text-transform: uppercase; color: var(--dim); margin-bottom: 8px; }
+.callout-body { font-family: var(--mono); font-size: 13px; line-height: 1.7; color: var(--ink2); }
+.callout-body strong { color: var(--ink); font-weight: 600; }
+
+/* ---- specs row ---- */
+.specs { display: flex; gap: 16px; margin-top: 22px; }
+.spec { flex: 1; background: var(--paper2); border: 1px solid var(--line); border-radius: 4px; padding: 14px 16px; }
+.spec-val { font-family: var(--mono); font-size: 16px; font-weight: 700; color: var(--ink); }
+.spec-key { font-family: var(--mono); font-size: 9px; letter-spacing: .14em; text-transform: uppercase; color: var(--dim); margin-top: 4px; }
+
+/* ---- reference image ---- */
+.ref-box { border: 1px solid var(--line2); border-radius: 4px; overflow: hidden; margin-top: 20px; }
+.ref-img { width: 100%; aspect-ratio: 3/4; background: repeating-linear-gradient(45deg, var(--paper2) 0 9px, #E0D8C8 9px 11px); display: flex; align-items: center; justify-content: center; position: relative; }
+.ref-badge { font-family: var(--mono); font-size: 10px; letter-spacing: .14em; text-transform: uppercase; color: var(--dim); background: var(--paper); border: 1px solid var(--line2); border-radius: 3px; padding: 5px 11px; }
+.ref-caption { padding: 14px 16px; background: var(--paper2); font-family: var(--mono); font-size: 11px; color: var(--ink2); line-height: 1.6; }
+
+/* ---- timeline / shot list ---- */
+.shot-list { margin-top: 8px; display: flex; flex-direction: column; gap: 0; }
+.shot { display: grid; grid-template-columns: 52px 1fr; gap: 0; border-top: 1px solid var(--line); padding: 24px 0; }
+.shot-num { font-family: var(--mono); font-size: 28px; font-weight: 700; color: var(--line2); line-height: 1; padding-top: 3px; }
+.shot-body { display: flex; flex-direction: column; gap: 12px; }
+.shot-header { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; }
+.shot-name { font-size: 20px; font-weight: 600; letter-spacing: -.01em; }
+.shot-duration { font-family: var(--mono); font-size: 11px; color: var(--dim); }
+.shot-model { font-family: var(--mono); font-size: 10px; font-weight: 600; letter-spacing: .1em; padding: 3px 10px; border-radius: 20px; }
+.shot-model.kling { background: #EBF2FF; color: #2A5CB8; border: 1px solid #B8CEEF; }
+.shot-model.sora { background: #FFF0EE; color: var(--red); border: 1px solid #F0C4BF; }
+.shot-desc { font-size: 15px; line-height: 1.6; color: var(--ink2); }
+.shot-vo { display: flex; gap: 10px; align-items: flex-start; background: var(--paper2); border-left: 2px solid var(--red); padding: 10px 14px; border-radius: 0 4px 4px 0; }
+.shot-vo-label { font-family: var(--mono); font-size: 9px; letter-spacing: .14em; text-transform: uppercase; color: var(--red); white-space: nowrap; padding-top: 2px; }
+.shot-vo-text { font-size: 15px; font-style: italic; color: var(--ink); line-height: 1.5; }
+.shot-prompt-wrap { border: 1px solid var(--line); border-radius: 4px; overflow: hidden; }
+.shot-prompt-label { font-family: var(--mono); font-size: 9px; letter-spacing: .14em; text-transform: uppercase; color: var(--dim); background: var(--paper2); padding: 7px 14px; border-bottom: 1px solid var(--line); display: flex; justify-content: space-between; align-items: center; }
+.copy-btn { font-family: var(--mono); font-size: 9px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink2); background: none; border: 1px solid var(--line2); border-radius: 3px; padding: 2px 8px; cursor: pointer; transition: background .15s; }
+.copy-btn:hover { background: var(--line); }
+.copy-btn.copied { color: var(--red); border-color: var(--red); }
+.shot-prompt { font-family: var(--mono); font-size: 12px; line-height: 1.7; color: var(--ink2); padding: 14px 16px; background: var(--paper); }
+
+/* ---- VO full script ---- */
+.script-block { background: var(--ink); color: var(--paper); border-radius: 4px; padding: 32px 34px; margin-top: 20px; }
+.script-line { display: grid; grid-template-columns: 80px 1fr; gap: 18px; padding: 12px 0; border-top: 1px solid rgba(255,255,255,.08); }
+.script-line:first-child { border-top: none; padding-top: 0; }
+.script-time { font-family: var(--mono); font-size: 11px; color: #8A7F70; padding-top: 3px; white-space: nowrap; }
+.script-text { font-size: 17px; line-height: 1.55; font-style: italic; }
+.script-text em { font-style: normal; font-weight: 600; color: var(--red); }
+
+/* ---- assembly notes ---- */
+.note-list { display: flex; flex-direction: column; gap: 0; margin-top: 8px; }
+.note { display: grid; grid-template-columns: 28px 1fr; gap: 14px; padding: 14px 0; border-top: 1px solid var(--line); align-items: start; }
+.note-num { font-family: var(--mono); font-size: 12px; font-weight: 700; color: var(--red); padding-top: 1px; }
+.note-text { font-size: 15px; line-height: 1.6; color: var(--ink2); }
+.note-text strong { color: var(--ink); font-weight: 600; }
+
+/* ---- footer ---- */
+.doc-footer { border-top: 2px solid var(--ink); margin-top: 8px; padding: 22px 52px; display: flex; justify-content: space-between; align-items: center; }
+.doc-footer-left { font-style: italic; font-size: 15px; color: var(--ink2); }
+.doc-footer-right { font-family: var(--mono); font-size: 9.5px; letter-spacing: .12em; text-transform: uppercase; color: var(--dim); }
+
+/* ---- tag ---- */
+.tag-row { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px; }
+.tag { font-family: var(--mono); font-size: 10px; letter-spacing: .1em; text-transform: uppercase; border: 1px solid var(--line2); border-radius: 20px; padding: 3px 11px; color: var(--dim); }
+.tag.red { border-color: var(--red); color: var(--red); }
+
+@media print {
+  html { background: white; }
+  .doc { max-width: 100%; }
+  .copy-btn { display: none; }
+}
+</style>
+</head>
+<body>
+<div class="doc">
+
+  <!-- masthead -->
+  <div class="masthead">
+    <div class="masthead-left">
+      <svg class="masthead-mark" width="38" height="38" viewBox="0 0 132 132">
+        <rect x="2"  y="2"  width="40" height="40" fill="none"         stroke="#1A1612" stroke-width="4"/>
+        <rect x="46" y="2"  width="40" height="40" fill="#D2362B"       stroke="#D2362B" stroke-width="4"/>
+        <rect x="90" y="2"  width="40" height="40" fill="none"         stroke="#1A1612" stroke-width="4"/>
+        <rect x="2"  y="46" width="40" height="40" fill="none"         stroke="#1A1612" stroke-width="4"/>
+        <rect x="46" y="46" width="40" height="40" fill="none"         stroke="#1A1612" stroke-width="4"/>
+        <rect x="90" y="46" width="40" height="40" fill="#1A1612"       stroke="#1A1612" stroke-width="4"/>
+        <rect x="2"  y="90" width="40" height="40" fill="#1A1612"       stroke="#1A1612" stroke-width="4"/>
+        <rect x="46" y="90" width="40" height="40" fill="none"         stroke="#1A1612" stroke-width="4"/>
+        <rect x="90" y="90" width="40" height="40" fill="none"         stroke="#1A1612" stroke-width="4"/>
+      </svg>
+      <div>
+        <div class="masthead-title">South<span>Studio</span> · Timeline</div>
+        <div class="masthead-sub">TikTok Production Brief</div>
+      </div>
+    </div>
+    <div class="masthead-meta">
+      No. 001 · Promotional<br />
+      Format: 9:16 vertical<br />
+      June 2026
+    </div>
+  </div>
+
+  <div class="body">
+
+    <!-- concept -->
+    <div class="sec">
+      <div class="sec-kicker">The concept</div>
+      <h2 class="sec-title">The Correction</h2>
+      <p class="body-text">A cinematic 35-second TikTok. We never show a person's face — only hands, objects, atmosphere. Voice-over carries the narrative; visuals carry the world. The hook drops the viewer into the TCA fiction before they know it's a book ad. By the time they realise, they already want in.</p>
+      <p class="body-text">The tone is quiet, deliberate, slightly ominous. Think: found footage from a government archive. Warm desk-lamp light. Paper. Ink. The satisfying click of a stamp.</p>
+      <div class="tag-row">
+        <span class="tag red">35 seconds</span>
+        <span class="tag">9:16 vertical</span>
+        <span class="tag">7 shots</span>
+        <span class="tag">Voice-over</span>
+        <span class="tag">Hands-only — no face</span>
+        <span class="tag">TikTok-first</span>
+      </div>
+      <div class="specs">
+        <div class="spec"><div class="spec-val">9:16</div><div class="spec-key">Aspect ratio</div></div>
+        <div class="spec"><div class="spec-val">1080×1920</div><div class="spec-key">Resolution</div></div>
+        <div class="spec"><div class="spec-val">~35s</div><div class="spec-key">Total length</div></div>
+        <div class="spec"><div class="spec-val">7</div><div class="spec-key">Shots to generate</div></div>
+        <div class="spec"><div class="spec-val">Kling 3.0</div><div class="spec-key">Primary model</div></div>
+        <div class="spec"><div class="spec-val">Sora 2</div><div class="spec-key">Hero shots (2)</div></div>
+      </div>
+    </div>
+
+    <!-- step 0: reference image -->
+    <div class="sec">
+      <div class="sec-kicker">Before you start — Step 0</div>
+      <h2 class="sec-title">Generate the book reference image first</h2>
+      <p class="body-text">Higgsfield can keep a prop consistent across shots if you supply a reference image. Generate this first in <strong>Higgsfield Popcorn</strong> (or any image generator), then upload it as the visual reference when generating shots 2, 3, 4, and 7.</p>
+      <div class="shot-prompt-wrap" style="margin-top:20px">
+        <div class="shot-prompt-label">
+          Reference image prompt — Higgsfield Popcorn / image generator
+          <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
+        </div>
+        <div class="shot-prompt">"A product photograph of a hardcover puzzle book titled 'TIMELINE' in clean serif type. The cover is deep charcoal / near-black. A simple 3×3 logic grid is centred — one cell is solid red (#D2362B), one is solid black, the rest are outlined empty squares. Below the grid, in small monospaced uppercase: 'SouthStudio · No. 001'. The spine reads 'TIMELINE'. Clean, minimal, beautiful. Flat lay on a dark walnut surface, soft side lighting, shallow depth of field."</div>
+      </div>
+      <div class="callout">
+        <div class="callout-label">Why this matters</div>
+        <div class="callout-body">Use this image as the <strong>visual reference</strong> in every shot featuring the book. In Higgsfield, upload it via the image reference slot before generating. This keeps the cover consistent so it reads as the same object throughout the video.</div>
+      </div>
+    </div>
+
+    <!-- shot list -->
+    <div class="sec">
+      <div class="sec-kicker">Shot list + Higgsfield prompts</div>
+      <h2 class="sec-title">Seven shots, 35 seconds</h2>
+      <p class="body-text">Each prompt is written for <strong>9:16 vertical framing</strong>. For shots marked Kling 3.0, set duration to 5s and trim in edit. For Sora 2 shots, generate at maximum quality — these are your money shots.</p>
+
+      <div class="shot-list">
+
+        <!-- shot 1 -->
+        <div class="shot">
+          <div class="shot-num">01</div>
+          <div class="shot-body">
+            <div class="shot-header">
+              <span class="shot-name">The stamp</span>
+              <span class="shot-duration">3 seconds · 0:00–0:03</span>
+              <span class="shot-model kling">Kling 3.0</span>
+            </div>
+            <p class="shot-desc">The hook. A red rubber stamp crashes down onto a manila envelope. Slow motion. This is the first thing the viewer sees — it needs to stop the scroll.</p>
+            <div class="shot-vo">
+              <span class="shot-vo-label">V/O</span>
+              <span class="shot-vo-text">"What if history was being rewritten — and it was your job to fix it?"</span>
+            </div>
+            <div class="shot-prompt-wrap">
+              <div class="shot-prompt-label">Higgsfield prompt — Kling 3.0 · 9:16 vertical<button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
+              <div class="shot-prompt">"Extreme close-up vertical shot 9:16, a weathered red rubber stamp crashes down onto a cream manila envelope on a dark wooden desk, slow motion, red ink bleeds into the paper fibers, dust particles catch warm amber lamplight from above, dramatic low-key lighting, deep shadows, film grain, shallow depth of field, cinematic tension, no text visible except a faint official seal impression"</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- shot 2 -->
+        <div class="shot">
+          <div class="shot-num">02</div>
+          <div class="shot-body">
+            <div class="shot-header">
+              <span class="shot-name">The book arrives</span>
+              <span class="shot-duration">5 seconds · 0:03–0:08</span>
+              <span class="shot-model sora">Sora 2</span>
+            </div>
+            <p class="shot-desc">A hand slides the Timeline book onto the desk. Hero shot — this is the first reveal of the product. Use the reference image here.</p>
+            <div class="shot-vo">
+              <span class="shot-vo-label">V/O</span>
+              <span class="shot-vo-text">"Timeline is a puzzle book set inside the Time Correction Agency. 80 cases. Someone's been editing the past."</span>
+            </div>
+            <div class="shot-prompt-wrap">
+              <div class="shot-prompt-label">Higgsfield prompt — Sora 2 · 9:16 vertical · upload book reference<button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
+              <div class="shot-prompt">"Cinematic vertical 9:16 close-up, a hand with a plain sleeve slides a dark hardcover book titled TIMELINE across a walnut desk into frame, the book cover shows a minimalist 3x3 logic grid with one red cell, warm amber desk lamp pools on the cover, camera very slowly pushes in, scattered documents blurred in background, shallow depth of field, warm ink-and-paper color palette, film grain, quiet and deliberate motion"</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- shot 3 -->
+        <div class="shot">
+          <div class="shot-num">03</div>
+          <div class="shot-body">
+            <div class="shot-header">
+              <span class="shot-name">Opening the book</span>
+              <span class="shot-duration">4 seconds · 0:08–0:12</span>
+              <span class="shot-model kling">Kling 3.0</span>
+            </div>
+            <p class="shot-desc">Pages fan open slowly. We glimpse structured case-file layouts inside — columns, grids, elegant serif type. The world of the TCA in print.</p>
+            <div class="shot-vo">
+              <span class="shot-vo-label">V/O</span>
+              <span class="shot-vo-text">"Five clearance levels. Each one harder than the last."</span>
+            </div>
+            <div class="shot-prompt-wrap">
+              <div class="shot-prompt-label">Higgsfield prompt — Kling 3.0 · 9:16 vertical<button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
+              <div class="shot-prompt">"Cinematic close-up vertical 9:16, two hands gently open a dark hardcover book from above, pages fan slowly and settle, interior pages reveal structured text columns resembling government case files with logic grids and serif typography on cream paper, warm amber desk lamp from upper right, shallow depth of field, dust motes catch the light, film grain, muted warm tones, slow and deliberate"</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- shot 4 -->
+        <div class="shot">
+          <div class="shot-num">04</div>
+          <div class="shot-body">
+            <div class="shot-header">
+              <span class="shot-name">The puzzle page</span>
+              <span class="shot-duration">4 seconds · 0:12–0:16</span>
+              <span class="shot-model kling">Kling 3.0</span>
+            </div>
+            <p class="shot-desc">Macro shot on a single puzzle spread. A logic grid, numbered clues, clean serif type. A pencil rests diagonally. Camera drifts imperceptibly.</p>
+            <div class="shot-vo">
+              <span class="shot-vo-label">V/O</span>
+              <span class="shot-vo-text">"You work through the evidence. Cross-reference the records."</span>
+            </div>
+            <div class="shot-prompt-wrap">
+              <div class="shot-prompt-label">Higgsfield prompt — Kling 3.0 · 9:16 vertical<button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
+              <div class="shot-prompt">"Extreme macro close-up vertical 9:16, an open book page showing a logic deduction grid puzzle printed on aged off-white paper, clean serif typography with numbered clue rows, a partially filled grid with X and check marks in ink, a wooden pencil resting diagonally across the lower corner, warm amber side lighting, very shallow depth of field with soft bokeh, subtle camera drift left, film grain, quiet and focused"</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- shot 5 -->
+        <div class="shot">
+          <div class="shot-num">05</div>
+          <div class="shot-body">
+            <div class="shot-header">
+              <span class="shot-name">Solving</span>
+              <span class="shot-duration">5 seconds · 0:16–0:21</span>
+              <span class="shot-model kling">Kling 3.0</span>
+            </div>
+            <p class="shot-desc">A hand with a pencil works through the grid. Deliberate, focused, unhurried. The scratch of pencil on paper. This is the core feeling of the book.</p>
+            <div class="shot-vo">
+              <span class="shot-vo-label">V/O</span>
+              <span class="shot-vo-text">"Rule out the impossible. Find the correction. No luck. No guessing."</span>
+            </div>
+            <div class="shot-prompt-wrap">
+              <div class="shot-prompt-label">Higgsfield prompt — Kling 3.0 · 9:16 vertical<button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
+              <div class="shot-prompt">"Cinematic close-up vertical 9:16, a hand holds a pencil and carefully marks cells in a printed logic deduction grid on cream paper, slow deliberate strokes, pencil tip sharp and close to camera, warm desk lamp from above right, soft paper texture visible, shallow depth of field, film grain, muted warm palette, quiet focused energy, no face visible — hands only"</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- shot 6 -->
+        <div class="shot">
+          <div class="shot-num">06</div>
+          <div class="shot-body">
+            <div class="shot-header">
+              <span class="shot-name">The correction filed</span>
+              <span class="shot-duration">3 seconds · 0:21–0:24</span>
+              <span class="shot-model kling">Kling 3.0</span>
+            </div>
+            <p class="shot-desc">A stamp comes down on a completed document. Red ink. "CORRECTION FILED." The satisfying payoff moment — mirrors shot 1 and closes the loop.</p>
+            <div class="shot-vo">
+              <span class="shot-vo-label">V/O</span>
+              <span class="shot-vo-text">"Just pure deduction."</span>
+            </div>
+            <div class="shot-prompt-wrap">
+              <div class="shot-prompt-label">Higgsfield prompt — Kling 3.0 · 9:16 vertical<button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
+              <div class="shot-prompt">"Cinematic close-up vertical 9:16, a rubber stamp comes down decisively onto a cream document on a wooden desk, red ink text reads CORRECTION FILED, slow motion with slight motion blur on the downstroke, red ink bleeds satisfyingly into the paper, warm amber lamp light, dust motes visible, film grain, deep shadows, deeply satisfying impact"</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- shot 7 -->
+        <div class="shot">
+          <div class="shot-num">07</div>
+          <div class="shot-body">
+            <div class="shot-header">
+              <span class="shot-name">The reveal</span>
+              <span class="shot-duration">11 seconds · 0:24–0:35</span>
+              <span class="shot-model sora">Sora 2</span>
+            </div>
+            <p class="shot-desc">The money shot. The closed book sits on the desk in perfect light. Camera very slowly pulls back. Hold. Text cards appear in edit: "TIMELINE." then "Pre-order at SouthStudio.online" then "Link in bio →"</p>
+            <div class="shot-vo">
+              <span class="shot-vo-label">V/O</span>
+              <span class="shot-vo-text">"Timeline. A puzzle book for people who think. Pre-order now at SouthStudio.online — link in bio."</span>
+            </div>
+            <div class="shot-prompt-wrap">
+              <div class="shot-prompt-label">Higgsfield prompt — Sora 2 · 9:16 vertical · upload book reference<button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
+              <div class="shot-prompt">"Cinematic product reveal vertical 9:16, a closed dark hardcover book titled TIMELINE with a minimalist 3x3 logic grid cover sits on a dark walnut desk under a warm amber desk lamp, camera begins close on the cover then very slowly pulls back over 8 seconds revealing the full book and a scattered desk with papers and a pencil, shallow depth of field gradually deepening, warm ink-and-paper palette, film grain, quiet and beautiful, no motion except the slow pull back"</div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /shot-list -->
+    </div>
+
+    <!-- VO script -->
+    <div class="sec">
+      <div class="sec-kicker">Voice-over script — full read</div>
+      <h2 class="sec-title">Read this aloud, slowly</h2>
+      <p class="body-text">Total word count: ~65 words. At a deliberate, slightly hushed pace — this should feel like a transmission, not a sales pitch. Record in one take if possible. Quiet room, close mic or earphones with mic, add light room reverb in post.</p>
+      <div class="script-block">
+        <div class="script-line">
+          <span class="script-time">0:00–0:03</span>
+          <span class="script-text">"What if history was being rewritten — and it was your job to fix it?"</span>
+        </div>
+        <div class="script-line">
+          <span class="script-time">0:03–0:12</span>
+          <span class="script-text">"Timeline is a puzzle book set inside the Time Correction Agency. 80 cases. Someone's been editing the past. Five clearance levels. Each one harder than the last."</span>
+        </div>
+        <div class="script-line">
+          <span class="script-time">0:12–0:24</span>
+          <span class="script-text">"You work through the evidence. Cross-reference the records. Rule out the impossible. Find the correction. <em>No luck. No guessing.</em> Just pure deduction."</span>
+        </div>
+        <div class="script-line">
+          <span class="script-time">0:24–0:35</span>
+          <span class="script-text">"Timeline. A puzzle book for people who think. Pre-order now at SouthStudio.online — link in bio."</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- assembly notes -->
+    <div class="sec">
+      <div class="sec-kicker">Assembly — edit in CapCut or DaVinci Resolve</div>
+      <h2 class="sec-title">Putting it together</h2>
+      <div class="note-list">
+        <div class="note"><div class="note-num">01</div><div class="note-text"><strong>Generate shots in Higgsfield first</strong> — all 7 clips before you open an editor. For shots 2 and 7 (Sora 2), generate 2–3 variants and pick the best. For Kling 3.0 shots, one take is usually enough.</div></div>
+        <div class="note"><div class="note-num">02</div><div class="note-text"><strong>Record the voice-over before editing.</strong> Import the audio first and cut video to match it — not the other way around. The VO timing in the brief above is the guide, not a hard lock.</div></div>
+        <div class="note"><div class="note-num">03</div><div class="note-text"><strong>Music:</strong> atmospheric, slow, no heavy beat. Search "dark ambient" or "study lo-fi" on TikTok's sound library. The music should sit under the voice-over, not compete. Keep it at ~20% volume.</div></div>
+        <div class="note"><div class="note-num">04</div><div class="note-text"><strong>Text cards on shot 7:</strong> add three overlays in sequence — <em>TIMELINE.</em> (large serif, centre) → <em>southstudio.online</em> (small mono, lower third) → <em>link in bio →</em> (mono, smallest). Use the SouthStudio palette: paper text on ink background, or ink text on paper background.</div></div>
+        <div class="note"><div class="note-num">05</div><div class="note-text"><strong>Colour grade:</strong> all clips should feel like one piece of film. In CapCut, apply a warm film LUT (try "Film 03" or "Kodak") at 40–60% opacity. Slightly lower the highlights, lift the shadows — the warmth and darkness should feel consistent across all 7 shots.</div></div>
+        <div class="note"><div class="note-num">06</div><div class="note-text"><strong>TikTok caption:</strong> "80 logic puzzles set in a fictional government archive. Which clearance level can you reach? 🔴 Pre-order link in bio. #puzzles #logicpuzzles #booklaunch #indiegames #deduction"</div></div>
+      </div>
+    </div>
+
+    <!-- model costs -->
+    <div class="sec">
+      <div class="sec-kicker">Budget estimate</div>
+      <h2 class="sec-title">What this costs in Higgsfield</h2>
+      <div class="callout" style="margin-top:0">
+        <div class="callout-label">Estimated credit usage (Plus plan, $34/month)</div>
+        <div class="callout-body">
+          5× Kling 3.0 shots · ~6 credits each → <strong>~30 credits (~$3)</strong><br />
+          2× Sora 2 shots · ~55 credits each → <strong>~110 credits (~$11)</strong><br />
+          1× Reference image → <strong>~2 credits (&lt;$1)</strong><br />
+          <br />
+          <strong>Total: ~142 credits · ~$14 for the whole video</strong><br /><br />
+          Generate 2–3 variants of the Sora 2 shots for best results → add ~$10. Total still well under $30 for a polished 35-second cinematic product video.
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /body -->
+
+  <!-- footer -->
+  <div class="doc-footer">
+    <div class="doc-footer-left">Things worth thinking about.</div>
+    <div class="doc-footer-right">© 2026 SouthStudio · Production Brief v1</div>
+  </div>
+
+</div><!-- /doc -->
+
+<script>
+function copyPrompt(btn) {
+  const wrap = btn.closest('.shot-prompt-wrap') || btn.closest('.ref-box') || btn.parentElement.parentElement;
+  const promptEl = wrap.querySelector('.shot-prompt') || btn.parentElement.nextElementSibling;
+  if (!promptEl) return;
+  navigator.clipboard.writeText(promptEl.textContent.trim()).then(() => {
+    btn.textContent = 'Copied!';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2000);
+  });
+}
+</script>
+
+</body>
+</html>

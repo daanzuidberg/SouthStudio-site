@@ -1,0 +1,1696 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>TIMELINE — Time Correction Agency</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+/* TIMELINE — editorial dossier design system
+ * Newsreader (serif) + IBM Plex Mono (data). Warm paper, warm ink,
+ * single bold correction-red accent. Hairline rules, generous whitespace.
+ */
+
+:root {
+  --paper:    oklch(0.985 0.004 85);
+  --paper-2:  oklch(0.967 0.006 84);
+  --paper-3:  oklch(0.945 0.008 83);
+  --ink:      oklch(0.22 0.012 60);
+  --ink-2:    oklch(0.44 0.012 62);
+  --ink-3:    oklch(0.62 0.010 65);
+  --line:     oklch(0.885 0.006 75);
+  --line-2:   oklch(0.82 0.008 72);
+  --accent:   oklch(0.555 0.205 27);
+  --accent-d: oklch(0.47 0.18 27);
+  --accent-soft: oklch(0.95 0.045 30);
+  --ok:       oklch(0.22 0.012 60); /* checks render in ink, not green */
+
+  --serif: "Newsreader", Georgia, serif;
+  --mono: "IBM Plex Mono", "SFMono-Regular", ui-monospace, monospace;
+
+  --maxw: 1180px;
+  --r: 3px;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--serif);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+body { min-height: 100vh; }
+
+/* paper grain — barely-there vertical hairline texture */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image: repeating-linear-gradient(
+    90deg, transparent 0 39px, oklch(0.5 0 0 / 0.015) 39px 40px);
+  opacity: 0.6;
+}
+
+#root { position: relative; z-index: 1; }
+
+::selection { background: var(--accent); color: var(--paper); }
+
+/* ---- type ---- */
+.mono { font-family: var(--mono); }
+.kicker {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  font-weight: 500;
+}
+.accent { color: var(--accent); }
+
+h1, h2, h3 { font-weight: 500; margin: 0; line-height: 1.05; }
+em { font-style: italic; }
+strong { font-weight: 600; }
+
+a { color: var(--accent); text-decoration: none; }
+
+button { font-family: var(--mono); cursor: pointer; }
+
+/* ---- buttons ---- */
+.btn {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 12px 22px;
+  border: 1px solid var(--ink);
+  background: var(--ink);
+  color: var(--paper);
+  border-radius: var(--r);
+  transition: all 0.16s ease;
+}
+.btn:hover { background: var(--accent); border-color: var(--accent); }
+.btn:active { transform: translateY(1px); }
+.btn[disabled] { opacity: 0.32; cursor: not-allowed; }
+.btn[disabled]:hover { background: var(--ink); border-color: var(--ink); }
+
+.btn-ghost {
+  background: transparent;
+  color: var(--ink);
+  border: 1px solid var(--line-2);
+}
+.btn-ghost:hover { background: transparent; border-color: var(--ink); color: var(--ink); }
+
+.btn-accent { background: var(--accent); border-color: var(--accent); }
+.btn-accent:hover { background: var(--accent-d); border-color: var(--accent-d); }
+
+.btn-sm { padding: 8px 14px; font-size: 11px; }
+
+/* ---- layout shell ---- */
+.shell { max-width: var(--maxw); margin: 0 auto; padding: 0 32px; }
+
+.topbar {
+  border-bottom: 1px solid var(--line);
+  background: oklch(0.985 0.004 85 / 0.9);
+  backdrop-filter: blur(8px);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+.topbar-in {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 14px 32px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+.brand { display: flex; align-items: baseline; gap: 12px; }
+.brand .logo {
+  font-family: var(--mono);
+  font-weight: 600;
+  letter-spacing: 0.34em;
+  font-size: 15px;
+}
+.brand .logo b { color: var(--accent); }
+.brand .sub {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+.topbar .spacer { flex: 1; }
+
+/* ---- paradox meter ---- */
+.meter { display: flex; align-items: center; gap: 10px; }
+.meter .lbl {
+  font-family: var(--mono);
+  font-size: 9.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+.meter .track {
+  width: 130px;
+  height: 6px;
+  background: var(--paper-3);
+  border: 1px solid var(--line-2);
+  border-radius: 6px;
+  overflow: hidden;
+  position: relative;
+}
+.meter .fill {
+  height: 100%;
+  background: var(--accent);
+  transition: width 0.8s cubic-bezier(.2,.7,.2,1);
+}
+.meter .val {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+  min-width: 34px;
+}
+
+/* ---- tags ---- */
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--mono);
+  font-size: 9.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+  border: 1px solid var(--line-2);
+  border-radius: 2px;
+  padding: 3px 8px;
+}
+.tag.unstable { color: var(--accent); border-color: var(--accent); }
+
+/* ---- card / panel ---- */
+.panel {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+}
+
+/* ---- divider ---- */
+.rule { height: 1px; background: var(--line); border: 0; margin: 0; }
+
+/* ---- fade transitions ---- */
+.fade-in { animation: fadeIn 0.5s ease both; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+
+.rise { animation: rise 0.45s cubic-bezier(.2,.7,.2,1) both; }
+@keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+
+/* scrollbar */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: var(--paper-2); }
+::-webkit-scrollbar-thumb { background: var(--line-2); border-radius: 6px; border: 2px solid var(--paper-2); }
+::-webkit-scrollbar-thumb:hover { background: var(--ink-3); }
+
+/* TIMELINE — component styles (grid, timeline, puzzle, intro, beats, epilogue) */
+
+.stage { padding-top: 40px; padding-bottom: 96px; }
+
+/* ============================ TOPBAR EXTRAS ============================ */
+.casedots { display: flex; gap: 6px; align-items: center; }
+.cdot {
+  width: 26px; height: 26px; border-radius: 50%;
+  border: 1px solid var(--line-2); background: transparent;
+  color: var(--ink-3); font-size: 11px; font-family: var(--mono);
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.15s ease;
+}
+.cdot:hover:not([disabled]) { border-color: var(--ink); color: var(--ink); }
+.cdot.cur { border-color: var(--accent); color: var(--accent); }
+.cdot.done { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+.cdot.done.cur { background: var(--accent); border-color: var(--accent); }
+.cdot[disabled] { opacity: 0.4; cursor: not-allowed; }
+.reset-btn {
+  background: transparent; border: 1px solid var(--line-2); color: var(--ink-3);
+  width: 30px; height: 30px; border-radius: var(--r); font-size: 14px; line-height: 1;
+}
+.reset-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+.btn-link {
+  background: transparent; border: 0; color: var(--ink-3);
+  font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+  text-decoration: underline; text-underline-offset: 3px; padding: 8px;
+}
+.btn-link:hover { color: var(--accent); }
+
+/* ============================ TRANSMISSIONS ============================ */
+.tx { margin-bottom: 22px; }
+.tx-from {
+  font-size: 10px; letter-spacing: 0.2em; color: var(--accent);
+  margin-bottom: 6px; font-weight: 500;
+}
+.tx-body { font-size: 18px; line-height: 1.55; color: var(--ink); max-width: 62ch; }
+.tx-body .caret {
+  display: inline-block; width: 8px; height: 1.1em; background: var(--accent);
+  margin-left: 2px; vertical-align: -0.18em; animation: blink 1s steps(1) infinite;
+}
+@keyframes blink { 50% { opacity: 0; } }
+.tx-channel {
+  font-size: 10px; letter-spacing: 0.18em; color: var(--ink-3);
+  padding-bottom: 16px; margin-bottom: 22px; border-bottom: 1px solid var(--line);
+}
+
+/* ============================ INTRO ============================ */
+.intro { max-width: 860px; margin: 0 auto; }
+.intro-hero { text-align: center; padding: 36px 0 52px; }
+.intro-kicker {
+  font-size: 11px; letter-spacing: 0.24em; text-transform: uppercase;
+  color: var(--ink-3); margin-bottom: 28px;
+}
+.intro-title {
+  font-size: clamp(64px, 13vw, 150px); font-weight: 500; letter-spacing: -0.03em;
+  line-height: 0.9;
+}
+.intro-tagline {
+  font-style: italic; font-size: clamp(18px, 2.6vw, 26px); color: var(--ink-2);
+  margin-top: 22px;
+}
+.intro-transmission { padding: 32px 36px; }
+.beat-panel { max-width: 760px; margin: 40px auto; }
+.intro-cta {
+  display: flex; align-items: center; gap: 18px; margin-top: 16px;
+  opacity: 0; transform: translateY(8px); pointer-events: none;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.intro-cta.ready { opacity: 1; transform: none; pointer-events: auto; }
+.beat { min-height: 50vh; display: flex; align-items: center; }
+.beat-panel { width: 100%; }
+
+/* ============================ PUZZLE HEAD ============================ */
+.pv-head { max-width: 760px; margin: 0 auto 44px; }
+.pv-meta {
+  display: flex; flex-wrap: wrap; gap: 10px 18px; align-items: center;
+  font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 18px;
+}
+.pv-code { color: var(--accent); font-weight: 600; }
+.pv-tier { color: var(--ink-2); }
+.pv-era { color: var(--ink-3); margin-left: auto; }
+.pv-title { font-size: clamp(38px, 6vw, 62px); font-weight: 500; letter-spacing: -0.02em; line-height: 1; }
+.pv-place { font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-3); margin-top: 14px; }
+.pv-scenario { margin-top: 26px; }
+.pv-scenario p {
+  font-size: 18.5px; line-height: 1.62; color: var(--ink); margin: 0 0 16px;
+  text-wrap: pretty;
+}
+.pv-scenario p:first-of-type::first-letter {
+  font-size: 3.4em; float: left; line-height: 0.78; padding: 6px 12px 0 0; color: var(--accent); font-weight: 500;
+}
+
+/* ============================ PUZZLE BODY GRID ============================ */
+.pv-body { display: grid; grid-template-columns: minmax(280px, 34%) 1fr; gap: 40px; align-items: start; }
+.pv-section-h {
+  display: flex; align-items: center; justify-content: space-between;
+  font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-2);
+  padding-bottom: 12px; border-bottom: 1px solid var(--ink); margin-bottom: 18px; font-weight: 500;
+}
+.pv-count { color: var(--ink-3); font-weight: 400; }
+
+/* ---- clues ---- */
+.pv-clues { position: sticky; top: 88px; }
+.cluelist { list-style: none; margin: 0 0 36px; padding: 0; display: flex; flex-direction: column; gap: 2px; }
+.clue { padding: 14px 0; border-bottom: 1px solid var(--line); }
+.clue.unstable { background: var(--accent-soft); margin: 0 -14px; padding: 14px; border-bottom-color: transparent; border-radius: var(--r); }
+.clue-top { display: flex; align-items: center; gap: 10px; margin-bottom: 7px; }
+.clue-n { font-size: 12px; color: var(--ink-3); font-weight: 500; }
+.clue-text { margin: 0; font-size: 15.5px; line-height: 1.5; color: var(--ink); text-wrap: pretty; }
+.clue.unstable .clue-text { color: var(--accent-d); }
+
+/* ---- hints ---- */
+.hintbox { margin-top: 8px; }
+.hint { padding: 12px 14px; background: var(--paper-2); border-left: 2px solid var(--ink); margin-bottom: 10px; border-radius: 0 var(--r) var(--r) 0; }
+.hint-lbl { display: block; font-size: 9.5px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); margin-bottom: 5px; }
+.hint p { margin: 0; font-size: 14.5px; line-height: 1.5; color: var(--ink-2); }
+.hint-btn { width: 100%; justify-content: center; margin-bottom: 10px; }
+.hint-exhausted { font-size: 11px; color: var(--ink-3); letter-spacing: 0.06em; margin-top: 4px; }
+
+/* ============================ WORKSPACE ============================ */
+.pv-toolbar { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 22px; }
+.seg { display: inline-flex; border: 1px solid var(--line-2); border-radius: var(--r); overflow: hidden; }
+.seg button {
+  background: transparent; border: 0; padding: 9px 16px; font-size: 11px;
+  letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-3);
+  border-right: 1px solid var(--line-2);
+}
+.seg button:last-child { border-right: 0; }
+.seg button.on { background: var(--ink); color: var(--paper); }
+.seg button:hover:not(.on) { color: var(--ink); }
+
+/* ============================ LOGIC GRID ============================ */
+.grid-wrap { margin-bottom: 36px; }
+.grid-blocks { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 22px; }
+.gblock { overflow-x: auto; }
+.gtable { border-collapse: collapse; font-family: var(--mono); }
+.gtable th, .gtable td { border: 1px solid var(--line-2); }
+.gcorner {
+  background: var(--paper-2); padding: 6px 8px; text-align: left; vertical-align: bottom;
+  font-size: 8.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-3);
+  line-height: 1.4; min-width: 78px;
+}
+.gcorner .ga { display: block; color: var(--ink-2); }
+.gcorner .gx { color: var(--accent); }
+.gcorner .gb { display: block; color: var(--ink-2); }
+.gcolh {
+  height: 96px; vertical-align: bottom; padding: 7px 0; background: var(--paper-2); width: 30px;
+}
+.gcolh span {
+  writing-mode: vertical-rl; transform: rotate(180deg); display: inline-block;
+  white-space: nowrap; font-size: 10.5px; color: var(--ink-2); letter-spacing: 0.02em;
+}
+.growh {
+  background: var(--paper-2); text-align: right; padding: 0 10px; font-size: 10.5px;
+  color: var(--ink-2); white-space: nowrap; height: 30px; letter-spacing: 0.02em;
+}
+.gcell {
+  width: 30px; height: 30px; min-width: 30px; text-align: center; cursor: pointer;
+  background: var(--paper); transition: background 0.1s ease; position: relative; user-select: none;
+}
+.gcell:hover { background: var(--paper-3); }
+.gcell.is-yes { background: oklch(0.22 0.012 60 / 0.06); }
+.gcell.is-no { background: var(--accent-soft); }
+.mk-yes { color: var(--ink); font-size: 15px; font-weight: 600; }
+.mk-no { color: var(--accent); font-size: 13px; }
+
+.grid-legend {
+  display: flex; flex-wrap: wrap; gap: 8px 20px; align-items: center; margin-top: 20px;
+  font-size: 11px; color: var(--ink-3); letter-spacing: 0.04em;
+}
+.grid-legend span { display: inline-flex; align-items: center; gap: 7px; }
+.lg-cell {
+  width: 20px; height: 20px; border: 1px solid var(--line-2); display: inline-flex;
+  align-items: center; justify-content: center; border-radius: 2px;
+}
+.lg-cell .mk-yes { font-size: 12px; }
+.lg-cell .mk-no { font-size: 11px; }
+.lg-hint { color: var(--ink-3); font-style: normal; margin-left: auto; }
+
+/* ============================ TIMELINE VIZ ============================ */
+.tlviz { margin-bottom: 36px; border: 1px solid var(--line); border-radius: var(--r); padding: 24px; background: var(--paper-2); }
+.tlviz-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 28px; }
+.tlviz-state { font-size: 11px; letter-spacing: 0.1em; color: var(--accent); }
+.tlviz.solved .tlviz-state { color: var(--ink-2); }
+.tlviz-track { position: relative; display: grid; grid-template-columns: repeat(var(--cols), 1fr); min-height: 300px; }
+.tlviz-axis {
+  position: absolute; left: 0; right: 0; top: 50%; height: 0;
+  border-top: 1px dashed var(--line-2);
+}
+.tlviz.solved .tlviz-axis { border-top-style: solid; border-top-color: var(--ink); }
+.tlviz-node { position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+.tlviz-slot { height: 120px; display: flex; align-items: flex-end; justify-content: center; width: 100%; padding: 0 6px; }
+.tlviz-slot.bot { align-items: flex-start; }
+.tlviz-dot {
+  width: 11px; height: 11px; border-radius: 50%; background: var(--paper);
+  border: 2px solid var(--ink); z-index: 2; margin: 6px 0;
+}
+.tlviz-dot.is-div { background: var(--accent); border-color: var(--accent); box-shadow: 0 0 0 5px var(--accent-soft); }
+.tlviz-year { font-size: 13px; color: var(--ink); font-weight: 500; letter-spacing: 0.06em; }
+.tlviz-card {
+  border: 1px solid var(--line-2); background: var(--paper); border-radius: var(--r);
+  padding: 9px 11px; min-width: 120px; max-width: 150px;
+}
+.tlviz-card.is-div { border-color: var(--accent); background: var(--paper); }
+.tlviz-attr { display: flex; flex-direction: column; margin-bottom: 6px; }
+.tlviz-attr:last-of-type { margin-bottom: 0; }
+.tlviz-cat { font-size: 8.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-3); }
+.tlviz-val { font-size: 14px; color: var(--ink); line-height: 1.2; }
+.tlviz-val.unknown { color: var(--line-2); }
+.tlviz-divtag { font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-top: 8px; padding-top: 7px; border-top: 1px solid var(--accent-soft); }
+
+/* ============================ ANSWER PANEL ============================ */
+.answer { margin-top: 8px; }
+.answer.shake { animation: shake 0.45s ease; }
+@keyframes shake { 0%,100%{transform:none} 20%{transform:translateX(-7px)} 40%{transform:translateX(6px)} 60%{transform:translateX(-4px)} 80%{transform:translateX(3px)} }
+.ans-table-wrap { overflow-x: auto; }
+.ans-table { width: 100%; border-collapse: collapse; }
+.ans-table th, .ans-table td { padding: 9px 12px; text-align: left; border-bottom: 1px solid var(--line); }
+.ans-table thead th { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-3); font-weight: 500; }
+.ans-anchor { font-size: 14px; color: var(--ink); font-weight: 500; white-space: nowrap; }
+.ans-st { width: 30px; text-align: center; }
+.ans-table select {
+  font-family: var(--serif); font-size: 14.5px; color: var(--ink); background: var(--paper);
+  border: 1px solid var(--line-2); border-radius: 2px; padding: 6px 8px; width: 100%; min-width: 110px;
+}
+.ans-table select:focus { outline: none; border-color: var(--accent); }
+.ans-locked { font-size: 14.5px; color: var(--ink); }
+.ans-table tr.ok th, .ans-table tr.ok td { background: oklch(0.22 0.012 60 / 0.04); }
+.ans-table tr.bad th, .ans-table tr.bad td { background: var(--accent-soft); }
+.ans-actions { display: flex; align-items: center; gap: 18px; margin-top: 20px; flex-wrap: wrap; }
+.ans-feedback { font-size: 11.5px; color: var(--accent); letter-spacing: 0.04em; }
+
+/* ============================ SOLUTION ============================ */
+.solution { margin-top: 44px; padding-top: 36px; border-top: 2px solid var(--ink); }
+.sol-tag { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink); margin-bottom: 22px; }
+.divergence { display: flex; gap: 22px; align-items: stretch; background: var(--ink); color: var(--paper); border-radius: var(--r); padding: 24px 26px; margin-bottom: 30px; }
+.div-yr { font-size: 30px; font-weight: 600; color: var(--paper); white-space: nowrap; align-self: center; }
+.div-body { border-left: 1px solid oklch(1 0 0 / 0.2); padding-left: 22px; }
+.div-lbl { font-size: 9.5px; letter-spacing: 0.16em; text-transform: uppercase; color: oklch(1 0 0 / 0.5); margin-bottom: 8px; }
+.div-body p { margin: 0; font-size: 16px; line-height: 1.55; color: oklch(1 0 0 / 0.92); }
+.sol-rule, .sol-explain, .sol-walk { margin-bottom: 28px; }
+.sol-rule .kicker, .sol-explain .kicker, .sol-walk .kicker { display: block; margin-bottom: 12px; }
+.sol-hidden { font-size: 17px; font-style: italic; line-height: 1.5; color: var(--ink); margin: 0; max-width: 64ch; }
+.sol-explain p { font-size: 16px; line-height: 1.62; color: var(--ink); margin: 0 0 14px; max-width: 66ch; text-wrap: pretty; }
+.sol-walk ol { margin: 0; padding-left: 0; list-style: none; counter-reset: w; max-width: 66ch; }
+.sol-walk li { counter-increment: w; position: relative; padding: 9px 0 9px 40px; border-bottom: 1px solid var(--line); font-size: 15px; line-height: 1.5; font-family: var(--mono); }
+.sol-walk li::before { content: counter(w, decimal-leading-zero); position: absolute; left: 0; top: 9px; color: var(--accent); font-size: 12px; font-weight: 600; }
+.sol-next { margin-top: 16px; }
+
+/* ============================ EPILOGUE ============================ */
+.epilogue { min-height: 64vh; display: flex; align-items: center; justify-content: center; }
+.epi-card { max-width: 680px; text-align: center; }
+.epi-kicker { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 28px; }
+.epi-title { font-size: clamp(36px, 6vw, 58px); font-weight: 500; letter-spacing: -0.02em; line-height: 1.05; margin-bottom: 30px; }
+.epi-body { font-size: 18px; line-height: 1.6; color: var(--ink-2); margin: 0 auto 18px; max-width: 56ch; }
+.epi-dim { color: var(--ink-3); font-style: italic; }
+.epi-actions { display: flex; gap: 16px; justify-content: center; margin-top: 36px; flex-wrap: wrap; }
+.epi-foot { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-3); margin-top: 48px; }
+
+/* ============================ RESPONSIVE ============================ */
+@media (max-width: 860px) {
+  .shell { padding: 0 20px; }
+  .topbar-in { padding: 12px 20px; gap: 14px; }
+  .brand .sub { display: none; }
+  .pv-body { grid-template-columns: 1fr; gap: 30px; }
+  .pv-clues { position: static; }
+  .meter .track { width: 80px; }
+  .pv-scenario p:first-of-type::first-letter { font-size: 2.8em; }
+  .divergence { flex-direction: column; gap: 14px; }
+  .div-body { border-left: 0; border-top: 1px solid oklch(1 0 0 / 0.2); padding-left: 0; padding-top: 14px; }
+}
+@media (max-width: 520px) {
+  .casedots { display: none; }
+  .lg-hint { margin-left: 0; flex-basis: 100%; }
+}
+
+/* ============================ TOPBAR BRAND BUTTON ============================ */
+.brand-btn { background: transparent; border: 0; padding: 0; cursor: pointer; text-align: left; }
+.brand-btn:hover .logo b { color: var(--accent-d); }
+.idx-btn { white-space: nowrap; }
+.cur-case { font-size: 11px; letter-spacing: 0.14em; color: var(--accent); border: 1px solid var(--line-2); padding: 5px 10px; border-radius: var(--r); }
+
+/* ============================ CASE INDEX ============================ */
+.caseindex { max-width: 980px; margin: 0 auto; }
+.ci-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; padding-bottom: 24px; margin-bottom: 8px; border-bottom: 2px solid var(--ink); }
+.ci-kicker { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 12px; }
+.ci-title { font-size: clamp(40px, 7vw, 72px); font-weight: 500; letter-spacing: -0.02em; line-height: 0.95; }
+.ci-progress { text-align: right; flex-shrink: 0; }
+.ci-prog-num { font-size: 26px; color: var(--ink); }
+.ci-prog-num b { color: var(--accent); font-weight: 600; }
+.ci-prog-lbl { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-3); margin-top: 4px; }
+
+.ci-epilogue {
+  display: flex; flex-direction: column; gap: 6px; width: 100%; text-align: left;
+  background: var(--ink); color: var(--paper); border: 0; border-radius: var(--r);
+  padding: 20px 24px; margin: 28px 0 8px; cursor: pointer; transition: background 0.16s ease;
+}
+.ci-epilogue:hover { background: var(--accent); }
+.ci-epilogue .mono { font-size: 10px; letter-spacing: 0.2em; color: oklch(1 0 0 / 0.55); }
+.ci-epi-title { font-size: 20px; }
+
+.ci-tier { margin-top: 40px; }
+.ci-tier.sealed { opacity: 0.66; }
+.ci-tier-head { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; padding-bottom: 14px; margin-bottom: 14px; border-bottom: 1px solid var(--line); }
+.ci-tier-name { font-size: 13px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink); font-weight: 600; }
+.ci-tier-note { font-size: 14px; color: var(--ink-3); font-style: italic; margin-left: 14px; }
+.ci-tier-count { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-3); white-space: nowrap; }
+
+.ci-rows { display: flex; flex-direction: column; }
+.case-row {
+  display: grid; grid-template-columns: 110px 1fr auto auto; align-items: center; gap: 20px;
+  width: 100%; text-align: left; background: transparent; border: 0; border-bottom: 1px solid var(--line);
+  padding: 16px 8px; cursor: pointer; transition: background 0.13s ease, padding 0.13s ease;
+}
+.case-row:hover:not(.locked) { background: var(--paper-2); padding-left: 14px; padding-right: 14px; }
+.case-row.locked { cursor: not-allowed; opacity: 0.5; }
+.cr-code { font-size: 12px; letter-spacing: 0.08em; color: var(--accent); }
+.case-row.locked .cr-code { color: var(--ink-3); }
+.cr-main { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.cr-title { font-size: 19px; color: var(--ink); display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.cr-prio { font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); border: 1px solid var(--accent); padding: 2px 7px; border-radius: 2px; }
+.cr-place { font-size: 12px; letter-spacing: 0.04em; color: var(--ink-3); }
+.cr-meta { display: flex; gap: 8px; }
+.cr-chip { font-size: 10px; letter-spacing: 0.06em; color: var(--ink-2); border: 1px solid var(--line-2); padding: 3px 8px; border-radius: 2px; white-space: nowrap; }
+.cr-status { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-3); white-space: nowrap; min-width: 80px; text-align: right; }
+.case-row.solved .cr-status { color: var(--ink); }
+.case-row.solved .cr-title { color: var(--ink-2); }
+.case-row:hover:not(.locked) .cr-status { color: var(--accent); }
+
+.ci-foot { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-3); margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--line); text-align: center; }
+
+@media (max-width: 720px) {
+  .ci-head { flex-direction: column; align-items: flex-start; gap: 16px; }
+  .ci-progress { text-align: left; }
+  .case-row { grid-template-columns: 1fr auto; gap: 6px 14px; }
+  .cr-code { grid-column: 1; }
+  .cr-status { grid-column: 2; grid-row: 1; }
+  .cr-main { grid-column: 1 / -1; }
+  .cr-meta { grid-column: 1 / -1; }
+  .ci-tier-note { display: none; }
+}
+
+</style>
+<template id="__bundler_thumbnail"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><rect width="100" height="100" fill="#f5f3ee" /><line x1="18" y1="50" x2="82" y2="50" stroke="#3a352e" stroke-width="1.5" /><circle cx="30" cy="50" r="3.5" fill="#3a352e" /><circle cx="50" cy="50" r="3.5" fill="#3a352e" /><circle cx="70" cy="50" r="5" fill="#d23f25" /><text x="50" y="78" font-family="monospace" font-size="9" letter-spacing="2" text-anchor="middle" fill="#3a352e">TIMELINE</text></svg></template>
+</head><body><div id="root"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script>
+/* TIMELINE auto-generated puzzle library — verified unique solutions */
+window.TIMELINE_LIB = {"tier1":[{"id":"dst-gen-1-0","code":"DST-2580-A","tier":1,"title":"Gears in the Pyramid","place":"Giza, Old Kingdom","eraLabel":"2580 BCE — 2520 BCE","scenario":["Inside a sealed burial chamber, surveyors find a working clockwork mechanism ticking in the dark. Four anachronistic parts entered the dynasty across four reigns — reconstruct who carried what, and when."],"categories":[{"id":"anchor","name":"Year","items":[{"id":"y0","label":"2580 BCE"},{"id":"y1","label":"2560 BCE"},{"id":"y2","label":"2540 BCE"},{"id":"y3","label":"2520 BCE"}]},{"id":"c0","name":"Figure","items":[{"id":"c0_0","label":"Hemiunu"},{"id":"c0_1","label":"Merit"},{"id":"c0_2","label":"Khafre"},{"id":"c0_3","label":"Djedi"}]},{"id":"c1","name":"Artifact","items":[{"id":"c1_0","label":"Bronze gear"},{"id":"c1_1","label":"Water escapement"},{"id":"c1_2","label":"Star dial"},{"id":"c1_3","label":"Copper coil"}]}],"solution":[{"anchor":"y0","c0":"c0_1","c1":"c1_3"},{"anchor":"y1","c0":"c0_2","c1":"c1_2"},{"anchor":"y2","c0":"c0_0","c1":"c1_0"},{"anchor":"y3","c0":"c0_3","c1":"c1_1"}],"clues":[{"type":"Ledger","text":"The ledger entry for 2580 BCE is unambiguous: the Copper coil.","unstable":false},{"type":"Dispatch","text":"Agency dispatch fixes the Star dial to 2560 BCE.","unstable":false},{"type":"Record","text":"Master file, cross-checked — 2540 BCE resolves to Hemiunu.","unstable":false},{"type":"Eyewitness","text":"“What surfaced in 2520 BCE was Djedi, plain as day.”","unstable":false},{"type":"Document","text":"Filed under 2580 BCE: the figure of record is Merit.","unstable":false},{"type":"Manifest","text":"The 2520 BCE manifest names the Water escapement and no other artifact.","unstable":false}],"hints":["Anchor on what's pinned outright — find a clue that fixes a single year, then let each confirmation rule out the rest of its row and column.","The order of the timeline is fixed — use the ‘predates’ clues to pin the ends, then work inward.","Start here: 2580 BCE resolves to Figure Merit, Artifact Copper coil. The remaining years fall out by elimination."],"hiddenRule":"Causality. An effect cannot be filed before its cause — the order of the timeline is fixed.","divergence":{"year":"2520 BCE","text":"The cascade resolves at 2520 BCE: the Water escapement is the keystone. Remove it and the altered history unwinds."},"explanation":["Gears in the Pyramid untangles by holding the fixed points still and letting every confirmed link eliminate its row and column. The order of the timeline is fixed: nothing is filed before its cause.","The divergence settles at 2520 BCE: the Water escapement is the keystone — remove it and the altered history unwinds."],"walkthrough":["2580 BCE — Figure: Merit · Artifact: Copper coil","2560 BCE — Figure: Khafre · Artifact: Star dial","2540 BCE — Figure: Hemiunu · Artifact: Bronze gear","2520 BCE — Figure: Djedi · Artifact: Water escapement"],"generated":true,"clueCount":6},{"id":"dst-gen-1-1","code":"DST-1901-B","tier":1,"title":"The Velvet Frequency","place":"Vienna, Austria-Hungary","eraLabel":"1901 — 1919","scenario":["Cabaret singers broadcast on the wireless a generation before radio should exist. Four components of the transmitter arrived out of sequence — fix each to its year and its courier."],"categories":[{"id":"anchor","name":"Year","items":[{"id":"y0","label":"1901"},{"id":"y1","label":"1908"},{"id":"y2","label":"1913"},{"id":"y3","label":"1919"}]},{"id":"c0","name":"Figure","items":[{"id":"c0_0","label":"Reiniger"},{"id":"c0_1","label":"Vasek"},{"id":"c0_2","label":"Lindqvist"},{"id":"c0_3","label":"Moreau"}]},{"id":"c1","name":"Artifact","items":[{"id":"c1_0","label":"Vacuum tube"},{"id":"c1_1","label":"Crystal set"},{"id":"c1_2","label":"Dynamo"},{"id":"c1_3","label":"Antenna mast"}]}],"solution":[{"anchor":"y0","c0":"c0_3","c1":"c1_1"},{"anchor":"y1","c0":"c0_2","c1":"c1_0"},{"anchor":"y2","c0":"c0_0","c1":"c1_3"},{"anchor":"y3","c0":"c0_1","c1":"c1_2"}],"clues":[{"type":"Record","text":"Master file, cross-checked — 1919 resolves to the Dynamo.","unstable":false},{"type":"Ledger","text":"The ledger entry for 1908 is unambiguous: the Vacuum tube.","unstable":false},{"type":"Eyewitness","text":"“What surfaced in 1908 was Lindqvist, plain as day.”","unstable":false},{"type":"Dispatch","text":"Agency dispatch fixes Reiniger to 1913.","unstable":false},{"type":"Document","text":"Filed under 1901: the artifact of record is the Crystal set.","unstable":false},{"type":"Manifest","text":"The 1901 manifest names Moreau and no other figure.","unstable":false}],"hints":["Anchor on what's pinned outright — find a clue that fixes a single year, then let each confirmation rule out the rest of its row and column.","The order of the timeline is fixed — use the ‘predates’ clues to pin the ends, then work inward.","Start here: 1901 resolves to Figure Moreau, Artifact Crystal set. The remaining years fall out by elimination."],"hiddenRule":"Causality. An effect cannot be filed before its cause — the order of the timeline is fixed.","divergence":{"year":"1919","text":"The cascade resolves at 1919: the Dynamo is the keystone. Remove it and the altered history unwinds."},"explanation":["The Velvet Frequency untangles by holding the fixed points still and letting every confirmed link eliminate its row and column. The order of the timeline is fixed: nothing is filed before its cause.","The divergence settles at 1919: the Dynamo is the keystone — remove it and the altered history unwinds."],"walkthrough":["1901 — Figure: Moreau · Artifact: Crystal set","1908 — Figure: Lindqvist · Artifact: Vacuum tube","1913 — Figure: Reiniger · Artifact: Antenna mast","1919 — Figure: Vasek · Artifact: Dynamo"],"generated":true,"clueCount":6},{"id":"dst-gen-1-2","code":"DST-871-C","tier":1,"title":"Frostfall Engines","place":"Hedeby, Norse coast","eraLabel":"871 — 961","scenario":["Longships under sail trail steam, not oars. Four pieces of an impossible boiler drifted into the saga age — reconstruct the smuggling chain."],"categories":[{"id":"anchor","name":"Year","items":[{"id":"y0","label":"871"},{"id":"y1","label":"902"},{"id":"y2","label":"934"},{"id":"y3","label":"961"}]},{"id":"c0","name":"Figure","items":[{"id":"c0_0","label":"Ragnvald"},{"id":"c0_1","label":"Sigrún"},{"id":"c0_2","label":"Bjarte"},{"id":"c0_3","label":"Eilif"}]},{"id":"c1","name":"Artifact","items":[{"id":"c1_0","label":"Boiler drum"},{"id":"c1_1","label":"Iron piston"},{"id":"c1_2","label":"Pressure valve"},{"id":"c1_3","label":"Brass governor"}]}],"solution":[{"anchor":"y0","c0":"c0_2","c1":"c1_2"},{"anchor":"y1","c0":"c0_3","c1":"c1_1"},{"anchor":"y2","c0":"c0_1","c1":"c1_3"},{"anchor":"y3","c0":"c0_0","c1":"c1_0"}],"clues":[{"type":"Ledger","text":"The ledger entry for 871 is unambiguous: Bjarte.","unstable":false},{"type":"Manifest","text":"The 871 manifest names the Pressure valve and no other artifact.","unstable":false},{"type":"Eyewitness","text":"“What surfaced in 902 was Eilif, plain as day.”","unstable":false},{"type":"Document","text":"Filed under 934: the artifact of record is the Brass governor.","unstable":false},{"type":"Dispatch","text":"Agency dispatch fixes Ragnvald to 961.","unstable":false},{"type":"Record","text":"Master file, cross-checked — 961 resolves to the Boiler drum.","unstable":false}],"hints":["Anchor on what's pinned outright — find a clue that fixes a single year, then let each confirmation rule out the rest of its row and column.","The order of the timeline is fixed — use the ‘predates’ clues to pin the ends, then work inward.","Start here: 871 resolves to Figure Bjarte, Artifact Pressure valve. The remaining years fall out by elimination."],"hiddenRule":"Causality. An effect cannot be filed before its cause — the order of the timeline is fixed.","divergence":{"year":"961","text":"The cascade resolves at 961: the Boiler drum is the keystone. Remove it and the altered history unwinds."},"explanation":["Frostfall Engines untangles by holding the fixed points still and letting every confirmed link eliminate its row and column. The order of the timeline is fixed: nothing is filed before its cause.","The divergence settles at 961: the Boiler drum is the keystone — remove it and the altered history unwinds."],"walkthrough":["871 — Figure: Bjarte · Artifact: Pressure valve","902 — Figure: Eilif · Artifact: Iron piston","934 — Figure: Sigrún · Artifact: Brass governor","961 — Figure: Ragnvald · Artifact: Boiler drum"],"generated":true,"clueCount":6},{"id":"dst-gen-1-3","code":"DST-1488-D","tier":1,"title":"The Cartographer's Error","place":"Lisbon, Portugal","eraLabel":"1488 — 1531","scenario":["Charts in the royal archive show coastlines no ship had yet reached. Four instruments of premature discovery surfaced across four years — sort them."],"categories":[{"id":"anchor","name":"Year","items":[{"id":"y0","label":"1488"},{"id":"y1","label":"1502"},{"id":"y2","label":"1519"},{"id":"y3","label":"1531"}]},{"id":"c0","name":"Figure","items":[{"id":"c0_0","label":"Faleiro"},{"id":"c0_1","label":"Dias"},{"id":"c0_2","label":"Reinel"},{"id":"c0_3","label":"Cabral"}]},{"id":"c1","name":"Artifact","items":[{"id":"c1_0","label":"Vellum chart"},{"id":"c1_1","label":"Brass dividers"},{"id":"c1_2","label":"Lodestone"},{"id":"c1_3","label":"Sea astrolabe"}]}],"solution":[{"anchor":"y0","c0":"c0_2","c1":"c1_1"},{"anchor":"y1","c0":"c0_0","c1":"c1_3"},{"anchor":"y2","c0":"c0_3","c1":"c1_0"},{"anchor":"y3","c0":"c0_1","c1":"c1_2"}],"clues":[{"type":"Record","text":"Master file, cross-checked — 1531 resolves to the Lodestone.","unstable":false},{"type":"Manifest","text":"The 1502 manifest names Faleiro and no other figure.","unstable":false},{"type":"Dispatch","text":"Agency dispatch fixes Reinel to 1488.","unstable":false},{"type":"Eyewitness","text":"“What surfaced in 1519 was the Vellum chart, plain as day.”","unstable":false},{"type":"Document","text":"Filed under 1488: the artifact of record is the Brass dividers.","unstable":false},{"type":"Ledger","text":"The ledger entry for 1531 is unambiguous: Dias.","unstable":false}],"hints":["Anchor on what's pinned outright — find a clue that fixes a single year, then let each confirmation rule out the rest of its row and column.","The order of the timeline is fixed — use the ‘predates’ clues to pin the ends, then work inward.","Start here: 1488 resolves to Figure Reinel, Artifact Brass dividers. The remaining years fall out by elimination."],"hiddenRule":"Causality. An effect cannot be filed before its cause — the order of the timeline is fixed.","divergence":{"year":"1531","text":"The cascade resolves at 1531: the Lodestone is the keystone. Remove it and the altered history unwinds."},"explanation":["The Cartographer's Error untangles by holding the fixed points still and letting every confirmed link eliminate its row and column. The order of the timeline is fixed: nothing is filed before its cause.","The divergence settles at 1531: the Lodestone is the keystone — remove it and the altered history unwinds."],"walkthrough":["1488 — Figure: Reinel · Artifact: Brass dividers","1502 — Figure: Faleiro · Artifact: Sea astrolabe","1519 — Figure: Cabral · Artifact: Vellum chart","1531 — Figure: Dias · Artifact: Lodestone"],"generated":true,"clueCount":6},{"id":"dst-gen-1-4","code":"DST-1402-E","tier":1,"title":"Porcelain Circuits","place":"Jingdezhen, Ming China","eraLabel":"1402 — 1474","scenario":["Glazed ceramic tiles in the imperial kiln carry faint electrical traces. Four artifacts of ceramic electronics appeared too early — place them."],"categories":[{"id":"anchor","name":"Year","items":[{"id":"y0","label":"1402"},{"id":"y1","label":"1426"},{"id":"y2","label":"1450"},{"id":"y3","label":"1474"}]},{"id":"c0","name":"Figure","items":[{"id":"c0_0","label":"Lu Chen"},{"id":"c0_1","label":"Min Ya"},{"id":"c0_2","label":"Hao"},{"id":"c0_3","label":"Wen Li"}]},{"id":"c1","name":"Artifact","items":[{"id":"c1_0","label":"Glazed board"},{"id":"c1_1","label":"Silver trace"},{"id":"c1_2","label":"Kiln cell"},{"id":"c1_3","label":"Jade switch"}]}],"solution":[{"anchor":"y0","c0":"c0_1","c1":"c1_3"},{"anchor":"y1","c0":"c0_3","c1":"c1_0"},{"anchor":"y2","c0":"c0_0","c1":"c1_2"},{"anchor":"y3","c0":"c0_2","c1":"c1_1"}],"clues":[{"type":"Manifest","text":"The 1402 manifest names Min Ya and no other figure.","unstable":false},{"type":"Ledger","text":"The ledger entry for 1474 is unambiguous: Hao.","unstable":false},{"type":"Dispatch","text":"Agency dispatch fixes the Kiln cell to 1450.","unstable":false},{"type":"Record","text":"Master file, cross-checked — 1450 resolves to Lu Chen.","unstable":false},{"type":"Eyewitness","text":"“What surfaced in 1426 was the Glazed board, plain as day.”","unstable":false},{"type":"Document","text":"Filed under 1474: the artifact of record is the Silver trace.","unstable":false}],"hints":["Anchor on what's pinned outright — find a clue that fixes a single year, then let each confirmation rule out the rest of its row and column.","The order of the timeline is fixed — use the ‘predates’ clues to pin the ends, then work inward.","Start here: 1402 resolves to Figure Min Ya, Artifact Jade switch. The remaining years fall out by elimination."],"hiddenRule":"Causality. An effect cannot be filed before its cause — the order of the timeline is fixed.","divergence":{"year":"1474","text":"The cascade resolves at 1474: the Silver trace is the keystone. Remove it and the altered history unwinds."},"explanation":["Porcelain Circuits untangles by holding the fixed points still and letting every confirmed link eliminate its row and column. The order of the timeline is fixed: nothing is filed before its cause.","The divergence settles at 1474: the Silver trace is the keystone — remove it and the altered history unwinds."],"walkthrough":["1402 — Figure: Min Ya · Artifact: Jade switch","1426 — Figure: Wen Li · Artifact: Glazed board","1450 — Figure: Lu Chen · Artifact: Kiln cell","1474 — Figure: Hao · Artifact: Silver trace"],"generated":true,"clueCount":6},{"id":"dst-gen-1-5","code":"DST-1818-F","tier":1,"title":"The Gaslight Inoculation","place":"Edinburgh, Scotland","eraLabel":"1818 — 1857","scenario":["A clinic cures diseases medicine cannot yet name. Four implements of impossibly advanced practice entered the record — reconstruct the order."],"categories":[{"id":"anchor","name":"Year","items":[{"id":"y0","label":"1818"},{"id":"y1","label":"1831"},{"id":"y2","label":"1844"},{"id":"y3","label":"1857"}]},{"id":"c0","name":"Figure","items":[{"id":"c0_0","label":"Carlyle"},{"id":"c0_1","label":"Aldous"},{"id":"c0_2","label":"Pryce"},{"id":"c0_3","label":"Sinclair"}]},{"id":"c1","name":"Artifact","items":[{"id":"c1_0","label":"Brass syringe"},{"id":"c1_1","label":"Culture flask"},{"id":"c1_2","label":"Lens scope"},{"id":"c1_3","label":"Cold ledger"}]}],"solution":[{"anchor":"y0","c0":"c0_1","c1":"c1_2"},{"anchor":"y1","c0":"c0_2","c1":"c1_1"},{"anchor":"y2","c0":"c0_3","c1":"c1_3"},{"anchor":"y3","c0":"c0_0","c1":"c1_0"}],"clues":[{"type":"Manifest","text":"The 1831 manifest names the Culture flask and no other artifact.","unstable":false},{"type":"Ledger","text":"The ledger entry for 1818 is unambiguous: Aldous.","unstable":false},{"type":"Eyewitness","text":"“What surfaced in 1831 was Pryce, plain as day.”","unstable":false},{"type":"Document","text":"Filed under 1844: the artifact of record is the Cold ledger.","unstable":false},{"type":"Dispatch","text":"Agency dispatch fixes the Brass syringe to 1857.","unstable":false},{"type":"Record","text":"Master file, cross-checked — 1857 resolves to Carlyle.","unstable":false}],"hints":["Anchor on what's pinned outright — find a clue that fixes a single year, then let each confirmation rule out the rest of its row and column.","The order of the timeline is fixed — use the ‘predates’ clues to pin the ends, then work inward.","Start here: 1818 resolves to Figure Aldous, Artifact Lens scope. The remaining years fall out by elimination."],"hiddenRule":"Causality. An effect cannot be filed before its cause — the order of the timeline is fixed.","divergence":{"year":"1857","text":"The cascade resolves at 1857: the Brass syringe is the keystone. Remove it and the altered history unwinds."},"explanation":["The Gaslight Inoculation untangles by holding the fixed points still and letting every confirmed link eliminate its row and column. The order of the timeline is fixed: nothing is filed before its cause.","The divergence settles at 1857: the Brass syringe is the keystone — remove it and the altered history unwinds."],"walkthrough":["1818 — Figure: Aldous · Artifact: Lens scope","1831 — Figure: Pryce · Artifact: Culture flask","1844 — Figure: Sinclair · Artifact: Cold ledger","1857 — Figure: Carlyle · Artifact: Brass syringe"],"generated":true,"clueCount":6},{"id":"dst-gen-1-6","code":"DST-976-G","tier":1,"title":"Sundial Standard Time","place":"Córdoba, Al-Andalus","eraLabel":"976 — 1058","scenario":["The caliphate runs on synchronized minutes centuries before the mechanical clock. Four timekeeping anomalies arrived in sequence — fix them."],"categories":[{"id":"anchor","name":"Year","items":[{"id":"y0","label":"976"},{"id":"y1","label":"1003"},{"id":"y2","label":"1031"},{"id":"y3","label":"1058"}]},{"id":"c0","name":"Figure","items":[{"id":"c0_0","label":"Al-Zahrawi"},{"id":"c0_1","label":"Ibn Faris"},{"id":"c0_2","label":"Lubna"},{"id":"c0_3","label":"Maslama"}]},{"id":"c1","name":"Artifact","items":[{"id":"c1_0","label":"Geared dial"},{"id":"c1_1","label":"Water clock"},{"id":"c1_2","label":"Meridian rod"},{"id":"c1_3","label":"Brass index"}]}],"solution":[{"anchor":"y0","c0":"c0_3","c1":"c1_3"},{"anchor":"y1","c0":"c0_0","c1":"c1_2"},{"anchor":"y2","c0":"c0_1","c1":"c1_0"},{"anchor":"y3","c0":"c0_2","c1":"c1_1"}],"clues":[{"type":"Manifest","text":"The 1058 manifest names Lubna and no other figure.","unstable":false},{"type":"Eyewitness","text":"“What surfaced in 1003 was the Meridian rod, plain as day.”","unstable":false},{"type":"Record","text":"Master file, cross-checked — 976 resolves to Maslama.","unstable":false},{"type":"Ledger","text":"The ledger entry for 1031 is unambiguous: Ibn Faris.","unstable":false},{"type":"Dispatch","text":"Agency dispatch fixes the Water clock to 1058.","unstable":false},{"type":"Document","text":"Filed under 976: the artifact of record is the Brass index.","unstable":false}],"hints":["Anchor on what's pinned outright — find a clue that fixes a single year, then let each confirmation rule out the rest of its row and column.","The order of the timeline is fixed — use the ‘predates’ clues to pin the ends, then work inward.","Start here: 976 resolves to Figure Maslama, Artifact Brass index. The remaining years fall out by elimination."],"hiddenRule":"Causality. An effect cannot be filed before its cause — the order of the timeline is fixed.","divergence":{"year":"1058","text":"The cascade resolves at 1058: the Water clock is the keystone. Remove it and the altered history unwinds."},"explanation":["Sundial Standard Time untangles by holding the fixed points still and letting every confirmed link eliminate its row and column. The order of the timeline is fixed: nothing is filed before its cause.","The divergence settles at 1058: the Water clock is the keystone — remove it and the altered history unwinds."],"walkthrough":["976 — Figure: Maslama · Artifact: Brass index","1003 — Figure: Al-Zahrawi · Artifact: Meridian rod","1031 — Figure: Ibn Faris · Artifact: Geared dial","1058 — Figure: Lubna · Artifact: Water clock"],"generated":true,"clueCount":6},{"id":"dst-gen-1-7","code":"DST-1431-H","tier":1,"title":"The Obsidian Lens","place":"Tenochtitlan, Mexica","eraLabel":"1431 — 1502","scenario":["Astronomers chart moons no naked eye could resolve. Four pieces of an impossible telescope entered the record — reconstruct who brought what."],"categories":[{"id":"anchor","name":"Year","items":[{"id":"y0","label":"1431"},{"id":"y1","label":"1454"},{"id":"y2","label":"1477"},{"id":"y3","label":"1502"}]},{"id":"c0","name":"Figure","items":[{"id":"c0_0","label":"Tlacaelel"},{"id":"c0_1","label":"Xochitl"},{"id":"c0_2","label":"Itzcoatl"},{"id":"c0_3","label":"Nezahual"}]},{"id":"c1","name":"Artifact","items":[{"id":"c1_0","label":"Polished lens"},{"id":"c1_1","label":"Mirror array"},{"id":"c1_2","label":"Star table"},{"id":"c1_3","label":"Obsidian tube"}]}],"solution":[{"anchor":"y0","c0":"c0_1","c1":"c1_0"},{"anchor":"y1","c0":"c0_2","c1":"c1_2"},{"anchor":"y2","c0":"c0_3","c1":"c1_3"},{"anchor":"y3","c0":"c0_0","c1":"c1_1"}],"clues":[{"type":"Dispatch","text":"Agency dispatch fixes Xochitl to 1431.","unstable":false},{"type":"Manifest","text":"The 1477 manifest names the Obsidian tube and no other artifact.","unstable":false},{"type":"Document","text":"Filed under 1454: the figure of record is Itzcoatl.","unstable":false},{"type":"Eyewitness","text":"“What surfaced in 1454 was the Star table, plain as day.”","unstable":false},{"type":"Record","text":"Master file, cross-checked — 1502 resolves to the Mirror array.","unstable":false},{"type":"Ledger","text":"The ledger entry for 1477 is unambiguous: Nezahual.","unstable":false}],"hints":["Anchor on what's pinned outright — find a clue that fixes a single year, then let each confirmation rule out the rest of its row and column.","The order of the timeline is fixed — use the ‘predates’ clues to pin the ends, then work inward.","Start here: 1431 resolves to Figure Xochitl, Artifact Polished lens. The remaining years fall out by elimination."],"hiddenRule":"Causality. An effect cannot be filed before its cause — the order of the timeline is fixed.","divergence":{"year":"1502","text":"The cascade resolves at 1502: the Mirror array is the keystone. Remove it and the altered history unwinds."},"explanation":["The Obsidian Lens untangles by holding the fixed points still and letting every confirmed link eliminate its row and column. The order of the timeline is fixed: nothing is filed before its cause.","The divergence settles at 1502: the Mirror array is the keystone — remove it and the altered history unwinds."],"walkthrough":["1431 — Figure: Xochitl · Artifact: Polished lens","1454 — Figure: Itzcoatl · Artifact: Star table","1477 — Figure: Nezahual · Artifact: Obsidian tube","1502 — Figure: Tlacaelel · Artifact: Mirror array"],"generated":true,"clueCount":6},{"id":"dst-gen-1-8","code":"DST-1400-I","tier":1,"title":"Bronze Age Aluminium","place":"Ugarit, Levant","eraLabel":"1400 BCE — 1280 BCE","scenario":["A metal lighter than silver and brighter than tin appears in palace inventories millennia too soon. Four artifacts of impossible metallurgy surfaced — order them."],"categories":[{"id":"anchor","name":"Year","items":[{"id":"y0","label":"1400 BCE"},{"id":"y1","label":"1360 BCE"},{"id":"y2","label":"1320 BCE"},{"id":"y3","label":"1280 BCE"}]},{"id":"c0","name":"Figure","items":[{"id":"c0_0","label":"Niqmaddu"},{"id":"c0_1","label":"Sharelli"},{"id":"c0_2","label":"Yaqaru"},{"id":"c0_3","label":"Ammittamru"}]},{"id":"c1","name":"Artifact","items":[{"id":"c1_0","label":"Light ingot"},{"id":"c1_1","label":"Electrolysis vat"},{"id":"c1_2","label":"Salt cell"},{"id":"c1_3","label":"Silver wire"}]}],"solution":[{"anchor":"y0","c0":"c0_2","c1":"c1_2"},{"anchor":"y1","c0":"c0_0","c1":"c1_0"},{"anchor":"y2","c0":"c0_3","c1":"c1_1"},{"anchor":"y3","c0":"c0_1","c1":"c1_3"}],"clues":[{"type":"Dispatch","text":"Agency dispatch fixes Sharelli to 1280 BCE.","unstable":false},{"type":"Record","text":"Master file, cross-checked — 1400 BCE resolves to Yaqaru.","unstable":false},{"type":"Manifest","text":"The 1280 BCE manifest names the Silver wire and no other artifact.","unstable":false},{"type":"Document","text":"Filed under 1320 BCE: the figure of record is Ammittamru.","unstable":false},{"type":"Eyewitness","text":"“What surfaced in 1400 BCE was the Salt cell, plain as day.”","unstable":false},{"type":"Ledger","text":"The ledger entry for 1320 BCE is unambiguous: the Electrolysis vat.","unstable":false}],"hints":["Anchor on what's pinned outright — find a clue that fixes a single year, then let each confirmation rule out the rest of its row and column.","The order of the timeline is fixed — use the ‘predates’ clues to pin the ends, then work inward.","Start here: 1400 BCE resolves to Figure Yaqaru, Artifact Salt cell. The remaining years fall out by elimination."],"hiddenRule":"Causality. An effect cannot be filed before its cause — the order of the timeline is fixed.","divergence":{"year":"1280 BCE","text":"The cascade resolves at 1280 BCE: the Silver wire is the keystone. Remove it and the altered history unwinds."},"explanation":["Bronze Age Aluminium untangles by holding the fixed points still and letting every confirmed link eliminate its row and column. The order of the timeline is fixed: nothing is filed before its cause.","The divergence settles at 1280 BCE: the Silver wire is the keystone — remove it and the altered history unwinds."],"walkthrough":["1400 BCE — Figure: Yaqaru · Artifact: Salt cell","1360 BCE — Figure: Niqmaddu · Artifact: Light ingot","1320 BCE — Figure: Ammittamru · Artifact: Electrolysis vat","1280 BCE — Figure: Sharelli · Artifact: Silver wire"],"generated":true,"clueCount":6}],"tier2":[{"id":"dvg-gen-2-0","code":"DVG-1572-A","tier":2,"title":"The Mughal Locomotive","place":"Agra, Mughal Empire","eraLabel":"1572 — 1672","scenario":["Iron rails thread the empire and a steam engine hauls the imperial court. Four innovations broke loose across four reigns, each tied to a figure and a recovered artifact — reconstruct the cascade."],"categories":[{"id":"anchor","name":"Era","items":[{"id":"y0","label":"1572"},{"id":"y1","label":"1605"},{"id":"y2","label":"1639"},{"id":"y3","label":"1672"}]},{"id":"c0","name":"Innovation","items":[{"id":"c0_0","label":"Steam rail"},{"id":"c0_1","label":"Pressure brake"},{"id":"c0_2","label":"Coke furnace"},{"id":"c0_3","label":"Iron truss"}]},{"id":"c1","name":"Figure","items":[{"id":"c1_0","label":"Akbar"},{"id":"c1_1","label":"Faizi"},{"id":"c1_2","label":"Raja Man"},{"id":"c1_3","label":"Todar"}]},{"id":"c2","name":"Artifact","items":[{"id":"c2_0","label":"Boiler plate"},{"id":"c2_1","label":"Brass whistle"},{"id":"c2_2","label":"Rail spike"},{"id":"c2_3","label":"Coupling rod"}]}],"solution":[{"anchor":"y0","c0":"c0_2","c1":"c1_1","c2":"c2_2"},{"anchor":"y1","c0":"c0_3","c1":"c1_2","c2":"c2_0"},{"anchor":"y2","c0":"c0_1","c1":"c1_3","c2":"c2_3"},{"anchor":"y3","c0":"c0_0","c1":"c1_0","c2":"c2_1"}],"clues":[{"type":"Cross-ref","text":"The Coke furnace and Faizi trace to one and the same era.","unstable":false},{"type":"Log","text":"The trail opens with the Rail spike — first of the artifacts.","unstable":false},{"type":"Field note","text":"The same file binds the Iron truss to Raja Man.","unstable":false},{"type":"Testimony","text":"“I'll swear to one thing about 1572: it was never Todar.”","unstable":false},{"type":"Exhibit","text":"Where there is Raja Man, the Boiler plate is never far; they share a single era.","unstable":false},{"type":"Artifact","text":"The Steam rail and the Brass whistle were recovered together — one is never found without the other.","unstable":false},{"type":"Contradiction","text":"The Brass whistle bears the latest timestamp of the set.","unstable":false},{"type":"Contradiction","text":"The Coupling rod cannot be placed at 1605 — the dates collide.","unstable":false},{"type":"Field note","text":"The same file binds Akbar to the Brass whistle.","unstable":false}],"hints":["Anchor on what's pinned outright — find a clue that fixes a single era, then let each confirmation rule out the rest of its row and column.","Chain the clues that name two things at once; each collapses two columns into one.","Start here: 1572 resolves to Innovation Coke furnace, Figure Faizi, Artifact Rail spike. The remaining eras fall out by elimination."],"hiddenRule":"Convergence. Several anomalies share a single era; cross-reference the records that name two things at once.","divergence":{"year":"1672","text":"The cascade resolves at 1672: the Brass whistle is the keystone. Remove it and the altered history unwinds."},"explanation":["The Mughal Locomotive untangles by holding the fixed points still and letting every confirmed link eliminate its row and column. More than one anomaly shares an era, so cross-reference the records that name two things at once.","The divergence settles at 1672: the Brass whistle is the keystone — remove it and the altered history unwinds."],"walkthrough":["1572 — Innovation: Coke furnace · Figure: Faizi · Artifact: Rail spike","1605 — Innovation: Iron truss · Figure: Raja Man · Artifact: Boiler plate","1639 — Innovation: Pressure brake · Figure: Todar · Artifact: Coupling rod","1672 — Innovation: Steam rail · Figure: Akbar · Artifact: Brass whistle"],"generated":true,"clueCount":9},{"id":"dvg-gen-2-1","code":"DVG-717-B","tier":2,"title":"The Byzantine Network","place":"Constantinople","eraLabel":"717 — 906","scenario":["A relay of shuttered towers carries coded messages across the empire in minutes. Four innovations of an early telegraph appeared out of order — fix each to era, figure, and artifact."],"categories":[{"id":"anchor","name":"Era","items":[{"id":"y0","label":"717"},{"id":"y1","label":"780"},{"id":"y2","label":"843"},{"id":"y3","label":"906"}]},{"id":"c0","name":"Innovation","items":[{"id":"c0_0","label":"Optical relay"},{"id":"c0_1","label":"Cipher code"},{"id":"c0_2","label":"Signal tower"},{"id":"c0_3","label":"Shutter array"}]},{"id":"c1","name":"Figure","items":[{"id":"c1_0","label":"Leo"},{"id":"c1_1","label":"Theodora"},{"id":"c1_2","label":"Bardas"},{"id":"c1_3","label":"Photios"}]},{"id":"c2","name":"Artifact","items":[{"id":"c2_0","label":"Bronze mirror"},{"id":"c2_1","label":"Lens housing"},{"id":"c2_2","label":"Lamp cell"},{"id":"c2_3","label":"Coded disc"}]}],"solution":[{"anchor":"y0","c0":"c0_1","c1":"c1_1","c2":"c2_3"},{"anchor":"y1","c0":"c0_2","c1":"c1_3","c2":"c2_0"},{"anchor":"y2","c0":"c0_3","c1":"c1_0","c2":"c2_1"},{"anchor":"y3","c0":"c0_0","c1":"c1_2","c2":"c2_2"}],"clues":[{"type":"Exhibit","text":"Where there is the Shutter array, Leo is never far; they share a single era.","unstable":false},{"type":"Cross-ref","text":"The Signal tower and the Bronze mirror trace to one and the same era.","unstable":false},{"type":"Contradiction","text":"The Shutter array cannot be placed at 906 — the dates collide.","unstable":false},{"type":"Eyewitness","text":"“Whatever surfaced in 906, it was not Photios.”","unstable":false},{"type":"Field note","text":"The same file binds the Cipher code to the Coded disc.","unstable":false},{"type":"Contradiction","text":"The Coded disc sits at the earliest point on the timeline; nothing precedes it.","unstable":false},{"type":"Log","text":"Last in the sequence, with nothing after it: the Lamp cell.","unstable":false},{"type":"Artifact","text":"The Cipher code and Theodora were recovered together — one is never found without the other.","unstable":false},{"type":"Testimony","text":"“I'll swear to one thing about 843: it was never the Signal tower.”","unstable":false}],"hints":["Anchor on what's pinned outright — find a clue that fixes a single era, then let each confirmation rule out the rest of its row and column.","Chain the clues that name two things at once; each collapses two columns into one.","Start here: 717 resolves to Innovation Cipher code, Figure Theodora, Artifact Coded disc. The remaining eras fall out by elimination."],"hiddenRule":"Convergence. Several anomalies share a single era; cross-reference the records that name two things at once.","divergence":{"year":"906","text":"The cascade resolves at 906: the Lamp cell is the keystone. Remove it and the altered history unwinds."},"explanation":["The Byzantine Network untangles by holding the fixed points still and letting every confirmed link eliminate its row and column. More than one anomaly shares an era, so cross-reference the records that name two things at once.","The divergence settles at 906: the Lamp cell is the keystone — remove it and the altered history unwinds."],"walkthrough":["717 — Innovation: Cipher code · Figure: Theodora · Artifact: Coded disc","780 — Innovation: Signal tower · Figure: Photios · Artifact: Bronze mirror","843 — Innovation: Shutter array · Figure: Leo · Artifact: Lens housing","906 — Innovation: Optical relay · Figure: Bardas · Artifact: Lamp cell"],"generated":true,"clueCount":9},{"id":"dvg-gen-2-2","code":"DVG-1100-C","tier":2,"title":"The Longitude Stone","place":"Rapa Nui, Pacific","eraLabel":"1100 — 1520","scenario":["Navigators fix longitude with instruments Europe will not master for centuries. Four anomalies of premature navigation surfaced — reconstruct the chain."],"categories":[{"id":"anchor","name":"Era","items":[{"id":"y0","label":"1100"},{"id":"y1","label":"1240"},{"id":"y2","label":"1380"},{"id":"y3","label":"1520"}]},{"id":"c0","name":"Innovation","items":[{"id":"c0_0","label":"Sea chronometer"},{"id":"c0_1","label":"Star compass"},{"id":"c0_2","label":"Tide table"},{"id":"c0_3","label":"Wind sextant"}]},{"id":"c1","name":"Navigator","items":[{"id":"c1_0","label":"Hotu"},{"id":"c1_1","label":"Ava"},{"id":"c1_2","label":"Tane"},{"id":"c1_3","label":"Marama"}]},{"id":"c2","name":"Artifact","items":[{"id":"c2_0","label":"Carved gnomon"},{"id":"c2_1","label":"Shell dial"},{"id":"c2_2","label":"Knotted cord"},{"id":"c2_3","label":"Basalt lens"}]}],"solution":[{"anchor":"y0","c0":"c0_3","c1":"c1_3","c2":"c2_1"},{"anchor":"y1","c0":"c0_2","c1":"c1_2","c2":"c2_2"},{"anchor":"y2","c0":"c0_0","c1":"c1_1","c2":"c2_3"},{"anchor":"y3","c0":"c0_1","c1":"c1_0","c2":"c2_0"}],"clues":[{"type":"Contradiction","text":"The Star compass cannot be placed at 1100 — the dates collide.","unstable":false},{"type":"Artifact","text":"The Sea chronometer and the Basalt lens were recovered together — one is never found without the other.","unstable":false},{"type":"Testimony","text":"“I'll swear to one thing about 1100: it was never Ava.”","unstable":false},{"type":"Contradiction","text":"The Carved gnomon bears the latest timestamp of the set.","unstable":false},{"type":"Exhibit","text":"Where there is the Tide table, Tane is never far; they share a single era.","unstable":false},{"type":"Record","text":"The 1100 file explicitly rules out Tane.","unstable":false},{"type":"Eyewitness","text":"“Whatever surfaced in 1380, it was not the Knotted cord.”","unstable":false},{"type":"Log","text":"The trail opens with the Shell dial — first of the artifacts.","unstable":false},{"type":"Cross-ref","text":"Hotu and the Carved gnomon trace to one and the same era.","unstable":false}],"hints":["Anchor on what's pinned outright — find a clue that fixes a single era, then let each confirmation rule out the rest of its row and column.","Chain the clues that name two things at once; each collapses two columns into one.","Start here: 1100 resolves to Innovation Wind sextant, Navigator Marama, Artifact Shell dial. The remaining eras fall out by elimination."],"hiddenRule":"Convergence. Several anomalies share a single era; cross-reference the records that name two things at once.","divergence":{"year":"1520","text":"The cascade resolves at 1520: the Carved gnomon is the keystone. Remove it and the altered history unwinds."},"explanation":["The Longitude Stone untangles by holding the fixed points still and letting every confirmed link eliminate its row and column. More than one anomaly shares an era, so cross-reference the records that name two things at once.","The divergence settles at 1520: the Carved gnomon is the keystone — remove it and the altered history unwinds."],"walkthrough":["1100 — Innovation: Wind sextant · Navigator: Marama · Artifact: Shell dial","1240 — Innovation: Tide table · Navigator: Tane · Artifact: Knotted cord","1380 — Innovation: Sea chronometer · Navigator: Ava · Artifact: Basalt lens","1520 — Innovation: Star compass · Navigator: Hotu · Artifact: Carved gnomon"],"generated":true,"clueCount":9},{"id":"dvg-gen-2-3","code":"DVG-1419-D","tier":2,"title":"The Florence Reactor","place":"Florence, Tuscany","eraLabel":"1419 — 1521","scenario":["A workshop beneath the Duomo hums with contained heat and a glow that needs no flame. Four innovations of an impossible reactor appeared across four eras — place them."],"categories":[{"id":"anchor","name":"Era","items":[{"id":"y0","label":"1419"},{"id":"y1","label":"1453"},{"id":"y2","label":"1487"},{"id":"y3","label":"1521"}]},{"id":"c0","name":"Innovation","items":[{"id":"c0_0","label":"Pile reactor"},{"id":"c0_1","label":"Lead shield"},{"id":"c0_2","label":"Cooling loop"},{"id":"c0_3","label":"Control rod"}]},{"id":"c1","name":"Figure","items":[{"id":"c1_0","label":"Brunelleschi"},{"id":"c1_1","label":"Toscanelli"},{"id":"c1_2","label":"Della Porta"},{"id":"c1_3","label":"Vespucci"}]},{"id":"c2","name":"Artifact","items":[{"id":"c2_0","label":"Graphite block"},{"id":"c2_1","label":"Ore cask"},{"id":"c2_2","label":"Brass gauge"},{"id":"c2_3","label":"Quench tank"}]}],"solution":[{"anchor":"y0","c0":"c0_1","c1":"c1_1","c2":"c2_2"},{"anchor":"y1","c0":"c0_2","c1":"c1_0","c2":"c2_3"},{"anchor":"y2","c0":"c0_3","c1":"c1_3","c2":"c2_1"},{"anchor":"y3","c0":"c0_0","c1":"c1_2","c2":"c2_0"}],"clues":[{"type":"Exhibit","text":"Where there is Della Porta, the Graphite block is never far; they share a single era.","unstable":false},{"type":"Testimony","text":"“I'll swear to one thing about 1487: it was never Brunelleschi.”","unstable":false},{"type":"Artifact","text":"The Control rod and Vespucci were recovered together — one is never found without the other.","unstable":false},{"type":"Field note","text":"The same file binds the Lead shield to Toscanelli.","unstable":false},{"type":"Contradiction","text":"The Lead shield sits at the earliest point on the timeline; nothing precedes it.","unstable":false},{"type":"Contradiction","text":"The Quench tank cannot be placed at 1521 — the dates collide.","unstable":false},{"type":"Cross-ref","text":"Vespucci and the Ore cask trace to one and the same era.","unstable":false},{"type":"Cross-ref","text":"Brunelleschi and the Quench tank trace to one and the same era.","unstable":false},{"type":"Log","text":"Last in the sequence, with nothing after it: the Pile reactor.","unstable":false}],"hints":["Anchor on what's pinned outright — find a clue that fixes a single era, then let each confirmation rule out the rest of its row and column.","Chain the clues that name two things at once; each collapses two columns into one.","Start here: 1419 resolves to Innovation Lead shield, Figure Toscanelli, Artifact Brass gauge. The remaining eras fall out by elimination."],"hiddenRule":"Convergence. Several anomalies share a single era; cross-reference the records that name two things at once.","divergence":{"year":"1521","text":"The cascade resolves at 1521: the Graphite block is the keystone. Remove it and the altered history unwinds."},"explanation":["The Florence Reactor untangles by holding the fixed points still and letting every confirmed link eliminate its row and column. More than one anomaly shares an era, so cross-reference the records that name two things at once.","The divergence settles at 1521: the Graphite block is the keystone — remove it and the altered history unwinds."],"walkthrough":["1419 — Innovation: Lead shield · Figure: Toscanelli · Artifact: Brass gauge","1453 — Innovation: Cooling loop · Figure: Brunelleschi · Artifact: Quench tank","1487 — Innovation: Control rod · Figure: Vespucci · Artifact: Ore cask","1521 — Innovation: Pile reactor · Figure: Della Porta · Artifact: Graphite block"],"generated":true,"clueCount":9},{"id":"dvg-gen-2-4","code":"DVG-1325-E","tier":2,"title":"The Timbuktu Press","place":"Timbuktu, Mali","eraLabel":"1325 — 1430","scenario":["The libraries of Sankoré print books in their thousands, a century before Gutenberg. Four innovations of mass printing arrived out of sequence — reconstruct them."],"categories":[{"id":"anchor","name":"Era","items":[{"id":"y0","label":"1325"},{"id":"y1","label":"1360"},{"id":"y2","label":"1395"},{"id":"y3","label":"1430"}]},{"id":"c0","name":"Innovation","items":[{"id":"c0_0","label":"Movable type"},{"id":"c0_1","label":"Rag paper"},{"id":"c0_2","label":"Ink press"},{"id":"c0_3","label":"Binding frame"}]},{"id":"c1","name":"Figure","items":[{"id":"c1_0","label":"Musa"},{"id":"c1_1","label":"Aïsha"},{"id":"c1_2","label":"Sankoré"},{"id":"c1_3","label":"Baghayogho"}]},{"id":"c2","name":"Artifact","items":[{"id":"c2_0","label":"Brass matrix"},{"id":"c2_1","label":"Type tray"},{"id":"c2_2","label":"Vellum stack"},{"id":"c2_3","label":"Press screw"}]}],"solution":[{"anchor":"y0","c0":"c0_3","c1":"c1_2","c2":"c2_3"},{"anchor":"y1","c0":"c0_2","c1":"c1_3","c2":"c2_2"},{"anchor":"y2","c0":"c0_0","c1":"c1_1","c2":"c2_1"},{"anchor":"y3","c0":"c0_1","c1":"c1_0","c2":"c2_0"}],"clues":[{"type":"Testimony","text":"“I'll swear to one thing about 1325: it was never the Rag paper.”","unstable":false},{"type":"Contradiction","text":"Aïsha cannot be placed at 1325 — the dates collide.","unstable":false},{"type":"Eyewitness","text":"“Whatever surfaced in 1360, it was not Aïsha.”","unstable":false},{"type":"Field note","text":"The same file binds the Movable type to Aïsha.","unstable":false},{"type":"Contradiction","text":"The Press screw sits at the earliest point on the timeline; nothing precedes it.","unstable":false},{"type":"Record","text":"The 1360 file explicitly rules out the Type tray.","unstable":false},{"type":"Exhibit","text":"Where there is the Ink press, Baghayogho is never far; they share a single era.","unstable":false},{"type":"Contradiction","text":"Baghayogho cannot be placed at 1325 — the dates collide.","unstable":false},{"type":"Log","text":"Last in the sequence, with nothing after it: the Brass matrix.","unstable":false},{"type":"Cross-ref","text":"Musa and the Brass matrix trace to one and the same era.","unstable":false}],"hints":["Anchor on what's pinned outright — find a clue that fixes a single era, then let each confirmation rule out the rest of its row and column.","Chain the clues that name two things at once; each collapses two columns into one.","Start here: 1325 resolves to Innovation Binding frame, Figure Sankoré, Artifact Press screw. The remaining eras fall out by elimination."],"hiddenRule":"Convergence. Several anomalies share a single era; cross-reference the records that name two things at once.","divergence":{"year":"1430","text":"The cascade resolves at 1430: the Brass matrix is the keystone. Remove it and the altered history unwinds."},"explanation":["The Timbuktu Press untangles by holding the fixed points still and letting every confirmed link eliminate its row and column. More than one anomaly shares an era, so cross-reference the records that name two things at once.","The divergence settles at 1430: the Brass matrix is the keystone — remove it and the altered history unwinds."],"walkthrough":["1325 — Innovation: Binding frame · Figure: Sankoré · Artifact: Press screw","1360 — Innovation: Ink press · Figure: Baghayogho · Artifact: Vellum stack","1395 — Innovation: Movable type · Figure: Aïsha · Artifact: Type tray","1430 — Innovation: Rag paper · Figure: Musa · Artifact: Brass matrix"],"generated":true,"clueCount":10},{"id":"dvg-gen-2-5","code":"DVG-1603-F","tier":2,"title":"The Edo Plate","place":"Edo, Japan","eraLabel":"1603 — 1708","scenario":["Silver plates in a shogun's gallery hold captured images — photographs, two centuries early. Four innovations broke loose across four eras — sort them."],"categories":[{"id":"anchor","name":"Era","items":[{"id":"y0","label":"1603"},{"id":"y1","label":"1638"},{"id":"y2","label":"1673"},{"id":"y3","label":"1708"}]},{"id":"c0","name":"Innovation","items":[{"id":"c0_0","label":"Silver plate"},{"id":"c0_1","label":"Lens box"},{"id":"c0_2","label":"Fixing bath"},{"id":"c0_3","label":"Shutter"}]},{"id":"c1","name":"Figure","items":[{"id":"c1_0","label":"Iemitsu"},{"id":"c1_1","label":"Okuni"},{"id":"c1_2","label":"Hidetada"},{"id":"c1_3","label":"Mitsukuni"}]},{"id":"c2","name":"Artifact","items":[{"id":"c2_0","label":"Polished plate"},{"id":"c2_1","label":"Mercury vat"},{"id":"c2_2","label":"Brass lens"},{"id":"c2_3","label":"Lacquer box"}]}],"solution":[{"anchor":"y0","c0":"c0_3","c1":"c1_2","c2":"c2_3"},{"anchor":"y1","c0":"c0_0","c1":"c1_3","c2":"c2_2"},{"anchor":"y2","c0":"c0_1","c1":"c1_0","c2":"c2_1"},{"anchor":"y3","c0":"c0_2","c1":"c1_1","c2":"c2_0"}],"clues":[{"type":"Artifact","text":"Hidetada and the Lacquer box were recovered together — one is never found without the other.","unstable":false},{"type":"Eyewitness","text":"“Whatever surfaced in 1673, it was not the Lacquer box.”","unstable":false},{"type":"Exhibit","text":"Where there is the Lens box, Iemitsu is never far; they share a single era.","unstable":false},{"type":"Testimony","text":"“I'll swear to one thing about 1603: it was never the Silver plate.”","unstable":false},{"type":"Contradiction","text":"Mitsukuni cannot be placed at 1673 — the dates collide.","unstable":false},{"type":"Log","text":"Last in the sequence, with nothing after it: the Polished plate.","unstable":false},{"type":"Record","text":"The 1708 file explicitly rules out Mitsukuni.","unstable":false},{"type":"Field note","text":"The same file binds the Fixing bath to the Polished plate.","unstable":false},{"type":"Contradiction","text":"The Brass lens cannot be placed at 1673 — the dates collide.","unstable":false},{"type":"Testimony","text":"“I'll swear to one thing about 1638: it was never the Lacquer box.”","unstable":false}],"hints":["Anchor on what's pinned outright — find a clue that fixes a single era, then let each confirmation rule out the rest of its row and column.","Chain the clues that name two things at once; each collapses two columns into one.","Start here: 1603 resolves to Innovation Shutter, Figure Hidetada, Artifact Lacquer box. The remaining eras fall out by elimination."],"hiddenRule":"Convergence. Several anomalies share a single era; cross-reference the records that name two things at once.","divergence":{"year":"1708","text":"The cascade resolves at 1708: the Polished plate is the keystone. Remove it and the altered history unwinds."},"explanation":["The Edo Plate untangles by holding the fixed points still and letting every confirmed link eliminate its row and column. More than one anomaly shares an era, so cross-reference the records that name two things at once.","The divergence settles at 1708: the Polished plate is the keystone — remove it and the altered history unwinds."],"walkthrough":["1603 — Innovation: Shutter · Figure: Hidetada · Artifact: Lacquer box","1638 — Innovation: Silver plate · Figure: Mitsukuni · Artifact: Brass lens","1673 — Innovation: Lens box · Figure: Iemitsu · Artifact: Mercury vat","1708 — Innovation: Fixing bath · Figure: Okuni · Artifact: Polished plate"],"generated":true,"clueCount":10},{"id":"dvg-gen-2-6","code":"DVG-1438-G","tier":2,"title":"The Quipu Engine","place":"Cusco, Inca Empire","eraLabel":"1438 — 1525","scenario":["Knotted cords compute the census faster than any abacus. Four innovations of string computation appeared out of order — reconstruct the cascade."],"categories":[{"id":"anchor","name":"Era","items":[{"id":"y0","label":"1438"},{"id":"y1","label":"1471"},{"id":"y2","label":"1493"},{"id":"y3","label":"1525"}]},{"id":"c0","name":"Innovation","items":[{"id":"c0_0","label":"Knot computer"},{"id":"c0_1","label":"Tally loom"},{"id":"c0_2","label":"Census code"},{"id":"c0_3","label":"Relay runner"}]},{"id":"c1","name":"Figure","items":[{"id":"c1_0","label":"Pachacuti"},{"id":"c1_1","label":"Mama Ocllo"},{"id":"c1_2","label":"Túpac"},{"id":"c1_3","label":"Huayna"}]},{"id":"c2","name":"Artifact","items":[{"id":"c2_0","label":"Cord array"},{"id":"c2_1","label":"Counting board"},{"id":"c2_2","label":"Dye index"},{"id":"c2_3","label":"Bronze pin"}]}],"solution":[{"anchor":"y0","c0":"c0_2","c1":"c1_1","c2":"c2_1"},{"anchor":"y1","c0":"c0_0","c1":"c1_0","c2":"c2_2"},{"anchor":"y2","c0":"c0_3","c1":"c1_3","c2":"c2_3"},{"anchor":"y3","c0":"c0_1","c1":"c1_2","c2":"c2_0"}],"clues":[{"type":"Artifact","text":"The Tally loom and Túpac were recovered together — one is never found without the other.","unstable":false},{"type":"Field note","text":"The same file binds Túpac to the Cord array.","unstable":false},{"type":"Exhibit","text":"Where there is Huayna, the Bronze pin is never far; they share a single era.","unstable":false},{"type":"Record","text":"The 1471 file explicitly rules out the Counting board.","unstable":false},{"type":"Contradiction","text":"Mama Ocllo sits at the earliest point on the timeline; nothing precedes it.","unstable":false},{"type":"Contradiction","text":"The Knot computer cannot be placed at 1493 — the dates collide.","unstable":false},{"type":"Log","text":"Last in the sequence, with nothing after it: the Cord array.","unstable":false},{"type":"Cross-ref","text":"The Knot computer and Pachacuti trace to one and the same era.","unstable":false},{"type":"Exhibit","text":"Where there is the Census code, Mama Ocllo is never far; they share a single era.","unstable":false}],"hints":["Anchor on what's pinned outright — find a clue that fixes a single era, then let each confirmation rule out the rest of its row and column.","Chain the clues that name two things at once; each collapses two columns into one.","Start here: 1438 resolves to Innovation Census code, Figure Mama Ocllo, Artifact Counting board. The remaining eras fall out by elimination."],"hiddenRule":"Convergence. Several anomalies share a single era; cross-reference the records that name two things at once.","divergence":{"year":"1525","text":"The cascade resolves at 1525: the Cord array is the keystone. Remove it and the altered history unwinds."},"explanation":["The Quipu Engine untangles by holding the fixed points still and letting every confirmed link eliminate its row and column. More than one anomaly shares an era, so cross-reference the records that name two things at once.","The divergence settles at 1525: the Cord array is the keystone — remove it and the altered history unwinds."],"walkthrough":["1438 — Innovation: Census code · Figure: Mama Ocllo · Artifact: Counting board","1471 — Innovation: Knot computer · Figure: Pachacuti · Artifact: Dye index","1493 — Innovation: Relay runner · Figure: Huayna · Artifact: Bronze pin","1525 — Innovation: Tally loom · Figure: Túpac · Artifact: Cord array"],"generated":true,"clueCount":9},{"id":"dvg-gen-2-7","code":"DVG-146-H","tier":2,"title":"Carthage Endures","place":"Carthage","eraLabel":"146 BCE — 23 CE","scenario":["Carthage was never razed, and her engineers industrialize the Mediterranean. Four innovations surfaced across four eras — fix each to its figure and artifact."],"categories":[{"id":"anchor","name":"Era","items":[{"id":"y0","label":"146 BCE"},{"id":"y1","label":"90 BCE"},{"id":"y2","label":"34 BCE"},{"id":"y3","label":"23 CE"}]},{"id":"c0","name":"Innovation","items":[{"id":"c0_0","label":"Concrete dome"},{"id":"c0_1","label":"Sea cannon"},{"id":"c0_2","label":"Aqueduct main"},{"id":"c0_3","label":"Dry dock"}]},{"id":"c1","name":"Figure","items":[{"id":"c1_0","label":"Hasdrubal"},{"id":"c1_1","label":"Sophonisba"},{"id":"c1_2","label":"Mago"},{"id":"c1_3","label":"Hanno"}]},{"id":"c2","name":"Artifact","items":[{"id":"c2_0","label":"Pozzolana sack"},{"id":"c2_1","label":"Bronze barrel"},{"id":"c2_2","label":"Lead pipe"},{"id":"c2_3","label":"Keel block"}]}],"solution":[{"anchor":"y0","c0":"c0_2","c1":"c1_2","c2":"c2_3"},{"anchor":"y1","c0":"c0_0","c1":"c1_3","c2":"c2_0"},{"anchor":"y2","c0":"c0_3","c1":"c1_0","c2":"c2_1"},{"anchor":"y3","c0":"c0_1","c1":"c1_1","c2":"c2_2"}],"clues":[{"type":"Record","text":"The 146 BCE file explicitly rules out Hanno.","unstable":false},{"type":"Artifact","text":"The Concrete dome and Hanno were recovered together — one is never found without the other.","unstable":false},{"type":"Eyewitness","text":"“Whatever surfaced in 146 BCE, it was not Sophonisba.”","unstable":false},{"type":"Cross-ref","text":"The Dry dock and the Bronze barrel trace to one and the same era.","unstable":false},{"type":"Log","text":"Last in the sequence, with nothing after it: the Lead pipe.","unstable":false},{"type":"Exhibit","text":"Where there is the Aqueduct main, the Keel block is never far; they share a single era.","unstable":false},{"type":"Field note","text":"The same file binds Hasdrubal to the Bronze barrel.","unstable":false},{"type":"Chronicle","text":"Whatever their exact dates, Hanno was filed before Hasdrubal.","unstable":false}],"hints":["Anchor on what's pinned outright — find a clue that fixes a single era, then let each confirmation rule out the rest of its row and column.","Chain the clues that name two things at once; each collapses two columns into one.","Start here: 146 BCE resolves to Innovation Aqueduct main, Figure Mago, Artifact Keel block. The remaining eras fall out by elimination."],"hiddenRule":"Convergence. Several anomalies share a single era; cross-reference the records that name two things at once.","divergence":{"year":"23 CE","text":"The cascade resolves at 23 CE: the Lead pipe is the keystone. Remove it and the altered history unwinds."},"explanation":["Carthage Endures untangles by holding the fixed points still and letting every confirmed link eliminate its row and column. More than one anomaly shares an era, so cross-reference the records that name two things at once.","The divergence settles at 23 CE: the Lead pipe is the keystone — remove it and the altered history unwinds."],"walkthrough":["146 BCE — Innovation: Aqueduct main · Figure: Mago · Artifact: Keel block","90 BCE — Innovation: Concrete dome · Figure: Hanno · Artifact: Pozzolana sack","34 BCE — Innovation: Dry dock · Figure: Hasdrubal · Artifact: Bronze barrel","23 CE — Innovation: Sea cannon · Figure: Sophonisba · Artifact: Lead pipe"],"generated":true,"clueCount":8},{"id":"dvg-gen-2-8","code":"DVG-762-I","tier":2,"title":"The Baghdad Array","place":"Baghdad, Abbasid Caliphate","eraLabel":"762 — 908","scenario":["The House of Wisdom lights its halls with current drawn from jars. Four innovations of early electricity appeared out of sequence — reconstruct them."],"categories":[{"id":"anchor","name":"Era","items":[{"id":"y0","label":"762"},{"id":"y1","label":"813"},{"id":"y2","label":"861"},{"id":"y3","label":"908"}]},{"id":"c0","name":"Innovation","items":[{"id":"c0_0","label":"Battery array"},{"id":"c0_1","label":"Electroplate"},{"id":"c0_2","label":"Arc lamp"},{"id":"c0_3","label":"Brine cell"}]},{"id":"c1","name":"Figure","items":[{"id":"c1_0","label":"Al-Mansur"},{"id":"c1_1","label":"Al-Kindi"},{"id":"c1_2","label":"Hunayn"},{"id":"c1_3","label":"Al-Jazari"}]},{"id":"c2","name":"Artifact","items":[{"id":"c2_0","label":"Clay jar"},{"id":"c2_1","label":"Copper cylinder"},{"id":"c2_2","label":"Iron rod"},{"id":"c2_3","label":"Vinegar flask"}]}],"solution":[{"anchor":"y0","c0":"c0_2","c1":"c1_2","c2":"c2_3"},{"anchor":"y1","c0":"c0_3","c1":"c1_3","c2":"c2_2"},{"anchor":"y2","c0":"c0_0","c1":"c1_1","c2":"c2_1"},{"anchor":"y3","c0":"c0_1","c1":"c1_0","c2":"c2_0"}],"clues":[{"type":"Record","text":"The 813 file explicitly rules out the Arc lamp.","unstable":false},{"type":"Artifact","text":"Hunayn and the Vinegar flask were recovered together — one is never found without the other.","unstable":false},{"type":"Log","text":"Last in the sequence, with nothing after it: Al-Mansur.","unstable":false},{"type":"Field note","text":"The same file binds the Battery array to the Copper cylinder.","unstable":false},{"type":"Testimony","text":"“I'll swear to one thing about 762: it was never the Battery array.”","unstable":false},{"type":"Eyewitness","text":"“Whatever surfaced in 908, it was not the Iron rod.”","unstable":false},{"type":"Contradiction","text":"Al-Kindi cannot be placed at 813 — the dates collide.","unstable":false},{"type":"Cross-ref","text":"The Brine cell and Al-Jazari trace to one and the same era.","unstable":false},{"type":"Exhibit","text":"Where there is the Electroplate, Al-Mansur is never far; they share a single era.","unstable":false}],"hints":["Anchor on what's pinned outright — find a clue that fixes a single era, then let each confirmation rule out the rest of its row and column.","Chain the clues that name two things at once; each collapses two columns into one.","Start here: 762 resolves to Innovation Arc lamp, Figure Hunayn, Artifact Vinegar flask. The remaining eras fall out by elimination."],"hiddenRule":"Convergence. Several anomalies share a single era; cross-reference the records that name two things at once.","divergence":{"year":"908","text":"The cascade resolves at 908: the Clay jar is the keystone. Remove it and the altered history unwinds."},"explanation":["The Baghdad Array untangles by holding the fixed points still and letting every confirmed link eliminate its row and column. More than one anomaly shares an era, so cross-reference the records that name two things at once.","The divergence settles at 908: the Clay jar is the keystone — remove it and the altered history unwinds."],"walkthrough":["762 — Innovation: Arc lamp · Figure: Hunayn · Artifact: Vinegar flask","813 — Innovation: Brine cell · Figure: Al-Jazari · Artifact: Iron rod","861 — Innovation: Battery array · Figure: Al-Kindi · Artifact: Copper cylinder","908 — Innovation: Electroplate · Figure: Al-Mansur · Artifact: Clay jar"],"generated":true,"clueCount":9}],"tier3":[{"id":"clp-gen-3-0","code":"CLP-1911-A","tier":3,"title":"The Antarctic Beacon","place":"Station Erebus","eraLabel":"1911 — 2047","scenario":["A research station broadcasts on a frequency that will not be invented for decades, and the signal is addressed to itself. Five records surfaced from the ice — one of them is corrupted. Reconstruct the chain without it."],"categories":[{"id":"anchor","name":"Year","items":[{"id":"y0","label":"1911"},{"id":"y1","label":"1958"},{"id":"y2","label":"1979"},{"id":"y3","label":"2012"},{"id":"y4","label":"2047"}]},{"id":"c0","name":"Event","items":[{"id":"c0_0","label":"Landfall"},{"id":"c0_1","label":"Blackout"},{"id":"c0_2","label":"Signal"},{"id":"c0_3","label":"Recovery"},{"id":"c0_4","label":"Collapse"}]},{"id":"c1","name":"Agent","items":[{"id":"c1_0","label":"Amundsen"},{"id":"c1_1","label":"Reyes"},{"id":"c1_2","label":"Okafor"},{"id":"c1_3","label":"Lindqvist"},{"id":"c1_4","label":"Varga"}]},{"id":"c2","name":"Artifact","items":[{"id":"c2_0","label":"Frozen log"},{"id":"c2_1","label":"Radio mast"},{"id":"c2_2","label":"Core sample"},{"id":"c2_3","label":"Sealed crate"},{"id":"c2_4","label":"Beacon cell"}]}],"solution":[{"anchor":"y0","c0":"c0_4","c1":"c1_4","c2":"c2_1"},{"anchor":"y1","c0":"c0_3","c1":"c1_0","c2":"c2_3"},{"anchor":"y2","c0":"c0_1","c1":"c1_1","c2":"c2_4"},{"anchor":"y3","c0":"c0_0","c1":"c1_2","c2":"c2_0"},{"anchor":"y4","c0":"c0_2","c1":"c1_3","c2":"c2_2"}],"clues":[{"type":"Contradiction","text":"The Beacon cell could only have followed the Sealed crate, never the reverse.","unstable":false},{"type":"Chronicle","text":"Whatever their exact dates, Reyes was filed before Okafor.","unstable":false},{"type":"Ledger","text":"Count 1 step forward from Okafor to reach Lindqvist.","unstable":false},{"type":"Survey","text":"Signal lies 2 places after Blackout.","unstable":false},{"type":"Log","text":"Collapse predates Blackout — the records are unambiguous on the order.","unstable":false},{"type":"Manifest","text":"Collapse and Recovery stand 1 place apart on the timeline, in that order.","unstable":false},{"type":"Chronicle","text":"Whatever their exact dates, Varga was filed before Amundsen.","unstable":false},{"type":"Corrupted","text":"[CHECKSUM FAIL] Recovery · 2047 · record refuses to resolve.","unstable":true},{"type":"Manifest","text":"The Radio mast and the Sealed crate stand 1 place apart on the timeline, in that order.","unstable":false},{"type":"Contradiction","text":"The Core sample could only have followed the Frozen log, never the reverse.","unstable":false},{"type":"Log","text":"Amundsen predates Reyes — the records are unambiguous on the order.","unstable":false},{"type":"Survey","text":"The Frozen log lies 1 place after the Beacon cell.","unstable":false}],"hints":["Anchor on what's pinned outright — find a clue that fixes a single year, then let each confirmation rule out the rest of its row and column.","One record is flagged UNSTABLE — treat it as corrupted and never place it. Lean on the order and distance clues: they fix the sequence even when nothing names a year directly.","Start here: 1911 resolves to Event Collapse, Agent Varga, Artifact Radio mast. The remaining years fall out by elimination."],"hiddenRule":"Corrupted record. One recovered log remembers an event that never happened. Discard it before reasoning, or it will fracture the grid.","divergence":{"year":"2047","text":"The cascade resolves at 2047: the Core sample is the keystone. Remove it and the altered history unwinds."},"explanation":["The Antarctic Beacon untangles by holding the fixed points still and letting every confirmed link eliminate its row and column. One record is corrupted — discard it before reasoning, or it will fracture the grid.","The divergence settles at 2047: the Core sample is the keystone — remove it and the altered history unwinds."],"walkthrough":["Set aside the UNSTABLE record before placing anything.","1911 — Event: Collapse · Agent: Varga · Artifact: Radio mast","1958 — Event: Recovery · Agent: Amundsen · Artifact: Sealed crate","1979 — Event: Blackout · Agent: Reyes · Artifact: Beacon cell","2012 — Event: Landfall · Agent: Okafor · Artifact: Frozen log","2047 — Event: Signal · Agent: Lindqvist · Artifact: Core sample"],"generated":true,"clueCount":12},{"id":"clp-gen-3-1","code":"CLP-1606-B","tier":3,"title":"Five Keys to Nowhere","place":"Prague, the Sealed Vault","eraLabel":"1606 — 2038","scenario":["A vault with five locks holds nothing — yet five keys were cut across four centuries to open it. One eyewitness log is a phantom. Solve the chain and set it aside."],"categories":[{"id":"anchor","name":"Year","items":[{"id":"y0","label":"1606"},{"id":"y1","label":"1789"},{"id":"y2","label":"1888"},{"id":"y3","label":"1969"},{"id":"y4","label":"2038"}]},{"id":"c0","name":"Event","items":[{"id":"c0_0","label":"Sealing"},{"id":"c0_1","label":"Theft"},{"id":"c0_2","label":"Cipher"},{"id":"c0_3","label":"Opening"},{"id":"c0_4","label":"Erasure"}]},{"id":"c1","name":"Agent","items":[{"id":"c1_0","label":"Rudolf"},{"id":"c1_1","label":"Lavalle"},{"id":"c1_2","label":"Hana"},{"id":"c1_3","label":"Petrov"},{"id":"c1_4","label":"Swift"}]},{"id":"c2","name":"Artifact","items":[{"id":"c2_0","label":"Iron lock"},{"id":"c2_1","label":"Wax seal"},{"id":"c2_2","label":"Brass key"},{"id":"c2_3","label":"Glass eye"},{"id":"c2_4","label":"Lead tag"}]}],"solution":[{"anchor":"y0","c0":"c0_1","c1":"c1_3","c2":"c2_1"},{"anchor":"y1","c0":"c0_4","c1":"c1_4","c2":"c2_2"},{"anchor":"y2","c0":"c0_3","c1":"c1_1","c2":"c2_0"},{"anchor":"y3","c0":"c0_2","c1":"c1_2","c2":"c2_4"},{"anchor":"y4","c0":"c0_0","c1":"c1_0","c2":"c2_3"}],"clues":[{"type":"Phantom","text":"One record insists Theft belongs to 2038. It does not. The memory is false.","unstable":true},{"type":"Survey","text":"The Iron lock lies 2 places after the Wax seal.","unstable":false},{"type":"Log","text":"Petrov predates Swift — the records are unambiguous on the order.","unstable":false},{"type":"Ledger","text":"Count 4 steps forward from the Wax seal to reach the Glass eye.","unstable":false},{"type":"Chronicle","text":"Whatever their exact dates, Lavalle was filed before Hana.","unstable":false},{"type":"Contradiction","text":"The Iron lock could only have followed the Brass key, never the reverse.","unstable":false},{"type":"Manifest","text":"Theft and Opening stand 2 places apart on the timeline, in that order.","unstable":false},{"type":"Manifest","text":"Opening and Cipher stand 1 place apart on the timeline, in that order.","unstable":false},{"type":"Ledger","text":"Count 3 steps forward from Swift to reach Rudolf.","unstable":false},{"type":"Log","text":"Last in the sequence, with nothing after it: Sealing.","unstable":false}],"hints":["Anchor on what's pinned outright — find a clue that fixes a single year, then let each confirmation rule out the rest of its row and column.","One record is flagged UNSTABLE — treat it as corrupted and never place it. Lean on the order and distance clues: they fix the sequence even when nothing names a year directly.","Start here: 1606 resolves to Event Theft, Agent Petrov, Artifact Wax seal. The remaining years fall out by elimination."],"hiddenRule":"Corrupted record. One recovered log remembers an event that never happened. Discard it before reasoning, or it will fracture the grid.","divergence":{"year":"2038","text":"The cascade resolves at 2038: the Glass eye is the keystone. Remove it and the altered history unwinds."},"explanation":["Five Keys to Nowhere untangles by holding the fixed points still and letting every confirmed link eliminate its row and column. One record is corrupted — discard it before reasoning, or it will fracture the grid.","The divergence settles at 2038: the Glass eye is the keystone — remove it and the altered history unwinds."],"walkthrough":["Set aside the UNSTABLE record before placing anything.","1606 — Event: Theft · Agent: Petrov · Artifact: Wax seal","1789 — Event: Erasure · Agent: Swift · Artifact: Brass key","1888 — Event: Opening · Agent: Lavalle · Artifact: Iron lock","1969 — Event: Cipher · Agent: Hana · Artifact: Lead tag","2038 — Event: Sealing · Agent: Rudolf · Artifact: Glass eye"],"generated":true,"clueCount":10},{"id":"clp-gen-3-2","code":"CLP-1890-C","tier":3,"title":"The Recursive Census","place":"The Records Bureau","eraLabel":"1890 — 2055","scenario":["A national census keeps counting people who were erased before they were born. Five machine-records emerged from the loop, and one cannot be trusted. Reconstruct the sequence."],"categories":[{"id":"anchor","name":"Year","items":[{"id":"y0","label":"1890"},{"id":"y1","label":"1937"},{"id":"y2","label":"1974"},{"id":"y3","label":"2009"},{"id":"y4","label":"2055"}]},{"id":"c0","name":"Event","items":[{"id":"c0_0","label":"Tally"},{"id":"c0_1","label":"Purge"},{"id":"c0_2","label":"Audit"},{"id":"c0_3","label":"Merge"},{"id":"c0_4","label":"Loop"}]},{"id":"c1","name":"Agent","items":[{"id":"c1_0","label":"Hollerith"},{"id":"c1_1","label":"Mboya"},{"id":"c1_2","label":"Strand"},{"id":"c1_3","label":"Okabe"},{"id":"c1_4","label":"Vesna"}]},{"id":"c2","name":"Artifact","items":[{"id":"c2_0","label":"Punch card"},{"id":"c2_1","label":"Index reel"},{"id":"c2_2","label":"Sort bin"},{"id":"c2_3","label":"Tape spool"},{"id":"c2_4","label":"Null disc"}]}],"solution":[{"anchor":"y0","c0":"c0_3","c1":"c1_3","c2":"c2_3"},{"anchor":"y1","c0":"c0_4","c1":"c1_0","c2":"c2_2"},{"anchor":"y2","c0":"c0_0","c1":"c1_4","c2":"c2_4"},{"anchor":"y3","c0":"c0_1","c1":"c1_1","c2":"c2_1"},{"anchor":"y4","c0":"c0_2","c1":"c1_2","c2":"c2_0"}],"clues":[{"type":"Contradiction","text":"Tally could only have followed Loop, never the reverse.","unstable":false},{"type":"Log","text":"Merge predates Loop — the records are unambiguous on the order.","unstable":false},{"type":"Survey","text":"Mboya lies 3 places after Okabe.","unstable":false},{"type":"Chronicle","text":"Whatever their exact dates, the Null disc was filed before the Index reel.","unstable":false},{"type":"Chronicle","text":"Whatever their exact dates, the Index reel was filed before the Punch card.","unstable":false},{"type":"Log","text":"The Sort bin predates the Null disc — the records are unambiguous on the order.","unstable":false},{"type":"Contradiction","text":"Purge could only have followed Tally, never the reverse.","unstable":false},{"type":"Log","text":"Okabe predates Vesna — the records are unambiguous on the order.","unstable":false},{"type":"Contradiction","text":"Strand could only have followed Vesna, never the reverse.","unstable":false},{"type":"Chronicle","text":"Whatever their exact dates, Purge was filed before Audit.","unstable":false},{"type":"Phantom","text":"One record insists the Tape spool belongs to 1974. It does not. The memory is false.","unstable":true},{"type":"Chronicle","text":"Whatever their exact dates, the Tape spool was filed before the Sort bin.","unstable":false},{"type":"Manifest","text":"Hollerith and Mboya stand 2 places apart on the timeline, in that order.","unstable":false}],"hints":["Anchor on what's pinned outright — find a clue that fixes a single year, then let each confirmation rule out the rest of its row and column.","One record is flagged UNSTABLE — treat it as corrupted and never place it. Lean on the order and distance clues: they fix the sequence even when nothing names a year directly.","Start here: 1890 resolves to Event Merge, Agent Okabe, Artifact Tape spool. The remaining years fall out by elimination."],"hiddenRule":"Corrupted record. One recovered log remembers an event that never happened. Discard it before reasoning, or it will fracture the grid.","divergence":{"year":"2055","text":"The cascade resolves at 2055: the Punch card is the keystone. Remove it and the altered history unwinds."},"explanation":["The Recursive Census untangles by holding the fixed points still and letting every confirmed link eliminate its row and column. One record is corrupted — discard it before reasoning, or it will fracture the grid.","The divergence settles at 2055: the Punch card is the keystone — remove it and the altered history unwinds."],"walkthrough":["Set aside the UNSTABLE record before placing anything.","1890 — Event: Merge · Agent: Okabe · Artifact: Tape spool","1937 — Event: Loop · Agent: Hollerith · Artifact: Sort bin","1974 — Event: Tally · Agent: Vesna · Artifact: Null disc","2009 — Event: Purge · Agent: Mboya · Artifact: Index reel","2055 — Event: Audit · Agent: Strand · Artifact: Punch card"],"generated":true,"clueCount":13},{"id":"clp-gen-3-3","code":"CLP-1884-D","tier":3,"title":"Null Meridian","place":"Greenwich Observatory","eraLabel":"1884 — 2044","scenario":["The prime meridian has begun to drift, and every clock east of it disagrees with itself. Five records of the unraveling surfaced — one is a corrupted reading. Solve without it."],"categories":[{"id":"anchor","name":"Year","items":[{"id":"y0","label":"1884"},{"id":"y1","label":"1925"},{"id":"y2","label":"1961"},{"id":"y3","label":"2001"},{"id":"y4","label":"2044"}]},{"id":"c0","name":"Event","items":[{"id":"c0_0","label":"Fixing"},{"id":"c0_1","label":"Drift"},{"id":"c0_2","label":"Reset"},{"id":"c0_3","label":"Split"},{"id":"c0_4","label":"Void"}]},{"id":"c1","name":"Agent","items":[{"id":"c1_0","label":"Airy"},{"id":"c1_1","label":"Calloway"},{"id":"c1_2","label":"Renke"},{"id":"c1_3","label":"Sato"},{"id":"c1_4","label":"Imrie"}]},{"id":"c2","name":"Artifact","items":[{"id":"c2_0","label":"Brass transit"},{"id":"c2_1","label":"Pendulum"},{"id":"c2_2","label":"Quartz cell"},{"id":"c2_3","label":"Atomic ref"},{"id":"c2_4","label":"Phase rod"}]}],"solution":[{"anchor":"y0","c0":"c0_3","c1":"c1_3","c2":"c2_4"},{"anchor":"y1","c0":"c0_0","c1":"c1_0","c2":"c2_2"},{"anchor":"y2","c0":"c0_4","c1":"c1_4","c2":"c2_1"},{"anchor":"y3","c0":"c0_1","c1":"c1_2","c2":"c2_0"},{"anchor":"y4","c0":"c0_2","c1":"c1_1","c2":"c2_3"}],"clues":[{"type":"Ledger","text":"Count 1 step forward from Sato to reach Airy.","unstable":false},{"type":"Log","text":"Split predates Void — the records are unambiguous on the order.","unstable":false},{"type":"Contradiction","text":"The Brass transit could only have followed the Phase rod, never the reverse.","unstable":false},{"type":"Chronicle","text":"Whatever their exact dates, Void was filed before Drift.","unstable":false},{"type":"Manifest","text":"Fixing and Void stand 1 place apart on the timeline, in that order.","unstable":false},{"type":"Survey","text":"The Brass transit lies 2 places after the Quartz cell.","unstable":false},{"type":"Ledger","text":"Count 2 steps forward from Sato to reach Imrie.","unstable":false},{"type":"Footage","text":"Recovered, degraded: Imrie logged against 2001 — a reading that cannot be reconciled.","unstable":true},{"type":"Chronicle","text":"Whatever their exact dates, Drift was filed before Reset.","unstable":false},{"type":"Survey","text":"The Pendulum lies 1 place after the Quartz cell.","unstable":false},{"type":"Manifest","text":"Sato and Calloway stand 4 places apart on the timeline, in that order.","unstable":false},{"type":"Contradiction","text":"The Atomic ref could only have followed the Quartz cell, never the reverse.","unstable":false}],"hints":["Anchor on what's pinned outright — find a clue that fixes a single year, then let each confirmation rule out the rest of its row and column.","One record is flagged UNSTABLE — treat it as corrupted and never place it. Lean on the order and distance clues: they fix the sequence even when nothing names a year directly.","Start here: 1884 resolves to Event Split, Agent Sato, Artifact Phase rod. The remaining years fall out by elimination."],"hiddenRule":"Corrupted record. One recovered log remembers an event that never happened. Discard it before reasoning, or it will fracture the grid.","divergence":{"year":"2044","text":"The cascade resolves at 2044: the Atomic ref is the keystone. Remove it and the altered history unwinds."},"explanation":["Null Meridian untangles by holding the fixed points still and letting every confirmed link eliminate its row and column. One record is corrupted — discard it before reasoning, or it will fracture the grid.","The divergence settles at 2044: the Atomic ref is the keystone — remove it and the altered history unwinds."],"walkthrough":["Set aside the UNSTABLE record before placing anything.","1884 — Event: Split · Agent: Sato · Artifact: Phase rod","1925 — Event: Fixing · Agent: Airy · Artifact: Quartz cell","1961 — Event: Void · Agent: Imrie · Artifact: Pendulum","2001 — Event: Drift · Agent: Renke · Artifact: Brass transit","2044 — Event: Reset · Agent: Calloway · Artifact: Atomic ref"],"generated":true,"clueCount":12},{"id":"clp-gen-3-4","code":"CLP-1837-E","tier":3,"title":"The Petersburg Vault","place":"St. Petersburg","eraLabel":"1837 — 2030","scenario":["An archive burns, is sealed, is breached, and is rewritten — not in that order. Five records describe a vault that edits its own history. One is false; discard it."],"categories":[{"id":"anchor","name":"Year","items":[{"id":"y0","label":"1837"},{"id":"y1","label":"1905"},{"id":"y2","label":"1953"},{"id":"y3","label":"1991"},{"id":"y4","label":"2030"}]},{"id":"c0","name":"Event","items":[{"id":"c0_0","label":"Deposit"},{"id":"c0_1","label":"Fire"},{"id":"c0_2","label":"Seal"},{"id":"c0_3","label":"Breach"},{"id":"c0_4","label":"Rewrite"}]},{"id":"c1","name":"Agent","items":[{"id":"c1_0","label":"Glinka"},{"id":"c1_1","label":"Volkov"},{"id":"c1_2","label":"Mira"},{"id":"c1_3","label":"Dezhnev"},{"id":"c1_4","label":"Aster"}]},{"id":"c2","name":"Artifact","items":[{"id":"c2_0","label":"Ledger book"},{"id":"c2_1","label":"Ash key"},{"id":"c2_2","label":"Iron door"},{"id":"c2_3","label":"Cracked lens"},{"id":"c2_4","label":"Void stamp"}]}],"solution":[{"anchor":"y0","c0":"c0_1","c1":"c1_2","c2":"c2_1"},{"anchor":"y1","c0":"c0_3","c1":"c1_0","c2":"c2_4"},{"anchor":"y2","c0":"c0_4","c1":"c1_4","c2":"c2_0"},{"anchor":"y3","c0":"c0_2","c1":"c1_1","c2":"c2_2"},{"anchor":"y4","c0":"c0_0","c1":"c1_3","c2":"c2_3"}],"clues":[{"type":"Log","text":"Breach predates Rewrite — the records are unambiguous on the order.","unstable":false},{"type":"Contradiction","text":"The Void stamp could only have followed the Ash key, never the reverse.","unstable":false},{"type":"Chronicle","text":"Whatever their exact dates, Seal was filed before Deposit.","unstable":false},{"type":"Chronicle","text":"Whatever their exact dates, Mira was filed before Glinka.","unstable":false},{"type":"Contradiction","text":"Dezhnev could only have followed Aster, never the reverse.","unstable":false},{"type":"Ledger","text":"Count 3 steps forward from Fire to reach Seal.","unstable":false},{"type":"Footage","text":"Recovered, degraded: the Ledger book logged against 2030 — a reading that cannot be reconciled.","unstable":true},{"type":"Log","text":"The Void stamp predates the Iron door — the records are unambiguous on the order.","unstable":false},{"type":"Survey","text":"Volkov lies 1 place after Aster.","unstable":false},{"type":"Contradiction","text":"Volkov could only have followed Glinka, never the reverse.","unstable":false},{"type":"Chronicle","text":"Whatever their exact dates, the Iron door was filed before the Cracked lens.","unstable":false},{"type":"Manifest","text":"The Ledger book and the Iron door stand 1 place apart on the timeline, in that order.","unstable":false}],"hints":["Anchor on what's pinned outright — find a clue that fixes a single year, then let each confirmation rule out the rest of its row and column.","One record is flagged UNSTABLE — treat it as corrupted and never place it. Lean on the order and distance clues: they fix the sequence even when nothing names a year directly.","Start here: 1837 resolves to Event Fire, Agent Mira, Artifact Ash key. The remaining years fall out by elimination."],"hiddenRule":"Corrupted record. One recovered log remembers an event that never happened. Discard it before reasoning, or it will fracture the grid.","divergence":{"year":"2030","text":"The cascade resolves at 2030: the Cracked lens is the keystone. Remove it and the altered history unwinds."},"explanation":["The Petersburg Vault untangles by holding the fixed points still and letting every confirmed link eliminate its row and column. One record is corrupted — discard it before reasoning, or it will fracture the grid.","The divergence settles at 2030: the Cracked lens is the keystone — remove it and the altered history unwinds."],"walkthrough":["Set aside the UNSTABLE record before placing anything.","1837 — Event: Fire · Agent: Mira · Artifact: Ash key","1905 — Event: Breach · Agent: Glinka · Artifact: Void stamp","1953 — Event: Rewrite · Agent: Aster · Artifact: Ledger book","1991 — Event: Seal · Agent: Volkov · Artifact: Iron door","2030 — Event: Deposit · Agent: Dezhnev · Artifact: Cracked lens"],"generated":true,"clueCount":12},{"id":"clp-gen-3-5","code":"CLP-1908-F","tier":3,"title":"The Tunguska Office","place":"Siberia, Field Station 7","eraLabel":"1908 — 2052","scenario":["The blast flattened a forest and, somewhere, an office that filed reports about it years earlier. Five records were recovered — one remembers an event that never happened."],"categories":[{"id":"anchor","name":"Year","items":[{"id":"y0","label":"1908"},{"id":"y1","label":"1947"},{"id":"y2","label":"1983"},{"id":"y3","label":"2016"},{"id":"y4","label":"2052"}]},{"id":"c0","name":"Event","items":[{"id":"c0_0","label":"Impact"},{"id":"c0_1","label":"Inquiry"},{"id":"c0_2","label":"Relay"},{"id":"c0_3","label":"Recovery"},{"id":"c0_4","label":"Echo"}]},{"id":"c1","name":"Agent","items":[{"id":"c1_0","label":"Kulik"},{"id":"c1_1","label":"Brandt"},{"id":"c1_2","label":"Osei"},{"id":"c1_3","label":"Lindell"},{"id":"c1_4","label":"Rao"}]},{"id":"c2","name":"Artifact","items":[{"id":"c2_0","label":"Burnt map"},{"id":"c2_1","label":"Field radio"},{"id":"c2_2","label":"Sample tin"},{"id":"c2_3","label":"Sealed file"},{"id":"c2_4","label":"Echo coil"}]}],"solution":[{"anchor":"y0","c0":"c0_2","c1":"c1_2","c2":"c2_3"},{"anchor":"y1","c0":"c0_4","c1":"c1_3","c2":"c2_2"},{"anchor":"y2","c0":"c0_1","c1":"c1_1","c2":"c2_4"},{"anchor":"y3","c0":"c0_0","c1":"c1_4","c2":"c2_1"},{"anchor":"y4","c0":"c0_3","c1":"c1_0","c2":"c2_0"}],"clues":[{"type":"Manifest","text":"The Echo coil and the Field radio stand 1 place apart on the timeline, in that order.","unstable":false},{"type":"Survey","text":"Inquiry lies 2 places after Relay.","unstable":false},{"type":"Ledger","text":"Count 2 steps forward from Osei to reach Brandt.","unstable":false},{"type":"Corrupted","text":"[CHECKSUM FAIL] the Burnt map · 1908 · record refuses to resolve.","unstable":true},{"type":"Chronicle","text":"Whatever their exact dates, Lindell was filed before Rao.","unstable":false},{"type":"Log","text":"Relay predates Impact — the records are unambiguous on the order.","unstable":false},{"type":"Contradiction","text":"Lindell could only have followed Osei, never the reverse.","unstable":false},{"type":"Survey","text":"Recovery lies 3 places after Echo.","unstable":false},{"type":"Chronicle","text":"Whatever their exact dates, Rao was filed before Kulik.","unstable":false},{"type":"Log","text":"The Sample tin predates the Echo coil — the records are unambiguous on the order.","unstable":false},{"type":"Contradiction","text":"The Burnt map could only have followed the Field radio, never the reverse.","unstable":false},{"type":"Chronicle","text":"Whatever their exact dates, the Sealed file was filed before the Sample tin.","unstable":false}],"hints":["Anchor on what's pinned outright — find a clue that fixes a single year, then let each confirmation rule out the rest of its row and column.","One record is flagged UNSTABLE — treat it as corrupted and never place it. Lean on the order and distance clues: they fix the sequence even when nothing names a year directly.","Start here: 1908 resolves to Event Relay, Agent Osei, Artifact Sealed file. The remaining years fall out by elimination."],"hiddenRule":"Corrupted record. One recovered log remembers an event that never happened. Discard it before reasoning, or it will fracture the grid.","divergence":{"year":"2052","text":"The cascade resolves at 2052: the Burnt map is the keystone. Remove it and the altered history unwinds."},"explanation":["The Tunguska Office untangles by holding the fixed points still and letting every confirmed link eliminate its row and column. One record is corrupted — discard it before reasoning, or it will fracture the grid.","The divergence settles at 2052: the Burnt map is the keystone — remove it and the altered history unwinds."],"walkthrough":["Set aside the UNSTABLE record before placing anything.","1908 — Event: Relay · Agent: Osei · Artifact: Sealed file","1947 — Event: Echo · Agent: Lindell · Artifact: Sample tin","1983 — Event: Inquiry · Agent: Brandt · Artifact: Echo coil","2016 — Event: Impact · Agent: Rao · Artifact: Field radio","2052 — Event: Recovery · Agent: Kulik · Artifact: Burnt map"],"generated":true,"clueCount":12},{"id":"clp-gen-3-6","code":"CLP-1997-G","tier":3,"title":"The Cassini Dispatch","place":"Orbital Archive","eraLabel":"1997 — 2061","scenario":["A probe long thought destroyed keeps transmitting, and its messages predate its own launch. Five mission records surfaced; one is impossible. Reconstruct the true sequence."],"categories":[{"id":"anchor","name":"Year","items":[{"id":"y0","label":"1997"},{"id":"y1","label":"2004"},{"id":"y2","label":"2017"},{"id":"y3","label":"2034"},{"id":"y4","label":"2061"}]},{"id":"c0","name":"Event","items":[{"id":"c0_0","label":"Launch"},{"id":"c0_1","label":"Flyby"},{"id":"c0_2","label":"Descent"},{"id":"c0_3","label":"Silence"},{"id":"c0_4","label":"Return"}]},{"id":"c1","name":"Agent","items":[{"id":"c1_0","label":"Cassini"},{"id":"c1_1","label":"Mwangi"},{"id":"c1_2","label":"Halvard"},{"id":"c1_3","label":"Renn"},{"id":"c1_4","label":"Sole"}]},{"id":"c2","name":"Artifact","items":[{"id":"c2_0","label":"Gold disc"},{"id":"c2_1","label":"Antenna dish"},{"id":"c2_2","label":"Probe shell"},{"id":"c2_3","label":"Dead battery"},{"id":"c2_4","label":"Return key"}]}],"solution":[{"anchor":"y0","c0":"c0_2","c1":"c1_4","c2":"c2_1"},{"anchor":"y1","c0":"c0_3","c1":"c1_0","c2":"c2_3"},{"anchor":"y2","c0":"c0_1","c1":"c1_3","c2":"c2_4"},{"anchor":"y3","c0":"c0_4","c1":"c1_1","c2":"c2_0"},{"anchor":"y4","c0":"c0_0","c1":"c1_2","c2":"c2_2"}],"clues":[{"type":"Manifest","text":"Cassini and Mwangi stand 2 places apart on the timeline, in that order.","unstable":false},{"type":"Corrupted","text":"[CHECKSUM FAIL] Flyby · 1997 · record refuses to resolve.","unstable":true},{"type":"Ledger","text":"Count 2 steps forward from the Return key to reach the Probe shell.","unstable":false},{"type":"Contradiction","text":"Flyby could only have followed Silence, never the reverse.","unstable":false},{"type":"Log","text":"The Antenna dish predates the Dead battery — the records are unambiguous on the order.","unstable":false},{"type":"Chronicle","text":"Whatever their exact dates, Descent was filed before Silence.","unstable":false},{"type":"Chronicle","text":"Whatever their exact dates, the Dead battery was filed before the Return key.","unstable":false},{"type":"Survey","text":"Halvard lies 4 places after Sole.","unstable":false},{"type":"Survey","text":"Launch lies 2 places after Flyby.","unstable":false}],"hints":["Anchor on what's pinned outright — find a clue that fixes a single year, then let each confirmation rule out the rest of its row and column.","One record is flagged UNSTABLE — treat it as corrupted and never place it. Lean on the order and distance clues: they fix the sequence even when nothing names a year directly.","Start here: 1997 resolves to Event Descent, Agent Sole, Artifact Antenna dish. The remaining years fall out by elimination."],"hiddenRule":"Corrupted record. One recovered log remembers an event that never happened. Discard it before reasoning, or it will fracture the grid.","divergence":{"year":"2061","text":"The cascade resolves at 2061: the Probe shell is the keystone. Remove it and the altered history unwinds."},"explanation":["The Cassini Dispatch untangles by holding the fixed points still and letting every confirmed link eliminate its row and column. One record is corrupted — discard it before reasoning, or it will fracture the grid.","The divergence settles at 2061: the Probe shell is the keystone — remove it and the altered history unwinds."],"walkthrough":["Set aside the UNSTABLE record before placing anything.","1997 — Event: Descent · Agent: Sole · Artifact: Antenna dish","2004 — Event: Silence · Agent: Cassini · Artifact: Dead battery","2017 — Event: Flyby · Agent: Renn · Artifact: Return key","2034 — Event: Return · Agent: Mwangi · Artifact: Gold disc","2061 — Event: Launch · Agent: Halvard · Artifact: Probe shell"],"generated":true,"clueCount":9},{"id":"clp-gen-3-7","code":"CLP-1287-H","tier":3,"title":"Ledger of the Drowned Cities","place":"The North Sea","eraLabel":"1287 — 2079","scenario":["Cities the sea swallowed are still filing tax ledgers. Five records rose from the water across eight centuries, and one is a forgery of memory. Solve the chain."],"categories":[{"id":"anchor","name":"Year","items":[{"id":"y0","label":"1287"},{"id":"y1","label":"1421"},{"id":"y2","label":"1634"},{"id":"y3","label":"1953"},{"id":"y4","label":"2079"}]},{"id":"c0","name":"Event","items":[{"id":"c0_0","label":"Flood"},{"id":"c0_1","label":"Salvage"},{"id":"c0_2","label":"Mapping"},{"id":"c0_3","label":"Surge"},{"id":"c0_4","label":"Submersion"}]},{"id":"c1","name":"Agent","items":[{"id":"c1_0","label":"Wyn"},{"id":"c1_1","label":"Aldous"},{"id":"c1_2","label":"Mira"},{"id":"c1_3","label":"Sten"},{"id":"c1_4","label":"Cael"}]},{"id":"c2","name":"Artifact","items":[{"id":"c2_0","label":"Tide ledger"},{"id":"c2_1","label":"Salt chart"},{"id":"c2_2","label":"Lead weight"},{"id":"c2_3","label":"Bronze bell"},{"id":"c2_4","label":"Drowned key"}]}],"solution":[{"anchor":"y0","c0":"c0_1","c1":"c1_3","c2":"c2_3"},{"anchor":"y1","c0":"c0_2","c1":"c1_2","c2":"c2_4"},{"anchor":"y2","c0":"c0_0","c1":"c1_0","c2":"c2_0"},{"anchor":"y3","c0":"c0_4","c1":"c1_4","c2":"c2_2"},{"anchor":"y4","c0":"c0_3","c1":"c1_1","c2":"c2_1"}],"clues":[{"type":"Contradiction","text":"The Lead weight could only have followed the Tide ledger, never the reverse.","unstable":false},{"type":"Log","text":"The Drowned key predates the Tide ledger — the records are unambiguous on the order.","unstable":false},{"type":"Chronicle","text":"Whatever their exact dates, Wyn was filed before Cael.","unstable":false},{"type":"Manifest","text":"Sten and Wyn stand 2 places apart on the timeline, in that order.","unstable":false},{"type":"Survey","text":"The Salt chart lies 4 places after the Bronze bell.","unstable":false},{"type":"Log","text":"Mapping predates Surge — the records are unambiguous on the order.","unstable":false},{"type":"Ledger","text":"Count 2 steps forward from Mapping to reach Submersion.","unstable":false},{"type":"Ledger","text":"Count 1 step forward from Salvage to reach Mapping.","unstable":false},{"type":"Manifest","text":"Sten and Aldous stand 4 places apart on the timeline, in that order.","unstable":false},{"type":"Corrupted","text":"[CHECKSUM FAIL] Aldous · 1421 · record refuses to resolve.","unstable":true},{"type":"Survey","text":"Flood lies 1 place after Mapping.","unstable":false}],"hints":["Anchor on what's pinned outright — find a clue that fixes a single year, then let each confirmation rule out the rest of its row and column.","One record is flagged UNSTABLE — treat it as corrupted and never place it. Lean on the order and distance clues: they fix the sequence even when nothing names a year directly.","Start here: 1287 resolves to Event Salvage, Agent Sten, Artifact Bronze bell. The remaining years fall out by elimination."],"hiddenRule":"Corrupted record. One recovered log remembers an event that never happened. Discard it before reasoning, or it will fracture the grid.","divergence":{"year":"2079","text":"The cascade resolves at 2079: the Salt chart is the keystone. Remove it and the altered history unwinds."},"explanation":["Ledger of the Drowned Cities untangles by holding the fixed points still and letting every confirmed link eliminate its row and column. One record is corrupted — discard it before reasoning, or it will fracture the grid.","The divergence settles at 2079: the Salt chart is the keystone — remove it and the altered history unwinds."],"walkthrough":["Set aside the UNSTABLE record before placing anything.","1287 — Event: Salvage · Agent: Sten · Artifact: Bronze bell","1421 — Event: Mapping · Agent: Mira · Artifact: Drowned key","1634 — Event: Flood · Agent: Wyn · Artifact: Tide ledger","1953 — Event: Submersion · Agent: Cael · Artifact: Lead weight","2079 — Event: Surge · Agent: Aldous · Artifact: Salt chart"],"generated":true,"clueCount":11},{"id":"clp-gen-3-8","code":"CLP-1999-I","tier":3,"title":"The Final Redaction","place":"TCA Black Archive","eraLabel":"1999 — 2063","scenario":["The last sealed case in the Agency's own vault. Five records describe the founding, the breach, and the redaction of a name — and one of them is a lie the Agency told itself. Reconstruct it, if you dare."],"categories":[{"id":"anchor","name":"Year","items":[{"id":"y0","label":"1999"},{"id":"y1","label":"2024"},{"id":"y2","label":"2037"},{"id":"y3","label":"2050"},{"id":"y4","label":"2063"}]},{"id":"c0","name":"Event","items":[{"id":"c0_0","label":"Founding"},{"id":"c0_1","label":"Breach"},{"id":"c0_2","label":"Redaction"},{"id":"c0_3","label":"Inquiry"},{"id":"c0_4","label":"Closure"}]},{"id":"c1","name":"Agent","items":[{"id":"c1_0","label":"Control"},{"id":"c1_1","label":"Cipher"},{"id":"c1_2","label":"Vance"},{"id":"c1_3","label":"Solveig"},{"id":"c1_4","label":"Null"}]},{"id":"c2","name":"Artifact","items":[{"id":"c2_0","label":"Charter page"},{"id":"c2_1","label":"Black cube"},{"id":"c2_2","label":"Redaction pen"},{"id":"c2_3","label":"Sealed writ"},{"id":"c2_4","label":"Final key"}]}],"solution":[{"anchor":"y0","c0":"c0_2","c1":"c1_1","c2":"c2_4"},{"anchor":"y1","c0":"c0_3","c1":"c1_0","c2":"c2_3"},{"anchor":"y2","c0":"c0_0","c1":"c1_3","c2":"c2_0"},{"anchor":"y3","c0":"c0_4","c1":"c1_4","c2":"c2_1"},{"anchor":"y4","c0":"c0_1","c1":"c1_2","c2":"c2_2"}],"clues":[{"type":"Contradiction","text":"The Charter page could only have followed the Sealed writ, never the reverse.","unstable":false},{"type":"Ledger","text":"Count 2 steps forward from Control to reach Null.","unstable":false},{"type":"Log","text":"Null predates Vance — the records are unambiguous on the order.","unstable":false},{"type":"Chronicle","text":"Whatever their exact dates, Founding was filed before Closure.","unstable":false},{"type":"Contradiction","text":"Inquiry could only have followed Redaction, never the reverse.","unstable":false},{"type":"Manifest","text":"The Charter page and the Black cube stand 1 place apart on the timeline, in that order.","unstable":false},{"type":"Corrupted","text":"[CHECKSUM FAIL] the Final key · 2037 · record refuses to resolve.","unstable":true},{"type":"Log","text":"Inquiry predates Founding — the records are unambiguous on the order.","unstable":false},{"type":"Chronicle","text":"Whatever their exact dates, the Final key was filed before the Sealed writ.","unstable":false},{"type":"Contradiction","text":"Breach could only have followed Closure, never the reverse.","unstable":false},{"type":"Chronicle","text":"Whatever their exact dates, the Charter page was filed before the Redaction pen.","unstable":false},{"type":"Survey","text":"Control lies 1 place after Cipher.","unstable":false}],"hints":["Anchor on what's pinned outright — find a clue that fixes a single year, then let each confirmation rule out the rest of its row and column.","One record is flagged UNSTABLE — treat it as corrupted and never place it. Lean on the order and distance clues: they fix the sequence even when nothing names a year directly.","Start here: 1999 resolves to Event Redaction, Agent Cipher, Artifact Final key. The remaining years fall out by elimination."],"hiddenRule":"Corrupted record. One recovered log remembers an event that never happened. Discard it before reasoning, or it will fracture the grid.","divergence":{"year":"2063","text":"The cascade resolves at 2063: the Redaction pen is the keystone. Remove it and the altered history unwinds."},"explanation":["The Final Redaction untangles by holding the fixed points still and letting every confirmed link eliminate its row and column. One record is corrupted — discard it before reasoning, or it will fracture the grid.","The divergence settles at 2063: the Redaction pen is the keystone — remove it and the altered history unwinds."],"walkthrough":["Set aside the UNSTABLE record before placing anything.","1999 — Event: Redaction · Agent: Cipher · Artifact: Final key","2024 — Event: Inquiry · Agent: Control · Artifact: Sealed writ","2037 — Event: Founding · Agent: Solveig · Artifact: Charter page","2050 — Event: Closure · Agent: Null · Artifact: Black cube","2063 — Event: Breach · Agent: Vance · Artifact: Redaction pen"],"generated":true,"clueCount":12}]};
+
+/* TIMELINE — puzzle library + meta narrative
+ * Each puzzle is a logic-grid deduction with a single unique solution.
+ * Solutions are expressed as full tuples keyed by category id; the anchor
+ * category is categories[0]. Clues are written so the reliable ones pin
+ * exactly one solution; clues marked `unstable` are corrupted red herrings.
+ */
+(function () {
+  const TIER = {
+    1: { label: "TIER I", name: "Minor Distortion", instability: 28 },
+    2: { label: "TIER II", name: "Multi-Event Divergence", instability: 58 },
+    3: { label: "TIER III", name: "Collapse Event", instability: 91 },
+  };
+
+  /* ---------------------------------------------------------------- P1 */
+  const p1 = {
+    id: "p1",
+    code: "DST-1851-L",
+    tier: 1,
+    title: "The London Signal",
+    place: "London, British Empire",
+    eraLabel: "1851 — 1893",
+    scenario: [
+      "In the spring of 1890, every constable on the Strand carries a glass slab that glows, chimes, and answers when spoken to. Parliament debates the etiquette of the <em>pocket telephone</em>. Nobody finds this strange — which is precisely the problem.",
+      "A device this advanced cannot simply appear. The Agency's instruments show four separate anomalies bleeding into the 19th century, each a single component of the impossible handset, each carried back by a different courier in a different year.",
+      "Reconstruct the smuggling chain. Fix each component to its year and its courier, and we can identify the keystone — the one object that, removed, lets the whole anachronism collapse.",
+    ],
+    categories: [
+      { id: "year", name: "Year", items: [
+        { id: "y1851", label: "1851" }, { id: "y1867", label: "1867" },
+        { id: "y1889", label: "1889" }, { id: "y1893", label: "1893" } ] },
+      { id: "person", name: "Courier", items: [
+        { id: "cole", label: "Cole" }, { id: "halasz", label: "Halász" },
+        { id: "raman", label: "Raman" }, { id: "thorn", label: "Thorn" } ] },
+      { id: "artifact", name: "Component", items: [
+        { id: "touch", label: "Touchscreen" }, { id: "cell", label: "Battery cell" },
+        { id: "circuit", label: "Circuit board" }, { id: "handset", label: "Handset" } ] },
+    ],
+    solution: [
+      { year: "y1851", person: "cole",   artifact: "touch" },
+      { year: "y1867", person: "halasz", artifact: "cell" },
+      { year: "y1889", person: "raman",  artifact: "circuit" },
+      { year: "y1893", person: "thorn",  artifact: "handset" },
+    ],
+    clues: [
+      { type: "Contradiction", text: "The assembled <strong>handset</strong> cannot predate its own parts. It bears the <em>latest</em> arrival date of the four anomalies." },
+      { type: "Manifest", text: "Courier ledger, partial: <strong>Halász's</strong> drop precedes <strong>Raman's</strong> by exactly twenty-two years." },
+      { type: "Document", text: "Exhibition catalogue: the glass <strong>touchscreen</strong> was first inventoried at the Great Exhibition of <strong>1851</strong>." },
+      { type: "Eyewitness", text: "\u201C<strong>Cole</strong> carried no current — her cargo was cold glass and nothing else.\u201D" },
+      { type: "Contradiction", text: "The <strong>battery cell</strong> arrived before the <strong>circuit board</strong> it would later power." },
+      { type: "Customs", text: "Corroborating port note: <strong>Halász</strong> cleared the docks the year of the Paris <em>Exposition électrique</em> — 1867." },
+    ],
+    hints: [
+      "Start with the keystone. One clue fixes a single component to the latest year on the grid — anchor there and work outward.",
+      "Clue 2 fits only one pair of years that are twenty-two apart. Place Halász and Raman first; the other two couriers fall out by elimination.",
+      "Cole carried the touchscreen (1851). \u201CCell before circuit\u201D means 1867 then 1889. Thorn is left with 1893 and the assembled handset.",
+    ],
+    hiddenRule: "Causality. An assembled device cannot arrive before the components it is built from — so the handset must hold the latest date.",
+    divergence: { year: "1893", text: "The completed handset is the keystone. The earlier fragments are inert curios without it. Recover the 1893 handset and the signal dies in its cradle." },
+    explanation: [
+      "Four couriers, four years, one impossible phone. The chain reads cleanly once the keystone is fixed: the <strong>handset cannot precede its parts</strong>, so it takes 1893 — and Thorn, the only courier left after the others are placed.",
+      "Cole's \u201Ccold glass\u201D is the touchscreen at the 1851 Exhibition. Halász clears port in 1867 (the battery cell); the manifest's twenty-two-year gap drops Raman and the circuit board into 1889. The cell arriving before the circuit confirms the order.",
+      "Remove the 1893 handset and the touchscreen, cell, and board are just three unconnected oddities — no signal, no anachronism. London goes quiet again.",
+    ],
+    walkthrough: [
+      "Handset = 1893 (latest date; an assembly can't precede its parts).",
+      "Touchscreen = 1851 (Exhibition catalogue).",
+      "Cole = touchscreen \u2192 Cole = 1851.",
+      "Halász = 1867, Raman = 1889 (the 22-year manifest gap).",
+      "Thorn is the only courier left \u2192 Thorn = 1893 = handset.",
+      "Cell before circuit \u2192 cell = 1867 (Halász), circuit = 1889 (Raman).",
+    ],
+  };
+
+  /* ---------------------------------------------------------------- P2 */
+  const p2 = {
+    id: "p2",
+    code: "DVG-0064-R",
+    tier: 2,
+    title: "The Library That Wasn't Burned",
+    place: "Rome, the Eternal Empire",
+    eraLabel: "64 — 410 CE",
+    scenario: [
+      "The Library of Alexandria never burned. Knowledge that should have been ash instead compounded for centuries, and the Roman Empire learned to industrialise a thousand years too early. Aqueducts now carry current. Legions march to telegraph drums.",
+      "Four innovations broke loose across four reigns, each tied to a Roman figure and a physical artifact recovered from the wrong stratum. Reconstruct who introduced what, and when.",
+      "Be warned: this timeline has been altered long enough that the records themselves have begun to lie. One eyewitness clue is <em>corrupted</em> — it remembers an event that never happened. You must solve the grid without it.",
+    ],
+    categories: [
+      { id: "era", name: "Era", items: [
+        { id: "e64", label: "64 CE" }, { id: "e122", label: "122 CE" },
+        { id: "e271", label: "271 CE" }, { id: "e410", label: "410 CE" } ] },
+      { id: "innovation", name: "Innovation", items: [
+        { id: "steam", label: "Steam engine" }, { id: "telegraph", label: "Telegraph" },
+        { id: "powder", label: "Gunpowder" }, { id: "press", label: "Printing press" } ] },
+      { id: "person", name: "Figure", items: [
+        { id: "heron", label: "Heron" }, { id: "hadrian", label: "Hadrian" },
+        { id: "aurelian", label: "Aurelian" }, { id: "theon", label: "Theon" } ] },
+      { id: "artifact", name: "Artifact", items: [
+        { id: "turbine", label: "Brass turbine" }, { id: "coil", label: "Copper coil" },
+        { id: "saltpeter", label: "Saltpeter cache" }, { id: "type", label: "Type tray" } ] },
+    ],
+    solution: [
+      { era: "e64",  innovation: "steam",     person: "heron",    artifact: "turbine" },
+      { era: "e122", innovation: "telegraph", person: "hadrian",  artifact: "coil" },
+      { era: "e271", innovation: "powder",    person: "aurelian", artifact: "saltpeter" },
+      { era: "e410", innovation: "press",     person: "theon",    artifact: "type" },
+    ],
+    clues: [
+      { type: "Contradiction", text: "<strong>Heron's</strong> anomaly is the oldest of the four." },
+      { type: "Document", text: "\u201CHeron's engine turned fire into motion.\u201D" },
+      { type: "Artifact", text: "The <strong>brass turbine</strong> was the steam engine's only moving part — the two are one object." },
+      { type: "Record", text: "<strong>Hadrian</strong> strung the <strong>copper coil</strong> the length of his northern wall, completed in 122 CE." },
+      { type: "Contradiction", text: "The <strong>telegraph</strong> could transmit nothing without the copper coil to carry it." },
+      { type: "Eyewitness", text: "\u201C<strong>Aurelian's</strong> gift could <em>detonate</em>. It moved no engines, carried no words, and pressed no pages.\u201D" },
+      { type: "Artifact", text: "There is no gunpowder without the <strong>saltpeter cache</strong>." },
+      { type: "Document", text: "<strong>Aurelian</strong> raised his great walls around Rome in 271 CE." },
+      { type: "Eyewitness", unstable: true, text: "\u201CI saw the printing press at work in the year of the Great Fire — 64 CE.\u201D" },
+    ],
+    hints: [
+      "Several clues describe the same object twice — once as a person's deed, once as an artifact. Chain those pairs and the rows assemble fast.",
+      "One record is flagged UNSTABLE. Treat it as corrupted and never place it on the grid. Every reliable clue still yields one solution.",
+      "Heron/Steam/Turbine = 64. Hadrian/Telegraph/Coil = 122. Aurelian/Gunpowder/Saltpeter = 271. Theon takes the press and type tray in 410 by elimination.",
+    ],
+    hiddenRule: "Corrupted memory. After a divergence, some eyewitness records 'remember' events that never occurred. One clue is poison — discard it before reasoning.",
+    divergence: { year: "64 CE", text: "Heron's brass turbine is the bootstrap. It is the first machine to turn Alexandrian theory into motion. Remove the turbine in 64 CE and the entire industrial cascade unwinds." },
+    explanation: [
+      "The grid solves on pairs. \u201CHeron's engine turned fire into motion\u201D plus \u201Cthe turbine is the steam engine\u201D plants Heron, steam, and the turbine together — and the oldest-anomaly clue drops the trio into 64 CE.",
+      "Hadrian's wall fixes the coil and telegraph to 122; Aurelian's detonating gift and saltpeter to his 271 walls. Theon, the Alexandrian archivist, is left with the printing press and type tray in 410.",
+      "The unstable clue — the press \u201Cseen\u201D in 64 — is a phantom memory. It cannot be true: 64 belongs to the steam turbine. Players who place it create a false contradiction and stall. The lesson of Tier II: <strong>not every record can be trusted</strong>.",
+    ],
+    walkthrough: [
+      "Discard the UNSTABLE clue (press in 64 CE) — it is corrupted.",
+      "Heron = steam = turbine; oldest anomaly \u2192 64 CE.",
+      "Hadrian = coil = telegraph \u2192 122 CE (the wall).",
+      "Aurelian = gunpowder = saltpeter \u2192 271 CE (the walls of Rome).",
+      "Theon = printing press = type tray \u2192 410 CE (the only slot left).",
+    ],
+  };
+
+  /* ---------------------------------------------------------------- P3 */
+  const p3 = {
+    id: "p3",
+    code: "CLP-████-∞",
+    tier: 3,
+    title: "The Closed Loop",
+    place: "Time Correction Agency — Records Vault",
+    eraLabel: "1908 — 2061",
+    scenario: [
+      "This is not an alternate history. This is <em>our</em> history, folding back on itself. Five records have surfaced from the Agency's own sealed vault, and they describe a chain of events that has no beginning — the last reaches back to ignite the first.",
+      "Each record fixes a year to an event, an agent, and an artifact. One of those agents is <strong>Cipher</strong> — your own field designation. We need you to reconstruct the loop. We need to know where the Agency itself was founded, and by whose hand.",
+      "A piece of recovered footage is <em>unstable</em>. It places you somewhere you cannot logically be. Set it aside to solve the grid — but do not forget that you saw it.",
+    ],
+    categories: [
+      { id: "year", name: "Year", items: [
+        { id: "y1908", label: "1908" }, { id: "y1947", label: "1947" },
+        { id: "y1969", label: "1969" }, { id: "y2024", label: "2024" },
+        { id: "y2061", label: "2061" } ] },
+      { id: "event", name: "Event", items: [
+        { id: "return", label: "The Return" }, { id: "wipe", label: "Memory Wipe" },
+        { id: "broadcast", label: "First Broadcast" }, { id: "founding", label: "The Founding" },
+        { id: "war", label: "The Quiet War" } ] },
+      { id: "agent", name: "Agent", items: [
+        { id: "vance", label: "Vance" }, { id: "okonkwo", label: "Okonkwo" },
+        { id: "reyes", label: "Reyes" }, { id: "cipher", label: "Cipher (you)" },
+        { id: "solveig", label: "Solveig" } ] },
+      { id: "artifact", name: "Artifact", items: [
+        { id: "watch", label: "Cracked watch" }, { id: "vial", label: "Glass vial" },
+        { id: "cube", label: "Black cube" }, { id: "page", label: "Torn page" },
+        { id: "key", label: "Brass key" } ] },
+    ],
+    solution: [
+      { year: "y1908", event: "return",    agent: "vance",   artifact: "watch" },
+      { year: "y1947", event: "wipe",      agent: "okonkwo", artifact: "vial" },
+      { year: "y1969", event: "broadcast", agent: "reyes",   artifact: "cube" },
+      { year: "y2024", event: "founding",  agent: "cipher",  artifact: "page" },
+      { year: "y2061", event: "war",       agent: "solveig", artifact: "key" },
+    ],
+    clues: [
+      { type: "Contradiction", text: "<strong>Vance's</strong> record is the oldest of the five." },
+      { type: "Log", text: "<strong>The Return</strong> sits at the earliest point in the chain." },
+      { type: "Artifact", text: "The <strong>cracked watch</strong> stopped at the exact instant of the Return." },
+      { type: "Contradiction", text: "<strong>Solveig's</strong> file bears the latest timestamp of all five." },
+      { type: "Document", text: "<strong>The Quiet War</strong> and the <strong>brass key</strong> share a year — and Solveig is the one who waged that war." },
+      { type: "Log", text: "<strong>The First Broadcast</strong> aired in 1969." },
+      { type: "Document", text: "<strong>Reyes</strong> sent the first broadcast." },
+      { type: "Artifact", text: "The <strong>black cube</strong> was the transmitter of the first broadcast." },
+      { type: "Document", text: "<strong>The Founding</strong> postdates both the First Broadcast and the Memory Wipe — yet it is <em>not</em> the latest record." },
+      { type: "Document", text: "Agent <strong>Cipher</strong>'s file is sealed to the Founding itself; the <strong>torn page</strong> was recovered from inside it." },
+      { type: "Artifact", text: "The <strong>glass vial</strong> induced the Memory Wipe." },
+      { type: "Footage", unstable: true, text: "Recovered, degraded: a figure tagged <strong>CIPHER</strong> winding the cracked watch — in 1908." },
+    ],
+    hints: [
+      "Place the stated anchors first: the oldest record, the latest record, and the year the broadcast aired are all given outright.",
+      "The unstable footage puts Cipher in 1908 — impossible, that year is occupied by Vance. Discard it, and the Founding falls into the only year that is later than the broadcast but not the latest.",
+      "1908 Return/Vance/Watch · 1947 Wipe/Okonkwo/Vial · 1969 Broadcast/Reyes/Cube · 2024 Founding/Cipher/Page · 2061 QuietWar/Solveig/Key.",
+    ],
+    hiddenRule: "Causality loop. The final event reaches back to trigger the first — and one record places you, the investigator, at a point you could not occupy. Both are clues, not errors.",
+    divergence: { year: "2024", text: "The Founding is the keystone — and the torn page recovered from Cipher's sealed file is the Agency's founding charter, written in your own hand. There is no clean object to remove. Correcting this timeline means correcting yourself." },
+    explanation: [
+      "The chain closes on itself. Solveig's <strong>Quiet War</strong> of 2061 dispatches the <strong>brass key</strong> backward; the key is cut to wind Vance's <strong>cracked watch</strong>, which stops at <strong>the Return</strong> of 1908 — the event that begins everything. The end of the loop is the cause of its beginning.",
+      "Reyes broadcasts in 1969 through the black cube. Okonkwo's glass vial erases the memory of it in 1947 — a wipe that, in loop-time, precedes the thing it conceals. And the Founding lands in 2024: later than the broadcast, later than the wipe, but not the latest record.",
+      "The unstable footage was never a glitch. It places <strong>Cipher</strong> — you — in 1908, winding the watch. You could not be there. And yet the torn page in the founding charter is in your handwriting. The Agency that recruited you to correct the timeline was founded by you. You are not investigating the divergence. <strong>You are the divergence.</strong>",
+    ],
+    walkthrough: [
+      "Set aside the UNSTABLE footage (Cipher in 1908).",
+      "Vance = oldest = 1908; the Return is earliest \u2192 1908; cracked watch stopped at the Return \u2192 1908.",
+      "Solveig = latest = 2061; Quiet War + brass key = 2061.",
+      "Broadcast = 1969; Reyes sent it; black cube transmitted it \u2192 1969.",
+      "Founding > broadcast & wipe, but not latest \u2192 2024; Cipher + torn page sealed to the Founding \u2192 2024.",
+      "Only 1947 remains: Memory Wipe / Okonkwo / glass vial.",
+    ],
+  };
+
+  /* ----------------------------------------------------------- narrative */
+  const agency = {
+    name: "Time Correction Agency",
+    abbrev: "TCA",
+    handler: "CONTROL",
+    onboarding: [
+      { from: "CONTROL", text: "Field Investigator — you're awake. Good. We don't have long, so I'll be direct." },
+      { from: "CONTROL", text: "Reality is fraying. Somewhere upstream, history was altered, and the damage is propagating forward into the present. Your present." },
+      { from: "CONTROL", text: "The Agency repairs these fractures. We don't change the past — we <em>restore</em> it. Your job is to read the evidence, reconstruct what truly happened, and identify the keystone: the one change that, undone, lets the timeline heal." },
+      { from: "CONTROL", text: "Each case is a deduction grid. Mark what's impossible, confirm what's certain, eliminate down to the truth. The Paradox Meter on your console tracks how unstable the local timeline has become. Keep an eye on it." },
+      { from: "CONTROL", text: "One more thing. The deeper we go, the less you should trust the records — and, eventually, your own memory. Begin when ready." },
+    ],
+  };
+
+  const beats = {
+    p1: [
+      { from: "CONTROL", text: "Clean work, Investigator. London is quiet again — the handset never assembled, the couriers never sailed. A textbook minor distortion." },
+      { from: "CONTROL", text: "But I'll be honest: this one shouldn't have happened at all. Someone routed those components with precision. This wasn't an accident of the timestream. Stand by for the next fracture." },
+    ],
+    p2: [
+      { from: "CONTROL", text: "Rome is ash again, as it should be. You did something most investigators can't — you ignored a record that <em>lied</em> to you." },
+      { from: "CONTROL", text: "That worries me. The corrupted memories are spreading, and they all carry the same fingerprint. Every fracture we close traces back to one signature in the logs — and we cannot read it. The name is redacted in our own files. By us. Before we ever filed it." },
+      { from: "CONTROL", text: "The next case came from inside the Agency's sealed vault. I'd tell you to be careful, but I don't think careful is going to matter." },
+    ],
+    p3: [
+      { from: "CONTROL", text: "...You've solved it. I can see your grid from here. I was hoping you wouldn't." },
+      { from: "CONTROL", text: "The signature we couldn't read — the one under every fracture, the redaction in our own founding charter. It's yours. You founded the Agency in 2024. You wrote the orders that sent Solveig to 2061. You cut the key that wound the watch that started the Return in 1908." },
+      { from: "CONTROL", text: "We didn't recruit you to fix the timeline, Investigator. The timeline broke <em>because</em> we recruited you. The loop is closed. It always was." },
+      { from: "CONTROL", text: "There's one fracture left in the vault. It has your name on it — the real one, under the redaction. I think you already know what it says. <em>// TRANSMISSION ENDS //</em>" },
+    ],
+  };
+
+  /* ---- scramble non-anchor display order so the solved grid is NOT a clean
+     diagonal. Marks are keyed by item id, so reordering is logic-safe. ---- */
+  function rngFrom(seed) {
+    let a = seed >>> 0;
+    return function () { a = (a + 0x6D2B79F5) >>> 0; let t = Math.imul(a ^ (a >>> 15), 1 | a); t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t; return ((t ^ (t >>> 14)) >>> 0) / 4294967296; };
+  }
+  function scramble(puzzle, seed) {
+    const r = rngFrom(seed);
+    puzzle.categories.forEach((cat, ci) => {
+      if (ci === 0) return; // keep anchor (chronological) order intact
+      for (let i = cat.items.length - 1; i > 0; i--) {
+        const j = Math.floor(r() * (i + 1));
+        [cat.items[i], cat.items[j]] = [cat.items[j], cat.items[i]];
+      }
+    });
+  }
+  scramble(p1, 41); scramble(p2, 73); scramble(p3, 128);
+
+  const LIB = window.TIMELINE_LIB || { tier1: [], tier2: [], tier3: [] };
+  const tiers = {
+    1: [p1, ...LIB.tier1],
+    2: [p2, ...LIB.tier2],
+    3: [p3, ...LIB.tier3],
+  };
+  const allPuzzles = [...tiers[1], ...tiers[2], ...tiers[3]];
+  const byId = {};
+  allPuzzles.forEach((p) => { byId[p.id] = p; });
+
+  window.TIMELINE = { TIER, puzzles: [p1, p2, p3], tiers, allPuzzles, byId, agency, beats };
+})();
+
+</script>
+<script type="text/babel" data-presets="react">
+/* TIMELINE — shared UI atoms */
+
+const { useState, useEffect, useRef } = React;
+
+/* Paradox / instability meter (lives in the topbar) */
+function ParadoxMeter({ value }) {
+  const v = Math.max(0, Math.min(100, Math.round(value)));
+  return (
+    <div className="meter" title="Local timeline instability">
+      <span className="lbl">Paradox</span>
+      <div className="track"><div className="fill" style={{ width: v + "%" }} /></div>
+      <span className="val">{v}%</span>
+    </div>
+  );
+}
+
+/* A single transmission line from CONTROL, typed in. */
+function Transmission({ from, text, delay = 0, onDone, instant = false }) {
+  const [shown, setShown] = useState(instant ? text : "");
+  const [done, setDone] = useState(instant);
+  const [started, setStarted] = useState(instant);
+
+  useEffect(() => {
+    if (instant) { onDone && onDone(); return; }
+    const t = setTimeout(() => setStarted(true), delay);
+    return () => clearTimeout(t);
+  }, []);
+
+  useEffect(() => {
+    if (!started || instant) return;
+    let i = 0;
+    const plain = text;
+    const id = setInterval(() => {
+      i += 2;
+      setShown(plain.slice(0, i));
+      if (i >= plain.length) {
+        clearInterval(id);
+        setShown(plain);
+        setDone(true);
+        onDone && onDone();
+      }
+    }, 12);
+    return () => clearInterval(id);
+  }, [started]);
+
+  if (!started) return null;
+
+  return (
+    <div className="tx rise">
+      <div className="tx-from mono">{from}</div>
+      <div className="tx-body" dangerouslySetInnerHTML={{ __html: shown + (done ? "" : "<span class='caret'></span>") }} />
+    </div>
+  );
+}
+
+/* A sequence of transmissions that reveal one after another. */
+function TransmissionLog({ lines, onComplete }) {
+  const [revealed, setRevealed] = useState(1);
+  const endRef = useRef(null);
+
+  useEffect(() => {
+    if (revealed >= lines.length) { onComplete && onComplete(); }
+  }, [revealed]);
+
+  return (
+    <div className="tx-log">
+      {lines.slice(0, revealed).map((l, i) => (
+        <Transmission
+          key={i}
+          from={l.from}
+          text={l.text}
+          onDone={() => { if (i === revealed - 1 && revealed < lines.length) {
+            setTimeout(() => setRevealed((r) => r + 1), 360);
+          } }}
+        />
+      ))}
+      <div ref={endRef} />
+    </div>
+  );
+}
+
+Object.assign(window, { ParadoxMeter, Transmission, TransmissionLog });
+
+
+/* === */
+
+/* TIMELINE — LogicGrid: generic pairwise deduction grid.
+ * marks[pairKey][aId][bId] = 0 (blank) | 1 (true / ✓) | 2 (ruled out / ✗)
+ * pairKey = `${catA.id}__${catB.id}` (catA precedes catB in puzzle order)
+ */
+
+function pairKey(aId, bId) { return aId + "__" + bId; }
+
+function buildPairs(categories) {
+  const pairs = [];
+  for (let i = 0; i < categories.length; i++)
+    for (let j = i + 1; j < categories.length; j++)
+      pairs.push([categories[i], categories[j]]);
+  return pairs;
+}
+
+function LogicGrid({ puzzle, marks, setMarks }) {
+  const pairs = buildPairs(puzzle.categories);
+
+  function cycle(pk, aId, bId) {
+    setMarks((prev) => {
+      const next = JSON.parse(JSON.stringify(prev || {}));
+      next[pk] = next[pk] || {};
+      next[pk][aId] = next[pk][aId] || {};
+      const cur = next[pk][aId][bId] || 0;
+      const val = (cur + 1) % 3;
+      next[pk][aId][bId] = val;
+
+      // auto-eliminate the row & column within this sub-grid on a ✓
+      if (val === 1) {
+        const [catA, catB] = pairs.find(([a, b]) => pairKey(a.id, b.id) === pk);
+        catB.items.forEach((b) => {
+          if (b.id !== bId) {
+            next[pk][aId][b.id] = next[pk][aId][b.id] === 1 ? 1 : 2;
+          }
+        });
+        catA.items.forEach((a) => {
+          if (a.id !== aId) {
+            next[pk][a.id] = next[pk][a.id] || {};
+            next[pk][a.id][bId] = next[pk][a.id][bId] === 1 ? 1 : 2;
+          }
+        });
+      }
+      return next;
+    });
+  }
+
+  return (
+    <div className="grid-wrap">
+      <div className="grid-blocks">
+        {pairs.map(([catA, catB]) => {
+          const pk = pairKey(catA.id, catB.id);
+          return (
+            <div className="gblock" key={pk}>
+              <table className="gtable">
+                <thead>
+                  <tr>
+                    <th className="gcorner">
+                      <span className="ga">{catA.name}</span>
+                      <span className="gx">×</span>
+                      <span className="gb">{catB.name}</span>
+                    </th>
+                    {catB.items.map((b) => (
+                      <th className="gcolh" key={b.id}>
+                        <span>{b.label}</span>
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {catA.items.map((a) => (
+                    <tr key={a.id}>
+                      <th className="growh">{a.label}</th>
+                      {catB.items.map((b) => {
+                        const v = (marks[pk] && marks[pk][a.id] && marks[pk][a.id][b.id]) || 0;
+                        return (
+                          <td
+                            key={b.id}
+                            className={"gcell" + (v === 1 ? " is-yes" : v === 2 ? " is-no" : "")}
+                            onClick={() => cycle(pk, a.id, b.id)}
+                          >
+                            {v === 1 ? <span className="mk-yes">✓</span>
+                              : v === 2 ? <span className="mk-no">✕</span> : null}
+                          </td>
+                        );
+                      })}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          );
+        })}
+      </div>
+      <div className="grid-legend mono">
+        <span><i className="lg-cell" /> unknown</span>
+        <span><i className="lg-cell"><b className="mk-yes">✓</b></i> confirmed true</span>
+        <span><i className="lg-cell"><b className="mk-no">✕</b></i> ruled out</span>
+        <span className="lg-hint">click a cell to cycle · a ✓ auto-rules-out its row &amp; column</span>
+      </div>
+    </div>
+  );
+}
+
+Object.assign(window, { LogicGrid, pairKey, buildPairs });
+
+
+/* === */
+
+/* TIMELINE — TimelineViz: live chronological visualization of confirmed marks.
+ * Anchor category = categories[0]; its items are listed in chronological order.
+ * For each anchor item we surface whatever the player has confirmed (✓).
+ */
+
+function TimelineViz({ puzzle, marks, solved }) {
+  const cats = puzzle.categories;
+  const anchor = cats[0];
+  const others = cats.slice(1);
+
+  function confirmedFor(anchorItemId, otherCat) {
+    const pk = pairKey(anchor.id, otherCat.id);
+    const row = marks[pk] && marks[pk][anchorItemId];
+    if (!row) return null;
+    const hit = otherCat.items.find((it) => row[it.id] === 1);
+    return hit || null;
+  }
+
+  const divLabel = puzzle.divergence.year;
+
+  return (
+    <div className={"tlviz" + (solved ? " solved" : "")}>
+      <div className="tlviz-head mono">
+        <span className="kicker">Timeline Visualization</span>
+        <span className="tlviz-state">
+          {solved ? "● restored — chain stable" : "● reconstructing — confirmed links only"}
+        </span>
+      </div>
+
+      <div className="tlviz-track" style={{ "--cols": anchor.items.length }}>
+        <div className="tlviz-axis" />
+        {anchor.items.map((yr, i) => {
+          const above = i % 2 === 0;
+          const isDiv = solved && yr.label === divLabel;
+          const card = (
+            <div className={"tlviz-card" + (isDiv ? " is-div" : "")}>
+              {others.map((c) => {
+                const hit = confirmedFor(yr.id, c);
+                return (
+                  <div className="tlviz-attr" key={c.id}>
+                    <span className="tlviz-cat mono">{c.name}</span>
+                    <span className={"tlviz-val" + (hit ? "" : " unknown")}>
+                      {hit ? hit.label : "—"}
+                    </span>
+                  </div>
+                );
+              })}
+              {isDiv && <div className="tlviz-divtag mono">⚠ Divergence point</div>}
+            </div>
+          );
+          return (
+            <div className={"tlviz-node" + (above ? " above" : " below")} key={yr.id}>
+              <div className="tlviz-slot top">{above ? card : null}</div>
+              <div className={"tlviz-dot" + (isDiv ? " is-div" : "")} />
+              <div className="tlviz-year mono">{yr.label}</div>
+              <div className="tlviz-slot bot">{!above ? card : null}</div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+Object.assign(window, { TimelineViz });
+
+
+/* === */
+
+/* TIMELINE — PuzzleView: one full case (scenario, clues, grid, hints, answer, solution) */
+
+function PuzzleView(props) {
+  const { puzzle, marks, setMarks, hintsUsed, onUseHint,
+          solved, onSolve, finalSel, setFinalSel, onAdvance, onWrong, isLast, isStory } = props;
+
+  const [view, setView] = useState("grid");           // grid | timeline
+  const [submitted, setSubmitted] = useState(solved);
+  const [rowResults, setRowResults] = useState(null);
+  const [revealed, setRevealed] = useState(solved);
+  const [shake, setShake] = useState(false);
+
+  const cats = puzzle.categories;
+  const anchor = cats[0];
+  const others = cats.slice(1);
+
+  // solution lookup: byAnchor[anchorItemId][catId] = itemId
+  const byAnchor = {};
+  puzzle.solution.forEach((row) => {
+    byAnchor[row[anchor.id]] = row;
+  });
+
+  function setSel(anchorId, catId, val) {
+    const next = JSON.parse(JSON.stringify(finalSel || {}));
+    next[anchorId] = next[anchorId] || {};
+    next[anchorId][catId] = val;
+    setFinalSel(next);
+  }
+
+  function pullFromGrid() {
+    const next = JSON.parse(JSON.stringify(finalSel || {}));
+    anchor.items.forEach((a) => {
+      next[a.id] = next[a.id] || {};
+      others.forEach((c) => {
+        const pk = pairKey(anchor.id, c.id);
+        const row = marks[pk] && marks[pk][a.id];
+        if (row) {
+          const hit = c.items.filter((it) => row[it.id] === 1);
+          if (hit.length === 1) next[a.id][c.id] = hit[0].id;
+        }
+      });
+    });
+    setFinalSel(next);
+  }
+
+  function allFilled() {
+    return anchor.items.every((a) =>
+      others.every((c) => finalSel[a.id] && finalSel[a.id][c.id]));
+  }
+
+  function submit() {
+    const results = anchor.items.map((a) => {
+      const correct = others.every((c) => finalSel[a.id] && finalSel[a.id][c.id] === byAnchor[a.id][c.id]);
+      return { id: a.id, correct };
+    });
+    setRowResults(results);
+    setSubmitted(true);
+    const allCorrect = results.every((r) => r.correct);
+    if (allCorrect) {
+      setRevealed(true);
+      onSolve();
+    } else {
+      setShake(true);
+      setTimeout(() => setShake(false), 500);
+      onWrong();
+    }
+  }
+
+  function giveUp() {
+    // fill selects with the solution, reveal
+    const next = {};
+    anchor.items.forEach((a) => {
+      next[a.id] = {};
+      others.forEach((c) => { next[a.id][c.id] = byAnchor[a.id][c.id]; });
+    });
+    setFinalSel(next);
+    setRevealed(true);
+    setSubmitted(true);
+    setRowResults(anchor.items.map((a) => ({ id: a.id, correct: true })));
+    onSolve(true);
+  }
+
+  const tier = window.TIMELINE.TIER[puzzle.tier];
+  const labelFor = (catId, itemId) => {
+    const c = cats.find((x) => x.id === catId);
+    const it = c.items.find((x) => x.id === itemId);
+    return it ? it.label : "";
+  };
+
+  return (
+    <div className="pv fade-in">
+      {/* ---- scenario header ---- */}
+      <header className="pv-head">
+        <div className="pv-meta mono">
+          <span className="pv-code">{puzzle.code}</span>
+          <span className="pv-tier">{tier.label} · {tier.name}</span>
+          <span className="pv-era">{puzzle.eraLabel}</span>
+        </div>
+        <h1 className="pv-title">{puzzle.title}</h1>
+        <div className="pv-place mono">{puzzle.place}</div>
+        <div className="pv-scenario">
+          {puzzle.scenario.map((p, i) => (
+            <p key={i} dangerouslySetInnerHTML={{ __html: p }} />
+          ))}
+        </div>
+      </header>
+
+      <div className="pv-body">
+        {/* ---- left: clues + hints ---- */}
+        <aside className="pv-clues">
+          <div className="pv-section-h mono">
+            <span>Evidence</span><span className="pv-count">{puzzle.clues.length} records</span>
+          </div>
+          <ol className="cluelist">
+            {puzzle.clues.map((c, i) => (
+              <li key={i} className={"clue" + (c.unstable ? " unstable" : "")}>
+                <div className="clue-top">
+                  <span className="clue-n mono">{String(i + 1).padStart(2, "0")}</span>
+                  <span className={"tag" + (c.unstable ? " unstable" : "")}>
+                    {c.unstable ? "⚠ Unstable" : c.type}
+                  </span>
+                </div>
+                <p className="clue-text" dangerouslySetInnerHTML={{ __html: c.text }} />
+              </li>
+            ))}
+          </ol>
+
+          <div className="hintbox">
+            <div className="pv-section-h mono"><span>Agency Hints</span></div>
+            {[0, 1, 2].map((i) => {
+              const titles = ["Gentle nudge", "Structural hint", "Near-solution"];
+              if (i < hintsUsed) {
+                return (
+                  <div className="hint revealed rise" key={i}>
+                    <span className="hint-lbl mono">{titles[i]}</span>
+                    <p>{puzzle.hints[i]}</p>
+                  </div>
+                );
+              }
+              if (i === hintsUsed) {
+                return (
+                  <button className="btn btn-ghost btn-sm hint-btn" key={i} onClick={onUseHint}>
+                    Request {titles[i].toLowerCase()} →
+                  </button>
+                );
+              }
+              return null;
+            })}
+            {hintsUsed >= 3 && <p className="hint-exhausted mono">All hints disclosed. Instability rising.</p>}
+          </div>
+        </aside>
+
+        {/* ---- right: workspace ---- */}
+        <section className="pv-work">
+          <div className="pv-toolbar">
+            <div className="seg mono">
+              <button className={view === "grid" ? "on" : ""} onClick={() => setView("grid")}>Deduction Grid</button>
+              <button className={view === "timeline" ? "on" : ""} onClick={() => setView("timeline")}>Timeline View</button>
+            </div>
+            <button className="btn btn-ghost btn-sm" onClick={() => {
+              if (confirm("Clear all grid marks for this case?")) setMarks(() => ({}));
+            }}>Clear grid</button>
+          </div>
+
+          {view === "grid"
+            ? <LogicGrid puzzle={puzzle} marks={marks} setMarks={setMarks} />
+            : <TimelineViz puzzle={puzzle} marks={marks} solved={revealed} />}
+
+          {/* ---- final answer ---- */}
+          <div className={"answer" + (shake ? " shake" : "")}>
+            <div className="pv-section-h mono">
+              <span>Restore the Timeline</span>
+              {!revealed && <button className="btn btn-ghost btn-sm" onClick={pullFromGrid}>Fill from grid ↥</button>}
+            </div>
+            <div className="ans-table-wrap">
+              <table className="ans-table">
+                <thead>
+                  <tr>
+                    <th className="mono">{anchor.name}</th>
+                    {others.map((c) => <th key={c.id} className="mono">{c.name}</th>)}
+                    {submitted && <th className="mono ans-st">✓</th>}
+                  </tr>
+                </thead>
+                <tbody>
+                  {anchor.items.map((a) => {
+                    const res = rowResults && rowResults.find((r) => r.id === a.id);
+                    return (
+                      <tr key={a.id} className={res ? (res.correct ? "ok" : "bad") : ""}>
+                        <th className="mono ans-anchor">{a.label}</th>
+                        {others.map((c) => (
+                          <td key={c.id}>
+                            {revealed ? (
+                              <span className="ans-locked">{labelFor(c.id, byAnchor[a.id][c.id])}</span>
+                            ) : (
+                              <select
+                                value={(finalSel[a.id] && finalSel[a.id][c.id]) || ""}
+                                onChange={(e) => setSel(a.id, c.id, e.target.value)}
+                              >
+                                <option value="">— select —</option>
+                                {c.items.map((it) => (
+                                  <option key={it.id} value={it.id}>{it.label}</option>
+                                ))}
+                              </select>
+                            )}
+                          </td>
+                        ))}
+                        {submitted && (
+                          <td className="ans-st">{res && res.correct ? "✓" : <span className="accent">✕</span>}</td>
+                        )}
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
+
+            {!revealed && (
+              <div className="ans-actions">
+                <button className="btn btn-accent" disabled={!allFilled()} onClick={submit}>
+                  Submit reconstruction
+                </button>
+                <button className="btn-link mono" onClick={giveUp}>Reveal solution</button>
+                {submitted && rowResults && !rowResults.every((r) => r.correct) && (
+                  <span className="ans-feedback mono">
+                    {rowResults.filter((r) => r.correct).length}/{anchor.items.length} rows correct — paradox deepening
+                  </span>
+                )}
+              </div>
+            )}
+          </div>
+
+          {/* ---- solution ---- */}
+          {revealed && (
+            <div className="solution rise">
+              <div className="sol-tag mono">▣ Timeline restored</div>
+              <div className="divergence">
+                <div className="div-yr mono">{puzzle.divergence.year}</div>
+                <div className="div-body">
+                  <div className="div-lbl mono">Divergence point · keystone</div>
+                  <p>{puzzle.divergence.text}</p>
+                </div>
+              </div>
+
+              <div className="sol-rule">
+                <span className="kicker">Hidden rule</span>
+                <p className="sol-hidden">{puzzle.hiddenRule}</p>
+              </div>
+
+              <div className="sol-explain">
+                <span className="kicker">Reconstruction</span>
+                {puzzle.explanation.map((p, i) => (
+                  <p key={i} dangerouslySetInnerHTML={{ __html: p }} />
+                ))}
+              </div>
+
+              <div className="sol-walk">
+                <span className="kicker">Reasoning walkthrough</span>
+                <ol>{puzzle.walkthrough.map((s, i) => <li key={i}>{s}</li>)}</ol>
+              </div>
+
+              <button className="btn btn-accent sol-next" onClick={onAdvance}>
+                {isStory ? (isLast ? "Transmit findings to Control →" : "File report · receive directive →") : "Return to Case Index →"}
+              </button>
+            </div>
+          )}
+        </section>
+      </div>
+    </div>
+  );
+}
+
+Object.assign(window, { PuzzleView });
+
+
+/* === */
+
+/* TIMELINE — App orchestrator: intro → Case Index → puzzles → beats → epilogue */
+
+const TL = window.TIMELINE;
+const SAVE_KEY = "timeline.save.v3";
+const TIER_META = {
+  1: { label: "Tier I", name: "Minor Distortions", note: "Single-change fractures. Direct records, clean elimination." },
+  2: { label: "Tier II", name: "Multi-Event Divergence", note: "Conflicting anomalies share an era. Cross-reference to resolve." },
+  3: { label: "Tier III", name: "Collapse Events", note: "Relational logic only — and one record in each case is a lie." },
+};
+
+function loadSave() {
+  try {
+    const s = JSON.parse(localStorage.getItem(SAVE_KEY));
+    if (s && s.save) return s;
+  } catch (e) {}
+  return { phase: "intro", currentId: null,
+    save: { marks: {}, hints: {}, wrong: {}, solved: {}, final: {} } };
+}
+
+const isStory = (p) => !p.generated;
+
+/* ---------- Intro onboarding ---------- */
+function IntroScreen({ onBegin }) {
+  return (
+    <div className="intro fade-in">
+      <div className="intro-hero">
+        <div className="intro-kicker mono">Time Correction Agency · Field Investigator Onboarding</div>
+        <h1 className="intro-title">TIME<span className="accent">LINE</span></h1>
+        <p className="intro-tagline">History has been edited. You are the correction.</p>
+      </div>
+      <div className="intro-transmission panel">
+        <div className="tx-channel mono">▸ SECURE CHANNEL · ORIGIN: CONTROL</div>
+        <TransmissionLog lines={TL.agency.onboarding} />
+        <div className="intro-cta ready">
+          <button className="btn btn-accent" onClick={onBegin}>Enter the Case Index →</button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ---------- Story beat between cases ---------- */
+function BeatScreen({ lines, onContinue, isFinal }) {
+  return (
+    <div className="beat fade-in">
+      <div className="intro-transmission panel beat-panel">
+        <div className="tx-channel mono">▸ INCOMING · ORIGIN: CONTROL {isFinal ? "· PRIORITY ████" : ""}</div>
+        <TransmissionLog lines={lines} />
+        <div className="intro-cta ready">
+          <button className="btn btn-accent" onClick={onContinue}>{onContinue.label || "Continue →"}</button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ---------- Case Index (library hub) ---------- */
+function CaseRow({ p, idx, solved, locked, onOpen }) {
+  const story = isStory(p);
+  return (
+    <button
+      className={"case-row" + (solved ? " solved" : "") + (locked ? " locked" : "") + (story ? " priority" : "")}
+      disabled={locked}
+      onClick={() => !locked && onOpen(p.id)}
+    >
+      <span className="cr-code mono">{p.code}</span>
+      <span className="cr-main">
+        <span className="cr-title">{p.title}{story && <span className="cr-prio mono">▣ Priority Directive</span>}</span>
+        <span className="cr-place mono">{p.place} · {p.eraLabel}</span>
+      </span>
+      <span className="cr-meta mono">
+        <span className="cr-chip">{p.categories[0].items.length}×{p.categories.length}</span>
+        <span className="cr-chip">{(p.clues ? p.clues.length : p.clueCount)} clues</span>
+      </span>
+      <span className="cr-status mono">
+        {locked ? "Sealed" : solved ? "✓ Restored" : story ? "Open ▸" : "Open ▸"}
+      </span>
+    </button>
+  );
+}
+
+function CaseIndex({ save, onOpen, unlocked }) {
+  const tiers = TL.tiers;
+  const total = TL.allPuzzles.length;
+  const solvedCount = TL.allPuzzles.filter((p) => save.solved[p.id]).length;
+  const epilogueReady = !!save.solved.p3;
+
+  return (
+    <div className="caseindex fade-in">
+      <header className="ci-head">
+        <div>
+          <div className="ci-kicker mono">Time Correction Agency · Field Dossier</div>
+          <h1 className="ci-title">Case Index</h1>
+        </div>
+        <div className="ci-progress">
+          <div className="ci-prog-num mono"><b>{solvedCount}</b> / {total}</div>
+          <div className="ci-prog-lbl mono">timelines restored</div>
+        </div>
+      </header>
+
+      {epilogueReady && (
+        <button className="ci-epilogue" onClick={() => onOpen("__epilogue")}>
+          <span className="mono">CASE FILE ∞ · UNRESOLVABLE</span>
+          <span className="ci-epi-title">The loop is closed. Re-open the final transmission →</span>
+        </button>
+      )}
+
+      {[1, 2, 3].map((t) => {
+        const open = unlocked(t);
+        const list = tiers[t];
+        const meta = TIER_META[t];
+        const solvedInTier = list.filter((p) => save.solved[p.id]).length;
+        return (
+          <section className={"ci-tier" + (open ? "" : " sealed")} key={t}>
+            <div className="ci-tier-head">
+              <div className="ci-tier-label">
+                <span className="ci-tier-name mono">{meta.label} · {meta.name}</span>
+                <span className="ci-tier-note">{meta.note}</span>
+              </div>
+              <div className="ci-tier-count mono">
+                {open ? `${solvedInTier}/${list.length} restored` : `Sealed — clear the Tier ${t - 1} priority directive`}
+              </div>
+            </div>
+            <div className="ci-rows">
+              {list.map((p, i) => (
+                <CaseRow key={p.id} p={p} idx={i}
+                  solved={!!save.solved[p.id]} locked={!open}
+                  onOpen={onOpen} />
+              ))}
+            </div>
+          </section>
+        );
+      })}
+
+      <div className="ci-foot mono">TIMELINE · {total} cases across three tiers · deduction experience · TCA-ARCHIVE</div>
+    </div>
+  );
+}
+
+/* ---------- Epilogue ---------- */
+function Epilogue({ onReview, onRestart }) {
+  return (
+    <div className="epilogue fade-in">
+      <div className="epi-card">
+        <div className="epi-kicker mono">Case file ∞ · status: UNRESOLVABLE</div>
+        <h1 className="epi-title">The loop is closed.<br/>It always was.</h1>
+        <p className="epi-body">
+          You restored timeline after timeline and uncovered the one fracture that cannot be
+          restored — because the hand that broke it is your own. The Agency was founded by the
+          investigator it recruited to repair the damage that founding caused.
+        </p>
+        <p className="epi-body epi-dim">
+          There is one fracture left in the vault. It has your name on it, under the redaction.
+          You already know what it says.
+        </p>
+        <div className="epi-actions">
+          <button className="btn btn-ghost" onClick={onReview}>Return to Case Index</button>
+          <button className="btn btn-accent" onClick={onRestart}>Reopen the loop ↻</button>
+        </div>
+        <div className="epi-foot mono">TIMELINE · a deduction experience · TCA-ARCHIVE</div>
+      </div>
+    </div>
+  );
+}
+
+/* ---------- App ---------- */
+function App() {
+  const [st, setSt] = useState(loadSave);
+  const { phase, currentId, save } = st;
+  const puzzle = currentId && TL.byId[currentId] ? TL.byId[currentId] : null;
+
+  useEffect(() => {
+    try { localStorage.setItem(SAVE_KEY, JSON.stringify(st)); } catch (e) {}
+  }, [st]);
+
+  function setPhase(phase, extra = {}) { setSt((s) => ({ ...s, phase, ...extra })); }
+
+  function setMarksFor(pid, fnOrVal) {
+    setSt((s) => {
+      const prev = s.save.marks[pid] || {};
+      const nextMarks = typeof fnOrVal === "function" ? fnOrVal(prev) : fnOrVal;
+      return { ...s, save: { ...s.save, marks: { ...s.save.marks, [pid]: nextMarks } } };
+    });
+  }
+  function setFinalFor(pid, obj) {
+    setSt((s) => ({ ...s, save: { ...s.save, final: { ...s.save.final, [pid]: obj } } }));
+  }
+  function useHint(pid) {
+    setSt((s) => ({ ...s, save: { ...s.save, hints: { ...s.save.hints, [pid]: Math.min(3, (s.save.hints[pid] || 0) + 1) } } }));
+  }
+  function addWrong(pid) {
+    setSt((s) => ({ ...s, save: { ...s.save, wrong: { ...s.save.wrong, [pid]: (s.save.wrong[pid] || 0) + 1 } } }));
+  }
+  function markSolved(pid) {
+    setSt((s) => ({ ...s, save: { ...s.save, solved: { ...s.save.solved, [pid]: true } } }));
+  }
+
+  function unlocked(t) {
+    if (t === 1) return true;
+    if (t === 2) return !!save.solved.p1;
+    if (t === 3) return !!save.solved.p2;
+    return false;
+  }
+
+  function openCase(id) {
+    window.scrollTo(0, 0);
+    if (id === "__epilogue") { setPhase("epilogue"); return; }
+    setSt((s) => ({ ...s, phase: "puzzle", currentId: id }));
+  }
+  function toIndex() { window.scrollTo(0, 0); setPhase("library"); }
+
+  function advance() {
+    // story puzzles trigger a beat; field cases return to index
+    if (puzzle && isStory(puzzle)) { window.scrollTo(0, 0); setPhase("beat"); }
+    else toIndex();
+  }
+  function afterBeat() {
+    if (currentId === "p3") { setPhase("epilogue"); }
+    else toIndex();
+  }
+  function restart() {
+    if (!confirm("Reopen the loop? This wipes all progress and returns to onboarding.")) return;
+    setSt({ phase: "intro", currentId: null, save: { marks: {}, hints: {}, wrong: {}, solved: {}, final: {} } });
+    window.scrollTo(0, 0);
+  }
+
+  function paradox() {
+    if (phase === "intro") return 14;
+    if (phase === "epilogue") return 100;
+    const total = TL.allPuzzles.length;
+    const solvedCount = TL.allPuzzles.filter((p) => save.solved[p.id]).length;
+    const global = Math.round(12 + 70 * (1 - solvedCount / total));
+    if (phase === "library") return global;
+    if (phase === "beat") return currentId === "p3" ? 100 : global;
+    // in a puzzle
+    if (!puzzle) return global;
+    if (save.solved[puzzle.id]) return Math.max(8, Math.round(global * 0.5));
+    const base = TL.TIER[puzzle.tier].instability;
+    const pen = (save.hints[puzzle.id] || 0) * 3 + (save.wrong[puzzle.id] || 0) * 4;
+    return Math.min(99, base + pen);
+  }
+
+  return (
+    <div>
+      <div className="topbar">
+        <div className="topbar-in">
+          <button className="brand brand-btn" onClick={() => (phase === "intro" ? null : toIndex())} title="Case Index">
+            <span className="logo">TIME<b>LINE</b></span>
+            <span className="sub">Time Correction Agency</span>
+          </button>
+          <div className="spacer" />
+          {(phase === "puzzle" || phase === "beat") && (
+            <button className="btn btn-ghost btn-sm idx-btn" onClick={toIndex}>◀ Case Index</button>
+          )}
+          {puzzle && (phase === "puzzle") && (
+            <span className="cur-case mono">{puzzle.code}</span>
+          )}
+          <ParadoxMeter value={paradox()} />
+          {phase !== "intro" && <button className="reset-btn mono" onClick={restart} title="Restart">↻</button>}
+        </div>
+      </div>
+
+      <div className="shell stage">
+        {phase === "intro" && <IntroScreen onBegin={() => setPhase("library")} />}
+
+        {phase === "library" && (
+          <CaseIndex save={save} onOpen={openCase} unlocked={unlocked} />
+        )}
+
+        {phase === "puzzle" && puzzle && (
+          <PuzzleView
+            key={puzzle.id}
+            puzzle={puzzle}
+            marks={save.marks[puzzle.id] || {}}
+            setMarks={(fn) => setMarksFor(puzzle.id, fn)}
+            hintsUsed={save.hints[puzzle.id] || 0}
+            onUseHint={() => useHint(puzzle.id)}
+            solved={!!save.solved[puzzle.id]}
+            onSolve={() => markSolved(puzzle.id)}
+            finalSel={save.final[puzzle.id] || {}}
+            setFinalSel={(obj) => setFinalFor(puzzle.id, obj)}
+            onWrong={() => addWrong(puzzle.id)}
+            onAdvance={advance}
+            isStory={isStory(puzzle)}
+            isLast={puzzle.id === "p3"}
+          />
+        )}
+
+        {phase === "beat" && puzzle && (() => {
+          const lines = TL.beats[puzzle.id];
+          if (!lines) { afterBeat(); return null; }
+          const isFinal = puzzle.id === "p3";
+          const cont = () => afterBeat();
+          cont.label = isFinal ? "▣ End transmission" : "Return to Case Index →";
+          return <BeatScreen lines={lines} onContinue={cont} isFinal={isFinal} />;
+        })()}
+
+        {phase === "epilogue" && (
+          <Epilogue onReview={toIndex} onRestart={restart} />
+        )}
+      </div>
+    </div>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+
+</script></body></html>
