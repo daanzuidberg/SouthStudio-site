@@ -52,12 +52,91 @@ const VO_SEGMENTS = [
   ['vo-4', 165.5, 192.0],
 ];
 
+// Narration text for Web Speech API fallback (segments 2-4, index matches VO_SEGMENTS)
+const VO_TEXT = {
+  'vo-2': `Here is what happens in your brain when you are genuinely silent.
+Not asleep. Not meditating with a voice in your ear.
+Just — nothing happening, for a few minutes.
+The default mode network activates.
+It is the part of you that reflects.
+And reflection is not always pleasant.
+The mind wanders to where things are unresolved.
+A significant number of people preferred a mild electric shock
+to sitting alone with their thoughts for fifteen minutes.
+A shock. Rather than silence.`,
+  'vo-3': `Silence isn't only an absence of noise.
+It is a particular kind of presence.
+In music, the space between the notes is where the meaning settles.
+A pause in conversation is not a failure of language —
+it is often the most honest moment in it.
+When we eliminate every gap,
+we don't fill our lives with more thought.
+We fill them with less.
+There is a kind of boredom that used to be essential.`,
+  'vo-4': `I'm not going to tell you to put your phone away.
+You've heard that.
+What is it you're avoiding —
+the moment the silence begins?
+I don't have a clean answer.
+I'm not sure there is one.
+But I think it's worth thinking about.`,
+};
+
+// Web Speech API fallback — fires for segments with no loadable audio src
+const speechState = { activeId: null, utterance: null, speaking: false };
+
+function pickVoice() {
+  const voices = speechSynthesis.getVoices();
+  const preferred = ['Daniel', 'Google UK English Male', 'Microsoft George', 'Alex', 'Fred'];
+  for (const name of preferred) {
+    const v = voices.find(v => v.name.includes(name));
+    if (v) return v;
+  }
+  return voices.find(v => v.lang.startsWith('en')) || voices[0] || null;
+}
+
+function speechSpeak(id) {
+  if (speechState.activeId === id && speechState.speaking) return;
+  speechSynthesis.cancel();
+  const text = VO_TEXT[id];
+  if (!text) return;
+  const utt = new SpeechSynthesisUtterance(text);
+  utt.rate = 0.82;
+  utt.pitch = 0.95;
+  utt.volume = 1;
+  const v = pickVoice();
+  if (v) utt.voice = v;
+  utt.onstart = () => { speechState.speaking = true; };
+  utt.onend = () => { speechState.speaking = false; speechState.activeId = null; };
+  utt.onerror = () => { speechState.speaking = false; speechState.activeId = null; };
+  speechState.activeId = id;
+  speechState.utterance = utt;
+  speechSynthesis.speak(utt);
+}
+
+function speechStop() {
+  speechSynthesis.cancel();
+  speechState.activeId = null;
+  speechState.speaking = false;
+  speechState.utterance = null;
+}
+
+// Track which audio elements have no usable src (fallback to speech synthesis)
+const noAudioSrc = {};
+['vo-2', 'vo-3', 'vo-4'].forEach(id => {
+  const el = document.getElementById(id);
+  if (el) {
+    el.addEventListener('error', () => { noAudioSrc[id] = true; }, { once: true });
+    // If src resolves to a real file, mark as available
+    el.addEventListener('loadeddata', () => { noAudioSrc[id] = false; }, { once: true });
+  }
+});
+
 // Sync audio elements to the Stage playhead (stored in localStorage by the Stage component)
 function useAudioSync(persistKey) {
   React.useEffect(() => {
     const els = VO_SEGMENTS.map(([id]) => document.getElementById(id));
     let lastT = -1;
-    let lastPlaying = false;
 
     function tick() {
       try {
@@ -67,10 +146,29 @@ function useAudioSync(persistKey) {
         const seeked = Math.abs(t - lastT) > 0.25;
         lastT = t;
 
+        let anySpeechActive = false;
+
         VO_SEGMENTS.forEach(([id, start, end], i) => {
           const el = els[i];
-          if (!el || el.error) return;
           const inRange = t >= start && t < end;
+          const useSpeech = noAudioSrc[id];
+
+          if (useSpeech) {
+            if (inRange && playing) {
+              anySpeechActive = true;
+              if (seeked && speechState.activeId === id) speechStop();
+              speechSpeak(id);
+            } else if (!inRange && speechState.activeId === id) {
+              speechStop();
+            } else if (inRange && !playing && speechState.speaking && speechState.activeId === id) {
+              speechSynthesis.pause();
+            } else if (inRange && playing && speechSynthesis.paused && speechState.activeId === id) {
+              speechSynthesis.resume();
+            }
+            return;
+          }
+
+          if (!el || el.error) return;
           const localT = t - start;
 
           if (inRange) {
@@ -84,7 +182,9 @@ function useAudioSync(persistKey) {
           }
         });
 
-        lastPlaying = playing;
+        if (!anySpeechActive && speechState.activeId && !VO_SEGMENTS.some(([id, s, e]) => t >= s && t < e && id === speechState.activeId)) {
+          speechStop();
+        }
       } catch {}
       rafId = requestAnimationFrame(tick);
     }
