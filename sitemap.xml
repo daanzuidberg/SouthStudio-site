@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://southstudio.online/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://southstudio.online/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://southstudio.nl/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://southstudio.online/"/>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://southstudio.nl/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://southstudio.online/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://southstudio.nl/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://southstudio.online/"/>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://southstudio.online/timeline.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://southstudio.online/timeline.html"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://southstudio.nl/timeline.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://southstudio.online/timeline.html"/>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://southstudio.nl/timeline.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://southstudio.online/timeline.html"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://southstudio.nl/timeline.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://southstudio.online/timeline.html"/>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://southstudio.online/play.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://southstudio.online/play.html"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://southstudio.nl/play.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://southstudio.online/play.html"/>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://southstudio.nl/play.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://southstudio.online/play.html"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://southstudio.nl/play.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://southstudio.online/play.html"/>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://southstudio.online/about.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://southstudio.online/about.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://southstudio.online/about.html"/>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://southstudio.online/stockists.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://southstudio.online/stockists.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://southstudio.online/stockists.html"/>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://southstudio.online/privacy.html</loc>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://southstudio.nl/privacy.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://southstudio.online/privacy.html"/>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://southstudio.nl/privacy.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://southstudio.online/privacy.html"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://southstudio.nl/privacy.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://southstudio.online/privacy.html"/>
+    <changefreq>monthly</changefreq>
+  </url>
+</urlset>
