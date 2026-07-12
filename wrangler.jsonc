@@ -6,7 +6,7 @@
     "enabled": true
   },
   "assets": {
-    "directory": "SouthStudio-2"
+    "directory": "."
   },
   "compatibility_flags": [
     "nodejs_compat"
