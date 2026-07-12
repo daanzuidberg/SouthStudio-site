@@ -45,17 +45,34 @@
   <url>
     <loc>https://southstudio.online/about.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://southstudio.online/about.html"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://southstudio.nl/about.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://southstudio.online/about.html"/>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://southstudio.nl/about.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://southstudio.online/about.html"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://southstudio.nl/about.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://southstudio.online/about.html"/>
     <changefreq>monthly</changefreq>
   </url>
   <url>
     <loc>https://southstudio.online/stockists.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://southstudio.online/stockists.html"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://southstudio.nl/stockists.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://southstudio.online/stockists.html"/>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://southstudio.nl/stockists.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://southstudio.online/stockists.html"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://southstudio.nl/stockists.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://southstudio.online/stockists.html"/>
     <changefreq>monthly</changefreq>
   </url>
   <url>
     <loc>https://southstudio.online/privacy.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://southstudio.online/privacy.html"/>
     <xhtml:link rel="alternate" hreflang="nl" href="https://southstudio.nl/privacy.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://southstudio.online/privacy.html"/>
     <changefreq>monthly</changefreq>
