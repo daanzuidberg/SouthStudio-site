@@ -330,6 +330,12 @@ h1, h2, h3 { font-weight: 700; line-height: 1.04; letter-spacing: -0.015em; }
 /* ---------- cards / panels ---------- */
 .panel { border: 1.5px solid var(--ink); background: var(--paper); }
 .panel--raise { box-shadow: 8px 8px 0 var(--ink); }
+.spec-grid { display: grid; grid-template-columns: repeat(4,1fr); }
+@media (max-width: 600px) {
+ .spec-grid { grid-template-columns: repeat(2,1fr); }
+ .spec-grid > div:nth-child(2) { border-right: 0; }
+ .spec-grid > div:nth-child(1), .spec-grid > div:nth-child(2) { border-bottom: 1px solid var(--line-2); }
+}
 .hairline { height: 1px; background: var(--line-2); border: 0; }
 .thick-rule { height: 3px; background: var(--ink); border: 0; }
 
@@ -902,7 +908,7 @@ h1, h2, h3 { font-weight: 700; line-height: 1.04; letter-spacing: -0.015em; }
  </div>
 
  <!-- spec strip -->
- <div class="panel panel--raise reveal d1 mt-40" style="display:grid;grid-template-columns:repeat(4,1fr)">
+ <div class="panel panel--raise spec-grid reveal d1 mt-40">
  <div style="padding:24px 26px;border-right:1px solid var(--line-2)">
  <div class="kicker muted">Pages</div><div class="h3" style="margin-top:8px">200</div>
  </div>

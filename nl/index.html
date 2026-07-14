@@ -338,6 +338,8 @@ h1, h2, h3 { font-weight: 700; line-height: 1.04; letter-spacing: -0.015em; }
 
 /* ways-to-play cards */
 .ways { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.ways--3 { grid-template-columns: repeat(3,1fr); }
+@media (max-width: 700px) { .ways--3 { grid-template-columns: 1fr; } }
 .way {
  border: 1.5px solid var(--ink); background: var(--paper);
  padding: clamp(24px, 3vw, 38px);
@@ -571,6 +573,7 @@ body.intro-hold .reveal { opacity: 0 !important; transform: translateY(22px) !im
  .burger { display: flex; }
 }
 @media (max-width: 540px) {
+ .principles { grid-template-columns: 1fr !important; }
  .foot-grid { grid-template-columns: 1fr; gap: 28px; }
  .book { max-width: 320px; margin-inline: auto; }
 }
@@ -859,7 +862,7 @@ body.intro-hold .reveal { opacity: 0 !important; transform: translateY(22px) !im
  <h2 class="h2">De Catalogus</h2>
  <span class="kicker">Een studio met een koers</span>
  </div>
- <div class="ways reveal d1" style="grid-template-columns:repeat(3,1fr)">
+ <div class="ways ways--3 reveal d1">
  <a class="way way--book" href="timeline.html" style="background:var(--ink);color:var(--paper);text-decoration:none">
  <div class="row" style="justify-content:space-between">
  <span class="way-num" style="color:#B9AE9C">Nr. 001</span>
