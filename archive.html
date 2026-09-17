@@ -624,6 +624,9 @@ body.intro-hold .reveal-img { clip-path: inset(100% 0 0 0) !important; transitio
 .shelf .sh-t { font-family: var(--serif); font-size: clamp(19px, 1.8vw, 24px); font-weight: 500; letter-spacing: -0.015em; }
 .shelf .sh-n { font-family: var(--mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-soft); }
 .shelf .sh-n b { color: var(--ink); font-weight: 600; }
+a.shelf { color: inherit; transition: padding-left .3s var(--ease-out); }
+a.shelf:hover .sh-t { font-style: italic; }
+a.shelf:hover .sh-n { color: var(--red); }
 
 /* release cards */
 .rc-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(28px, 4vw, 56px) clamp(24px, 4vw, 64px); }
@@ -682,8 +685,8 @@ a.rc:hover .rc-title { font-style: italic; }
  <nav class="nav" aria-label="Primary">
  <a class="navlink" href="index.html#work">Work</a>
  <a class="navlink active" href="archive.html">Archive</a>
- <a class="navlink" href="timeline.html">Timeline</a>
- <a class="navlink" href="play.html">Play</a>
+ <a class="navlink" href="films/">Films</a>
+ <a class="navlink" href="journal/">Journal</a>
  <a class="navlink" href="about.html">Studio</a>
  </nav>
  <div class="head-cta">
@@ -697,9 +700,12 @@ a.rc:hover .rc-title { font-style: italic; }
 <div class="mobile-menu">
  <a href="index.html#work"><span>The work</span><span class="num">01</span></a>
  <a href="archive.html"><span>The archive</span><span class="num">02</span></a>
- <a href="timeline.html"><span>Timeline</span><span class="num">03</span></a>
- <a href="play.html"><span>Play online</span><span class="num">04</span></a>
- <a href="about.html"><span>The studio</span><span class="num">05</span></a>
+ <a href="films/"><span>Films</span><span class="num">03</span></a>
+ <a href="journal/"><span>Journal</span><span class="num">04</span></a>
+ <a href="experiences/"><span>Experiences</span><span class="num">05</span></a>
+ <a href="timeline.html"><span>Timeline</span><span class="num">06</span></a>
+ <a href="play.html"><span>Play online</span><span class="num">07</span></a>
+ <a href="about.html"><span>The studio</span><span class="num">08</span></a>
  <div class="mm-foot">
  <a data-open-preorder href="#">Pre-order Timeline →</a>
  <a href="index.html#dispatch">The Dispatch →</a>
@@ -730,9 +736,9 @@ a.rc:hover .rc-title { font-style: italic; }
  <div class="wrap">
  <div class="shelves reveal">
  <div class="shelf"><span class="sh-t">Books</span><span class="sh-n">Releases · <b data-shelf-count="books">—</b></span></div>
- <div class="shelf"><span class="sh-t">Games</span><span class="sh-n">Releases · <b data-shelf-count="games">—</b></span></div>
- <div class="shelf"><span class="sh-t">Films</span><span class="sh-n">Releases · <b data-shelf-count="films">—</b></span></div>
- <div class="shelf"><span class="sh-t">Experiences</span><span class="sh-n">Releases · <b data-shelf-count="experiences">—</b></span></div>
+ <a class="shelf" href="play.html"><span class="sh-t">Games</span><span class="sh-n">Releases · <b data-shelf-count="games">—</b></span></a>
+ <a class="shelf" href="films/"><span class="sh-t">Films</span><span class="sh-n">Releases · <b data-shelf-count="films">—</b></span></a>
+ <a class="shelf" href="experiences/"><span class="sh-t">Experiences</span><span class="sh-n">Releases · <b data-shelf-count="experiences">—</b></span></a>
  <div class="shelf"><span class="sh-t">Objects</span><span class="sh-n">Releases · <b data-shelf-count="objects">—</b></span></div>
  </div>
  </div>
@@ -804,7 +810,8 @@ a.rc:hover .rc-title { font-style: italic; }
  <a data-open-preorder href="#">Pre-order Timeline</a>
  <a href="index.html#dispatch">The Dispatch</a>
  <a href="stockists.html">Stockists &amp; rights</a>
- <a href="https://www.youtube.com/@SouthStudio-Official" target="_blank" rel="noopener">YouTube</a>
+ <a href="films/">Films</a>
+ <a href="journal/">Journal</a>
  <a href="mailto:info@southstudio.online">info@southstudio.online</a>
  </div>
  </div>
