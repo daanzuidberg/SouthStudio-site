@@ -18,7 +18,7 @@
  investigator: "Investigator",
  tryAgain: "Try again",
  preorderType: "Pre-order",
- logged: "● Reservation logged",
+ logged: "Reservation logged",
  reserved: "Copy reserved, ",
  reservedNote: "We've added you to the first print run of <em>Timeline</em>. You'll get a dispatch the moment pre-orders ship, no charge until then.",
  tag1: "First edition", tag2: "Signed by the studio", tag3: "Free cases online",
@@ -35,7 +35,7 @@
  investigator: "Onderzoeker",
  tryAgain: "Opnieuw",
  preorderType: "Reservering",
- logged: "● Reservering genoteerd",
+ logged: "Reservering genoteerd",
  reserved: "Exemplaar gereserveerd, ",
  reservedNote: "We hebben je toegevoegd aan de eerste druk van <em>Timeline</em>. Je krijgt bericht zodra de reserveringen verzonden worden, tot die tijd betaal je niets.",
  tag1: "Eerste druk", tag2: "Gesigneerd door de studio", tag3: "Gratis zaken online",
@@ -185,7 +185,7 @@
  var lead = { name: name, email: (form.querySelector('[name="email"]') || {}).value || "", edition: (form.querySelector('[name="edition"]') || {}).value || "" };
  send(T.preorderType, lead, function () {
  modalBody.innerHTML =
- '<div class="stamp" style="align-self:flex-start">' + T.logged + '</div>' +
+ '<span class="tag tag--red" style="align-self:flex-start">' + T.logged + '</span>' +
  '<h3 class="h3" style="margin-top:6px">' + T.reserved + escapeHtml(name.split(" ")[0]) + '.</h3>' +
  '<p class="muted small">' + T.reservedNote + '</p>' +
  '<div class="row gap-12 wrap-gap mt-12"><span class="tag tag--red">' + T.tag1 + '</span><span class="tag">' + T.tag2 + '</span><span class="tag tag--blue">' + T.tag3 + '</span></div>' +
