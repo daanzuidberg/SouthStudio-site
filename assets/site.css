@@ -227,12 +227,12 @@ h1, h2, h3 { font-weight: 600; line-height: 1.04; letter-spacing: -0.015em; }
  The 3x3 mark is the identity. A "cell" is the mark at small size with
  one square filled; each shelf / position gets its own cell. Empty
  marks stand in for things that are not made yet. */
-.cell { display: inline-grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(3, 1fr); gap: 1.5px; width: 14px; height: 14px; flex: none; vertical-align: middle; }
-.cell i { display: block; border: 1px solid var(--ink); opacity: .45; }
-.cell i.on { background: var(--red); border-color: var(--red); opacity: 1; }
-.cell--lg { width: 44px; height: 44px; gap: 3px; }
-.cell--lg i { border-width: 1.2px; }
-.cell--dim i { border-color: currentColor; opacity: .35; }
+.cell { display: inline-grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(3, 1fr); gap: 2px; width: 18px; height: 18px; flex: none; vertical-align: middle; }
+.cell i { display: block; background: var(--line-2); }
+.cell i.on { background: var(--red); }
+.cell--lg { width: 48px; height: 48px; gap: 4px; }
+.cell--lg i { background: transparent; border: 1.5px solid var(--line-2); }
+.cell--dim i { border-color: currentColor; opacity: .5; }
 
 
 /* ---------- header ---------- */
@@ -305,7 +305,7 @@ h1, h2, h3 { font-weight: 600; line-height: 1.04; letter-spacing: -0.015em; }
 .index { border-top: 1.5px solid var(--ink); }
 .index-head { padding: 14px 0 10px; display: flex; justify-content: space-between; align-items: baseline; }
 .index-row {
- display: grid; grid-template-columns: 32px 22px 1fr auto; align-items: baseline; gap: 16px;
+ display: grid; grid-template-columns: 32px 26px 1fr auto; align-items: baseline; gap: 16px;
  padding: 13px 0; border-bottom: 1px solid var(--line);
  color: var(--ink); position: relative;
  transition: padding-left .3s var(--ease-out), color .2s ease;
@@ -522,7 +522,7 @@ body.intro-hold .reveal-img { clip-path: inset(100% 0 0 0) !important; transitio
  .display { font-size: clamp(34px, 9.5vw, 40px); letter-spacing: -0.025em; }
  .hero { padding-top: 32px; }
  .hero-ctas .btn { width: 100%; justify-content: space-between; }
- .index-row { grid-template-columns: 28px 20px 1fr auto; gap: 10px; }
+ .index-row { grid-template-columns: 28px 24px 1fr auto; gap: 10px; }
  .index-row .ix-t { font-size: 18px; }
  .index-row .ix-s { font-size: 10px; }
  .feature-title { font-size: clamp(40px, 12vw, 56px); }
