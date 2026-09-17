@@ -176,6 +176,7 @@
  return (r.shelves || []).map(function (k) { return t(SHELVES[k], lang); }).join(" · ");
  }
  function pad(n) { return String(n).padStart(2, "0"); }
+ function emptyMark() { return '<span class="cell cell--lg cell--dim" aria-hidden="true">' + new Array(10).join("<i></i>") + "</span>"; }
 
  /* ============================================================ releases */
  function rowHTML(r, lang, root) {
@@ -196,7 +197,7 @@
  var title = r.title ? esc(t(r.title, lang)) : esc(t(r.statusLabel, lang));
  var media = r.hero
  ? '<img src="' + esc(base + r.hero) + '" alt="' + esc(t(r.title, lang)) + '" loading="lazy" />'
- : '<span class="rc-placeholder"><span class="num">' + UI.studioPrefix + ' / ' + esc(r.number) + '</span></span>';
+ : '<span class="rc-placeholder">' + emptyMark() + '<span class="num">' + UI.studioPrefix + ' / ' + esc(r.number) + '</span></span>';
  var inner =
  '<div class="rc-media">' + media + '</div>' +
  '<div class="rc-body">' +
@@ -227,7 +228,7 @@
  var href = f.url ? root + f.url : (f.video ? "https://www.youtube.com/watch?v=" + f.video : null);
  var frame = released && f.video
  ? '<img src="https://i.ytimg.com/vi/' + esc(f.video) + '/hqdefault.jpg" alt="" loading="lazy" />'
- : '<span class="film-slate"><span class="num">F / ' + pad(i + 1) + '</span><span class="meta">' + esc(t(UI.notFilmed, lang)) + '</span></span>';
+ : '<span class="film-slate">' + emptyMark() + '<span class="num">F / ' + pad(i + 1) + '</span><span class="meta">' + esc(t(UI.notFilmed, lang)) + '</span></span>';
  var inner =
  '<div class="film-frame' + (released ? "" : " film-frame--concept") + '">' + frame + '</div>' +
  '<div class="film-body">' +

@@ -40,9 +40,9 @@
 
 /* ---------- section pages: films / journal / experiences ---------- */
 .sec-hero { padding-top: clamp(28px, 4vw, 56px); padding-bottom: clamp(40px, 6vw, 80px); }
-.sec-hero .display { margin-top: clamp(20px, 3vw, 36px); font-size: clamp(44px, 8.2vw, 124px); }
+.sec-hero .display { margin-top: clamp(20px, 3vw, 36px); }
 .sec-intro { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, .8fr); gap: clamp(32px, 6vw, 96px); align-items: end; }
-.thread-tag { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft); border-left: 2px solid var(--red); padding-left: 8px; white-space: nowrap; }
+.thread-tag { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft); border-left: 2px solid var(--red); padding-left: 8px; line-height: 1.4; }
 
 /* films: cinematic band */
 .films-band { background: var(--ink); color: var(--paper); padding-block: clamp(56px, 8vw, 120px); }
@@ -58,12 +58,11 @@
 .film-frame { aspect-ratio: 16 / 9; border: 1px solid rgba(250,247,239,.35); background: #211d18; overflow: hidden; display: flex; align-items: center; justify-content: center; position: relative; }
 .film-frame img { width: 100%; height: 100%; object-fit: cover; opacity: .92; transition: opacity .3s ease, transform .8s var(--ease-out); }
 a.film:hover .film-frame img { opacity: 1; transform: scale(1.02); }
-.film-frame--concept { border-style: dashed; border-color: rgba(250,247,239,.25); background-image: linear-gradient(rgba(250,247,239,.06) 1px, transparent 1px), linear-gradient(90deg, rgba(250,247,239,.06) 1px, transparent 1px); background-size: 26px 26px; background-position: center; }
-.film-frame--concept::before, .film-frame--concept::after { content: ""; position: absolute; left: 0; right: 0; height: 1px; background: rgba(250,247,239,.18); }
-.film-frame--concept::before { top: 12%; } .film-frame--concept::after { bottom: 12%; }
-.film-slate { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.film-frame--concept { border-style: dashed; border-color: rgba(250,247,239,.25); color: #B9AE9C; }
+.film-slate { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+.film-slate .cell { margin-bottom: 6px; }
 .film-body { display: flex; flex-direction: column; gap: 8px; }
-.film-title { font-family: var(--serif); font-size: clamp(24px, 2.4vw, 34px); font-weight: 500; letter-spacing: -0.025em; line-height: 1.08; text-wrap: balance; }
+.film-title { font-family: var(--serif); font-size: clamp(20px, 1.7vw, 24px); font-weight: 500; letter-spacing: -0.025em; line-height: 1.08; text-wrap: balance; }
 a.film:hover .film-title { font-style: italic; }
 .film--concept .film-title { color: #E6DECE; }
 .film-foot { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; margin-top: 6px; }
@@ -76,14 +75,14 @@ a.film:hover .film-title { font-style: italic; }
 .jr-cat { padding: 18px clamp(0px, 1.5vw, 24px) 18px 0; border-right: 1px solid var(--line); display: flex; flex-direction: column; gap: 8px; }
 .jr-cat:not(:first-child) { padding-left: clamp(0px, 1.5vw, 24px); }
 .jr-cat:last-child { border-right: 0; }
-.jr-cat .jc-t { font-family: var(--serif); font-size: clamp(19px, 1.8vw, 24px); font-weight: 500; letter-spacing: -0.015em; }
+.jr-cat .jc-t { font-family: var(--serif); font-size: clamp(17px, 1.4vw, 20px); font-weight: 500; letter-spacing: -0.015em; }
 .jr-cat .jc-n { font-family: var(--mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-soft); }
 .jr-cat .jc-n b { color: var(--ink); font-weight: 600; }
 .jr-list { border-top: 1.5px solid var(--ink); }
 .jr { display: grid; grid-template-columns: 56px minmax(0, 1.6fr) minmax(0, .8fr) auto; gap: 20px; align-items: baseline; padding: clamp(18px, 2.4vw, 28px) 0; border-bottom: 1px solid var(--line); color: inherit; transition: padding-left .3s var(--ease-out); }
 .jr .jr-n { font-family: var(--mono); font-size: 11.5px; font-weight: 600; letter-spacing: 0.18em; color: var(--ink-soft); }
-.jr .jr-t { font-family: var(--serif); font-size: clamp(22px, 2.6vw, 36px); font-weight: 500; letter-spacing: -0.025em; line-height: 1.08; text-wrap: balance; }
-.jr .jr-c { font-family: var(--serif); font-style: italic; font-weight: 300; font-size: clamp(16px, 1.4vw, 20px); color: var(--ink-2); }
+.jr .jr-t { font-family: var(--serif); font-size: clamp(20px, 1.8vw, 26px); font-weight: 500; letter-spacing: -0.025em; line-height: 1.08; text-wrap: balance; }
+.jr .jr-c { font-family: var(--serif); font-style: italic; font-weight: 300; font-size: clamp(15px, 1.2vw, 17px); color: var(--ink-2); }
 .jr .jr-s { display: flex; align-items: center; gap: 14px; justify-self: end; font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.08em; color: var(--ink-soft); flex-wrap: wrap; justify-content: flex-end; }
 a.jr:hover { padding-left: 10px; } a.jr:hover .jr-t { font-style: italic; }
 .jr--draft .jr-t { color: var(--ink-2); font-weight: 400; }
@@ -92,13 +91,13 @@ a.jr:hover { padding-left: 10px; } a.jr:hover .jr-t { font-style: italic; }
 /* experiences */
 .kinds { border-top: 1.5px solid var(--ink); }
 .kind { display: grid; grid-template-columns: 40px 1fr auto; gap: 16px; align-items: baseline; padding: 13px 0; border-bottom: 1px solid var(--line); }
-.kind .kind-t { font-family: var(--serif); font-size: clamp(20px, 2vw, 26px); font-weight: 500; letter-spacing: -0.02em; }
+.kind .kind-t { font-family: var(--serif); font-size: clamp(18px, 1.5vw, 21px); font-weight: 500; letter-spacing: -0.02em; }
 .xp-list { border-top: 1.5px solid var(--ink); }
 .xp { display: grid; grid-template-columns: 110px minmax(0, 1fr) minmax(0, .7fr) minmax(0, 1.1fr) auto; gap: 24px; align-items: baseline; padding: clamp(22px, 2.6vw, 34px) 0; border-bottom: 1px solid var(--line); color: inherit; transition: padding-left .3s var(--ease-out); }
 .xp .xp-n { font-family: var(--mono); font-size: 11.5px; font-weight: 600; letter-spacing: 0.18em; color: var(--ink-soft); }
 .xp .xp-n b { color: var(--red); }
-.xp .xp-t { font-family: var(--serif); font-size: clamp(24px, 2.8vw, 40px); font-weight: 500; letter-spacing: -0.03em; line-height: 1.02; }
-.xp .xp-k { font-family: var(--serif); font-style: italic; font-weight: 300; font-size: clamp(16px, 1.4vw, 20px); color: var(--ink-2); }
+.xp .xp-t { font-family: var(--serif); font-size: clamp(22px, 2vw, 30px); font-weight: 500; letter-spacing: -0.03em; line-height: 1.02; }
+.xp .xp-k { font-family: var(--serif); font-style: italic; font-weight: 300; font-size: clamp(15px, 1.2vw, 17px); color: var(--ink-2); }
 .xp .xp-s { display: flex; align-items: center; gap: 14px; justify-self: end; flex-wrap: wrap; justify-content: flex-end; }
 a.xp:hover { padding-left: 10px; } a.xp:hover .xp-t { font-style: italic; }
 .xp--concept .xp-t { color: var(--ink-2); font-weight: 400; }
@@ -106,12 +105,12 @@ a.xp:hover { padding-left: 10px; } a.xp:hover .xp-t { font-style: italic; }
 /* threads: one idea, several formats */
 .thread { border: 1.5px solid var(--ink); padding: clamp(22px, 3vw, 40px); }
 .thread-head { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; }
-.thread-q { font-family: var(--serif); font-size: clamp(26px, 3.2vw, 44px); font-weight: 500; letter-spacing: -0.03em; line-height: 1.05; margin-top: 16px; text-wrap: balance; }
+.thread-q { font-family: var(--serif); font-size: clamp(22px, 2.4vw, 32px); font-weight: 500; letter-spacing: -0.03em; line-height: 1.05; margin-top: 16px; text-wrap: balance; }
 .thread-note { margin-top: 12px; max-width: 56ch; }
 .thread-rows { margin-top: 22px; border-top: 1px solid var(--ink); }
 .th-row { display: grid; grid-template-columns: 110px minmax(0, 1fr) auto; gap: 16px; align-items: baseline; padding: 12px 0; border-bottom: 1px solid var(--line); color: inherit; }
 .th-row .th-f { font-family: var(--mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-soft); }
-.th-row .th-t { font-family: var(--serif); font-size: clamp(17px, 1.6vw, 21px); font-weight: 500; }
+.th-row .th-t { font-family: var(--serif); font-size: clamp(16px, 1.3vw, 18px); font-weight: 500; }
 .th-row .th-t--empty { color: var(--ink-soft); font-weight: 300; }
 .th-row .th-s { font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft); white-space: nowrap; }
 a.th-row:hover .th-t { font-style: italic; }

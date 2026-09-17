@@ -37,6 +37,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500&family=IBM+Plex+Mono:wght@400;600;700&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="assets/site.css" />
+<link rel="stylesheet" href="assets/releases/timeline.css" />
 <style>
 
 /* ---------- project page (release 001) ---------- */
@@ -44,9 +45,9 @@
 .proj-head { display: flex; align-items: baseline; justify-content: space-between; gap: 20px; flex-wrap: wrap; padding-bottom: 16px; border-bottom: 1.5px solid var(--ink); }
 .proj-title-block { margin-top: clamp(24px, 3vw, 40px); }
 .proj-grid { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr); gap: clamp(40px, 6vw, 96px); align-items: start; margin-top: clamp(28px, 4vw, 56px); }
-.proj-title { font-size: clamp(64px, 12.5vw, 200px); font-weight: 600; letter-spacing: -0.045em; line-height: .86; }
+.proj-title { font-size: clamp(44px, 6.5vw, 92px); font-weight: 600; letter-spacing: -0.04em; line-height: .9; }
 .proj-title .ac { color: var(--red); }
-.proj-tag { font-family: var(--serif); font-style: italic; font-weight: 300; font-size: clamp(24px, 2.8vw, 38px); line-height: 1.2; color: var(--ink); letter-spacing: -0.02em; text-wrap: balance; }
+.proj-tag { font-family: var(--serif); font-style: italic; font-weight: 300; font-size: clamp(20px, 2vw, 26px); line-height: 1.25; color: var(--ink); letter-spacing: -0.02em; text-wrap: balance; }
 .proj-lead { margin-top: clamp(20px, 2.5vw, 28px); }
 .proj-meta { margin-top: clamp(24px, 3vw, 36px); padding-top: 22px; border-top: 1px solid var(--line-2); }
 .proj-ctas { margin-top: clamp(28px, 3vw, 40px); display: flex; gap: 14px 22px; flex-wrap: wrap; align-items: center; }
@@ -55,7 +56,7 @@
 /* big figures */
 .figures { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(16px, 3vw, 40px); margin-top: clamp(32px, 4vw, 48px); border-top: 1.5px solid var(--ink); }
 .figure { padding-top: 20px; }
-.figure .fn { font-family: var(--serif); font-weight: 500; font-size: clamp(48px, 7vw, 96px); line-height: .9; letter-spacing: -0.04em; }
+.figure .fn { font-family: var(--serif); font-weight: 500; font-size: clamp(36px, 4.5vw, 60px); line-height: .9; letter-spacing: -0.04em; }
 .figure .fn.red { color: var(--red); }
 .figure .fl { margin-top: 12px; }
 
@@ -65,18 +66,15 @@
 .step:not(:first-child) { padding-left: clamp(0px, 2vw, 32px); }
 .step:last-child { border-right: 0; }
 .step .sn { font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.2em; color: var(--red); }
-.step h3 { font-size: clamp(21px, 2vw, 26px); font-weight: 500; }
+.step h3 { font-size: clamp(18px, 1.5vw, 21px); font-weight: 500; }
 
 /* clearance ladder */
 .ladder { border-top: 1.5px solid var(--ink); }
 .lad-row { display: grid; grid-template-columns: 64px minmax(0, 1fr) auto; gap: 20px; align-items: baseline; padding: 16px 0; border-bottom: 1px solid var(--line); }
 .lad-row .ln { font-family: var(--mono); font-size: 11.5px; font-weight: 600; letter-spacing: 0.18em; color: var(--ink-soft); }
-.lad-row .lt { font-family: var(--serif); font-size: clamp(22px, 2.4vw, 30px); font-weight: 500; letter-spacing: -0.02em; }
+.lad-row .lt { font-family: var(--serif); font-size: clamp(19px, 1.6vw, 22px); font-weight: 500; letter-spacing: -0.02em; }
 .lad-row .ls { font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft); white-space: nowrap; }
 .lad-row--top .lt { color: var(--red); }
-.rail { position: relative; height: 2px; background: var(--line-2); }
-.rail .node { position: absolute; top: 50%; width: 10px; height: 10px; background: var(--paper); border: 2px solid var(--ink); transform: translate(-50%,-50%) rotate(45deg); }
-.rail .node.red { background: var(--red); border-color: var(--red); }
 
 /* 360 viewer */
 .book360 { border: 1.5px solid var(--ink); background: var(--paper); overflow: hidden; }
@@ -87,8 +85,8 @@
 .editions { border-top: 1.5px solid var(--ink); }
 .edition { display: grid; grid-template-columns: 110px minmax(0, 1.2fr) minmax(0, 1fr) auto; gap: 24px; align-items: center; padding: clamp(24px, 3vw, 36px) 0; border-bottom: 1px solid var(--line); }
 .edition .ed-n { font-family: var(--mono); font-size: 11.5px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-soft); }
-.edition .ed-t { font-family: var(--serif); font-size: clamp(24px, 2.8vw, 36px); font-weight: 500; letter-spacing: -0.025em; line-height: 1.05; }
-.edition .ed-p { font-family: var(--serif); font-size: clamp(20px, 2vw, 26px); font-weight: 400; margin-top: 4px; }
+.edition .ed-t { font-family: var(--serif); font-size: clamp(20px, 1.9vw, 26px); font-weight: 500; letter-spacing: -0.025em; line-height: 1.05; }
+.edition .ed-p { font-family: var(--serif); font-size: clamp(18px, 1.5vw, 21px); font-weight: 400; margin-top: 4px; }
 .edition .ed-p .blue { color: var(--blue); }
 .edition .ed-d { font-size: 16px; line-height: 1.5; color: var(--ink-2); }
 .edition .ed-a { justify-self: end; }
@@ -109,9 +107,9 @@
  .edition .ed-n { grid-area: n; } .edition .ed-t { grid-area: t; } .edition .ed-d { grid-area: d; } .edition .ed-a { grid-area: a; justify-self: start; }
 }
 @media (max-width: 560px) {
- .proj-title { font-size: clamp(56px, 17vw, 96px); }
+ .proj-title { font-size: clamp(40px, 12vw, 56px); }
  .figures { grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
- .figure .fn { font-size: clamp(36px, 12vw, 56px); }
+ .figure .fn { font-size: clamp(30px, 9vw, 40px); }
  .lad-row { grid-template-columns: 44px minmax(0, 1fr); }
  .lad-row .ls { grid-column: 2; }
  .edition { grid-template-columns: 56px minmax(0, 1fr); }

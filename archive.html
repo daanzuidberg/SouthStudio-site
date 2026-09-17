@@ -45,10 +45,11 @@
 
 /* shelves strip */
 .shelves { display: grid; grid-template-columns: repeat(5, 1fr); border-top: 1.5px solid var(--ink); border-bottom: 1px solid var(--line); }
+.shelf .cell { margin-right: 10px; }
 .shelf { padding: 18px clamp(0px, 1.5vw, 24px) 18px 0; border-right: 1px solid var(--line); display: flex; flex-direction: column; gap: 8px; }
 .shelf:not(:first-child) { padding-left: clamp(0px, 1.5vw, 24px); }
 .shelf:last-child { border-right: 0; }
-.shelf .sh-t { font-family: var(--serif); font-size: clamp(19px, 1.8vw, 24px); font-weight: 500; letter-spacing: -0.015em; }
+.shelf .sh-t { font-family: var(--serif); font-size: clamp(17px, 1.4vw, 20px); font-weight: 500; letter-spacing: -0.015em; }
 .shelf .sh-n { font-family: var(--mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-soft); }
 .shelf .sh-n b { color: var(--ink); font-weight: 600; }
 a.shelf { color: inherit; transition: padding-left .3s var(--ease-out); }
@@ -61,13 +62,13 @@ a.shelf:hover .sh-n { color: var(--red); }
 .rc-media { aspect-ratio: 3 / 2; border: 1.5px solid var(--ink); background: var(--paper-2); overflow: hidden; display: flex; align-items: center; justify-content: center; }
 .rc-media img { width: 100%; height: 100%; object-fit: cover; transition: transform .8s var(--ease-out); }
 a.rc:hover .rc-media img { transform: scale(1.02); }
-.rc-placeholder { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background-image: linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px); background-size: 26px 26px; background-position: center; }
+.rc-placeholder { width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; color: var(--ink-soft); }
 .rc--coming .rc-media { border-style: dashed; border-color: var(--line-2); background: var(--paper); }
 .rc-body { display: flex; flex-direction: column; gap: 8px; }
-.rc-title { font-family: var(--serif); font-size: clamp(28px, 3vw, 44px); font-weight: 500; letter-spacing: -0.03em; line-height: 1; margin-top: 2px; }
+.rc-title { font-family: var(--serif); font-size: clamp(22px, 2vw, 30px); font-weight: 500; letter-spacing: -0.03em; line-height: 1; margin-top: 2px; }
 a.rc:hover .rc-title { font-style: italic; }
 .rc--coming .rc-title { color: var(--ink-soft); font-weight: 400; font-style: italic; }
-.rc-cat { font-family: var(--serif); font-style: italic; font-weight: 300; font-size: clamp(17px, 1.5vw, 21px); color: var(--ink-2); }
+.rc-cat { font-family: var(--serif); font-style: italic; font-weight: 300; font-size: clamp(16px, 1.2vw, 18px); color: var(--ink-2); }
 .rc-desc { max-width: 48ch; }
 .rc-foot { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; margin-top: 8px; padding-top: 14px; border-top: 1px solid var(--line); }
 
@@ -164,11 +165,11 @@ a.rc:hover .rc-title { font-style: italic; }
 <section class="section section--flush-top section--tight" data-screen-label="Shelves">
  <div class="wrap">
  <div class="shelves reveal">
- <div class="shelf"><span class="sh-t">Books</span><span class="sh-n">Releases · <b data-shelf-count="books">—</b></span></div>
- <a class="shelf" href="play.html"><span class="sh-t">Games</span><span class="sh-n">Releases · <b data-shelf-count="games">—</b></span></a>
- <a class="shelf" href="films/"><span class="sh-t">Films</span><span class="sh-n">Releases · <b data-shelf-count="films">—</b></span></a>
- <a class="shelf" href="experiences/"><span class="sh-t">Experiences</span><span class="sh-n">Releases · <b data-shelf-count="experiences">—</b></span></a>
- <div class="shelf"><span class="sh-t">Objects</span><span class="sh-n">Releases · <b data-shelf-count="objects">—</b></span></div>
+ <div class="shelf"><span class="cell" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span> <span class="sh-t">Books</span><span class="sh-n">Releases · <b data-shelf-count="books">—</b></span></div>
+ <a class="shelf" href="play.html"><span class="cell" aria-hidden="true"><i></i><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span> <span class="sh-t">Games</span><span class="sh-n">Releases · <b data-shelf-count="games">—</b></span></a>
+ <a class="shelf" href="films/"><span class="cell" aria-hidden="true"><i></i><i></i><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i></span> <span class="sh-t">Films</span><span class="sh-n">Releases · <b data-shelf-count="films">—</b></span></a>
+ <a class="shelf" href="experiences/"><span class="cell" aria-hidden="true"><i></i><i></i><i></i><i class="on"></i><i></i><i></i><i></i><i></i><i></i></span> <span class="sh-t">Experiences</span><span class="sh-n">Releases · <b data-shelf-count="experiences">—</b></span></a>
+ <div class="shelf"><span class="cell" aria-hidden="true"><i></i><i></i><i></i><i></i><i class="on"></i><i></i><i></i><i></i><i></i></span> <span class="sh-t">Objects</span><span class="sh-n">Releases · <b data-shelf-count="objects">—</b></span></div>
  </div>
  </div>
 </section>
