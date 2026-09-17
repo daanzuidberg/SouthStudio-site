@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="form-endpoint" content="" />
+<title>SouthStudio Films — Korte films over vreemde vragen</title>
+<meta name="description" content="SouthStudio Films: korte films over vreemde vragen, menselijk gedrag en dingen waar we meestal niet bij stilstaan. Concepten in ontwikkeling; films verschijnen op YouTube zodra ze af zijn." />
+<link rel="canonical" href="https://southstudio.nl/films/" />
+<link rel="alternate" hreflang="en" href="https://southstudio.online/films/" />
+<link rel="alternate" hreflang="nl" href="https://southstudio.nl/films/" />
+<link rel="alternate" hreflang="x-default" href="https://southstudio.online/films/" />
+
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="SouthStudio" />
+<meta property="og:locale" content="nl_NL" />
+<meta property="og:locale:alternate" content="en_US" />
+<meta property="og:title" content="SouthStudio Films — Korte films over vreemde vragen" />
+<meta property="og:description" content="SouthStudio Films: korte films over vreemde vragen, menselijk gedrag en dingen waar we meestal niet bij stilstaan. Concepten in ontwikkeling; films verschijnen op YouTube zodra ze af zijn." />
+<meta property="og:url" content="https://southstudio.nl/films/" />
+<meta property="og:image" content="https://southstudio.online/icons/og-default.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="SouthStudio Films — Korte films over vreemde vragen" />
+<meta name="twitter:description" content="SouthStudio Films: korte films over vreemde vragen, menselijk gedrag en dingen waar we meestal niet bij stilstaan. Concepten in ontwikkeling; films verschijnen op YouTube zodra ze af zijn." />
+<meta name="twitter:image" content="https://southstudio.online/icons/og-default.png" />
+
+<link rel="icon" href="../../favicon.svg" type="image/svg+xml" />
+<link rel="icon" href="../../icons/icon-32.png" sizes="32x32" type="image/png" />
+<link rel="apple-touch-icon" href="../../icons/icon-180.png" />
+<link rel="manifest" href="../../site.webmanifest" />
+<meta name="theme-color" content="#1A1612" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500&family=IBM+Plex+Mono:wght@400;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../../assets/site.css" />
+<style>
+
+
+/* ---------- section pages: films / journal / experiences ---------- */
+.sec-hero { padding-top: clamp(28px, 4vw, 56px); padding-bottom: clamp(40px, 6vw, 80px); }
+.sec-hero .display { margin-top: clamp(20px, 3vw, 36px); font-size: clamp(44px, 8.2vw, 124px); }
+.sec-intro { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, .8fr); gap: clamp(32px, 6vw, 96px); align-items: end; }
+.thread-tag { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft); border-left: 2px solid var(--red); padding-left: 8px; white-space: nowrap; }
+
+/* films: cinematic band */
+.films-band { background: var(--ink); color: var(--paper); padding-block: clamp(56px, 8vw, 120px); }
+.films-band .kicker { color: #B9AE9C; }
+.films-band .num { color: #B9AE9C; }
+.films-band .num b { color: var(--red); }
+.films-band .meta { color: #A99E8A; }
+.films-band .sec-head { border-color: rgba(250,247,239,.35); }
+.films-band .tag--dashed { border-color: #6B6256; color: #B9AE9C; }
+.films-band .thread-tag { color: #B9AE9C; }
+.films-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(32px, 4vw, 56px) clamp(24px, 4vw, 64px); }
+.film { display: flex; flex-direction: column; gap: 16px; color: inherit; }
+.film-frame { aspect-ratio: 16 / 9; border: 1px solid rgba(250,247,239,.35); background: #211d18; overflow: hidden; display: flex; align-items: center; justify-content: center; position: relative; }
+.film-frame img { width: 100%; height: 100%; object-fit: cover; opacity: .92; transition: opacity .3s ease, transform .8s var(--ease-out); }
+a.film:hover .film-frame img { opacity: 1; transform: scale(1.02); }
+.film-frame--concept { border-style: dashed; border-color: rgba(250,247,239,.25); background-image: linear-gradient(rgba(250,247,239,.06) 1px, transparent 1px), linear-gradient(90deg, rgba(250,247,239,.06) 1px, transparent 1px); background-size: 26px 26px; background-position: center; }
+.film-frame--concept::before, .film-frame--concept::after { content: ""; position: absolute; left: 0; right: 0; height: 1px; background: rgba(250,247,239,.18); }
+.film-frame--concept::before { top: 12%; } .film-frame--concept::after { bottom: 12%; }
+.film-slate { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.film-body { display: flex; flex-direction: column; gap: 8px; }
+.film-title { font-family: var(--serif); font-size: clamp(24px, 2.4vw, 34px); font-weight: 500; letter-spacing: -0.025em; line-height: 1.08; text-wrap: balance; }
+a.film:hover .film-title { font-style: italic; }
+.film--concept .film-title { color: #E6DECE; }
+.film-foot { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; margin-top: 6px; }
+.films-band .link { color: var(--paper); }
+.films-channel { display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap; margin-top: clamp(36px, 5vw, 64px); padding-top: 24px; border-top: 1px solid rgba(250,247,239,.25); }
+.films-channel .link { color: var(--paper); }
+
+/* journal: a collection of ideas */
+.jr-cats { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1.5px solid var(--ink); border-bottom: 1px solid var(--line); }
+.jr-cat { padding: 18px clamp(0px, 1.5vw, 24px) 18px 0; border-right: 1px solid var(--line); display: flex; flex-direction: column; gap: 8px; }
+.jr-cat:not(:first-child) { padding-left: clamp(0px, 1.5vw, 24px); }
+.jr-cat:last-child { border-right: 0; }
+.jr-cat .jc-t { font-family: var(--serif); font-size: clamp(19px, 1.8vw, 24px); font-weight: 500; letter-spacing: -0.015em; }
+.jr-cat .jc-n { font-family: var(--mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-soft); }
+.jr-cat .jc-n b { color: var(--ink); font-weight: 600; }
+.jr-list { border-top: 1.5px solid var(--ink); }
+.jr { display: grid; grid-template-columns: 56px minmax(0, 1.6fr) minmax(0, .8fr) auto; gap: 20px; align-items: baseline; padding: clamp(18px, 2.4vw, 28px) 0; border-bottom: 1px solid var(--line); color: inherit; transition: padding-left .3s var(--ease-out); }
+.jr .jr-n { font-family: var(--mono); font-size: 11.5px; font-weight: 600; letter-spacing: 0.18em; color: var(--ink-soft); }
+.jr .jr-t { font-family: var(--serif); font-size: clamp(22px, 2.6vw, 36px); font-weight: 500; letter-spacing: -0.025em; line-height: 1.08; text-wrap: balance; }
+.jr .jr-c { font-family: var(--serif); font-style: italic; font-weight: 300; font-size: clamp(16px, 1.4vw, 20px); color: var(--ink-2); }
+.jr .jr-s { display: flex; align-items: center; gap: 14px; justify-self: end; font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.08em; color: var(--ink-soft); flex-wrap: wrap; justify-content: flex-end; }
+a.jr:hover { padding-left: 10px; } a.jr:hover .jr-t { font-style: italic; }
+.jr--draft .jr-t { color: var(--ink-2); font-weight: 400; }
+.jr-empty { padding: clamp(28px, 4vw, 48px) 0; border-top: 1.5px solid var(--ink); border-bottom: 1px solid var(--line); }
+
+/* experiences */
+.kinds { border-top: 1.5px solid var(--ink); }
+.kind { display: grid; grid-template-columns: 40px 1fr auto; gap: 16px; align-items: baseline; padding: 13px 0; border-bottom: 1px solid var(--line); }
+.kind .kind-t { font-family: var(--serif); font-size: clamp(20px, 2vw, 26px); font-weight: 500; letter-spacing: -0.02em; }
+.xp-list { border-top: 1.5px solid var(--ink); }
+.xp { display: grid; grid-template-columns: 110px minmax(0, 1fr) minmax(0, .7fr) minmax(0, 1.1fr) auto; gap: 24px; align-items: baseline; padding: clamp(22px, 2.6vw, 34px) 0; border-bottom: 1px solid var(--line); color: inherit; transition: padding-left .3s var(--ease-out); }
+.xp .xp-n { font-family: var(--mono); font-size: 11.5px; font-weight: 600; letter-spacing: 0.18em; color: var(--ink-soft); }
+.xp .xp-n b { color: var(--red); }
+.xp .xp-t { font-family: var(--serif); font-size: clamp(24px, 2.8vw, 40px); font-weight: 500; letter-spacing: -0.03em; line-height: 1.02; }
+.xp .xp-k { font-family: var(--serif); font-style: italic; font-weight: 300; font-size: clamp(16px, 1.4vw, 20px); color: var(--ink-2); }
+.xp .xp-s { display: flex; align-items: center; gap: 14px; justify-self: end; flex-wrap: wrap; justify-content: flex-end; }
+a.xp:hover { padding-left: 10px; } a.xp:hover .xp-t { font-style: italic; }
+.xp--concept .xp-t { color: var(--ink-2); font-weight: 400; }
+
+/* threads: one idea, several formats */
+.thread { border: 1.5px solid var(--ink); padding: clamp(22px, 3vw, 40px); }
+.thread-head { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; }
+.thread-q { font-family: var(--serif); font-size: clamp(26px, 3.2vw, 44px); font-weight: 500; letter-spacing: -0.03em; line-height: 1.05; margin-top: 16px; text-wrap: balance; }
+.thread-note { margin-top: 12px; max-width: 56ch; }
+.thread-rows { margin-top: 22px; border-top: 1px solid var(--ink); }
+.th-row { display: grid; grid-template-columns: 110px minmax(0, 1fr) auto; gap: 16px; align-items: baseline; padding: 12px 0; border-bottom: 1px solid var(--line); color: inherit; }
+.th-row .th-f { font-family: var(--mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-soft); }
+.th-row .th-t { font-family: var(--serif); font-size: clamp(17px, 1.6vw, 21px); font-weight: 500; }
+.th-row .th-t--empty { color: var(--ink-soft); font-weight: 300; }
+.th-row .th-s { font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft); white-space: nowrap; }
+a.th-row:hover .th-t { font-style: italic; }
+.films-band .thread { border-color: rgba(250,247,239,.35); }
+.films-band .thread-rows { border-color: rgba(250,247,239,.35); }
+.films-band .th-row { border-color: rgba(250,247,239,.16); }
+.films-band .th-row .th-f, .films-band .th-row .th-s, .films-band .th-row .th-t--empty { color: #B9AE9C; }
+.films-band .thread-note { color: #B9AE9C; }
+
+@media (max-width: 1020px) { .sec-intro { grid-template-columns: 1fr; align-items: start; } }
+@media (max-width: 900px) {
+ .films-grid { grid-template-columns: 1fr; }
+ .jr-cats { grid-template-columns: 1fr 1fr; border-bottom: 0; }
+ .jr-cat { border-bottom: 1px solid var(--line); }
+ .jr-cat:nth-child(2n) { border-right: 0; }
+ .jr-cat:nth-child(2n+1) { padding-left: 0; }
+ .jr { grid-template-columns: 44px minmax(0, 1fr); grid-template-areas: "n t" "n c" "n s"; row-gap: 8px; }
+ .jr .jr-n { grid-area: n; } .jr .jr-t { grid-area: t; } .jr .jr-c { grid-area: c; } .jr .jr-s { grid-area: s; justify-self: start; justify-content: flex-start; }
+ .xp { grid-template-columns: 80px minmax(0, 1fr); grid-template-areas: "n t" "n k" "n d" "n s"; row-gap: 8px; }
+ .xp .xp-n { grid-area: n; } .xp .xp-t { grid-area: t; } .xp .xp-k { grid-area: k; } .xp .xp-d { grid-area: d; } .xp .xp-s { grid-area: s; justify-self: start; justify-content: flex-start; }
+}
+@media (max-width: 560px) {
+ .jr { grid-template-columns: 36px minmax(0, 1fr); }
+ .xp { grid-template-columns: 56px minmax(0, 1fr); }
+ .th-row { grid-template-columns: 1fr; gap: 4px; }
+ .kind { grid-template-columns: 32px 1fr auto; }
+}
+
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Ga naar de inhoud</a>
+
+<!-- ============ HEADER ============ -->
+<header class="site-head" data-screen-label="films">
+ <div class="wrap head-row">
+ <a class="wordmark" href="../index.html" aria-label="SouthStudio, Independent Studio, home">
+ <svg class="logo" viewBox="0 0 282 84" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="SouthStudio">
+ <rect x="3.8" y="16.8" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.7"></rect>
+ <rect x="23.8" y="16.8" width="17" height="17" fill="#D2362B" stroke="#D2362B" stroke-width="1.7"></rect>
+ <rect x="43.8" y="16.8" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.7"></rect>
+ <rect x="3.8" y="36.8" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.7"></rect>
+ <rect x="23.8" y="36.8" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.7"></rect>
+ <rect x="43.8" y="36.8" width="17" height="17" fill="currentColor" stroke="currentColor" stroke-width="1.7"></rect>
+ <rect x="3.8" y="56.8" width="17" height="17" fill="currentColor" stroke="currentColor" stroke-width="1.7"></rect>
+ <rect x="23.8" y="56.8" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.7"></rect>
+ <rect x="43.8" y="56.8" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.7"></rect>
+ <text x="76" y="48" font-family="'Spectral', Georgia, serif" font-size="33" font-weight="700" letter-spacing="-0.5"><tspan fill="currentColor">South</tspan><tspan fill="#D2362B">Studio</tspan></text>
+ <text x="77.5" y="66.5" font-family="'IBM Plex Mono', ui-monospace, monospace" font-size="8.6" font-weight="600" letter-spacing="3.1" fill="currentColor" opacity="0.5">INDEPENDENT STUDIO</text>
+ </svg>
+ </a>
+ <nav class="nav" aria-label="Primary">
+ <a class="navlink" href="../index.html#work">Werk</a>
+ <a class="navlink" href="../archive.html">Archief</a>
+ <a class="navlink active" href="../films/">Films</a>
+ <a class="navlink" href="../journal/">Journal</a>
+ <a class="navlink" href="../about.html">Studio</a>
+ </nav>
+ <div class="head-cta">
+ <a class="navlink" href="../../films/" hreflang="en" aria-label="Switch to English" style="opacity:.55;align-self:center">EN</a>
+ <a class="btn btn--ghost btn--sm" data-open-preorder href="#">Reserveren <span class="arr">→</span></a>
+ <button class="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+ </div>
+ </div>
+</header>
+
+<div class="mobile-menu">
+ <a href="../index.html#work"><span>Het werk</span><span class="num">01</span></a>
+ <a href="../archive.html"><span>Het archief</span><span class="num">02</span></a>
+ <a href="../timeline.html"><span>Timeline</span><span class="num">03</span></a>
+ <a href="../play.html"><span>Speel online</span><span class="num">04</span></a>
+ <a href="../films/"><span>Films</span><span class="num">05</span></a>
+ <a href="../journal/"><span>Journal</span><span class="num">06</span></a>
+ <a href="../experiences/"><span>Ervaringen</span><span class="num">07</span></a>
+ <a href="../about.html"><span>De studio</span><span class="num">08</span></a>
+ <div class="mm-foot">
+ <a data-open-preorder href="#">Reserveer Timeline →</a>
+ <a href="../index.html#dispatch">De Dispatch →</a>
+ <a href="../../films/" hreflang="en">English →</a>
+ </div>
+</div>
+<main id="main" tabindex="-1">
+
+<!-- ============ HERO ============ -->
+<section class="section sec-hero" data-screen-label="Hero">
+ <div class="wrap">
+ <div class="reveal eyebrow-rule">
+ <span class="kicker kicker--red"><span class="dot"></span>SouthStudio Films</span>
+ <span class="ln"></span>
+ <span class="kicker">Plank III · Films</span>
+ </div>
+ <div class="sec-intro">
+ <h1 class="display lines" data-lines>
+ <span><span>Korte films over</span></span>
+ <span><span><em>vreemde</em> vragen.</span></span>
+ </h1>
+ <p class="lead measure-sm reveal d2">Korte films over vreemde vragen, menselijk gedrag en de dingen waar we meestal niet bij stilstaan. Zonder gezicht, langzaam, en gemaakt om je achter te laten met een betere vraag dan waarmee je begon.</p>
+ </div>
+ </div>
+</section>
+
+<!-- ============ FILMS ============ -->
+<section class="films-band" data-screen-label="Films">
+ <div class="wrap">
+ <div class="sec-head reveal">
+ <span class="kicker"><span class="dot" style="color:var(--red)"></span>In ontwikkeling</span>
+ <span class="num">Concepten · Nog niet gefilmd</span>
+ </div>
+ <div class="split reveal" style="margin-bottom:clamp(32px,5vw,64px)">
+ <h2 class="h2">Vijf vragen waar we aan werken.</h2>
+ <p class="lead measure" style="color:#CFC6B5">Dit zijn de films die we nu schrijven en onderzoeken. Geen ervan is af. Een beeld verschijnt hier op de dag dat de film gepubliceerd wordt.</p>
+ </div>
+ <div class="films-grid reveal d1" data-collection="films" data-lang="nl" data-root="../"></div>
+ <div class="films-channel reveal d2">
+ <span class="meta">Afgeronde films verschijnen op het kanaal van de studio.</span>
+ <a class="link" data-films-channel href="https://www.youtube.com/@SouthStudio-Official" target="_blank" rel="noopener">SouthStudio op YouTube <span aria-hidden="true">→</span></a>
+ </div>
+ </div>
+</section>
+
+<!-- ============ THREAD ============ -->
+<section class="section section--tight" data-screen-label="Thread">
+ <div class="wrap">
+ <div class="sec-head reveal">
+ <span class="kicker kicker--red"><span class="dot"></span>Een draad</span>
+ <span class="num">Eén idee, meerdere vormen</span>
+ </div>
+ <div class="reveal d1" data-thread="silence" data-lang="nl" data-root="../"></div>
+ </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+</main>
+
+<footer class="site-foot" data-screen-label="Footer">
+ <div class="wrap">
+ <div class="foot-grid">
+ <div>
+ <a class="wordmark" href="../index.html" style="color:var(--paper)" aria-label="SouthStudio, home">
+ <svg class="logo" viewBox="0 0 282 84" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="SouthStudio">
+ <rect x="3.8" y="16.8" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.7"></rect>
+ <rect x="23.8" y="16.8" width="17" height="17" fill="#D2362B" stroke="#D2362B" stroke-width="1.7"></rect>
+ <rect x="43.8" y="16.8" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.7"></rect>
+ <rect x="3.8" y="36.8" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.7"></rect>
+ <rect x="23.8" y="36.8" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.7"></rect>
+ <rect x="43.8" y="36.8" width="17" height="17" fill="currentColor" stroke="currentColor" stroke-width="1.7"></rect>
+ <rect x="3.8" y="56.8" width="17" height="17" fill="currentColor" stroke="currentColor" stroke-width="1.7"></rect>
+ <rect x="23.8" y="56.8" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.7"></rect>
+ <rect x="43.8" y="56.8" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.7"></rect>
+ <text x="76" y="48" font-family="'Spectral', Georgia, serif" font-size="33" font-weight="700" letter-spacing="-0.5"><tspan fill="currentColor">South</tspan><tspan fill="#D2362B">Studio</tspan></text>
+ <text x="77.5" y="66.5" font-family="'IBM Plex Mono', ui-monospace, monospace" font-size="8.6" font-weight="600" letter-spacing="3.1" fill="currentColor" opacity="0.5">INDEPENDENT STUDIO</text>
+ </svg>
+ </a>
+ <p class="foot-motto">Dingen om over na te denken.</p>
+ </div>
+ <div>
+ <h2>Ontdek</h2>
+ <div class="foot-links">
+ <a href="../index.html#work">Het werk</a>
+ <a href="../archive.html">Het archief</a>
+ <a href="../films/">Films</a>
+ <a href="../journal/">Journal</a>
+ <a href="../experiences/">Ervaringen</a>
+ <a href="../about.html">Over de studio</a>
+ </div>
+ </div>
+ <div>
+ <h2>Studio</h2>
+ <div class="foot-links">
+ <a data-open-preorder href="#">Reserveer Timeline</a>
+ <a href="../timeline.html">Timeline, het boek</a>
+ <a href="../play.html">Speel online</a>
+ <a href="../index.html#dispatch">De Dispatch</a>
+ <a href="../stockists.html">Verkooppunten &amp; rechten</a>
+ <a href="mailto:info@southstudio.online">info@southstudio.online</a>
+ </div>
+ </div>
+ </div>
+ <div class="foot-bottom">
+ <span class="fine">© 2026 SouthStudio · Een onafhankelijke studio</span>
+ <a class="fine" href="../privacy.html" style="border-bottom:1px solid rgba(255,255,255,.22)">Privacyverklaring</a>
+ </div>
+ </div>
+</footer>
+
+<!-- ============ PRE-ORDER MODAL ============ -->
+<div class="overlay" data-modal>
+ <div class="modal" role="dialog" aria-modal="true" aria-label="Reserveer Timeline">
+ <div class="modal-head">
+ <div>
+ <div class="kicker kicker--red"><span class="dot"></span>Reserveer een exemplaar</div>
+ <h3 class="h3" style="margin-top:8px">Reserveer <span class="red">Timeline</span></h3>
+ </div>
+ <button class="modal-close" data-close aria-label="Sluiten">✕</button>
+ </div>
+ <div class="modal-body">
+ <p class="muted small">Eerste druk, gesigneerd door de studio. Je betaalt pas bij verzending, we houden alleen je exemplaar vast.</p>
+ <form novalidate>
+ <div class="input-row" data-required style="margin-bottom:12px">
+ <label for="po-name">Naam</label>
+ <input id="po-name" type="text" name="name" placeholder="Je naam" autocomplete="name" />
+ <span class="input-err"></span>
+ </div>
+ <div class="input-row" data-required style="margin-bottom:12px">
+ <label for="po-email">E-mail</label>
+ <input id="po-email" type="email" name="email" placeholder="jij@email.com" autocomplete="email" />
+ <span class="input-err"></span>
+ </div>
+ <div class="input-row" style="margin-bottom:18px">
+ <label for="po-edition">Editie</label>
+ <select id="po-edition" name="edition">
+ <option>Eerste druk · €24</option>
+ </select>
+ <span class="input-err"></span>
+ </div>
+ <label class="consent-row"><input type="checkbox" name="consent" /><span>Ik ga ermee akkoord dat SouthStudio mijn gegevens bewaart om deze reservering af te handelen, zoals beschreven in de <a href="../privacy.html" target="_blank">privacyverklaring</a>.</span></label>
+ <button class="btn btn--red" type="submit" style="width:100%;justify-content:center">Reserveer mijn exemplaar <span class="arr">→</span></button>
+ </form>
+ </div>
+ </div>
+</div>
+
+<script src="../../releases.js"></script>
+<script src="../../assets/site.js"></script>
+</body>
+</html>

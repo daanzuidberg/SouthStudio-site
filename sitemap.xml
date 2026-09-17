@@ -84,4 +84,60 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://southstudio.online/privacy.html"/>
     <changefreq>monthly</changefreq>
   </url>
+  <url>
+    <loc>https://southstudio.online/archive.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://southstudio.online/archive.html"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://southstudio.nl/archive.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://southstudio.online/archive.html"/>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://southstudio.nl/archive.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://southstudio.online/archive.html"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://southstudio.nl/archive.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://southstudio.online/archive.html"/>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://southstudio.online/films/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://southstudio.online/films/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://southstudio.nl/films/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://southstudio.online/films/"/>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://southstudio.nl/films/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://southstudio.online/films/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://southstudio.nl/films/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://southstudio.online/films/"/>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://southstudio.online/journal/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://southstudio.online/journal/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://southstudio.nl/journal/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://southstudio.online/journal/"/>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://southstudio.nl/journal/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://southstudio.online/journal/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://southstudio.nl/journal/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://southstudio.online/journal/"/>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://southstudio.online/experiences/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://southstudio.online/experiences/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://southstudio.nl/experiences/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://southstudio.online/experiences/"/>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://southstudio.nl/experiences/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://southstudio.online/experiences/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://southstudio.nl/experiences/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://southstudio.online/experiences/"/>
+    <changefreq>monthly</changefreq>
+  </url>
 </urlset>
