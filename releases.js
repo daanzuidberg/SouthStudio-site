@@ -201,7 +201,7 @@
  '<div class="rc-media">' + media + '</div>' +
  '<div class="rc-body">' +
  '<span class="num">' + UI.studioPrefix + ' / <b>' + esc(r.number) + '</b></span>' +
- '<h3 class="rc-title">' + title + '</h3>' +
+ '<h2 class="rc-title">' + title + '</h2>' +
  '<p class="rc-cat">' + esc(t(r.category, lang)) + '</p>' +
  '<p class="small muted rc-desc">' + esc(t(r.description, lang)) + '</p>' +
  '<div class="rc-foot">' +
