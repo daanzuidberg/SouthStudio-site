@@ -4,8 +4,8 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="form-endpoint" content="" />
-<title>Deduction Puzzle Books &amp; Logic Games · SouthStudio</title>
-<meta name="description" content="SouthStudio makes logic deduction games, puzzle books, and objects worth thinking about. Timeline — our debut: 80 unique cases to solve. Pre-order the book or play free online.ine." />
+<title>SouthStudio — Things worth thinking about</title>
+<meta name="description" content="SouthStudio is an independent creative studio making books, games, films, objects, experiences and ideas — unusual things designed to give your attention something worthwhile to do. Timeline, our debut deduction puzzle book, is out now." />
 <link rel="canonical" href="https://southstudio.online/" />
 <link rel="alternate" hreflang="en" href="https://southstudio.online/" />
 <link rel="alternate" hreflang="nl" href="https://southstudio.nl/" />
@@ -15,15 +15,15 @@
 <meta property="og:site_name" content="SouthStudio" />
 <meta property="og:locale" content="en_US" />
 <meta property="og:locale:alternate" content="nl_NL" />
-<meta property="og:title" content="SouthStudio, An independent studio for things worth thinking about" />
-<meta property="og:description" content="SouthStudio is an independent studio making games, books, and objects worth thinking about. Meet Timeline, our debut: 80 deduction cases in print, plus a free set online." />
+<meta property="og:title" content="SouthStudio — Things worth thinking about" />
+<meta property="og:description" content="An independent studio making books, games, films, objects, experiences and ideas. Give your attention something worthwhile to do." />
 <meta property="og:url" content="https://southstudio.online/" />
 <meta property="og:image" content="https://southstudio.online/icons/og-default.png" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="SouthStudio, An independent studio for things worth thinking about" />
-<meta name="twitter:description" content="SouthStudio is an independent studio making games, books, and objects worth thinking about. Meet Timeline, our debut: 80 deduction cases in print, plus a free set online." />
+<meta name="twitter:title" content="SouthStudio — Things worth thinking about" />
+<meta name="twitter:description" content="An independent studio making books, games, films, objects, experiences and ideas. Give your attention something worthwhile to do." />
 <meta name="twitter:image" content="https://southstudio.online/icons/og-default.png" />
 
 <link rel="icon" href="favicon.svg" type="image/svg+xml" />
@@ -32,14 +32,16 @@
 <link rel="manifest" href="site.webmanifest" />
 <meta name="theme-color" content="#1A1612" />
 
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"SouthStudio","url":"https://southstudio.online","logo":"https://southstudio.online/icons/icon-512.png","description":"An independent studio making logic deduction games, puzzle books, and objects worth thinking about.","foundingDate":"2026","foundingLocation":{"@type":"Place","addressCountry":"NL"},"contactPoint":{"@type":"ContactPoint","email":"info@southstudio.online","contactType":"customer support"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"SouthStudio","url":"https://southstudio.online","logo":"https://southstudio.online/icons/icon-512.png","description":"An independent creative studio making books, games, films, objects, experiences and ideas worth thinking about.","foundingDate":"2026","foundingLocation":{"@type":"Place","addressCountry":"NL"},"contactPoint":{"@type":"ContactPoint","email":"info@southstudio.online","contactType":"customer support"}}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
 <style>
 /* ============================================================
- SouthStudio, shared design system (v1)
+ SouthStudio, shared design system (v2)
  Paper / Ink / Signature Red · Spectral + IBM Plex Mono
+ Editorial, typographic, calm. Hierarchy through scale and
+ whitespace; hairlines instead of boxes; motion that reveals.
  ============================================================ */
 
 :root {
@@ -53,7 +55,7 @@
  --line: #E2D9C6;
  --line-2: #D3C8B1;
 
- /* signature accents (red = book, blue = play) */
+ /* signature accents (red = print, blue = screen) */
  --red: #D2362B;
  --red-deep: #A8261D;
  --blue: #2C52CC;
@@ -64,9 +66,16 @@
  --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
 
  /* metrics */
- --wrap: 1240px;
- --gut: clamp(20px, 5vw, 64px);
+ --wrap: 1280px;
+ --gut: clamp(20px, 5vw, 72px);
  --header-h: 76px;
+
+ /* spacing scale */
+ --s-1: 8px; --s-2: 16px; --s-3: 24px; --s-4: 32px; --s-5: 48px; --s-6: 64px; --s-7: 96px;
+
+ /* motion */
+ --ease-out: cubic-bezier(.2,.7,.2,1);
+ --ease-reveal: cubic-bezier(.7,0,.18,1);
 }
 
 /* ---------- reset ---------- */
@@ -82,17 +91,21 @@ body {
  -webkit-font-smoothing: antialiased;
  text-rendering: optimizeLegibility;
  overflow-x: hidden;
+ animation: pageIn .6s ease both;
 }
+@keyframes pageIn { from { opacity: 0; } to { opacity: 1; } }
 img, svg { display: block; max-width: 100%; }
 a { color: inherit; text-decoration: none; }
 button { font: inherit; color: inherit; background: none; border: none; cursor: pointer; }
 input, textarea { font: inherit; color: inherit; }
 ::selection { background: var(--red); color: var(--paper); }
+:focus-visible { outline: 2px solid var(--red); outline-offset: 3px; }
 
 /* ---------- layout ---------- */
 .wrap { width: 100%; max-width: var(--wrap); margin-inline: auto; padding-inline: var(--gut); }
-.section { padding-block: clamp(64px, 10vw, 132px); position: relative; }
-.section--tight { padding-block: clamp(44px, 6vw, 80px); }
+.section { padding-block: clamp(72px, 11vw, 150px); position: relative; }
+.section--tight { padding-block: clamp(48px, 7vw, 96px); }
+.section--flush-top { padding-top: 0; }
 
 /* paper texture: faint grid like a puzzle page */
 .gridfield {
@@ -106,7 +119,7 @@ input, textarea { font: inherit; color: inherit; }
 /* ---------- type ---------- */
 .kicker {
  font-family: var(--mono);
- font-size: 12.5px;
+ font-size: 12px;
  font-weight: 600;
  letter-spacing: 0.22em;
  text-transform: uppercase;
@@ -119,33 +132,52 @@ input, textarea { font: inherit; color: inherit; }
 .kicker--blue { color: var(--blue); }
 .kicker .dot { width: 7px; height: 7px; background: currentColor; display: inline-block; }
 
-h1, h2, h3 { font-weight: 700; line-height: 1.04; letter-spacing: -0.015em; }
+h1, h2, h3 { font-weight: 600; line-height: 1.04; letter-spacing: -0.015em; }
 .display {
- font-size: clamp(34px, 5vw, 72px);
- font-weight: 800;
- line-height: 0.95;
- letter-spacing: -0.03em;
+ font-size: clamp(46px, 9.4vw, 148px);
+ font-weight: 500;
+ line-height: 0.94;
+ letter-spacing: -0.035em;
+ text-wrap: balance;
 }
-.h1 { font-size: clamp(32px, 4.8vw, 58px); font-weight: 700; line-height: 1.0; }
-.h2 { font-size: clamp(26px, 3.2vw, 42px); font-weight: 700; }
-.h3 { font-size: clamp(22px, 2.4vw, 30px); font-weight: 600; }
+.display em { font-style: italic; font-weight: 400; }
+.h1 { font-size: clamp(34px, 5.2vw, 72px); font-weight: 500; line-height: 1.0; letter-spacing: -0.03em; text-wrap: balance; }
+.h2 { font-size: clamp(28px, 3.6vw, 52px); font-weight: 500; letter-spacing: -0.025em; text-wrap: balance; }
+.h3 { font-size: clamp(22px, 2.4vw, 30px); font-weight: 500; letter-spacing: -0.015em; }
 .lead {
- font-size: clamp(19px, 2vw, 24px);
+ font-size: clamp(19px, 1.9vw, 24px);
  line-height: 1.5;
  color: var(--ink-2);
- font-weight: 400;
+ font-weight: 300;
 }
-.serif-it { font-style: italic; font-weight: 500; }
+.lead strong, .lead b { font-weight: 500; color: var(--ink); }
+.serif-it { font-style: italic; font-weight: 400; }
 .muted { color: var(--ink-soft); }
 .red { color: var(--red); }
 .blue { color: var(--blue); }
-.measure { max-width: 58ch; }
-.measure-sm { max-width: 44ch; }
+.measure { max-width: 56ch; }
+.measure-sm { max-width: 42ch; }
+.small { font-size: 16px; line-height: 1.55; }
+
+/* project number / metadata */
+.num {
+ font-family: var(--mono);
+ font-size: 12px;
+ font-weight: 600;
+ letter-spacing: 0.2em;
+ text-transform: uppercase;
+ color: var(--ink-soft);
+}
+.num b { color: var(--red); font-weight: 600; }
+.meta { font-family: var(--mono); font-size: 12.5px; letter-spacing: 0.06em; color: var(--ink-soft); line-height: 1.6; }
+.meta-list { display: grid; grid-template-columns: max-content 1fr; gap: 10px 24px; font-family: var(--mono); font-size: 12.5px; letter-spacing: 0.04em; }
+.meta-list dt { color: var(--ink-soft); text-transform: uppercase; letter-spacing: 0.16em; font-size: 11px; padding-top: 2px; }
+.meta-list dd { color: var(--ink); }
 
 /* mono label / tag */
 .tag {
  font-family: var(--mono);
- font-size: 11.5px;
+ font-size: 11px;
  font-weight: 600;
  letter-spacing: 0.16em;
  text-transform: uppercase;
@@ -161,52 +193,61 @@ h1, h2, h3 { font-weight: 700; line-height: 1.04; letter-spacing: -0.015em; }
 .tag--blue { border-color: var(--blue); color: var(--blue); }
 .tag--solid-red { background: var(--red); border-color: var(--red); color: var(--paper); }
 .tag--solid-ink { background: var(--ink); border-color: var(--ink); color: var(--paper); }
+.tag--dashed { border-style: dashed; color: var(--ink-soft); }
 
 /* ---------- buttons ---------- */
 .btn {
  font-family: var(--mono);
- font-size: 13px;
+ font-size: 12.5px;
  font-weight: 600;
- letter-spacing: 0.1em;
+ letter-spacing: 0.12em;
  text-transform: uppercase;
- padding: 14px 22px;
+ padding: 15px 24px;
  border: 1.5px solid var(--ink);
  color: var(--ink);
  background: transparent;
  display: inline-flex;
  align-items: center;
- gap: 0.7em;
- transition: transform .16s ease, background .18s ease, color .18s ease, box-shadow .18s ease, border-color .18s ease;
+ gap: 0.8em;
+ transition: background .22s ease, color .22s ease, border-color .22s ease, transform .16s ease;
  cursor: pointer;
 }
-.btn .arr { transition: transform .2s ease; }
+.btn .arr { transition: transform .25s var(--ease-out); }
 .btn:hover .arr { transform: translateX(4px); }
 .btn:active { transform: translateY(1px); }
-.btn--red { background: var(--red); border-color: var(--red); color: var(--paper); }
-.btn--red:hover { background: var(--red-deep); border-color: var(--red-deep); box-shadow: 4px 4px 0 var(--ink); transform: translate(-1px,-1px); }
-.btn--blue { background: var(--blue); border-color: var(--blue); color: var(--paper); }
-.btn--blue:hover { background: var(--blue-deep); border-color: var(--blue-deep); box-shadow: 4px 4px 0 var(--ink); transform: translate(-1px,-1px); }
 .btn--ink { background: var(--ink); border-color: var(--ink); color: var(--paper); }
-.btn--ink:hover { box-shadow: 4px 4px 0 var(--red); transform: translate(-1px,-1px); }
-.btn--ghost:hover { background: var(--ink); color: var(--paper); box-shadow: 4px 4px 0 var(--red); transform: translate(-1px,-1px); }
-.btn--sm { padding: 10px 16px; font-size: 12px; }
+.btn--ink:hover { background: var(--red); border-color: var(--red); }
+.btn--ghost:hover { background: var(--ink); color: var(--paper); }
+.btn--red { background: var(--red); border-color: var(--red); color: var(--paper); }
+.btn--red:hover { background: var(--red-deep); border-color: var(--red-deep); }
+.btn--blue { background: var(--blue); border-color: var(--blue); color: var(--paper); }
+.btn--blue:hover { background: var(--blue-deep); border-color: var(--blue-deep); }
+.btn--sm { padding: 10px 16px; font-size: 11.5px; }
 .btn[disabled] { opacity: .45; cursor: not-allowed; }
 
 /* link with underline reveal */
 .link {
  font-family: var(--mono);
- font-size: 13px;
+ font-size: 12.5px;
  font-weight: 600;
- letter-spacing: 0.08em;
+ letter-spacing: 0.1em;
  text-transform: uppercase;
  display: inline-flex;
  align-items: center;
  gap: 0.6em;
- border-bottom: 1.5px solid transparent;
- padding-bottom: 2px;
- transition: border-color .18s ease, gap .18s ease;
+ padding-bottom: 3px;
+ background-image: linear-gradient(currentColor, currentColor);
+ background-repeat: no-repeat;
+ background-size: 0% 1.5px;
+ background-position: 0 100%;
+ transition: background-size .28s var(--ease-out), gap .2s ease;
 }
-.link:hover { border-color: currentColor; gap: 0.9em; }
+.link:hover { background-size: 100% 1.5px; gap: 0.9em; }
+.link--red { color: var(--red); }
+
+/* editorial inline link */
+.tlink { border-bottom: 1px solid var(--line-2); transition: border-color .2s ease; }
+.tlink:hover { border-color: var(--ink); }
 
 /* ---------- logo mark (logic grid) ---------- */
 .mark {
@@ -224,37 +265,33 @@ h1, h2, h3 { font-weight: 700; line-height: 1.04; letter-spacing: -0.015em; }
 
 /* wordmark */
 .wordmark { display: inline-flex; align-items: center; gap: 12px; }
-.wordmark .wm-text { display: flex; flex-direction: column; line-height: 1; }
-.wordmark .wm-name { font-family: var(--serif); font-weight: 700; font-size: 22px; letter-spacing: -0.01em; }
-.wordmark .wm-name b { color: var(--red); }
-.wordmark .wm-sub { font-family: var(--mono); font-size: 9.5px; font-weight: 600; letter-spacing: 0.34em; color: var(--ink-soft); margin-top: 3px; }
 
 /* ---------- header ---------- */
 .site-head {
  position: sticky; top: 0; z-index: 60;
- background: color-mix(in srgb, var(--paper) 88%, transparent);
- backdrop-filter: blur(10px);
- border-bottom: 1px solid var(--line);
- transition: box-shadow .2s ease, background .2s ease;
+ background: color-mix(in srgb, var(--paper) 92%, transparent);
+ backdrop-filter: blur(6px);
+ border-bottom: 1px solid transparent;
+ transition: border-color .25s ease, background .25s ease;
 }
-.site-head.scrolled { box-shadow: 0 1px 0 var(--line-2); background: color-mix(in srgb, var(--paper) 96%, transparent); }
+.site-head.scrolled { border-color: var(--line); background: color-mix(in srgb, var(--paper) 97%, transparent); }
 .head-row { height: var(--header-h); display: flex; align-items: center; justify-content: space-between; gap: 24px; }
 .nav { display: flex; align-items: center; gap: 30px; }
 .nav a.navlink {
- font-family: var(--mono); font-size: 12.5px; font-weight: 600;
- letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-2);
+ font-family: var(--mono); font-size: 12px; font-weight: 600;
+ letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-2);
  position: relative; padding: 4px 0;
  transition: color .16s ease;
 }
 .nav a.navlink::after {
- content: ""; position: absolute; left: 0; bottom: -2px; height: 2px; width: 0; background: var(--red);
- transition: width .2s ease;
+ content: ""; position: absolute; left: 0; bottom: -2px; height: 1.5px; width: 0; background: var(--red);
+ transition: width .25s var(--ease-out);
 }
 .nav a.navlink:hover { color: var(--ink); }
 .nav a.navlink:hover::after,
 .nav a.navlink.active::after { width: 100%; }
 .nav a.navlink.active { color: var(--ink); }
-.head-cta { display: flex; align-items: center; gap: 16px; }
+.head-cta { display: flex; align-items: center; gap: 18px; }
 .burger { display: none; width: 42px; height: 42px; border: 1.5px solid var(--ink); align-items: center; justify-content: center; flex-direction: column; gap: 5px; }
 .burger span { width: 18px; height: 2px; background: var(--ink); transition: transform .2s ease, opacity .2s ease; }
 .burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
@@ -264,34 +301,90 @@ h1, h2, h3 { font-weight: 700; line-height: 1.04; letter-spacing: -0.015em; }
 /* mobile menu */
 .mobile-menu {
  position: fixed; inset: var(--header-h) 0 0 0; z-index: 55;
- background: var(--paper); padding: 32px var(--gut);
- display: flex; flex-direction: column; gap: 6px;
+ background: var(--paper); padding: 28px var(--gut) 40px;
+ display: flex; flex-direction: column; gap: 0;
+ overflow-y: auto;
  transform: translateY(-12px); opacity: 0; pointer-events: none; visibility: hidden;
- transition: transform .25s ease, opacity .25s ease, visibility 0s linear .25s;
+ transition: transform .28s var(--ease-out), opacity .25s ease, visibility 0s linear .25s;
 }
-.mobile-menu.open { transform: none; opacity: 1; pointer-events: auto; visibility: visible; transition: transform .25s ease, opacity .25s ease, visibility 0s; }
+.mobile-menu.open { transform: none; opacity: 1; pointer-events: auto; visibility: visible; transition: transform .28s var(--ease-out), opacity .25s ease, visibility 0s; }
 .mobile-menu a {
- font-family: var(--serif); font-weight: 600; font-size: 30px;
- padding: 14px 0; border-bottom: 1px solid var(--line);
+ font-family: var(--serif); font-weight: 500; font-size: clamp(28px, 7vw, 36px); letter-spacing: -0.02em;
+ padding: 16px 0; border-bottom: 1px solid var(--line);
  display: flex; align-items: center; justify-content: space-between;
 }
-.mobile-menu a .num { font-family: var(--mono); font-size: 13px; color: var(--ink-soft); }
+.mobile-menu a .num { font-size: 12px; }
+.mobile-menu .mm-foot { margin-top: auto; padding-top: 28px; display: flex; flex-direction: column; gap: 14px; }
+.mobile-menu .mm-foot a { border: 0; padding: 0; font-size: 15px; font-family: var(--mono); letter-spacing: 0.06em; }
+
+/* ---------- hero ---------- */
+.hero { padding-top: clamp(40px, 7vw, 96px); padding-bottom: clamp(56px, 8vw, 120px); }
+.hero-grid { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, .65fr); gap: clamp(40px, 6vw, 96px); align-items: end; }
+.hero .display { margin-top: clamp(24px, 3vw, 40px); }
+.hero-lead { margin-top: clamp(28px, 3.5vw, 48px); }
+.hero-ctas { margin-top: clamp(28px, 3.5vw, 44px); display: flex; gap: 14px 18px; flex-wrap: wrap; align-items: center; }
+
+/* staggered line reveal for hero headline */
+.lines { display: block; }
+.lines > span { display: block; overflow: hidden; }
+.lines > span > span { display: block; transform: translateY(110%); transition: transform 1s var(--ease-reveal); }
+.lines.in > span:nth-child(1) > span { transform: none; transition-delay: .05s; }
+.lines.in > span:nth-child(2) > span { transform: none; transition-delay: .17s; }
+.lines.in > span:nth-child(3) > span { transform: none; transition-delay: .29s; }
+
+/* discipline index (what the studio makes) */
+.index { border-top: 1.5px solid var(--ink); }
+.index-head { padding: 14px 0 10px; display: flex; justify-content: space-between; align-items: baseline; }
+.index-row {
+ display: grid; grid-template-columns: 40px 1fr auto; align-items: baseline; gap: 16px;
+ padding: 13px 0; border-bottom: 1px solid var(--line);
+ color: var(--ink); position: relative;
+ transition: padding-left .3s var(--ease-out), color .2s ease;
+}
+.index-row .ix-n { font-family: var(--mono); font-size: 11px; letter-spacing: 0.16em; color: var(--ink-soft); }
+.index-row .ix-t { font-family: var(--serif); font-size: clamp(22px, 2.2vw, 28px); font-weight: 500; letter-spacing: -0.02em; line-height: 1.1; }
+.index-row .ix-s { font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft); text-align: right; white-space: nowrap; }
+a.index-row:hover { padding-left: 8px; }
+a.index-row:hover .ix-t { font-style: italic; }
+a.index-row:hover .ix-s { color: var(--red); }
+.index-row--idle { color: var(--ink-2); }
+.index-row--idle .ix-t { font-weight: 400; }
+
+/* ---------- section head ---------- */
+.sec-head { display: flex; align-items: baseline; justify-content: space-between; gap: 24px; flex-wrap: wrap; padding-bottom: 18px; border-bottom: 1.5px solid var(--ink); margin-bottom: clamp(36px, 5vw, 64px); }
+.sec-head .kicker { flex: none; }
+
+/* ---------- the work: feature ---------- */
+.feature-head { margin-bottom: clamp(36px, 5vw, 72px); }
+.feature { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(40px, 7vw, 112px); align-items: start; }
+.feature-title { font-size: clamp(64px, 12.5vw, 200px); font-weight: 600; letter-spacing: -0.045em; line-height: .86; margin-top: 14px; }
+.feature-title span { color: var(--red); }
+.feature-cat { font-family: var(--serif); font-style: italic; font-weight: 300; font-size: clamp(20px, 2.2vw, 28px); color: var(--ink-2); margin-top: 14px; }
+.feature-cat i { font-style: normal; color: var(--line-2); margin: 0 .35em; }
+.feature-body { margin-top: 0; }
+.feature-meta { margin-top: clamp(24px, 3vw, 36px); padding-top: 22px; border-top: 1px solid var(--line-2); }
+.feature-links { margin-top: clamp(28px, 3vw, 40px); display: flex; gap: 14px 26px; flex-wrap: wrap; align-items: center; }
+
+/* image / object reveal (clip from the bottom) */
+.reveal-img { clip-path: inset(100% 0 0 0); transition: clip-path 1.1s var(--ease-reveal); }
+[data-reveal-host].in .reveal-img { clip-path: inset(0 0 0 0); }
 
 /* ---------- book cover mockup (matches the designed front cover) ---------- */
+.book-stage { position: relative; padding: 16px 28px 28px 0; max-width: 480px; margin-inline: auto; }
 .book {
  position: relative;
  background: var(--paper);
  border: 1.5px solid var(--ink);
- box-shadow: 18px 22px 0 -2px var(--paper-3), 18px 22px 0 0 var(--ink);
+ box-shadow: 14px 16px 0 -2px var(--paper-3), 14px 16px 0 0 var(--ink);
  aspect-ratio: 3 / 4;
  container-type: inline-size;
  display: flex; flex-direction: column; align-items: center; justify-content: center;
  text-align: center;
  padding: clamp(20px, 3vw, 34px);
  overflow: hidden;
- transition: transform .35s cubic-bezier(.2,.7,.2,1), box-shadow .35s ease;
+ transition: transform .5s var(--ease-out), box-shadow .5s ease;
 }
-.book:hover { transform: translate(-3px,-4px); box-shadow: 22px 26px 0 -2px var(--paper-3), 22px 26px 0 0 var(--ink); }
+.book:hover { transform: translate(-2px,-3px); box-shadow: 16px 18px 0 -2px var(--paper-3), 16px 18px 0 0 var(--ink); }
 .bc-grid { position: absolute; inset: 0; background-image: linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px); background-size: 26px 26px; opacity: .5; }
 .bc-frame { position: absolute; inset: 14px; border: 1px solid var(--line-2); }
 .bc-frame::before, .bc-frame::after { content: ""; position: absolute; width: 12px; height: 12px; border: 2px solid var(--red); }
@@ -309,6 +402,7 @@ h1, h2, h3 { font-weight: 700; line-height: 1.04; letter-spacing: -0.015em; }
 .bc-meta { position: absolute; bottom: clamp(22px,4vw,40px); left: 0; right: 0; display: flex; flex-direction: column; align-items: center; gap: 6px; }
 .bc-cases { font-family: var(--mono); font-size: clamp(8px,1vw,11px); letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-2); }
 .bc-byline { font-family: var(--mono); font-size: clamp(10px,1.2vw,13px); font-weight: 600; letter-spacing: 0.32em; color: var(--ink); }
+.book-caption { margin-top: 22px; display: flex; justify-content: space-between; gap: 16px; font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-soft); }
 
 /* rubber stamp */
 .stamp {
@@ -319,74 +413,58 @@ h1, h2, h3 { font-weight: 700; line-height: 1.04; letter-spacing: -0.015em; }
  transform: rotate(-6deg);
  border-radius: 3px;
  opacity: 0.92;
- box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--red) 30%, transparent);
 }
 
-/* ---------- timeline rail motif ---------- */
-.rail { position: relative; height: 2px; background: var(--line-2); }
-.rail .node { position: absolute; top: 50%; width: 10px; height: 10px; background: var(--paper); border: 2px solid var(--ink); transform: translate(-50%,-50%) rotate(45deg); }
-.rail .node.red { background: var(--red); border-color: var(--red); }
+/* ---------- the archive: numbered list ---------- */
+.archive { border-top: 1.5px solid var(--ink); }
+.archive-row {
+ display: grid; grid-template-columns: 110px minmax(0, 1.4fr) minmax(0, 1fr) minmax(0, .8fr) auto;
+ gap: 24px; align-items: baseline;
+ padding: clamp(22px, 2.6vw, 34px) 0; border-bottom: 1px solid var(--line);
+ position: relative;
+ transition: padding-left .32s var(--ease-out);
+}
+.archive-row .ar-n { font-family: var(--mono); font-size: 12px; font-weight: 600; letter-spacing: 0.18em; color: var(--ink-soft); }
+.archive-row .ar-n b { color: var(--red); font-weight: 600; }
+.archive-row .ar-t { font-family: var(--serif); font-size: clamp(26px, 3.4vw, 48px); font-weight: 500; letter-spacing: -0.03em; line-height: 1; }
+.archive-row .ar-c { font-family: var(--serif); font-style: italic; font-weight: 300; font-size: clamp(17px, 1.5vw, 21px); color: var(--ink-2); }
+.archive-row .ar-f { font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-soft); }
+.archive-row .ar-s { justify-self: end; }
+a.archive-row:hover { padding-left: 10px; }
+a.archive-row:hover .ar-t { font-style: italic; }
+a.archive-row:hover .ar-n b { color: var(--ink); }
+.archive-row--concept .ar-t { color: var(--ink-soft); font-weight: 400; }
+.archive-row--concept .ar-t em { font-style: italic; }
+.archive-note { margin-top: 22px; }
 
-/* ---------- cards / panels ---------- */
+/* ---------- studio: principles as a hairline grid ---------- */
+.principles { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1.5px solid var(--ink); }
+.principle { padding: clamp(24px, 3vw, 40px) clamp(0px, 2vw, 32px) clamp(28px, 3vw, 44px) 0; border-right: 1px solid var(--line); display: flex; flex-direction: column; gap: 14px; }
+.principle:not(:first-child) { padding-left: clamp(0px, 2vw, 32px); }
+.principle:last-child { border-right: 0; }
+.principle .pn { font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.2em; color: var(--red); }
+.principle h3 { font-size: clamp(21px, 2vw, 26px); font-weight: 500; letter-spacing: -0.015em; }
+
+/* pull quote */
+.pull { font-family: var(--serif); font-weight: 300; font-style: italic; font-size: clamp(26px, 3.4vw, 46px); line-height: 1.2; letter-spacing: -0.02em; text-wrap: balance; }
+
+/* ---------- panels ---------- */
 .panel { border: 1.5px solid var(--ink); background: var(--paper); }
-.panel--raise { box-shadow: 8px 8px 0 var(--ink); }
 .hairline { height: 1px; background: var(--line-2); border: 0; }
-.thick-rule { height: 3px; background: var(--ink); border: 0; }
+.thick-rule { height: 1.5px; background: var(--ink); border: 0; }
 
-/* feature split */
-.split { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: clamp(32px, 6vw, 80px); align-items: center; }
-
-/* ways-to-play cards */
-.ways { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
-.ways--3 { grid-template-columns: repeat(3,1fr); }
-@media (max-width: 700px) { .ways--3 { grid-template-columns: 1fr; } }
-.way {
- border: 1.5px solid var(--ink); background: var(--paper);
- padding: clamp(24px, 3vw, 38px);
- display: flex; flex-direction: column; gap: 18px;
- position: relative; overflow: hidden;
- transition: transform .25s ease, box-shadow .25s ease;
-}
-.way:hover { transform: translateY(-4px); }
-.way--online:hover { box-shadow: 10px 10px 0 var(--blue); }
-.way--book:hover { box-shadow: 10px 10px 0 var(--red); }
-.way .way-num { font-family: var(--mono); font-size: 12px; letter-spacing: 0.2em; color: var(--ink-soft); }
-.way .price { font-family: var(--serif); font-weight: 700; font-size: 40px; letter-spacing: -0.02em; }
-.way ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
-.way li { display: flex; gap: 12px; font-size: 16px; color: var(--ink-2); align-items: baseline; }
-.way li::before { content: ", "; color: var(--red); font-weight: 700; }
-.way--online li::before { color: var(--blue); }
-
-/* principles grid */
-.principles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line-2); border: 1px solid var(--line-2); }
-.principle { background: var(--paper); padding: clamp(24px,3vw,36px); display: flex; flex-direction: column; gap: 14px; min-height: 220px; }
-.principle .pn { font-family: var(--mono); font-size: 12px; letter-spacing: 0.2em; color: var(--red); }
-
-/* four shelves */
-.shelves { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--line-2); border: 1px solid var(--line-2); }
-.shelf { background: var(--paper); padding: clamp(22px,2.6vw,32px); display: flex; flex-direction: column; gap: 12px; min-height: 230px; color: inherit; }
-a.shelf { transition: background .18s ease; }
-a.shelf:hover { background: var(--paper-2); }
-.shelf .sn { font-family: var(--mono); font-size: 11px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--red); }
-.shelf h3 { font-size: 21px; font-weight: 700; letter-spacing: -0.01em; }
-.shelf .shelf-status { margin-top: auto; font-family: var(--mono); font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft); border-top: 1px solid var(--line); padding-top: 12px; transition: color .16s ease; }
-.shelf .shelf-status b { color: var(--ink); font-weight: 600; }
-a.shelf:hover .shelf-status { color: var(--ink); }
-@media (max-width: 1020px) { .shelves { grid-template-columns: 1fr 1fr; } }
-@media (max-width: 600px) { .shelves { grid-template-columns: 1fr; } .shelf { min-height: 0; } }
-
-/* newsletter */
-.news-form { display: flex; gap: 12px; flex-wrap: wrap; max-width: 520px; }
-.field {
- flex: 1 1 240px; display: flex; align-items: center;
- border: 1.5px solid var(--ink); background: var(--paper);
-}
-.field input { flex: 1; border: 0; background: transparent; padding: 15px 16px; outline: none; font-family: var(--mono); font-size: 14px; letter-spacing: 0.02em; }
+/* ---------- dispatch / newsletter ---------- */
+.dispatch { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(32px, 6vw, 96px); align-items: start; padding-top: clamp(36px, 5vw, 64px); border-top: 1.5px solid var(--ink); }
+.news-form { display: flex; gap: 0; max-width: 520px; border-bottom: 1.5px solid var(--ink); }
+.field { flex: 1 1 200px; display: flex; align-items: center; }
+.field input { flex: 1; width: 100%; border: 0; background: transparent; padding: 16px 0; outline: none; font-family: var(--mono); font-size: 14px; letter-spacing: 0.02em; }
 .field input::placeholder { color: var(--ink-soft); }
-.form-note { font-family: var(--mono); font-size: 12px; letter-spacing: 0.04em; color: var(--ink-soft); margin-top: 12px; }
+.news-form .btn { border: 0; padding-inline: 12px 0; background: transparent; color: var(--ink); }
+.news-form .btn:hover { color: var(--red); }
+.form-note { font-family: var(--mono); font-size: 12px; letter-spacing: 0.04em; color: var(--ink-soft); margin-top: 14px; }
 .form-note.err { color: var(--red); }
 .form-note.ok { color: var(--blue); }
-.form-consent { font-family: var(--mono); font-size: 11px; letter-spacing: 0.03em; color: var(--ink-soft); margin-top: 12px; line-height: 1.55; max-width: 520px; }
+.form-consent { font-family: var(--mono); font-size: 11px; letter-spacing: 0.03em; color: var(--ink-soft); margin-top: 10px; line-height: 1.55; max-width: 520px; }
 .form-consent a { color: var(--ink); border-bottom: 1px solid var(--line-2); }
 .consent-row { display: flex; gap: 9px; align-items: flex-start; margin-bottom: 16px; cursor: pointer; font-family: var(--mono); font-size: 11px; line-height: 1.5; color: var(--ink-soft); letter-spacing: 0.02em; }
 .consent-row input { margin-top: 1px; flex: none; accent-color: var(--red); width: 15px; height: 15px; }
@@ -397,20 +475,8 @@ a.shelf:hover .shelf-status { color: var(--ink); }
 /* ---------- footer ---------- */
 .site-foot { background: var(--ink); color: var(--paper); padding-block: clamp(56px, 7vw, 96px); }
 .site-foot a { color: var(--paper); }
-.site-foot .mark span { border-color: var(--paper); }
-.site-foot .mark span.fill { background: var(--red); border-color: var(--red); }
-
-/* ---------- logo (inline svg, currentColor) ---------- */
 .logo { height: 42px; width: auto; display: block; flex: none; }
 .site-foot .logo { height: 46px; }
-
-/* ---------- hero stat strip ---------- */
-.statstrip { display: grid; grid-template-columns: repeat(3, 1fr); border: 1.5px solid var(--ink); width: fit-content; max-width: 100%; }
-.statstrip .stat { padding: 18px 24px; border-right: 1px solid var(--line-2); }
-.statstrip .stat:last-child { border-right: 0; }
-.statstrip .stat-n { font-family: var(--serif); font-weight: 700; font-size: clamp(28px,3vw,36px); line-height: 1; letter-spacing: -0.02em; }
-.statstrip .stat-l { font-family: var(--mono); font-size: 10.5px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft); margin-top: 9px; white-space: nowrap; }
-@media (max-width: 460px) { .statstrip { grid-template-columns: 1fr; width: 100%; } .statstrip .stat { border-right: 0; border-bottom: 1px solid var(--line-2); } .statstrip .stat:last-child { border-bottom: 0; } }
 .foot-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 40px; }
 .foot-grid h4 { font-family: var(--mono); font-size: 11px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: #B9AE9C; margin-bottom: 18px; }
 .foot-links { display: flex; flex-direction: column; gap: 11px; }
@@ -418,20 +484,20 @@ a.shelf:hover .shelf-status { color: var(--ink); }
 .foot-links a:hover { color: #fff; border-color: var(--red); }
 .foot-bottom { display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; margin-top: 56px; padding-top: 24px; border-top: 1px solid rgba(255,255,255,.14); }
 .foot-bottom .fine { font-family: var(--mono); font-size: 11px; letter-spacing: 0.06em; color: #9A8F7E; }
+.foot-motto { font-family: var(--serif); font-style: italic; font-weight: 300; font-size: clamp(22px, 2.4vw, 30px); line-height: 1.25; color: #E6DECE; max-width: 20ch; margin-top: 26px; letter-spacing: -0.01em; }
 
 /* ---------- modal ---------- */
 .overlay {
  position: fixed; inset: 0; z-index: 100;
- background: color-mix(in srgb, var(--ink) 62%, transparent);
- backdrop-filter: blur(3px);
+ background: color-mix(in srgb, var(--ink) 66%, transparent);
  display: flex; align-items: center; justify-content: center; padding: 24px;
  opacity: 0; pointer-events: none; transition: opacity .22s ease;
 }
 .overlay.open { opacity: 1; pointer-events: auto; }
 .modal {
  width: 100%; max-width: 520px; background: var(--paper);
- border: 1.5px solid var(--ink); box-shadow: 14px 14px 0 var(--ink);
- transform: translateY(14px) scale(.98); transition: transform .26s cubic-bezier(.2,.8,.2,1);
+ border: 1.5px solid var(--ink);
+ transform: translateY(14px); transition: transform .3s var(--ease-out);
  max-height: 90vh; overflow: auto;
 }
 .overlay.open .modal { transform: none; }
@@ -450,13 +516,14 @@ a.shelf:hover .shelf-status { color: var(--ink); }
 .input-err { font-family: var(--mono); font-size: 11px; color: var(--red); letter-spacing: 0.03em; min-height: 0; }
 
 /* ---------- scroll reveal ---------- */
-.reveal { opacity: 0; transform: translateY(22px); transition: opacity .7s ease, transform .7s cubic-bezier(.2,.7,.2,1); }
+.reveal { opacity: 0; transform: translateY(18px); transition: opacity .8s ease, transform .9s var(--ease-out); }
 .reveal.in { opacity: 1; transform: none; }
 .reveal.d1 { transition-delay: .08s; }
 .reveal.d2 { transition-delay: .16s; }
 .reveal.d3 { transition-delay: .24s; }
 @media (prefers-reduced-motion: reduce) {
- .reveal { opacity: 1; transform: none; transition: none; }
+ .reveal, .reveal-img, .lines > span > span { opacity: 1; transform: none; clip-path: none; transition: none; }
+ body { animation: none; }
  html { scroll-behavior: auto; }
 }
 
@@ -469,70 +536,7 @@ a.shelf:hover .shelf-status { color: var(--ink); }
 .center { text-align: center; }
 .eyebrow-rule { display: flex; align-items: center; gap: 16px; }
 .eyebrow-rule .ln { flex: 1; height: 1px; background: var(--line-2); }
-
-/* ---------- sample puzzle ---------- */
-.pz {
- border: 1.5px solid var(--ink); background: var(--paper);
- box-shadow: 10px 10px 0 var(--ink);
-}
-.pz-head { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 18px 22px; border-bottom: 1.5px solid var(--ink); background: var(--paper-2); flex-wrap: wrap; }
-.pz-head .pz-file { font-family: var(--mono); font-size: 12px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-2); display: flex; align-items: center; gap: 10px; }
-.pz-list { display: flex; flex-direction: column; }
-.pz-list.shake { animation: shake .4s ease; }
-@keyframes shake { 10%,90%{transform:translateX(-2px)} 30%,70%{transform:translateX(4px)} 50%{transform:translateX(-5px)} }
-.pz-row {
- display: grid; grid-template-columns: 44px 1fr auto auto; align-items: center; gap: 16px;
- padding: 15px 22px; border-bottom: 1px solid var(--line);
- transition: background .15s ease;
-}
-.pz-row:last-child { border-bottom: 0; }
-.pz-row:hover { background: var(--paper-2); }
-.pz-pos { font-family: var(--mono); font-size: 15px; font-weight: 700; color: var(--red); }
-.pz-label { font-size: 17px; font-weight: 500; color: var(--ink); }
-.pz-era { font-family: var(--mono); font-size: 12px; letter-spacing: 0.12em; color: var(--ink-soft); text-align: right; min-width: 84px; }
-.pz-moves { display: flex; flex-direction: column; gap: 4px; }
-.pz-mv {
- width: 30px; height: 22px; border: 1.4px solid var(--line-2); color: var(--ink-2);
- font-size: 10px; display: flex; align-items: center; justify-content: center;
- transition: background .14s ease, color .14s ease, border-color .14s ease;
-}
-.pz-mv:hover:not([disabled]) { background: var(--ink); color: var(--paper); border-color: var(--ink); }
-.pz-mv[disabled] { opacity: .3; cursor: not-allowed; }
-.pz-foot { padding: 18px 22px; border-top: 1.5px solid var(--ink); display: flex; align-items: center; justify-content: space-between; gap: 18px; flex-wrap: wrap; }
-.pz-status { font-family: var(--mono); font-size: 13px; letter-spacing: 0.02em; color: var(--ink-soft); flex: 1 1 240px; }
-.pz-status.bad { color: var(--red); }
-.pz-status.ok { color: var(--ink-2); }
-.pz-stamp { font-family: var(--mono); font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--red); border: 2px solid var(--red); padding: 3px 8px; border-radius: 3px; margin-right: 8px; display: inline-block; }
-.pz-actions { display: flex; gap: 10px; }
-
-@media (max-width: 540px) {
- .pz-row { grid-template-columns: 32px 1fr auto; gap: 10px; padding: 13px 16px; }
- .pz-era { display: none; }
- .pz-label { font-size: 15px; }
-}
-
-/* ---------- play host (embed slot) ---------- */
-.host-shell { border: 1.5px solid var(--ink); background: var(--paper); box-shadow: 12px 12px 0 var(--ink); overflow: hidden; }
-.host-bar { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 14px 20px; border-bottom: 1.5px solid var(--ink); background: var(--ink); color: var(--paper); flex-wrap: wrap; }
-.host-bar .hb-left { display: flex; align-items: center; gap: 14px; }
-.host-bar .hb-dots { display: flex; gap: 7px; }
-.host-bar .hb-dots i { width: 11px; height: 11px; border-radius: 50%; display: block; }
-.host-bar .hb-title { font-family: var(--mono); font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; }
-.host-bar .hb-title b { color: var(--red); }
-.host-bar .hb-meta { font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; color: #B9AE9C; }
-.host-stage {
- position: relative; min-height: 540px; display: flex; align-items: center; justify-content: center;
- background:
- radial-gradient(circle at 1px 1px, var(--line) 1.4px, transparent 0) 0 0 / 26px 26px,
- var(--paper);
-}
-.host-slot { text-align: center; max-width: 460px; padding: 48px 28px; }
-.host-slot .hs-mark { display: inline-flex; transform: scale(1.7); margin-bottom: 30px; }
-.host-slot .hs-title { font-weight: 800; font-size: clamp(40px,7vw,68px); letter-spacing: -0.03em; line-height: .9; }
-.host-slot .hs-title b { color: var(--red); }
-.host-slot .hs-note { font-family: var(--mono); font-size: 12.5px; line-height: 1.7; letter-spacing: 0.02em; color: var(--ink-soft); margin-top: 18px; }
-.host-slot .hs-code { font-family: var(--mono); font-size: 12px; background: var(--ink); color: #E6DECE; padding: 2px 7px; border-radius: 3px; }
-.host-frame { width: 100%; height: 100%; min-height: 540px; border: 0; display: block; }
+.split { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(32px, 6vw, 96px); align-items: start; }
 
 /* ---------- intro opener ---------- */
 #intro { position: fixed; inset: 0; z-index: 200; display: flex; align-items: center; justify-content: center; }
@@ -559,25 +563,55 @@ a.shelf:hover .shelf-status { color: var(--ink); }
 @keyframes introText { from { opacity: 0; transform: translateY(7px); } to { opacity: 1; transform: none; } }
 .intro-hint { position: absolute; bottom: 34px; left: 0; right: 0; text-align: center; font-family: var(--mono); font-size: 11px; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; color: var(--ink-soft); opacity: 0; transition: opacity .5s ease; }
 #intro.play .intro-hint { opacity: .75; transition-delay: 1.2s; }
-body.intro-hold .reveal { opacity: 0 !important; transform: translateY(22px) !important; transition: none !important; }
+body.intro-hold .reveal { opacity: 0 !important; transform: translateY(18px) !important; transition: none !important; }
+body.intro-hold .lines > span > span { transform: translateY(110%) !important; transition: none !important; }
+body.intro-hold .reveal-img { clip-path: inset(100% 0 0 0) !important; transition: none !important; }
 @media (prefers-reduced-motion: reduce) { #intro { display: none; } }
 
 /* ---------- responsive ---------- */
+@media (max-width: 1020px) {
+ .hero-grid { grid-template-columns: 1fr; align-items: start; gap: clamp(40px, 7vw, 64px); }
+ .index { max-width: 640px; }
+ .archive-row { grid-template-columns: 80px minmax(0, 1fr) auto; grid-template-areas: "n t s" "n c c" "n f f"; row-gap: 8px; }
+ .archive-row .ar-n { grid-area: n; }
+ .archive-row .ar-t { grid-area: t; }
+ .archive-row .ar-c { grid-area: c; }
+ .archive-row .ar-f { grid-area: f; }
+ .archive-row .ar-s { grid-area: s; }
+}
 @media (max-width: 900px) {
- .split { grid-template-columns: 1fr; }
- .ways { grid-template-columns: 1fr; }
+ .split, .feature, .dispatch { grid-template-columns: minmax(0, 1fr); }
+ .feature { gap: clamp(36px, 8vw, 64px); }
+ .feature > .feature-visual { order: -1; }
+ .book-stage { max-width: 380px; margin-inline: 0; }
  .principles { grid-template-columns: 1fr; }
+ .principle { border-right: 0; border-bottom: 1px solid var(--line); padding-left: 0 !important; padding-right: 0; }
+ .principle:last-child { border-bottom: 0; }
  .foot-grid { grid-template-columns: 1fr 1fr; }
  .nav { display: none; }
  .head-cta .btn { display: none; }
  .burger { display: flex; }
 }
-@media (max-width: 540px) {
- .principles { grid-template-columns: 1fr !important; }
+@media (max-width: 560px) {
+ body { font-size: 17px; }
+ :root { --header-h: 66px; }
+ .logo { height: 36px; }
+ .display { font-size: clamp(44px, 14vw, 64px); letter-spacing: -0.03em; }
+ .hero { padding-top: 32px; }
+ .hero-ctas .btn { width: 100%; justify-content: space-between; }
+ .index-row { grid-template-columns: 32px 1fr auto; gap: 12px; }
+ .index-row .ix-t { font-size: 21px; }
+ .index-row .ix-s { font-size: 10px; }
+ .feature-title { font-size: clamp(56px, 17vw, 96px); }
+ .feature-links { flex-direction: column; align-items: flex-start; }
+ .archive-row { grid-template-columns: 56px minmax(0, 1fr); grid-template-areas: "n t" "n c" "n f" "n s"; gap: 6px 14px; }
+ .archive-row .ar-s { justify-self: start; margin-top: 6px; }
+ .archive-row .ar-t { font-size: 28px; }
+ .sec-head { flex-direction: column; align-items: flex-start; gap: 10px; }
  .foot-grid { grid-template-columns: 1fr; gap: 28px; }
- .book { max-width: 320px; margin-inline: auto; }
+ .news-form { flex-wrap: nowrap; }
+ .book-stage { padding-right: 20px; }
 }
-
 </style>
 </head>
 <body>
@@ -621,58 +655,119 @@ body.intro-hold .reveal { opacity: 0 !important; transform: translateY(22px) !im
  </svg>
  </a>
  <nav class="nav" aria-label="Primary">
- <a class="navlink active" href="index.html">Studio</a>
+ <a class="navlink" href="#work">Work</a>
+ <a class="navlink" href="#archive">Archive</a>
  <a class="navlink" href="timeline.html">Timeline</a>
  <a class="navlink" href="play.html">Play</a>
- <a class="navlink" href="#dispatch">Dispatch</a>
+ <a class="navlink" href="about.html">Studio</a>
  </nav>
  <div class="head-cta">
  <a class="navlink" href="nl/index.html" hreflang="nl" aria-label="Schakel naar Nederlands" style="opacity:.55;align-self:center">NL</a>
- <a class="btn btn--red btn--sm" data-open-preorder href="#">Pre-order <span class="arr">→</span></a>
- <button class="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+ <a class="btn btn--ghost btn--sm" data-open-preorder href="#">Pre-order <span class="arr">→</span></a>
+ <button class="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
  </div>
  </div>
 </header>
 
 <div class="mobile-menu">
- <a href="index.html"><span>Studio</span><span class="num">01</span></a>
- <a href="timeline.html"><span>Timeline</span><span class="num">02</span></a>
- <a href="play.html"><span>Play online</span><span class="num">03</span></a>
- <a href="#dispatch"><span>Dispatch</span><span class="num">04</span></a>
- <a class="btn btn--red" data-open-preorder href="#" style="margin-top:18px;justify-content:center">Pre-order the book →</a>
+ <a href="#work"><span>The work</span><span class="num">01</span></a>
+ <a href="#archive"><span>The archive</span><span class="num">02</span></a>
+ <a href="timeline.html"><span>Timeline</span><span class="num">03</span></a>
+ <a href="play.html"><span>Play online</span><span class="num">04</span></a>
+ <a href="about.html"><span>The studio</span><span class="num">05</span></a>
+ <div class="mm-foot">
+ <a data-open-preorder href="#">Pre-order Timeline →</a>
+ <a href="#dispatch">The Dispatch →</a>
+ <a href="nl/index.html" hreflang="nl">Nederlands →</a>
+ </div>
 </div>
 
 <!-- ============ HERO ============ -->
-<section class="section gridfield" style="padding-top:clamp(52px,7vw,92px)">
+<section class="section hero" data-screen-label="Hero">
  <div class="wrap">
- <div class="reveal eyebrow-rule" style="margin-bottom:30px">
- <span class="kicker kicker--red"><span class="dot"></span>Independent studio · Est. 2026</span>
+ <div class="reveal eyebrow-rule">
+ <span class="kicker kicker--red"><span class="dot"></span>Independent studio</span>
  <span class="ln"></span>
- <span class="kicker">No. 001, Timeline</span>
+ <span class="kicker">Netherlands · Est. 2026</span>
  </div>
 
- <div class="split" style="align-items:flex-start;gap:clamp(28px,5vw,64px)">
+ <div class="hero-grid">
  <div>
- <h1 class="display reveal d1">
- Things worth<br /><span class="red serif-it" style="font-weight:800">thinking about.</span></h1>
- <div class="reveal d2 mt-32">
- <p class="lead measure">SouthStudio creates with intention. Timeless in design, meaningful in use, and made to last.
-</p>
- <div class="row gap-16 wrap-gap mt-32">
- <a class="btn btn--ink" href="timeline.html">Meet Timeline <span class="arr">→</span></a>
- <a class="btn btn--ghost" href="play.html">Play online <span class="arr">→</span></a>
- </div>
- <div class="statstrip mt-40">
- <div class="stat"><div class="stat-n">80</div><div class="stat-l">Cases in the book</div></div>
- <div class="stat"><div class="stat-n">5</div><div class="stat-l">Difficulty tiers</div></div>
- <div class="stat"><div class="stat-n">2</div><div class="stat-l">Ways to play</div></div>
- </div>
+ <h1 class="display lines" data-lines>
+ <span><span>Things worth</span></span>
+ <span><span><em>thinking</em> about.</span></span>
+ </h1>
+ <p class="lead measure hero-lead reveal d2">
+ SouthStudio is an independent creative studio. We make books, games, films, objects, experiences and ideas — unusual things, made slowly, designed to give your attention something worthwhile to do.
+ </p>
+ <div class="hero-ctas reveal d3">
+ <a class="btn btn--ink" href="#work">Explore the work <span class="arr">→</span></a>
+ <a class="btn btn--ghost" href="#archive">Enter the archive <span class="arr">→</span></a>
  </div>
  </div>
 
- <!-- book cover mockup (the designed front cover) -->
- <div class="reveal d3" style="position:relative;padding:10px 30px 30px 0">
- <div class="book">
+ <div class="index reveal d2" aria-label="What the studio makes">
+ <div class="index-head">
+ <span class="kicker">What we make</span>
+ <span class="num">Six shelves</span>
+ </div>
+ <a class="index-row" href="timeline.html">
+ <span class="ix-n">01</span><span class="ix-t">Books</span><span class="ix-s">001 · Timeline</span>
+ </a>
+ <a class="index-row" href="play.html">
+ <span class="ix-n">02</span><span class="ix-t">Games</span><span class="ix-s">Play online</span>
+ </a>
+ <a class="index-row" href="https://www.youtube.com/@SouthStudio-Official" target="_blank" rel="noopener">
+ <span class="ix-n">03</span><span class="ix-t">Films</span><span class="ix-s">On YouTube</span>
+ </a>
+ <div class="index-row index-row--idle">
+ <span class="ix-n">04</span><span class="ix-t">Objects</span><span class="ix-s">In development</span>
+ </div>
+ <div class="index-row index-row--idle">
+ <span class="ix-n">05</span><span class="ix-t">Experiences</span><span class="ix-s">In development</span>
+ </div>
+ <a class="index-row" href="#dispatch">
+ <span class="ix-n">06</span><span class="ix-t">Ideas</span><span class="ix-s">The Dispatch</span>
+ </a>
+ </div>
+ </div>
+ </div>
+</section>
+
+<!-- ============ THE WORK ============ -->
+<section class="section section--flush-top" id="work" data-screen-label="The work">
+ <div class="wrap">
+ <div class="sec-head reveal">
+ <span class="kicker kicker--red"><span class="dot"></span>The work</span>
+ <span class="num">Selected · One of one, for now</span>
+ </div>
+
+ <div class="feature-head reveal">
+ <span class="num">SouthStudio / <b>001</b></span>
+ <h2 class="feature-title">TIME<span>LINE</span></h2>
+ <p class="feature-cat">History <i>/</i> Deduction</p>
+ </div>
+
+ <div class="feature">
+ <div class="reveal">
+ <p class="lead measure feature-body">
+ A deduction puzzle book set inside the Time Correction Agency. Somewhere in the record, history has been quietly rewritten. Eighty self-contained cases, each with exactly one answer, reachable by reasoning alone. No trivia, no luck.
+ </p>
+ <dl class="meta-list feature-meta">
+ <dt>Format</dt><dd>Hardcover puzzle book · 200 pages · 80 cases · five clearances</dd>
+ <dt>Also</dt><dd>A separate set of cases, free to play in the browser</dd>
+ <dt>Status</dt><dd>First edition · pre-order open · €24</dd>
+ </dl>
+ <div class="feature-links">
+ <a class="btn btn--ink" href="timeline.html">Open the case file <span class="arr">→</span></a>
+ <a class="link" href="play.html">Play a case online <span aria-hidden="true">→</span></a>
+ </div>
+ </div>
+
+ <div class="feature-visual">
+ <div class="book-stage" data-reveal-host>
+ <div class="reveal-img">
+ <a class="book" href="timeline.html" aria-label="Timeline, the book">
  <span class="bc-grid" aria-hidden="true"></span>
  <span class="bc-frame" aria-hidden="true"></span>
  <div class="bc-topkick">Time Correction Agency · Puzzlebook</div>
@@ -683,7 +778,7 @@ body.intro-hold .reveal { opacity: 0 !important; transform: translateY(22px) !im
  <span></span><span></span><span class="fill-ink"></span>
  <span class="fill-ink"></span><span></span><span></span>
  </span>
- <h2 class="bc-title">TIME<span>LINE</span></h2>
+ <span class="bc-title">TIME<span>LINE</span></span>
  <p class="bc-tag">History has been edited.<br />You are the correction.</p>
  <span class="bc-rule" aria-hidden="true"></span>
  </div>
@@ -691,242 +786,90 @@ body.intro-hold .reveal { opacity: 0 !important; transform: translateY(22px) !im
  <span class="bc-cases">80 Deduction Cases · Five Clearances</span>
  <span class="bc-byline">SOUTHSTUDIO</span>
  </div>
+ </a>
+ </div>
+ <div class="book-caption reveal d2">
+ <span>Fig. 001 — Front cover</span>
+ <span>First edition</span>
+ </div>
  </div>
  </div>
  </div>
  </div>
 </section>
 
-<hr class="thick-rule" />
-
-<!-- ============ THE FOUR SHELVES ============ -->
-<section class="section section--tight" data-screen-label="The Four Shelves">
+<!-- ============ THE ARCHIVE ============ -->
+<section class="section section--tight" id="archive" data-screen-label="The archive">
  <div class="wrap">
- <div class="reveal eyebrow-rule" style="margin-bottom:36px">
- <span class="kicker kicker--red"><span class="dot"></span>What we make</span>
- <span class="ln"></span>
- <span class="kicker">Four shelves, one standard</span>
+ <div class="sec-head reveal">
+ <span class="kicker kicker--red"><span class="dot"></span>The archive</span>
+ <span class="num">Everything, numbered</span>
  </div>
- <div class="split" style="align-items:baseline;margin-bottom:38px">
- <h2 class="h2 reveal">One studio, four shelves.</h2>
- <p class="lead muted reveal d1">Everything we release lives on one of four shelves. A shelf can stay empty for years, it never gets filled with filler.</p>
- </div>
- <div class="shelves reveal d1">
- <a class="shelf" href="timeline.html">
- <span class="sn">Shelf I · Print</span>
- <h3>Books &amp; puzzles</h3>
- <p class="muted" style="font-size:15px">Puzzle books and field manuals. Slowly made, finished, made to keep.</p>
- <span class="shelf-status"><b>No. 001 · Timeline</b> →</span>
+ <div class="archive reveal d1">
+ <a class="archive-row" href="timeline.html">
+ <span class="ar-n">SS / <b>001</b></span>
+ <span class="ar-t">Timeline</span>
+ <span class="ar-c">History / Deduction</span>
+ <span class="ar-f">Book · Online</span>
+ <span class="ar-s tag tag--solid-red">Out now</span>
  </a>
- <a class="shelf" href="play.html">
- <span class="sn">Shelf II · Screen</span>
- <h3>Digital experiences</h3>
- <p class="muted" style="font-size:15px">Games built for the browser, never ports, never apps that nag.</p>
- <span class="shelf-status"><b>Play free online</b> →</span>
- </a>
- <a class="shelf" href="https://www.youtube.com/@SouthStudio-Official" target="_blank" rel="noopener">
- <span class="sn">Shelf III · Video</span>
- <h3>Video</h3>
- <p class="muted" style="font-size:15px">Faceless films about things worth thinking about. The studio thinking out loud.</p>
- <span class="shelf-status"><b>Watch on YouTube</b> →</span>
- </a>
- <div class="shelf">
- <span class="sn">Shelf IV · Objects</span>
- <h3>Objects</h3>
- <p class="muted" style="font-size:15px">Jigsaws, solving puzzles, prints, things whose answer sits in your hands.</p>
- <span class="shelf-status">On the bench</span>
+ <div class="archive-row archive-row--concept">
+ <span class="ar-n">SS / <b>002</b></span>
+ <span class="ar-t"><em>Untitled</em></span>
+ <span class="ar-c">A different kind of thinking</span>
+ <span class="ar-f">Concept</span>
+ <span class="ar-s tag tag--dashed">In development</span>
+ </div>
+ <div class="archive-row archive-row--concept">
+ <span class="ar-n">SS / <b>003</b></span>
+ <span class="ar-t"><em>Untitled</em></span>
+ <span class="ar-c">Something physical</span>
+ <span class="ar-f">Concept</span>
+ <span class="ar-s tag tag--dashed">On the bench</span>
  </div>
  </div>
+ <p class="meta archive-note reveal d2 measure">Entries marked <em>Concept</em> are not finished work. They are directions the studio is exploring. The archive grows slowly, and nothing is added to fill space.</p>
  </div>
 </section>
 
-<hr class="thick-rule" />
-
-<!-- ============ FEATURED: TIMELINE ============ -->
-<section class="section" data-screen-label="Featured Timeline">
+<!-- ============ THE STUDIO ============ -->
+<section class="section" data-screen-label="The studio">
  <div class="wrap">
- <div class="reveal eyebrow-rule" style="margin-bottom:40px">
- <span class="kicker kicker--red"><span class="dot"></span>The Debut Title</span>
- <span class="ln"></span>
+ <div class="sec-head reveal">
+ <span class="kicker kicker--red"><span class="dot"></span>The studio</span>
+ <span class="num">Why we make things</span>
  </div>
  <div class="split">
  <div class="reveal">
- <h2 class="h1">A dossier of <span class="red">deduction</span>.</h2>
- <p class="lead measure mt-24">
- You've been recruited by the Time Correction Agency. Somewhere in the
- record, history has been quietly rewritten, and only careful reasoning
- puts it back. <em>Timeline</em> is 80 self-contained cases that build
- from a coffee-break warm-up to a genuine head-scratcher.
- </p>
- <div class="principles mt-40" style="grid-template-columns:1fr 1fr">
- <div class="principle" style="min-height:auto">
- <span class="pn">01 / Solvable</span>
- <p class="muted" style="font-size:16px">Every case has exactly one answer, reachable by logic alone. No trivia, no luck.</p>
- </div>
- <div class="principle" style="min-height:auto">
- <span class="pn">02 / Story-led</span>
- <p class="muted" style="font-size:16px">Each puzzle is a tiny mystery, a paradox to resolve, not a grid to grind.</p>
- </div>
- </div>
- <div class="row gap-16 wrap-gap mt-32">
- <a class="btn btn--red" href="timeline.html">Open the case file <span class="arr">→</span></a>
- <a class="link" href="play.html">Try a case online <span aria-hidden="true">→</span></a>
- </div>
- </div>
-
- <div class="reveal d1">
- <!-- timeline rail visual -->
- <div class="panel panel--raise" style="padding:clamp(26px,3vw,40px)">
- <div class="kicker kicker--red"><span class="dot"></span>Case 014 · Sample</div>
- <p class="h3" style="margin-top:14px;font-weight:600;line-height:1.25">
- "The agency clock lists five events. One is in the wrong century.
- Restore the true order."
- </p>
- <div style="margin:34px 0 14px;position:relative">
- <div class="rail">
- <span class="node" style="left:4%"></span>
- <span class="node" style="left:28%"></span>
- <span class="node red" style="left:52%"></span>
- <span class="node" style="left:76%"></span>
- <span class="node" style="left:96%"></span>
- </div>
- </div>
- <div class="row" style="justify-content:space-between;font-family:var(--mono);font-size:11px;letter-spacing:.1em;color:var(--ink-soft);text-transform:uppercase">
- <span>Earliest</span><span class="red">◆ paradox</span><span>Latest</span>
- </div>
- <hr class="hairline" style="margin:26px 0" />
- <div class="row gap-12 wrap-gap">
- <span class="tag tag--red">Deduction</span>
- <span class="tag">Sequencing</span>
- <span class="tag">~6 min</span>
- </div>
- </div>
- </div>
- </div>
- </div>
-</section>
-
-<!-- ============ TWO WAYS TO PLAY ============ -->
-<section class="section section--tight gridfield" data-screen-label="Two ways to play">
- <div class="wrap">
- <div class="center reveal">
- <span class="kicker"><span class="dot"></span>Two ways to play<span class="dot"></span></span>
- <h2 class="h2 mt-12">Paper, or pixels.</h2>
- <p class="lead muted mt-12" style="margin-inline:auto">Try a free set online, or get all 80 unique cases in the book.</p>
- </div>
- <div class="ways mt-40 reveal d1">
- <div class="way way--book">
- <div class="row" style="justify-content:space-between">
- <span class="tag tag--solid-red">The Book</span>
- <span class="way-num">FORMAT 01</span>
- </div>
- <h3 class="h3">A proper puzzle book</h3>
- <p class="muted" style="font-size:16px">Smyth-sewn, lies-flat binding · 200 pages · printed on uncoated stock that takes a pencil beautifully.</p>
- <ul>
- <li>From easy warm-ups to fiendish finales</li>
- <li>Full solutions &amp; reasoning notes</li>
- <li>80 unique cases, only in print</li>
- </ul>
- <div class="row gap-16 wrap-gap" style="margin-top:auto">
- <span class="price">€24</span>
- <a class="btn btn--red btn--sm" data-open-preorder href="#">Pre-order <span class="arr">→</span></a>
- </div>
- </div>
- <div class="way way--online">
- <div class="row" style="justify-content:space-between">
- <span class="tag tag--blue">Play Online</span>
- <span class="way-num">FORMAT 02</span>
- </div>
- <h3 class="h3">A free set to try</h3>
- <p class="muted" style="font-size:16px">A different set of cases, free to play in your browser, a taste of the deduction before you pick up the book.</p>
- <ul>
- <li>Play in any browser, no install</li>
- <li>Smart hints &amp; instant verification</li>
- <li>A free case every week</li>
- </ul>
- <div class="row gap-16 wrap-gap" style="margin-top:auto">
- <span class="price blue">Free<span style="font-size:16px;color:var(--ink-soft);font-family:var(--mono);letter-spacing:.1em">&nbsp;to start</span></span>
- <a class="btn btn--blue btn--sm" href="play.html">Play now <span class="arr">→</span></a>
- </div>
- </div>
- </div>
- </div>
-</section>
-
-<hr class="thick-rule" />
-
-<!-- ============ THE CATALOG ============ -->
-<section class="section section--tight" data-screen-label="The Catalog">
- <div class="wrap">
- <div class="reveal" style="display:flex;align-items:baseline;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-bottom:34px">
- <h2 class="h2">The Catalog</h2>
- <span class="kicker">A studio with a trajectory</span>
- </div>
- <div class="ways ways--3 reveal d1">
- <a class="way way--book" href="timeline.html" style="background:var(--ink);color:var(--paper);text-decoration:none">
- <div class="row" style="justify-content:space-between">
- <span class="way-num" style="color:#B9AE9C">No. 001</span>
- <span class="tag tag--solid-red">Out now</span>
- </div>
- <h3 class="h3" style="color:var(--paper)">Timeline</h3>
- <p style="color:#CFC6B5;font-size:15px">80 logic cases inside the Time Correction Agency. A proper book, plus a free set to play online.</p>
- <span class="link" style="margin-top:auto;color:var(--paper);border-color:var(--paper)">Open the case file<span aria-hidden="true">→</span></span>
- </a>
- <div class="way" style="border-style:dashed">
- <div class="row" style="justify-content:space-between">
- <span class="way-num">No. 002</span>
- <span class="tag tag--red">Coming</span>
- </div>
- <h3 class="h3 serif-it" style="color:var(--ink-2);font-weight:600">In the works</h3>
- <p class="muted" style="font-size:15px">A new way to put your mind to work. Same studio, same standard, a different kind of thinking.</p>
- </div>
- <div class="way" style="border-style:dashed">
- <div class="row" style="justify-content:space-between">
- <span class="way-num">No. 003</span>
- <span class="tag tag--red">Coming</span>
- </div>
- <h3 class="h3 serif-it" style="color:var(--ink-2);font-weight:600">On the bench</h3>
- <p class="muted" style="font-size:15px">Something physical. Beautiful to own, rigorous to solve.</p>
- </div>
- </div>
- </div>
-</section>
-
-<hr class="thick-rule" />
-
-<!-- ============ ABOUT THE STUDIO ============ -->
-<section class="section" data-screen-label="About the studio">
- <div class="wrap">
- <div class="split" style="align-items:flex-start">
- <div class="reveal">
- <span class="kicker kicker--red"><span class="dot"></span>The Studio</span>
- <h2 class="h2 mt-12">We make things worth keeping on the shelf.</h2>
+ <h2 class="h1">Give your attention something worthwhile to do.</h2>
  </div>
  <div class="reveal d1">
  <p class="lead measure">
- SouthStudio is the work of makers who got tired of throwaway
- apps and 99-cent collections. We make things that make you think, 
- releases worth keeping on the shelf that respect your attention instead
- of mining it. <em>Timeline</em> is the first. More will follow, each new
- title a fresh way to work the brain.
+ Most things made for a screen are built to take attention. We are interested in the opposite: things that reward it. A puzzle that is fair. A book that stays on the shelf. A film that leaves you with a better question than it found you with.
  </p>
+ <p class="lead measure mt-24">
+ SouthStudio is small on purpose. We make one thing at a time, finish it properly, and then start the next.
+ </p>
+ <div class="mt-32">
+ <a class="link" href="about.html">About the studio <span aria-hidden="true">→</span></a>
+ </div>
  </div>
  </div>
  <div class="principles mt-56 reveal d1">
  <div class="principle">
- <span class="pn">A.</span>
- <h3 style="font-size:20px;font-weight:700">Hand-tested</h3>
- <p class="muted" style="font-size:15px">Every case is solved by a human before it's printed. If it isn't fair, it doesn't ship.</p>
+ <span class="pn">I.</span>
+ <h3>Made slowly</h3>
+ <p class="muted small">Every case, page and frame is tested by a person before it leaves the studio. If it isn't fair, it doesn't ship.</p>
  </div>
  <div class="principle">
- <span class="pn">B.</span>
- <h3 style="font-size:20px;font-weight:700">No dark patterns</h3>
- <p class="muted" style="font-size:15px">No timers nagging you, no streaks to guilt you. Solve at your own pace.</p>
+ <span class="pn">II.</span>
+ <h3>Nothing that nags</h3>
+ <p class="muted small">No timers, no streaks, no notifications. Our things wait for you. Pick them up when you have the time to think.</p>
  </div>
  <div class="principle">
- <span class="pn">C.</span>
- <h3 style="font-size:20px;font-weight:700">Made to last</h3>
- <p class="muted" style="font-size:15px">Good paper, careful typesetting, and a binding that survives a backpack.</p>
+ <span class="pn">III.</span>
+ <h3>Made to keep</h3>
+ <p class="muted small">Good paper, careful typesetting, ideas that hold up on a second visit. Things worth a place on the shelf.</p>
  </div>
  </div>
  </div>
@@ -935,23 +878,21 @@ body.intro-hold .reveal { opacity: 0 !important; transform: translateY(22px) !im
 <!-- ============ DISPATCH / NEWSLETTER ============ -->
 <section class="section section--tight" id="dispatch" data-screen-label="Dispatch">
  <div class="wrap">
- <div class="panel panel--raise reveal" style="padding:clamp(32px,5vw,64px);background:var(--paper-2)">
- <div class="split" style="align-items:center">
+ <div class="dispatch reveal">
  <div>
  <span class="kicker kicker--red"><span class="dot"></span>The Dispatch</span>
- <h2 class="h2 mt-12">Get the next case<br />before anyone else.</h2>
- <p class="lead muted mt-12 measure-sm">One short email when a new title drops or a fresh online case goes live. Nothing else.</p>
+ <h2 class="h2 mt-12">One short letter,<br />when something is finished.</h2>
+ <p class="lead muted mt-12 measure-sm">Notes from the studio, a new title, a fresh case to play. Sent rarely. Nothing else.</p>
  </div>
  <div>
  <form class="news-form" data-news novalidate>
  <div class="field">
- <input type="email" name="email" placeholder="investigator@email.com" aria-label="Email address" />
+ <input type="email" name="email" placeholder="your@email.com" aria-label="Email address" autocomplete="email" />
  </div>
- <button class="btn btn--ink" type="submit">Subscribe <span class="arr">→</span></button>
+ <button class="btn" type="submit">Subscribe <span class="arr">→</span></button>
  </form>
- <p class="form-note">// We send rarely. Unsubscribe in one click.</p>
+ <p class="form-note">// Unsubscribe in one click.</p>
  <p class="form-consent">By subscribing you agree to our <a href="privacy.html">privacy policy</a>.</p>
- </div>
  </div>
  </div>
  </div>
@@ -977,26 +918,26 @@ body.intro-hold .reveal { opacity: 0 !important; transform: translateY(22px) !im
  <text x="77.5" y="66.5" font-family="'IBM Plex Mono', ui-monospace, monospace" font-size="8.6" font-weight="600" letter-spacing="3.1" fill="currentColor" opacity="0.5">INDEPENDENT STUDIO</text>
  </svg>
  </a>
- <p class="muted" style="color:#B9AE9C;max-width:34ch;margin-top:20px;font-size:16px">
- SouthStudio creates with intention. Timeless in design, meaningful in use, and made to last.
- </p>
+ <p class="foot-motto">Things worth thinking about.</p>
  </div>
  <div>
  <h4>Explore</h4>
  <div class="foot-links">
- <a href="index.html">The Studio</a>
+ <a href="#work">The work</a>
+ <a href="#archive">The archive</a>
  <a href="timeline.html">Timeline, the book</a>
  <a href="play.html">Play online</a>
- <a href="#dispatch">The Dispatch</a>
+ <a href="about.html">About the studio</a>
  </div>
  </div>
  <div>
  <h4>Studio</h4>
  <div class="foot-links">
  <a data-open-preorder href="#">Pre-order Timeline</a>
- <a href="mailto:info@southstudio.online">info@southstudio.online</a>
+ <a href="#dispatch">The Dispatch</a>
  <a href="stockists.html">Stockists &amp; rights</a>
- <a href="about.html">About the studio</a>
+ <a href="https://www.youtube.com/@SouthStudio-Official" target="_blank" rel="noopener">YouTube</a>
+ <a href="mailto:info@southstudio.online">info@southstudio.online</a>
  </div>
  </div>
  </div>
@@ -1018,16 +959,16 @@ body.intro-hold .reveal { opacity: 0 !important; transform: translateY(22px) !im
  <button class="modal-close" data-close aria-label="Close">✕</button>
  </div>
  <div class="modal-body">
- <p class="muted" style="font-size:15px">First print run, signed by the studio. No charge until it ships, we'll just hold your copy.</p>
+ <p class="muted small">First print run, signed by the studio. No charge until it ships, we'll just hold your copy.</p>
  <form novalidate>
  <div class="input-row" data-required style="margin-bottom:12px">
  <label>Name</label>
- <input type="text" name="name" placeholder="Your name" />
+ <input type="text" name="name" placeholder="Your name" autocomplete="name" />
  <span class="input-err"></span>
  </div>
  <div class="input-row" data-required style="margin-bottom:12px">
  <label>Email</label>
- <input type="email" name="email" placeholder="you@email.com" />
+ <input type="email" name="email" placeholder="you@email.com" autocomplete="email" />
  <span class="input-err"></span>
  </div>
  <div class="input-row" style="margin-bottom:18px">
@@ -1046,7 +987,7 @@ body.intro-hold .reveal { opacity: 0 !important; transform: translateY(22px) !im
 
 <script>
 /* ============================================================
- SouthStudio, shared interactions (v1)
+ SouthStudio, shared interactions (v2)
  ============================================================ */
 (function () {
  "use strict";
@@ -1064,27 +1005,25 @@ body.intro-hold .reveal { opacity: 0 !important; transform: translateY(22px) !im
  var burger = document.querySelector(".burger");
  var menu = document.querySelector(".mobile-menu");
  if (burger && menu) {
- burger.addEventListener("click", function () {
- var open = menu.classList.toggle("open");
+ function setMenu(open) {
+ menu.classList.toggle("open", open);
  burger.classList.toggle("open", open);
+ burger.setAttribute("aria-expanded", open ? "true" : "false");
  document.body.style.overflow = open ? "hidden" : "";
- });
+ }
+ burger.addEventListener("click", function () { setMenu(!menu.classList.contains("open")); });
  menu.querySelectorAll("a").forEach(function (a) {
- a.addEventListener("click", function () {
- menu.classList.remove("open");
- burger.classList.remove("open");
- document.body.style.overflow = "";
- });
+ a.addEventListener("click", function () { setMenu(false); });
  });
  }
 
- /* ---- scroll reveal ---- */
+ /* ---- scroll reveal (fade, line masks, image clip) ---- */
  var io = new IntersectionObserver(function (entries) {
  entries.forEach(function (e) {
  if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
  });
  }, { threshold: 0.12, rootMargin: "0px 0px -8% 0px" });
- document.querySelectorAll(".reveal").forEach(function (el) { io.observe(el); });
+ document.querySelectorAll(".reveal, [data-reveal-host], [data-lines]").forEach(function (el) { io.observe(el); });
 
  /* ---- form submission helper (real POST + mailto fallback) ---- */
  function LQendpoint() {
@@ -1117,7 +1056,7 @@ body.intro-hold .reveal { opacity: 0 !important; transform: translateY(22px) !im
  var ok = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
  if (!note) return;
  if (!ok) {
- note.textContent = "// Enter a valid email to receive transmissions.";
+ note.textContent = "// Enter a valid email to receive the Dispatch.";
  note.className = "form-note err";
  input.focus();
  return;
@@ -1144,11 +1083,14 @@ body.intro-hold .reveal { opacity: 0 !important; transform: translateY(22px) !im
  var modalBody = overlay.querySelector(".modal-body");
  var origBody = modalBody ? modalBody.innerHTML : "";
 
- function openModal() {
+ function openModal(ev) {
+ if (ev) ev.preventDefault();
  if (modalBody) modalBody.innerHTML = origBody;
  wireForm();
  overlay.classList.add("open");
  document.body.style.overflow = "hidden";
+ var first = overlay.querySelector("input");
+ if (first) setTimeout(function () { first.focus(); }, 120);
  }
  function closeModal() {
  overlay.classList.remove("open");
@@ -1190,7 +1132,7 @@ body.intro-hold .reveal { opacity: 0 !important; transform: translateY(22px) !im
  function showReserved() { modalBody.innerHTML =
  '<div class="stamp" style="align-self:flex-start">● Reservation logged</div>' +
  '<h3 class="h3" style="margin-top:6px">Copy reserved, ' + escapeHtml(name.split(" ")[0]) + '.</h3>' +
- '<p class="muted" style="font-size:16px">We\'ve added you to the first print run of <em>Timeline</em>. ' +
+ '<p class="muted small">We\'ve added you to the first print run of <em>Timeline</em>. ' +
  'You\'ll get a dispatch the moment pre-orders ship, no charge until then.</p>' +
  '<div class="row gap-12 wrap-gap mt-12">' +
  '<span class="tag tag--red">First edition</span>' +
@@ -1208,95 +1150,7 @@ body.intro-hold .reveal { opacity: 0 !important; transform: translateY(22px) !im
  return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
  });
  }
-
- /* =========================================================
- Sample puzzle, "Restore the Timeline"
- Reorder scrambled events into true chronological order.
- ========================================================= */
- var puzzle = document.querySelector("[data-puzzle]");
- if (puzzle) {
- var EVENTS = [
- { y: -2560, label: "Great Pyramid of Giza completed", era: "c. 2560 BCE" },
- { y: 79, label: "Vesuvius buries Pompeii", era: "79 CE" },
- { y: 1440, label: "Gutenberg's printing press", era: "c. 1440" },
- { y: 1903, label: "First powered flight, Kitty Hawk", era: "1903" },
- { y: 1969, label: "Apollo 11 lands on the Moon", era: "1969" }
- ];
- var order = shuffle(EVENTS.slice());
- // guarantee it starts scrambled
- if (isSorted(order)) order = shuffle(order);
-
- var listEl = puzzle.querySelector("[data-puzzle-list]");
- var statusEl = puzzle.querySelector("[data-puzzle-status]");
- var verifyBtn = puzzle.querySelector("[data-verify]");
- var resetBtn = puzzle.querySelector("[data-reset]");
- var solved = false;
-
- function render() {
- listEl.innerHTML = "";
- order.forEach(function (item, i) {
- var row = document.createElement("div");
- row.className = "pz-row";
- row.innerHTML =
- '<span class="pz-pos">' + String(i + 1).padStart(2, "0") + '</span>' +
- '<span class="pz-label">' + item.label + '</span>' +
- '<span class="pz-era" data-era>' + (solved ? item.era : "????") + '</span>' +
- '<span class="pz-moves">' +
- '<button class="pz-mv" data-up aria-label="Move earlier" ' + (i === 0 ? "disabled" : "") + '>▲</button>' +
- '<button class="pz-mv" data-down aria-label="Move later" ' + (i === order.length - 1 ? "disabled" : "") + '>▼</button>' +
- '</span>';
- row.querySelector("[data-up]") && row.querySelector("[data-up]").addEventListener("click", function () { move(i, i - 1); });
- row.querySelector("[data-down]") && row.querySelector("[data-down]").addEventListener("click", function () { move(i, i + 1); });
- listEl.appendChild(row);
- });
- }
- function move(from, to) {
- if (solved || to < 0 || to >= order.length) return;
- var t = order[from]; order[from] = order[to]; order[to] = t;
- statusEl.className = "pz-status";
- statusEl.textContent = "// Chronology unverified.";
- render();
- }
- function verify() {
- if (isSorted(order)) {
- solved = true;
- render();
- statusEl.className = "pz-status ok";
- statusEl.innerHTML = '<span class="pz-stamp">Timeline restored ✓</span> The correction holds. This is one move of many in the full book.';
- verifyBtn.setAttribute("disabled", "");
- } else {
- statusEl.className = "pz-status bad";
- statusEl.textContent = "// Paradox detected, events are out of sequence. Keep correcting.";
- listEl.classList.remove("shake"); void listEl.offsetWidth; listEl.classList.add("shake");
- }
- }
- function reset() {
- solved = false;
- order = shuffle(EVENTS.slice());
- if (isSorted(order)) order = shuffle(order);
- verifyBtn.removeAttribute("disabled");
- statusEl.className = "pz-status";
- statusEl.textContent = "// Order the events from earliest to latest, then verify.";
- render();
- }
- verifyBtn.addEventListener("click", verify);
- resetBtn.addEventListener("click", reset);
- render();
- }
-
- function isSorted(arr) {
- for (var i = 1; i < arr.length; i++) if (arr[i].y < arr[i - 1].y) return false;
- return true;
- }
- function shuffle(a) {
- for (var i = a.length - 1; i > 0; i--) {
- var j = Math.floor(Math.random() * (i + 1));
- var t = a[i]; a[i] = a[j]; a[j] = t;
- }
- return a;
- }
 })();
-
 </script>
 
 <script>
