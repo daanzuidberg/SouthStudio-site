@@ -4,27 +4,27 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="form-endpoint" content="" />
-<title>Timeline: Logica Puzzelboek — 80 Deductiezaken · SouthStudio</title>
-<meta name="description" content="Timeline is een puzzelboek met 80 unieke deductiezaken. Logisch redeneren, prachtig gemaakt. Pre-order het boek (€24) of probeer een gratis zaak online." />
+<title>Timeline — SouthStudio / 001 · Een deductie-puzzelboek</title>
+<meta name="description" content="SouthStudio / 001 — Timeline. Een deductie-puzzelboek met 80 zaken binnen de Time Correction Agency, in vijf niveaus, met een gratis set zaken om online te spelen. Eerste druk, reserveren €24." />
 <link rel="canonical" href="https://southstudio.nl/timeline.html" />
 <link rel="alternate" hreflang="en" href="https://southstudio.online/timeline.html" />
 <link rel="alternate" hreflang="nl" href="https://southstudio.nl/timeline.html" />
 <link rel="alternate" hreflang="x-default" href="https://southstudio.online/timeline.html" />
 
-<meta property="og:type" content="book" />
+<meta property="og:type" content="website" />
 <meta property="og:site_name" content="SouthStudio" />
 <meta property="og:locale" content="nl_NL" />
 <meta property="og:locale:alternate" content="en_US" />
-<meta property="og:title" content="Timeline, Een boek vol deductie · SouthStudio" />
-<meta property="og:description" content="Timeline: 80 unieke deductiezaken binnen de Time Correction Agency. Reserveer het boek of probeer een gratis zaak online." />
+<meta property="og:title" content="Timeline — SouthStudio / 001" />
+<meta property="og:description" content="Een deductie-puzzelboek: 80 zaken, vijf niveaus, één antwoord per zaak. In print, plus een gratis set online." />
 <meta property="og:url" content="https://southstudio.nl/timeline.html" />
-<meta property="og:image" content="https://southstudio.nl/icons/og-timeline.png" />
+<meta property="og:image" content="https://southstudio.online/icons/og-timeline.png" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Timeline, Een boek vol deductie · SouthStudio" />
-<meta name="twitter:description" content="Timeline: 80 unieke deductiezaken binnen de Time Correction Agency. Reserveer het boek of probeer een gratis zaak online." />
-<meta name="twitter:image" content="https://southstudio.nl/icons/og-timeline.png" />
+<meta name="twitter:title" content="Timeline — SouthStudio / 001" />
+<meta name="twitter:description" content="Een deductie-puzzelboek: 80 zaken, vijf niveaus, één antwoord per zaak. In print, plus een gratis set online." />
+<meta name="twitter:image" content="https://southstudio.online/icons/og-timeline.png" />
 
 <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
 <link rel="icon" href="../icons/icon-32.png" sizes="32x32" type="image/png" />
@@ -32,14 +32,16 @@
 <link rel="manifest" href="../site.webmanifest" />
 <meta name="theme-color" content="#1A1612" />
 
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Book","name":"Timeline","author":{"@type":"Organization","name":"SouthStudio"},"publisher":{"@type":"Organization","name":"SouthStudio"},"numberOfPages":200,"bookFormat":"https://schema.org/Paperback","inLanguage":"nl","url":"https://southstudio.nl/timeline.html","image":"https://southstudio.nl/icons/og-timeline.png","description":"Timeline: 80 unieke deductiezaken binnen de Time Correction Agency. Reserveer het boek of probeer een gratis zaak online."}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Book","name":"Timeline","author":{"@type":"Organization","name":"SouthStudio"},"publisher":{"@type":"Organization","name":"SouthStudio"},"numberOfPages":200,"inLanguage":"nl","url":"https://southstudio.nl/timeline.html","image":"https://southstudio.online/icons/og-timeline.png","description":"Een deductie-puzzelboek: 80 zaken, vijf niveaus, één antwoord per zaak. In print, plus een gratis set online."}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
 <style>
 /* ============================================================
- SouthStudio, shared design system (v1)
+ SouthStudio, shared design system (v2)
  Paper / Ink / Signature Red · Spectral + IBM Plex Mono
+ Editorial, typographic, calm. Hierarchy through scale and
+ whitespace; hairlines instead of boxes; motion that reveals.
  ============================================================ */
 
 :root {
@@ -53,7 +55,7 @@
  --line: #E2D9C6;
  --line-2: #D3C8B1;
 
- /* signature accents (red = book, blue = play) */
+ /* signature accents (red = print, blue = screen) */
  --red: #D2362B;
  --red-deep: #A8261D;
  --blue: #2C52CC;
@@ -64,9 +66,16 @@
  --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
 
  /* metrics */
- --wrap: 1240px;
- --gut: clamp(20px, 5vw, 64px);
+ --wrap: 1280px;
+ --gut: clamp(20px, 5vw, 72px);
  --header-h: 76px;
+
+ /* spacing scale */
+ --s-1: 8px; --s-2: 16px; --s-3: 24px; --s-4: 32px; --s-5: 48px; --s-6: 64px; --s-7: 96px;
+
+ /* motion */
+ --ease-out: cubic-bezier(.2,.7,.2,1);
+ --ease-reveal: cubic-bezier(.7,0,.18,1);
 }
 
 /* ---------- reset ---------- */
@@ -82,17 +91,21 @@ body {
  -webkit-font-smoothing: antialiased;
  text-rendering: optimizeLegibility;
  overflow-x: hidden;
+ animation: pageIn .6s ease both;
 }
+@keyframes pageIn { from { opacity: 0; } to { opacity: 1; } }
 img, svg { display: block; max-width: 100%; }
 a { color: inherit; text-decoration: none; }
 button { font: inherit; color: inherit; background: none; border: none; cursor: pointer; }
 input, textarea { font: inherit; color: inherit; }
 ::selection { background: var(--red); color: var(--paper); }
+:focus-visible { outline: 2px solid var(--red); outline-offset: 3px; }
 
 /* ---------- layout ---------- */
 .wrap { width: 100%; max-width: var(--wrap); margin-inline: auto; padding-inline: var(--gut); }
-.section { padding-block: clamp(64px, 10vw, 132px); position: relative; }
-.section--tight { padding-block: clamp(44px, 6vw, 80px); }
+.section { padding-block: clamp(72px, 11vw, 150px); position: relative; }
+.section--tight { padding-block: clamp(48px, 7vw, 96px); }
+.section--flush-top { padding-top: 0; }
 
 /* paper texture: faint grid like a puzzle page */
 .gridfield {
@@ -106,7 +119,7 @@ input, textarea { font: inherit; color: inherit; }
 /* ---------- type ---------- */
 .kicker {
  font-family: var(--mono);
- font-size: 12.5px;
+ font-size: 12px;
  font-weight: 600;
  letter-spacing: 0.22em;
  text-transform: uppercase;
@@ -119,33 +132,52 @@ input, textarea { font: inherit; color: inherit; }
 .kicker--blue { color: var(--blue); }
 .kicker .dot { width: 7px; height: 7px; background: currentColor; display: inline-block; }
 
-h1, h2, h3 { font-weight: 700; line-height: 1.04; letter-spacing: -0.015em; }
+h1, h2, h3 { font-weight: 600; line-height: 1.04; letter-spacing: -0.015em; }
 .display {
- font-size: clamp(48px, 9vw, 132px);
- font-weight: 800;
- line-height: 0.95;
- letter-spacing: -0.03em;
+ font-size: clamp(46px, 9.4vw, 148px);
+ font-weight: 500;
+ line-height: 0.94;
+ letter-spacing: -0.035em;
+ text-wrap: balance;
 }
-.h1 { font-size: clamp(32px, 4.8vw, 58px); font-weight: 700; line-height: 1.0; }
-.h2 { font-size: clamp(26px, 3.2vw, 42px); font-weight: 700; }
-.h3 { font-size: clamp(22px, 2.4vw, 30px); font-weight: 600; }
+.display em { font-style: italic; font-weight: 400; }
+.h1 { font-size: clamp(34px, 5.2vw, 72px); font-weight: 500; line-height: 1.0; letter-spacing: -0.03em; text-wrap: balance; }
+.h2 { font-size: clamp(28px, 3.6vw, 52px); font-weight: 500; letter-spacing: -0.025em; text-wrap: balance; }
+.h3 { font-size: clamp(22px, 2.4vw, 30px); font-weight: 500; letter-spacing: -0.015em; }
 .lead {
- font-size: clamp(19px, 2vw, 24px);
+ font-size: clamp(19px, 1.9vw, 24px);
  line-height: 1.5;
  color: var(--ink-2);
- font-weight: 400;
+ font-weight: 300;
 }
-.serif-it { font-style: italic; font-weight: 500; }
+.lead strong, .lead b { font-weight: 500; color: var(--ink); }
+.serif-it { font-style: italic; font-weight: 400; }
 .muted { color: var(--ink-soft); }
 .red { color: var(--red); }
 .blue { color: var(--blue); }
-.measure { max-width: 58ch; }
-.measure-sm { max-width: 44ch; }
+.measure { max-width: 56ch; }
+.measure-sm { max-width: 42ch; }
+.small { font-size: 16px; line-height: 1.55; }
+
+/* project number / metadata */
+.num {
+ font-family: var(--mono);
+ font-size: 12px;
+ font-weight: 600;
+ letter-spacing: 0.2em;
+ text-transform: uppercase;
+ color: var(--ink-soft);
+}
+.num b { color: var(--red); font-weight: 600; }
+.meta { font-family: var(--mono); font-size: 12.5px; letter-spacing: 0.06em; color: var(--ink-soft); line-height: 1.6; }
+.meta-list { display: grid; grid-template-columns: max-content 1fr; gap: 10px 24px; font-family: var(--mono); font-size: 12.5px; letter-spacing: 0.04em; }
+.meta-list dt { color: var(--ink-soft); text-transform: uppercase; letter-spacing: 0.16em; font-size: 11px; padding-top: 2px; }
+.meta-list dd { color: var(--ink); }
 
 /* mono label / tag */
 .tag {
  font-family: var(--mono);
- font-size: 11.5px;
+ font-size: 11px;
  font-weight: 600;
  letter-spacing: 0.16em;
  text-transform: uppercase;
@@ -161,52 +193,61 @@ h1, h2, h3 { font-weight: 700; line-height: 1.04; letter-spacing: -0.015em; }
 .tag--blue { border-color: var(--blue); color: var(--blue); }
 .tag--solid-red { background: var(--red); border-color: var(--red); color: var(--paper); }
 .tag--solid-ink { background: var(--ink); border-color: var(--ink); color: var(--paper); }
+.tag--dashed { border-style: dashed; color: var(--ink-soft); }
 
 /* ---------- buttons ---------- */
 .btn {
  font-family: var(--mono);
- font-size: 13px;
+ font-size: 12.5px;
  font-weight: 600;
- letter-spacing: 0.1em;
+ letter-spacing: 0.12em;
  text-transform: uppercase;
- padding: 14px 22px;
+ padding: 15px 24px;
  border: 1.5px solid var(--ink);
  color: var(--ink);
  background: transparent;
  display: inline-flex;
  align-items: center;
- gap: 0.7em;
- transition: transform .16s ease, background .18s ease, color .18s ease, box-shadow .18s ease, border-color .18s ease;
+ gap: 0.8em;
+ transition: background .22s ease, color .22s ease, border-color .22s ease, transform .16s ease;
  cursor: pointer;
 }
-.btn .arr { transition: transform .2s ease; }
+.btn .arr { transition: transform .25s var(--ease-out); }
 .btn:hover .arr { transform: translateX(4px); }
 .btn:active { transform: translateY(1px); }
-.btn--red { background: var(--red); border-color: var(--red); color: var(--paper); }
-.btn--red:hover { background: var(--red-deep); border-color: var(--red-deep); box-shadow: 4px 4px 0 var(--ink); transform: translate(-1px,-1px); }
-.btn--blue { background: var(--blue); border-color: var(--blue); color: var(--paper); }
-.btn--blue:hover { background: var(--blue-deep); border-color: var(--blue-deep); box-shadow: 4px 4px 0 var(--ink); transform: translate(-1px,-1px); }
 .btn--ink { background: var(--ink); border-color: var(--ink); color: var(--paper); }
-.btn--ink:hover { box-shadow: 4px 4px 0 var(--red); transform: translate(-1px,-1px); }
-.btn--ghost:hover { background: var(--ink); color: var(--paper); box-shadow: 4px 4px 0 var(--red); transform: translate(-1px,-1px); }
-.btn--sm { padding: 10px 16px; font-size: 12px; }
+.btn--ink:hover { background: var(--red); border-color: var(--red); }
+.btn--ghost:hover { background: var(--ink); color: var(--paper); }
+.btn--red { background: var(--red); border-color: var(--red); color: var(--paper); }
+.btn--red:hover { background: var(--red-deep); border-color: var(--red-deep); }
+.btn--blue { background: var(--blue); border-color: var(--blue); color: var(--paper); }
+.btn--blue:hover { background: var(--blue-deep); border-color: var(--blue-deep); }
+.btn--sm { padding: 10px 16px; font-size: 11.5px; }
 .btn[disabled] { opacity: .45; cursor: not-allowed; }
 
 /* link with underline reveal */
 .link {
  font-family: var(--mono);
- font-size: 13px;
+ font-size: 12.5px;
  font-weight: 600;
- letter-spacing: 0.08em;
+ letter-spacing: 0.1em;
  text-transform: uppercase;
  display: inline-flex;
  align-items: center;
  gap: 0.6em;
- border-bottom: 1.5px solid transparent;
- padding-bottom: 2px;
- transition: border-color .18s ease, gap .18s ease;
+ padding-bottom: 3px;
+ background-image: linear-gradient(currentColor, currentColor);
+ background-repeat: no-repeat;
+ background-size: 0% 1.5px;
+ background-position: 0 100%;
+ transition: background-size .28s var(--ease-out), gap .2s ease;
 }
-.link:hover { border-color: currentColor; gap: 0.9em; }
+.link:hover { background-size: 100% 1.5px; gap: 0.9em; }
+.link--red { color: var(--red); }
+
+/* editorial inline link */
+.tlink { border-bottom: 1px solid var(--line-2); transition: border-color .2s ease; }
+.tlink:hover { border-color: var(--ink); }
 
 /* ---------- logo mark (logic grid) ---------- */
 .mark {
@@ -224,37 +265,33 @@ h1, h2, h3 { font-weight: 700; line-height: 1.04; letter-spacing: -0.015em; }
 
 /* wordmark */
 .wordmark { display: inline-flex; align-items: center; gap: 12px; }
-.wordmark .wm-text { display: flex; flex-direction: column; line-height: 1; }
-.wordmark .wm-name { font-family: var(--serif); font-weight: 700; font-size: 22px; letter-spacing: -0.01em; }
-.wordmark .wm-name b { color: var(--red); }
-.wordmark .wm-sub { font-family: var(--mono); font-size: 9.5px; font-weight: 600; letter-spacing: 0.34em; color: var(--ink-soft); margin-top: 3px; }
 
 /* ---------- header ---------- */
 .site-head {
  position: sticky; top: 0; z-index: 60;
- background: color-mix(in srgb, var(--paper) 88%, transparent);
- backdrop-filter: blur(10px);
- border-bottom: 1px solid var(--line);
- transition: box-shadow .2s ease, background .2s ease;
+ background: color-mix(in srgb, var(--paper) 92%, transparent);
+ backdrop-filter: blur(6px);
+ border-bottom: 1px solid transparent;
+ transition: border-color .25s ease, background .25s ease;
 }
-.site-head.scrolled { box-shadow: 0 1px 0 var(--line-2); background: color-mix(in srgb, var(--paper) 96%, transparent); }
+.site-head.scrolled { border-color: var(--line); background: color-mix(in srgb, var(--paper) 97%, transparent); }
 .head-row { height: var(--header-h); display: flex; align-items: center; justify-content: space-between; gap: 24px; }
 .nav { display: flex; align-items: center; gap: 30px; }
 .nav a.navlink {
- font-family: var(--mono); font-size: 12.5px; font-weight: 600;
- letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-2);
+ font-family: var(--mono); font-size: 12px; font-weight: 600;
+ letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-2);
  position: relative; padding: 4px 0;
  transition: color .16s ease;
 }
 .nav a.navlink::after {
- content: ""; position: absolute; left: 0; bottom: -2px; height: 2px; width: 0; background: var(--red);
- transition: width .2s ease;
+ content: ""; position: absolute; left: 0; bottom: -2px; height: 1.5px; width: 0; background: var(--red);
+ transition: width .25s var(--ease-out);
 }
 .nav a.navlink:hover { color: var(--ink); }
 .nav a.navlink:hover::after,
 .nav a.navlink.active::after { width: 100%; }
 .nav a.navlink.active { color: var(--ink); }
-.head-cta { display: flex; align-items: center; gap: 16px; }
+.head-cta { display: flex; align-items: center; gap: 18px; }
 .burger { display: none; width: 42px; height: 42px; border: 1.5px solid var(--ink); align-items: center; justify-content: center; flex-direction: column; gap: 5px; }
 .burger span { width: 18px; height: 2px; background: var(--ink); transition: transform .2s ease, opacity .2s ease; }
 .burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
@@ -264,34 +301,90 @@ h1, h2, h3 { font-weight: 700; line-height: 1.04; letter-spacing: -0.015em; }
 /* mobile menu */
 .mobile-menu {
  position: fixed; inset: var(--header-h) 0 0 0; z-index: 55;
- background: var(--paper); padding: 32px var(--gut);
- display: flex; flex-direction: column; gap: 6px;
+ background: var(--paper); padding: 28px var(--gut) 40px;
+ display: flex; flex-direction: column; gap: 0;
+ overflow-y: auto;
  transform: translateY(-12px); opacity: 0; pointer-events: none; visibility: hidden;
- transition: transform .25s ease, opacity .25s ease, visibility 0s linear .25s;
+ transition: transform .28s var(--ease-out), opacity .25s ease, visibility 0s linear .25s;
 }
-.mobile-menu.open { transform: none; opacity: 1; pointer-events: auto; visibility: visible; transition: transform .25s ease, opacity .25s ease, visibility 0s; }
+.mobile-menu.open { transform: none; opacity: 1; pointer-events: auto; visibility: visible; transition: transform .28s var(--ease-out), opacity .25s ease, visibility 0s; }
 .mobile-menu a {
- font-family: var(--serif); font-weight: 600; font-size: 30px;
- padding: 14px 0; border-bottom: 1px solid var(--line);
+ font-family: var(--serif); font-weight: 500; font-size: clamp(28px, 7vw, 36px); letter-spacing: -0.02em;
+ padding: 16px 0; border-bottom: 1px solid var(--line);
  display: flex; align-items: center; justify-content: space-between;
 }
-.mobile-menu a .num { font-family: var(--mono); font-size: 13px; color: var(--ink-soft); }
+.mobile-menu a .num { font-size: 12px; }
+.mobile-menu .mm-foot { margin-top: auto; padding-top: 28px; display: flex; flex-direction: column; gap: 14px; }
+.mobile-menu .mm-foot a { border: 0; padding: 0; font-size: 15px; font-family: var(--mono); letter-spacing: 0.06em; }
+
+/* ---------- hero ---------- */
+.hero { padding-top: clamp(40px, 7vw, 96px); padding-bottom: clamp(56px, 8vw, 120px); }
+.hero-grid { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, .65fr); gap: clamp(40px, 6vw, 96px); align-items: end; }
+.hero .display { margin-top: clamp(24px, 3vw, 40px); }
+.hero-lead { margin-top: clamp(28px, 3.5vw, 48px); }
+.hero-ctas { margin-top: clamp(28px, 3.5vw, 44px); display: flex; gap: 14px 18px; flex-wrap: wrap; align-items: center; }
+
+/* staggered line reveal for hero headline */
+.lines { display: block; }
+.lines > span { display: block; overflow: hidden; }
+.lines > span > span { display: block; transform: translateY(110%); transition: transform 1s var(--ease-reveal); }
+.lines.in > span:nth-child(1) > span { transform: none; transition-delay: .05s; }
+.lines.in > span:nth-child(2) > span { transform: none; transition-delay: .17s; }
+.lines.in > span:nth-child(3) > span { transform: none; transition-delay: .29s; }
+
+/* discipline index (what the studio makes) */
+.index { border-top: 1.5px solid var(--ink); }
+.index-head { padding: 14px 0 10px; display: flex; justify-content: space-between; align-items: baseline; }
+.index-row {
+ display: grid; grid-template-columns: 40px 1fr auto; align-items: baseline; gap: 16px;
+ padding: 13px 0; border-bottom: 1px solid var(--line);
+ color: var(--ink); position: relative;
+ transition: padding-left .3s var(--ease-out), color .2s ease;
+}
+.index-row .ix-n { font-family: var(--mono); font-size: 11px; letter-spacing: 0.16em; color: var(--ink-soft); }
+.index-row .ix-t { font-family: var(--serif); font-size: clamp(22px, 2.2vw, 28px); font-weight: 500; letter-spacing: -0.02em; line-height: 1.1; }
+.index-row .ix-s { font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft); text-align: right; white-space: nowrap; }
+a.index-row:hover { padding-left: 8px; }
+a.index-row:hover .ix-t { font-style: italic; }
+a.index-row:hover .ix-s { color: var(--red); }
+.index-row--idle { color: var(--ink-2); }
+.index-row--idle .ix-t { font-weight: 400; }
+
+/* ---------- section head ---------- */
+.sec-head { display: flex; align-items: baseline; justify-content: space-between; gap: 24px; flex-wrap: wrap; padding-bottom: 18px; border-bottom: 1.5px solid var(--ink); margin-bottom: clamp(36px, 5vw, 64px); }
+.sec-head .kicker { flex: none; }
+
+/* ---------- the work: feature ---------- */
+.feature-head { margin-bottom: clamp(36px, 5vw, 72px); }
+.feature { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(40px, 7vw, 112px); align-items: start; }
+.feature-title { font-size: clamp(64px, 12.5vw, 200px); font-weight: 600; letter-spacing: -0.045em; line-height: .86; margin-top: 14px; }
+.feature-title span { color: var(--red); }
+.feature-cat { font-family: var(--serif); font-style: italic; font-weight: 300; font-size: clamp(20px, 2.2vw, 28px); color: var(--ink-2); margin-top: 14px; }
+.feature-cat i { font-style: normal; color: var(--line-2); margin: 0 .35em; }
+.feature-body { margin-top: 0; }
+.feature-meta { margin-top: clamp(24px, 3vw, 36px); padding-top: 22px; border-top: 1px solid var(--line-2); }
+.feature-links { margin-top: clamp(28px, 3vw, 40px); display: flex; gap: 14px 26px; flex-wrap: wrap; align-items: center; }
+
+/* image / object reveal (clip from the bottom) */
+.reveal-img { clip-path: inset(100% 0 0 0); transition: clip-path 1.1s var(--ease-reveal); }
+[data-reveal-host].in .reveal-img { clip-path: inset(0 0 0 0); }
 
 /* ---------- book cover mockup (matches the designed front cover) ---------- */
+.book-stage { position: relative; padding: 16px 28px 28px 0; max-width: 480px; margin-inline: auto; }
 .book {
  position: relative;
  background: var(--paper);
  border: 1.5px solid var(--ink);
- box-shadow: 18px 22px 0 -2px var(--paper-3), 18px 22px 0 0 var(--ink);
+ box-shadow: 14px 16px 0 -2px var(--paper-3), 14px 16px 0 0 var(--ink);
  aspect-ratio: 3 / 4;
  container-type: inline-size;
  display: flex; flex-direction: column; align-items: center; justify-content: center;
  text-align: center;
  padding: clamp(20px, 3vw, 34px);
  overflow: hidden;
- transition: transform .35s cubic-bezier(.2,.7,.2,1), box-shadow .35s ease;
+ transition: transform .5s var(--ease-out), box-shadow .5s ease;
 }
-.book:hover { transform: translate(-3px,-4px); box-shadow: 22px 26px 0 -2px var(--paper-3), 22px 26px 0 0 var(--ink); }
+.book:hover { transform: translate(-2px,-3px); box-shadow: 16px 18px 0 -2px var(--paper-3), 16px 18px 0 0 var(--ink); }
 .bc-grid { position: absolute; inset: 0; background-image: linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px); background-size: 26px 26px; opacity: .5; }
 .bc-frame { position: absolute; inset: 14px; border: 1px solid var(--line-2); }
 .bc-frame::before, .bc-frame::after { content: ""; position: absolute; width: 12px; height: 12px; border: 2px solid var(--red); }
@@ -309,6 +402,7 @@ h1, h2, h3 { font-weight: 700; line-height: 1.04; letter-spacing: -0.015em; }
 .bc-meta { position: absolute; bottom: clamp(22px,4vw,40px); left: 0; right: 0; display: flex; flex-direction: column; align-items: center; gap: 6px; }
 .bc-cases { font-family: var(--mono); font-size: clamp(8px,1vw,11px); letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-2); }
 .bc-byline { font-family: var(--mono); font-size: clamp(10px,1.2vw,13px); font-weight: 600; letter-spacing: 0.32em; color: var(--ink); }
+.book-caption { margin-top: 22px; display: flex; justify-content: space-between; gap: 16px; font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-soft); }
 
 /* rubber stamp */
 .stamp {
@@ -319,65 +413,58 @@ h1, h2, h3 { font-weight: 700; line-height: 1.04; letter-spacing: -0.015em; }
  transform: rotate(-6deg);
  border-radius: 3px;
  opacity: 0.92;
- box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--red) 30%, transparent);
 }
 
-/* ---------- timeline rail motif ---------- */
-.rail { position: relative; height: 2px; background: var(--line-2); }
-.rail .node { position: absolute; top: 50%; width: 10px; height: 10px; background: var(--paper); border: 2px solid var(--ink); transform: translate(-50%,-50%) rotate(45deg); }
-.rail .node.red { background: var(--red); border-color: var(--red); }
+/* ---------- the archive: numbered list ---------- */
+.archive { border-top: 1.5px solid var(--ink); }
+.archive-row {
+ display: grid; grid-template-columns: 110px minmax(0, 1.4fr) minmax(0, 1fr) minmax(0, .8fr) auto;
+ gap: 24px; align-items: baseline;
+ padding: clamp(22px, 2.6vw, 34px) 0; border-bottom: 1px solid var(--line);
+ position: relative;
+ transition: padding-left .32s var(--ease-out);
+}
+.archive-row .ar-n { font-family: var(--mono); font-size: 12px; font-weight: 600; letter-spacing: 0.18em; color: var(--ink-soft); }
+.archive-row .ar-n b { color: var(--red); font-weight: 600; }
+.archive-row .ar-t { font-family: var(--serif); font-size: clamp(26px, 3.4vw, 48px); font-weight: 500; letter-spacing: -0.03em; line-height: 1; }
+.archive-row .ar-c { font-family: var(--serif); font-style: italic; font-weight: 300; font-size: clamp(17px, 1.5vw, 21px); color: var(--ink-2); }
+.archive-row .ar-f { font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-soft); }
+.archive-row .ar-s { justify-self: end; }
+a.archive-row:hover { padding-left: 10px; }
+a.archive-row:hover .ar-t { font-style: italic; }
+a.archive-row:hover .ar-n b { color: var(--ink); }
+.archive-row--concept .ar-t { color: var(--ink-soft); font-weight: 400; }
+.archive-row--concept .ar-t em { font-style: italic; }
+.archive-note { margin-top: 22px; }
 
-/* ---------- cards / panels ---------- */
+/* ---------- studio: principles as a hairline grid ---------- */
+.principles { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1.5px solid var(--ink); }
+.principle { padding: clamp(24px, 3vw, 40px) clamp(0px, 2vw, 32px) clamp(28px, 3vw, 44px) 0; border-right: 1px solid var(--line); display: flex; flex-direction: column; gap: 14px; }
+.principle:not(:first-child) { padding-left: clamp(0px, 2vw, 32px); }
+.principle:last-child { border-right: 0; }
+.principle .pn { font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.2em; color: var(--red); }
+.principle h3 { font-size: clamp(21px, 2vw, 26px); font-weight: 500; letter-spacing: -0.015em; }
+
+/* pull quote */
+.pull { font-family: var(--serif); font-weight: 300; font-style: italic; font-size: clamp(26px, 3.4vw, 46px); line-height: 1.2; letter-spacing: -0.02em; text-wrap: balance; }
+
+/* ---------- panels ---------- */
 .panel { border: 1.5px solid var(--ink); background: var(--paper); }
-.panel--raise { box-shadow: 8px 8px 0 var(--ink); }
-.spec-grid { display: grid; grid-template-columns: repeat(4,1fr); }
-@media (max-width: 600px) {
- .spec-grid { grid-template-columns: repeat(2,1fr); }
- .spec-grid > div:nth-child(2) { border-right: 0; }
- .spec-grid > div:nth-child(1), .spec-grid > div:nth-child(2) { border-bottom: 1px solid var(--line-2); }
-}
 .hairline { height: 1px; background: var(--line-2); border: 0; }
-.thick-rule { height: 3px; background: var(--ink); border: 0; }
+.thick-rule { height: 1.5px; background: var(--ink); border: 0; }
 
-/* feature split */
-.split { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: clamp(32px, 6vw, 80px); align-items: center; }
-
-/* ways-to-play cards */
-.ways { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
-.way {
- border: 1.5px solid var(--ink); background: var(--paper);
- padding: clamp(24px, 3vw, 38px);
- display: flex; flex-direction: column; gap: 18px;
- position: relative; overflow: hidden;
- transition: transform .25s ease, box-shadow .25s ease;
-}
-.way:hover { transform: translateY(-4px); }
-.way--online:hover { box-shadow: 10px 10px 0 var(--blue); }
-.way--book:hover { box-shadow: 10px 10px 0 var(--red); }
-.way .way-num { font-family: var(--mono); font-size: 12px; letter-spacing: 0.2em; color: var(--ink-soft); }
-.way .price { font-family: var(--serif); font-weight: 700; font-size: 40px; letter-spacing: -0.02em; }
-.way ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
-.way li { display: flex; gap: 12px; font-size: 16px; color: var(--ink-2); align-items: baseline; }
-.way li::before { content: ", "; color: var(--red); font-weight: 700; }
-.way--online li::before { color: var(--blue); }
-
-/* principles grid */
-.principles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line-2); border: 1px solid var(--line-2); }
-.principle { background: var(--paper); padding: clamp(24px,3vw,36px); display: flex; flex-direction: column; gap: 14px; min-height: 220px; }
-.principle .pn { font-family: var(--mono); font-size: 12px; letter-spacing: 0.2em; color: var(--red); }
-
-/* newsletter */
-.news-form { display: flex; gap: 12px; flex-wrap: wrap; max-width: 520px; }
-.field {
- flex: 1 1 240px; display: flex; align-items: center;
- border: 1.5px solid var(--ink); background: var(--paper);
-}
-.field input { flex: 1; border: 0; background: transparent; padding: 15px 16px; outline: none; font-family: var(--mono); font-size: 14px; letter-spacing: 0.02em; }
+/* ---------- dispatch / newsletter ---------- */
+.dispatch { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(32px, 6vw, 96px); align-items: start; padding-top: clamp(36px, 5vw, 64px); border-top: 1.5px solid var(--ink); }
+.news-form { display: flex; gap: 0; max-width: 520px; border-bottom: 1.5px solid var(--ink); }
+.field { flex: 1 1 200px; display: flex; align-items: center; }
+.field input { flex: 1; width: 100%; border: 0; background: transparent; padding: 16px 0; outline: none; font-family: var(--mono); font-size: 14px; letter-spacing: 0.02em; }
 .field input::placeholder { color: var(--ink-soft); }
-.form-note { font-family: var(--mono); font-size: 12px; letter-spacing: 0.04em; color: var(--ink-soft); margin-top: 12px; }
+.news-form .btn { border: 0; padding-inline: 12px 0; background: transparent; color: var(--ink); }
+.news-form .btn:hover { color: var(--red); }
+.form-note { font-family: var(--mono); font-size: 12px; letter-spacing: 0.04em; color: var(--ink-soft); margin-top: 14px; }
 .form-note.err { color: var(--red); }
 .form-note.ok { color: var(--blue); }
-.form-consent { font-family: var(--mono); font-size: 11px; letter-spacing: 0.03em; color: var(--ink-soft); margin-top: 12px; line-height: 1.55; max-width: 520px; }
+.form-consent { font-family: var(--mono); font-size: 11px; letter-spacing: 0.03em; color: var(--ink-soft); margin-top: 10px; line-height: 1.55; max-width: 520px; }
 .form-consent a { color: var(--ink); border-bottom: 1px solid var(--line-2); }
 .consent-row { display: flex; gap: 9px; align-items: flex-start; margin-bottom: 16px; cursor: pointer; font-family: var(--mono); font-size: 11px; line-height: 1.5; color: var(--ink-soft); letter-spacing: 0.02em; }
 .consent-row input { margin-top: 1px; flex: none; accent-color: var(--red); width: 15px; height: 15px; }
@@ -388,8 +475,6 @@ h1, h2, h3 { font-weight: 700; line-height: 1.04; letter-spacing: -0.015em; }
 /* ---------- footer ---------- */
 .site-foot { background: var(--ink); color: var(--paper); padding-block: clamp(56px, 7vw, 96px); }
 .site-foot a { color: var(--paper); }
-.site-foot .mark span { border-color: var(--paper); }
-.site-foot .mark span.fill { background: var(--red); border-color: var(--red); }
 .logo { height: 42px; width: auto; display: block; flex: none; }
 .site-foot .logo { height: 46px; }
 .foot-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 40px; }
@@ -399,20 +484,20 @@ h1, h2, h3 { font-weight: 700; line-height: 1.04; letter-spacing: -0.015em; }
 .foot-links a:hover { color: #fff; border-color: var(--red); }
 .foot-bottom { display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; margin-top: 56px; padding-top: 24px; border-top: 1px solid rgba(255,255,255,.14); }
 .foot-bottom .fine { font-family: var(--mono); font-size: 11px; letter-spacing: 0.06em; color: #9A8F7E; }
+.foot-motto { font-family: var(--serif); font-style: italic; font-weight: 300; font-size: clamp(22px, 2.4vw, 30px); line-height: 1.25; color: #E6DECE; max-width: 20ch; margin-top: 26px; letter-spacing: -0.01em; }
 
 /* ---------- modal ---------- */
 .overlay {
  position: fixed; inset: 0; z-index: 100;
- background: color-mix(in srgb, var(--ink) 62%, transparent);
- backdrop-filter: blur(3px);
+ background: color-mix(in srgb, var(--ink) 66%, transparent);
  display: flex; align-items: center; justify-content: center; padding: 24px;
  opacity: 0; pointer-events: none; transition: opacity .22s ease;
 }
 .overlay.open { opacity: 1; pointer-events: auto; }
 .modal {
  width: 100%; max-width: 520px; background: var(--paper);
- border: 1.5px solid var(--ink); box-shadow: 14px 14px 0 var(--ink);
- transform: translateY(14px) scale(.98); transition: transform .26s cubic-bezier(.2,.8,.2,1);
+ border: 1.5px solid var(--ink);
+ transform: translateY(14px); transition: transform .3s var(--ease-out);
  max-height: 90vh; overflow: auto;
 }
 .overlay.open .modal { transform: none; }
@@ -431,13 +516,14 @@ h1, h2, h3 { font-weight: 700; line-height: 1.04; letter-spacing: -0.015em; }
 .input-err { font-family: var(--mono); font-size: 11px; color: var(--red); letter-spacing: 0.03em; min-height: 0; }
 
 /* ---------- scroll reveal ---------- */
-.reveal { opacity: 0; transform: translateY(22px); transition: opacity .7s ease, transform .7s cubic-bezier(.2,.7,.2,1); }
+.reveal { opacity: 0; transform: translateY(18px); transition: opacity .8s ease, transform .9s var(--ease-out); }
 .reveal.in { opacity: 1; transform: none; }
 .reveal.d1 { transition-delay: .08s; }
 .reveal.d2 { transition-delay: .16s; }
 .reveal.d3 { transition-delay: .24s; }
 @media (prefers-reduced-motion: reduce) {
- .reveal { opacity: 1; transform: none; transition: none; }
+ .reveal, .reveal-img, .lines > span > span { opacity: 1; transform: none; clip-path: none; transition: none; }
+ body { animation: none; }
  html { scroll-behavior: auto; }
 }
 
@@ -450,86 +536,160 @@ h1, h2, h3 { font-weight: 700; line-height: 1.04; letter-spacing: -0.015em; }
 .center { text-align: center; }
 .eyebrow-rule { display: flex; align-items: center; gap: 16px; }
 .eyebrow-rule .ln { flex: 1; height: 1px; background: var(--line-2); }
+.split { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(32px, 6vw, 96px); align-items: start; }
 
-/* ---------- sample puzzle ---------- */
-.pz {
- border: 1.5px solid var(--ink); background: var(--paper);
- box-shadow: 10px 10px 0 var(--ink);
-}
-.pz-head { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 18px 22px; border-bottom: 1.5px solid var(--ink); background: var(--paper-2); flex-wrap: wrap; }
-.pz-head .pz-file { font-family: var(--mono); font-size: 12px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-2); display: flex; align-items: center; gap: 10px; }
-.pz-list { display: flex; flex-direction: column; }
-.pz-list.shake { animation: shake .4s ease; }
-@keyframes shake { 10%,90%{transform:translateX(-2px)} 30%,70%{transform:translateX(4px)} 50%{transform:translateX(-5px)} }
-.pz-row {
- display: grid; grid-template-columns: 44px 1fr auto auto; align-items: center; gap: 16px;
- padding: 15px 22px; border-bottom: 1px solid var(--line);
- transition: background .15s ease;
-}
-.pz-row:last-child { border-bottom: 0; }
-.pz-row:hover { background: var(--paper-2); }
-.pz-pos { font-family: var(--mono); font-size: 15px; font-weight: 700; color: var(--red); }
-.pz-label { font-size: 17px; font-weight: 500; color: var(--ink); }
-.pz-era { font-family: var(--mono); font-size: 12px; letter-spacing: 0.12em; color: var(--ink-soft); text-align: right; min-width: 84px; }
-.pz-moves { display: flex; flex-direction: column; gap: 4px; }
-.pz-mv {
- width: 30px; height: 22px; border: 1.4px solid var(--line-2); color: var(--ink-2);
- font-size: 10px; display: flex; align-items: center; justify-content: center;
- transition: background .14s ease, color .14s ease, border-color .14s ease;
-}
-.pz-mv:hover:not([disabled]) { background: var(--ink); color: var(--paper); border-color: var(--ink); }
-.pz-mv[disabled] { opacity: .3; cursor: not-allowed; }
-.pz-foot { padding: 18px 22px; border-top: 1.5px solid var(--ink); display: flex; align-items: center; justify-content: space-between; gap: 18px; flex-wrap: wrap; }
-.pz-status { font-family: var(--mono); font-size: 13px; letter-spacing: 0.02em; color: var(--ink-soft); flex: 1 1 240px; }
-.pz-status.bad { color: var(--red); }
-.pz-status.ok { color: var(--ink-2); }
-.pz-stamp { font-family: var(--mono); font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--red); border: 2px solid var(--red); padding: 3px 8px; border-radius: 3px; margin-right: 8px; display: inline-block; }
-.pz-actions { display: flex; gap: 10px; }
-
-@media (max-width: 540px) {
- .pz-row { grid-template-columns: 32px 1fr auto; gap: 10px; padding: 13px 16px; }
- .pz-era { display: none; }
- .pz-label { font-size: 15px; }
-}
-
-/* ---------- play host (embed slot) ---------- */
-.host-shell { border: 1.5px solid var(--ink); background: var(--paper); box-shadow: 12px 12px 0 var(--ink); overflow: hidden; }
-.host-bar { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 14px 20px; border-bottom: 1.5px solid var(--ink); background: var(--ink); color: var(--paper); flex-wrap: wrap; }
-.host-bar .hb-left { display: flex; align-items: center; gap: 14px; }
-.host-bar .hb-dots { display: flex; gap: 7px; }
-.host-bar .hb-dots i { width: 11px; height: 11px; border-radius: 50%; display: block; }
-.host-bar .hb-title { font-family: var(--mono); font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; }
-.host-bar .hb-title b { color: var(--red); }
-.host-bar .hb-meta { font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; color: #B9AE9C; }
-.host-stage {
- position: relative; min-height: 540px; display: flex; align-items: center; justify-content: center;
- background:
- radial-gradient(circle at 1px 1px, var(--line) 1.4px, transparent 0) 0 0 / 26px 26px,
- var(--paper);
-}
-.host-slot { text-align: center; max-width: 460px; padding: 48px 28px; }
-.host-slot .hs-mark { display: inline-flex; transform: scale(1.7); margin-bottom: 30px; }
-.host-slot .hs-title { font-weight: 800; font-size: clamp(40px,7vw,68px); letter-spacing: -0.03em; line-height: .9; }
-.host-slot .hs-title b { color: var(--red); }
-.host-slot .hs-note { font-family: var(--mono); font-size: 12.5px; line-height: 1.7; letter-spacing: 0.02em; color: var(--ink-soft); margin-top: 18px; }
-.host-slot .hs-code { font-family: var(--mono); font-size: 12px; background: var(--ink); color: #E6DECE; padding: 2px 7px; border-radius: 3px; }
-.host-frame { width: 100%; height: 100%; min-height: 540px; border: 0; display: block; }
+/* ---------- intro opener ---------- */
+#intro { position: fixed; inset: 0; z-index: 200; display: flex; align-items: center; justify-content: center; }
+#intro.done { display: none; }
+#intro .intro-bg { position: absolute; inset: 0; background: var(--paper); }
+#intro .intro-bg::after { content: ""; position: absolute; inset: 0; background-image: linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px); background-size: 34px 34px; background-position: center; opacity: .45; }
+.intro-logo { width: min(72vw, 520px); height: auto; display: block; position: relative; }
+.intro-logo rect, .intro-logo text { opacity: 0; }
+.intro-logo rect { transform-box: fill-box; transform-origin: center; }
+#intro.play .intro-logo rect:nth-of-type(1) { animation: introCell .5s cubic-bezier(.2,.7,.2,1) .10s forwards; }
+#intro.play .intro-logo rect:nth-of-type(3) { animation: introCell .5s cubic-bezier(.2,.7,.2,1) .19s forwards; }
+#intro.play .intro-logo rect:nth-of-type(4) { animation: introCell .5s cubic-bezier(.2,.7,.2,1) .28s forwards; }
+#intro.play .intro-logo rect:nth-of-type(5) { animation: introCell .5s cubic-bezier(.2,.7,.2,1) .37s forwards; }
+#intro.play .intro-logo rect:nth-of-type(8) { animation: introCell .5s cubic-bezier(.2,.7,.2,1) .46s forwards; }
+#intro.play .intro-logo rect:nth-of-type(9) { animation: introCell .5s cubic-bezier(.2,.7,.2,1) .55s forwards; }
+#intro.play .intro-logo rect:nth-of-type(6) { animation: introInk .45s ease .80s forwards; }
+#intro.play .intro-logo rect:nth-of-type(7) { animation: introInk .45s ease .92s forwards; }
+#intro.play .intro-logo rect:nth-of-type(2) { animation: introStamp .5s cubic-bezier(.2,.7,.2,1) 1.18s forwards; }
+#intro.play .intro-logo text:nth-of-type(1) { animation: introText .6s cubic-bezier(.2,.7,.2,1) 1.52s forwards; }
+#intro.play .intro-logo text:nth-of-type(2) { animation: introText .6s cubic-bezier(.2,.7,.2,1) 1.66s forwards; }
+@keyframes introCell { from { opacity: 0; transform: scale(.55); } to { opacity: 1; transform: none; } }
+@keyframes introInk { from { opacity: 0; } to { opacity: 1; } }
+@keyframes introStamp { 0% { opacity: 0; transform: scale(1.8) rotate(-7deg); } 62% { opacity: 1; transform: scale(.92) rotate(1.5deg); } 100% { opacity: 1; transform: none; } }
+@keyframes introText { from { opacity: 0; transform: translateY(7px); } to { opacity: 1; transform: none; } }
+.intro-hint { position: absolute; bottom: 34px; left: 0; right: 0; text-align: center; font-family: var(--mono); font-size: 11px; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; color: var(--ink-soft); opacity: 0; transition: opacity .5s ease; }
+#intro.play .intro-hint { opacity: .75; transition-delay: 1.2s; }
+body.intro-hold .reveal { opacity: 0 !important; transform: translateY(18px) !important; transition: none !important; }
+body.intro-hold .lines > span > span { transform: translateY(110%) !important; transition: none !important; }
+body.intro-hold .reveal-img { clip-path: inset(100% 0 0 0) !important; transition: none !important; }
+@media (prefers-reduced-motion: reduce) { #intro { display: none; } }
 
 /* ---------- responsive ---------- */
+@media (max-width: 1020px) {
+ .hero-grid { grid-template-columns: 1fr; align-items: start; gap: clamp(40px, 7vw, 64px); }
+ .index { max-width: 640px; }
+ .archive-row { grid-template-columns: 80px minmax(0, 1fr) auto; grid-template-areas: "n t s" "n c c" "n f f"; row-gap: 8px; }
+ .archive-row .ar-n { grid-area: n; }
+ .archive-row .ar-t { grid-area: t; }
+ .archive-row .ar-c { grid-area: c; }
+ .archive-row .ar-f { grid-area: f; }
+ .archive-row .ar-s { grid-area: s; }
+}
 @media (max-width: 900px) {
- .split { grid-template-columns: 1fr; }
- .ways { grid-template-columns: 1fr; }
+ .split, .feature, .dispatch { grid-template-columns: minmax(0, 1fr); }
+ .feature { gap: clamp(36px, 8vw, 64px); }
+ .feature > .feature-visual { order: -1; }
+ .book-stage { max-width: 380px; margin-inline: 0; }
  .principles { grid-template-columns: 1fr; }
+ .principle { border-right: 0; border-bottom: 1px solid var(--line); padding-left: 0 !important; padding-right: 0; }
+ .principle:last-child { border-bottom: 0; }
  .foot-grid { grid-template-columns: 1fr 1fr; }
  .nav { display: none; }
  .head-cta .btn { display: none; }
  .burger { display: flex; }
 }
-@media (max-width: 540px) {
+@media (max-width: 560px) {
+ body { font-size: 17px; }
+ :root { --header-h: 66px; }
+ .logo { height: 36px; }
+ .display { font-size: clamp(44px, 14vw, 64px); letter-spacing: -0.03em; }
+ .hero { padding-top: 32px; }
+ .hero-ctas .btn { width: 100%; justify-content: space-between; }
+ .index-row { grid-template-columns: 32px 1fr auto; gap: 12px; }
+ .index-row .ix-t { font-size: 21px; }
+ .index-row .ix-s { font-size: 10px; }
+ .feature-title { font-size: clamp(56px, 17vw, 96px); }
+ .feature-links { flex-direction: column; align-items: flex-start; }
+ .archive-row { grid-template-columns: 56px minmax(0, 1fr); grid-template-areas: "n t" "n c" "n f" "n s"; gap: 6px 14px; }
+ .archive-row .ar-s { justify-self: start; margin-top: 6px; }
+ .archive-row .ar-t { font-size: 28px; }
+ .sec-head { flex-direction: column; align-items: flex-start; gap: 10px; }
  .foot-grid { grid-template-columns: 1fr; gap: 28px; }
- .book { max-width: 320px; margin-inline: auto; }
+ .news-form { flex-wrap: nowrap; }
+ .book-stage { padding-right: 20px; }
 }
+/* ---------- project page (release 001) ---------- */
+.proj-hero { padding-top: clamp(28px, 4vw, 56px); padding-bottom: clamp(56px, 8vw, 120px); }
+.proj-head { display: flex; align-items: baseline; justify-content: space-between; gap: 20px; flex-wrap: wrap; padding-bottom: 16px; border-bottom: 1.5px solid var(--ink); }
+.proj-title-block { margin-top: clamp(24px, 3vw, 40px); }
+.proj-grid { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr); gap: clamp(40px, 6vw, 96px); align-items: start; margin-top: clamp(28px, 4vw, 56px); }
+.proj-title { font-size: clamp(64px, 12.5vw, 200px); font-weight: 600; letter-spacing: -0.045em; line-height: .86; }
+.proj-title .ac { color: var(--red); }
+.proj-tag { font-family: var(--serif); font-style: italic; font-weight: 300; font-size: clamp(24px, 2.8vw, 38px); line-height: 1.2; color: var(--ink); letter-spacing: -0.02em; text-wrap: balance; }
+.proj-lead { margin-top: clamp(20px, 2.5vw, 28px); }
+.proj-meta { margin-top: clamp(24px, 3vw, 36px); padding-top: 22px; border-top: 1px solid var(--line-2); }
+.proj-ctas { margin-top: clamp(28px, 3vw, 40px); display: flex; gap: 14px 22px; flex-wrap: wrap; align-items: center; }
+.proj-visual .book-stage { margin-inline: auto 0; }
 
+/* big figures */
+.figures { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(16px, 3vw, 40px); margin-top: clamp(32px, 4vw, 48px); border-top: 1.5px solid var(--ink); }
+.figure { padding-top: 20px; }
+.figure .fn { font-family: var(--serif); font-weight: 500; font-size: clamp(48px, 7vw, 96px); line-height: .9; letter-spacing: -0.04em; }
+.figure .fn.red { color: var(--red); }
+.figure .fl { margin-top: 12px; }
+
+/* steps */
+.steps { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1.5px solid var(--ink); }
+.step { padding: clamp(24px, 3vw, 40px) clamp(0px, 2vw, 32px) clamp(28px, 3vw, 44px) 0; border-right: 1px solid var(--line); display: flex; flex-direction: column; gap: 14px; }
+.step:not(:first-child) { padding-left: clamp(0px, 2vw, 32px); }
+.step:last-child { border-right: 0; }
+.step .sn { font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.2em; color: var(--red); }
+.step h3 { font-size: clamp(21px, 2vw, 26px); font-weight: 500; }
+
+/* clearance ladder */
+.ladder { border-top: 1.5px solid var(--ink); }
+.lad-row { display: grid; grid-template-columns: 64px minmax(0, 1fr) auto; gap: 20px; align-items: baseline; padding: 16px 0; border-bottom: 1px solid var(--line); }
+.lad-row .ln { font-family: var(--mono); font-size: 11.5px; font-weight: 600; letter-spacing: 0.18em; color: var(--ink-soft); }
+.lad-row .lt { font-family: var(--serif); font-size: clamp(22px, 2.4vw, 30px); font-weight: 500; letter-spacing: -0.02em; }
+.lad-row .ls { font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft); white-space: nowrap; }
+.lad-row--top .lt { color: var(--red); }
+.rail { position: relative; height: 2px; background: var(--line-2); }
+.rail .node { position: absolute; top: 50%; width: 10px; height: 10px; background: var(--paper); border: 2px solid var(--ink); transform: translate(-50%,-50%) rotate(45deg); }
+.rail .node.red { background: var(--red); border-color: var(--red); }
+
+/* 360 viewer */
+.book360 { border: 1.5px solid var(--ink); background: var(--paper); overflow: hidden; }
+.book360-frame { display: block; width: 100%; height: min(78vh, 720px); border: 0; background: var(--paper-2); }
+@media (max-width: 600px) { .book360-frame { height: 78vh; min-height: 460px; } }
+
+/* editions */
+.editions { border-top: 1.5px solid var(--ink); }
+.edition { display: grid; grid-template-columns: 110px minmax(0, 1.2fr) minmax(0, 1fr) auto; gap: 24px; align-items: center; padding: clamp(24px, 3vw, 36px) 0; border-bottom: 1px solid var(--line); }
+.edition .ed-n { font-family: var(--mono); font-size: 11.5px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-soft); }
+.edition .ed-t { font-family: var(--serif); font-size: clamp(24px, 2.8vw, 36px); font-weight: 500; letter-spacing: -0.025em; line-height: 1.05; }
+.edition .ed-p { font-family: var(--serif); font-size: clamp(20px, 2vw, 26px); font-weight: 400; margin-top: 4px; }
+.edition .ed-p .blue { color: var(--blue); }
+.edition .ed-d { font-size: 16px; line-height: 1.5; color: var(--ink-2); }
+.edition .ed-a { justify-self: end; }
+
+/* archive strip on project pages */
+.from-archive { margin-top: 0; }
+
+@media (max-width: 1020px) {
+ .proj-grid { grid-template-columns: 1fr; }
+ .proj-visual { order: -1; }
+ .proj-visual .book-stage { margin-inline: 0; max-width: 380px; }
+}
+@media (max-width: 900px) {
+ .steps { grid-template-columns: 1fr; }
+ .step { border-right: 0; border-bottom: 1px solid var(--line); padding-left: 0 !important; padding-right: 0; }
+ .step:last-child { border-bottom: 0; }
+ .edition { grid-template-columns: 80px minmax(0, 1fr); grid-template-areas: "n t" "n d" "n a"; row-gap: 12px; }
+ .edition .ed-n { grid-area: n; } .edition .ed-t { grid-area: t; } .edition .ed-d { grid-area: d; } .edition .ed-a { grid-area: a; justify-self: start; }
+}
+@media (max-width: 560px) {
+ .proj-title { font-size: clamp(56px, 17vw, 96px); }
+ .figures { grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+ .figure .fn { font-size: clamp(36px, 12vw, 56px); }
+ .lad-row { grid-template-columns: 44px minmax(0, 1fr); }
+ .lad-row .ls { grid-column: 2; }
+ .edition { grid-template-columns: 56px minmax(0, 1fr); }
+ .proj-ctas .btn { width: 100%; justify-content: space-between; }
+}
 </style>
 </head>
 <body>
@@ -554,70 +714,105 @@ h1, h2, h3 { font-weight: 700; line-height: 1.04; letter-spacing: -0.015em; }
  </a>
  <nav class="nav" aria-label="Primary">
  <a class="navlink" href="index.html#work">Werk</a>
+ <a class="navlink" href="archive.html">Archief</a>
  <a class="navlink active" href="timeline.html">Timeline</a>
  <a class="navlink" href="play.html">Spelen</a>
- <a class="navlink" href="#buy">Kopen</a>
+ <a class="navlink" href="about.html">Studio</a>
  </nav>
  <div class="head-cta">
  <a class="navlink" href="../timeline.html" hreflang="en" aria-label="Switch to English" style="opacity:.55;align-self:center">EN</a>
- <a class="btn btn--red btn--sm" data-open-preorder href="#">Reserveer <span class="arr">→</span></a>
- <button class="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+ <a class="btn btn--ink btn--sm" data-open-preorder href="#">Reserveren <span class="arr">→</span></a>
+ <button class="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
  </div>
  </div>
 </header>
 
 <div class="mobile-menu">
  <a href="index.html#work"><span>Het werk</span><span class="num">01</span></a>
- <a href="timeline.html"><span>Timeline</span><span class="num">02</span></a>
- <a href="play.html"><span>Speel online</span><span class="num">03</span></a>
- <a href="#buy"><span>Koop het boek</span><span class="num">04</span></a>
- <a class="btn btn--red" data-open-preorder href="#" style="margin-top:18px;justify-content:center">Reserveer →</a>
+ <a href="archive.html"><span>Het archief</span><span class="num">02</span></a>
+ <a href="timeline.html"><span>Timeline</span><span class="num">03</span></a>
+ <a href="play.html"><span>Speel online</span><span class="num">04</span></a>
+ <a href="about.html"><span>De studio</span><span class="num">05</span></a>
+ <div class="mm-foot">
+ <a data-open-preorder href="#">Reserveer Timeline →</a>
+ <a href="#editions">Edities →</a>
+ <a href="../timeline.html" hreflang="en">English →</a>
+ </div>
 </div>
 
 <!-- ============ HERO ============ -->
-<section class="section" style="padding-top:clamp(40px,5vw,72px);padding-bottom:clamp(40px,5vw,64px)">
+<section class="section proj-hero" data-screen-label="Hero">
  <div class="wrap">
- <a class="link muted reveal" href="index.html" style="margin-bottom:28px"><span aria-hidden="true">←</span> Terug naar de studio</a>
- <div class="reveal" style="margin-top:24px">
- <div class="row gap-12 wrap-gap" style="margin-bottom:22px">
- <span class="tag tag--solid-ink">No. 001</span>
- <span class="tag tag--red">Reserveren open</span>
+ <div class="proj-head reveal">
+ <span class="num">SouthStudio / <b>001</b></span>
+ <span class="kicker kicker--red"><span class="dot"></span>Eerste release</span>
+ <span class="num">Reserveren open · Eerste druk</span>
  </div>
- <h1 class="display" style="font-size:clamp(48px,8vw,108px)">
- <span style="color:var(--ink)">TIME</span><span class="red">LINE</span>
- </h1>
- <p class="lead serif-it mt-12" style="font-size:clamp(20px,2.4vw,28px);color:var(--ink-2)">
- De geschiedenis is herschreven. Jij bent de correctie.
- </p>
- <p class="lead measure mt-24">
- Een boek met 80 logische zaken binnen de Time Correction Agency. Elke zaak
- is een kleine paradox in de geschiedenis, en een redenering
- die het rechtzet.
- </p>
- <div class="row gap-16 wrap-gap mt-32">
- <a class="btn btn--red" data-open-preorder href="#">Reserveer · €24 <span class="arr">→</span></a>
- <a class="btn btn--ghost" href="#sample">Probeer een zaak <span class="arr">→</span></a>
+ <div class="proj-title-block">
+ <h1 class="proj-title lines" data-lines><span><span>TIME<span class="ac">LINE</span></span></span></h1>
+ <p class="feature-cat reveal d1">Geschiedenis <i>/</i> Deductie</p>
+ </div>
+ <div class="proj-grid">
+ <div>
+ <p class="proj-tag reveal d1">De geschiedenis is herschreven. Jij bent de correctie.</p>
+ <p class="lead measure proj-lead reveal d2">Een deductie-puzzelboek binnen de Time Correction Agency. Tachtig op zichzelf staande zaken waarin het historische archief stilletjes is aangepast, en waarin alleen een keten van redeneringen het weer rechtzet.</p>
+ <dl class="meta-list proj-meta reveal d2">
+ <dt>Formaat</dt><dd>Puzzelboek · 200 pagina’s · 170 × 240 mm · genaaide band</dd>
+ <dt>Zaken</dt><dd>80, in vijf niveaus</dd>
+ <dt>Ook</dt><dd>Een aparte set zaken, gratis in de browser</dd>
+ <dt>Status</dt><dd>Eerste druk · levering Q3 2026 · €24</dd>
+ </dl>
+ <div class="proj-ctas reveal d3">
+ <a class="btn btn--ink" data-open-preorder href="#">Reserveren · €24 <span class="arr">→</span></a>
+ <a class="link" href="#sample">Los een voorbeeldzaak op <span aria-hidden="true">→</span></a>
+ </div>
+ </div>
+ <div class="proj-visual">
+ <div class="book-stage" data-reveal-host>
+ <div class="reveal-img">
+ <div class="book">
+ <span class="bc-grid" aria-hidden="true"></span>
+ <span class="bc-frame" aria-hidden="true"></span>
+ <div class="bc-topkick">Time Correction Agency · Puzzlebook</div>
+ <div class="bc-stamp">● Debut Title</div>
+ <div class="bc-center">
+ <span class="mark" aria-hidden="true">
+ <span></span><span class="fill"></span><span></span>
+ <span></span><span></span><span class="fill-ink"></span>
+ <span class="fill-ink"></span><span></span><span></span>
+ </span>
+ <span class="bc-title">TIME<span>LINE</span></span>
+ <p class="bc-tag">History has been edited.<br />You are the correction.</p>
+ <span class="bc-rule" aria-hidden="true"></span>
+ </div>
+ <div class="bc-meta">
+ <span class="bc-cases">80 Deduction Cases · Five Clearances</span>
+ <span class="bc-byline">SOUTHSTUDIO</span>
+ </div>
+ </div>
+ </div>
+ <div class="book-caption reveal d2">
+ <span>Fig. 001 — Voorkant</span>
+ <span>Eerste druk</span>
+ </div>
+ </div>
  </div>
  </div>
  </div>
 </section>
 
-<hr class="thick-rule" />
-
 <!-- ============ 360 BOOK ============ -->
-<style>
-.book360{border:1.5px solid var(--ink);background:var(--paper);box-shadow:12px 12px 0 var(--ink);overflow:hidden;}
-.book360-frame{display:block;width:100%;height:min(78vh,720px);border:0;background:var(--paper-2);}
-@media (max-width:600px){.book360{box-shadow:8px 8px 0 var(--ink);}.book360-frame{height:78vh;min-height:460px;}}
-</style>
-<section class="section" data-screen-label="360 book">
+<section class="section section--flush-top" data-screen-label="360 book">
  <div class="wrap">
- <div class="center reveal" style="max-width:640px;margin-inline:auto">
- <span class="kicker kicker--red"><span class="dot"></span>In 3D<span class="dot"></span></span>
- <h2 class="h2 mt-12">Draai het rond in je handen.</h2>
- <p class="lead muted mt-12" style="margin-inline:auto">Sleep om de voorkant, rug en achterkant te zien, hetzelfde object dat je in print krijgt.</p>
+ <div class="sec-head reveal">
+ <span class="kicker kicker--red"><span class="dot"></span>In drie dimensies</span>
+ <span class="num">Fig. 002</span>
  </div>
- <div class="book360 reveal d1 mt-40">
+ <div class="split reveal" style="margin-bottom:clamp(28px,4vw,44px)">
+ <h2 class="h2">Draai het rond in je handen.</h2>
+ <p class="lead muted measure">Sleep om de voorkant, rug en achterkant te zien — hetzelfde object dat je in print krijgt.</p>
+ </div>
+ <div class="book360 reveal d1">
  <iframe class="book360-frame" data-book360frame src="../book-360.html?lang=nl" title="Timeline, 360 graden boekviewer" loading="lazy"></iframe>
  </div>
  </div>
@@ -636,60 +831,68 @@ h1, h2, h3 { font-weight: 700; line-height: 1.04; letter-spacing: -0.015em; }
 })();
 </script>
 
-<hr class="thick-rule" />
-
-<!-- ============ THE BRIEFING ============ -->
-<section class="section" data-screen-label="The briefing">
+<!-- ============ THE PREMISE ============ -->
+<section class="section" data-screen-label="The premise">
  <div class="wrap">
- <div class="split" style="align-items:flex-start">
- <div class="reveal">
- <span class="kicker kicker--red"><span class="dot"></span>De briefing</span>
- <h2 class="h1 mt-12">Zo werkt het</h2>
+ <div class="sec-head reveal">
+ <span class="kicker kicker--red"><span class="dot"></span>Het uitgangspunt</span>
+ <span class="num">Wat Timeline is</span>
  </div>
+ <div class="split">
+ <div class="reveal"><h2 class="h1">Een kleine paradox, en de redenering die hem oplost.</h2></div>
  <div class="reveal d1">
- <p class="lead measure">
- Je bent een nieuwe veldonderzoeker. Elke zaak begint met een korte scène, 
- een datum die niet klopt, een getuige die er niet kan zijn geweest, een
- object dat nog niet zou mogen bestaan. Jouw taak: vind de ene wijziging
- in het archief en redeneer naar de enige tijdlijn die klopt.
- </p>
- <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(14px,3vw,32px);margin-top:40px;align-items:start">
- <div class="stack gap-8">
- <span class="display" style="font-size:clamp(44px,6vw,72px);line-height:.8">80</span>
- <span class="kicker">Zaken, van licht tot lastig</span>
- </div>
- <div class="stack gap-8">
- <span class="display" style="font-size:clamp(44px,6vw,72px);line-height:.8;color:var(--red)">1</span>
- <span class="kicker">Logisch antwoord, elke keer</span>
- </div>
- <div class="stack gap-8">
- <span class="display" style="font-size:clamp(44px,6vw,72px);line-height:.8">0</span>
- <span class="kicker">Weetjes nodig</span>
+ <p class="lead measure">Je bent een nieuwe veldonderzoeker bij de Time Correction Agency. Elke zaak begint met een korte scène: een datum die niet klopt, een getuige die er niet kan zijn geweest, een object dat nog niet zou mogen bestaan.</p>
+ <p class="lead measure mt-24">Jouw taak is de ene wijziging in het archief te vinden en te redeneren naar de enige tijdlijn die klopt. Niets hangt af van wat je over geschiedenis weet. Alles wat je nodig hebt staat in het bewijs.</p>
  </div>
  </div>
+ <div class="figures reveal d1">
+ <div class="figure"><div class="fn">80</div><div class="kicker fl">Zaken, van licht tot lastig</div></div>
+ <div class="figure"><div class="fn red">1</div><div class="kicker fl">Logisch antwoord, elke keer</div></div>
+ <div class="figure"><div class="fn">0</div><div class="kicker fl">Weetjes nodig</div></div>
  </div>
  </div>
+</section>
 
- <!-- difficulty ladder -->
- <div class="panel reveal d1 mt-56" style="padding:clamp(24px,3vw,40px)">
- <div class="row" style="justify-content:space-between;flex-wrap:wrap;gap:16px">
- <span class="kicker"><span class="dot"></span>De moeilijkheidsladder</span>
- <span class="kicker muted">5 niveaus</span>
+<!-- ============ HOW IT WORKS ============ -->
+<section class="section section--flush-top" data-screen-label="How it works">
+ <div class="wrap">
+ <div class="sec-head reveal">
+ <span class="kicker kicker--red"><span class="dot"></span>Zo werkt het</span>
+ <span class="num">Het mechanisme</span>
  </div>
- <div class="rail" style="margin:38px 0 16px">
+ <h2 class="h2 reveal measure" style="margin-bottom:clamp(28px,4vw,48px)">Lees het dossier. Werk het bewijs uit. Herstel de tijdlijn.</h2>
+ <div class="steps reveal d1">
+ <div class="step"><span class="sn">01</span><h3>Lees het dossier</h3><p class="muted small">Elke zaak is een dossier: een scène, een opdracht en een reeks bewijsrecords. Sommige records zijn waar, sommige zijn de wijziging.</p></div>
+ <div class="step"><span class="sn">02</span><h3>Werk het bewijs uit</h3><p class="muted small">Het gereedschap is een logicaraster. Zet ✓ waar twee feiten samen waar zijn; één markering sluit de rest van die rij en kolom uit. Geen jaartallen uit je hoofd.</p></div>
+ <div class="step"><span class="sn">03</span><h3>Herstel de tijdlijn</h3><p class="muted small">Als elk feit naar één vak wijst, blijft één chronologie over. Controleer die met de volledig uitgewerkte oplossing achterin.</p></div>
+ </div>
+ </div>
+</section>
+
+<!-- ============ CLEARANCES ============ -->
+<section class="section section--flush-top" data-screen-label="Clearances">
+ <div class="wrap">
+ <div class="sec-head reveal">
+ <span class="kicker kicker--red"><span class="dot"></span>Vijf niveaus</span>
+ <span class="num">Moeilijkheid</span>
+ </div>
+ <div class="split" style="margin-bottom:clamp(28px,4vw,48px)">
+ <div class="reveal"><h2 class="h2">Van een opwarmer bij de koffie tot een echte hersenkraker.</h2></div>
+ <div class="reveal d1"><p class="lead muted measure">De tachtig zaken zijn geordend in vijf niveaus. Elk niveau voegt bewijs, categorieën en misleiding toe; geen enkel niveau voegt weetjes toe.</p></div>
+ </div>
+ <div class="rail reveal d1" style="margin:0 0 28px">
  <span class="node" style="left:2%"></span>
  <span class="node" style="left:26%"></span>
  <span class="node" style="left:50%"></span>
  <span class="node" style="left:74%"></span>
  <span class="node red" style="left:98%"></span>
  </div>
- <div class="row" style="justify-content:space-between;flex-wrap:wrap;gap:10px">
- <span class="tag">Recruit</span>
- <span class="tag">Field agent</span>
- <span class="tag">Investigator</span>
- <span class="tag">Specialist</span>
- <span class="tag tag--red">Chronovist</span>
- </div>
+ <div class="ladder reveal d1">
+ <div class="lad-row"><span class="ln">I</span><span class="lt">Recruit</span><span class="ls">Niveau één</span></div>
+ <div class="lad-row"><span class="ln">II</span><span class="lt">Field agent</span><span class="ls">Niveau twee</span></div>
+ <div class="lad-row"><span class="ln">III</span><span class="lt">Investigator</span><span class="ls">Niveau drie</span></div>
+ <div class="lad-row"><span class="ln">IV</span><span class="lt">Specialist</span><span class="ls">Niveau vier</span></div>
+ <div class="lad-row lad-row--top"><span class="ln">V</span><span class="lt">Chronovist</span><span class="ls">Niveau vijf</span></div>
  </div>
  </div>
 </section>
@@ -882,96 +1085,107 @@ h1, h2, h3 { font-weight: 700; line-height: 1.04; letter-spacing: -0.015em; }
 })();
 </script>
 
-<hr class="thick-rule" />
-
-<!-- ============ INSIDE THE BOOK ============ -->
-<section class="section" data-screen-label="Inside the book">
+<!-- ============ THE OBJECT ============ -->
+<section class="section" data-screen-label="The object">
  <div class="wrap">
- <span class="kicker kicker--red reveal"><span class="dot"></span>In het boek</span>
- <h2 class="h1 mt-12 reveal" style="max-width:18ch">Een object om te gebruiken.</h2>
- <div class="principles mt-40 reveal d1">
- <div class="principle">
- <span class="pn">01</span>
- <h3 style="font-size:21px;font-weight:700">Ligt plat open</h3>
- <p class="muted" style="font-size:15px">Garengenaaide band zodat het op tafel open blijft liggen terwijl je werkt, geen gebroken rug, geen tegenstribbelende pagina.</p>
+ <div class="sec-head reveal">
+ <span class="kicker kicker--red"><span class="dot"></span>Het object</span>
+ <span class="num">De fysieke ervaring</span>
  </div>
- <div class="principle">
- <span class="pn">02</span>
- <h3 style="font-size:21px;font-weight:700">Potloodvriendelijk</h3>
- <p class="muted" style="font-size:15px">Gedrukt op warm, ongecoat papier dat grafiet mooi opneemt en schoon uitgumt.</p>
- </div>
- <div class="principle">
- <span class="pn">03</span>
- <h3 style="font-size:21px;font-weight:700">Volledig uitgewerkt</h3>
- <p class="muted" style="font-size:15px">Elke zaak heeft achterin een stap-voor-stap-oplossing, niet alleen het antwoord, maar de redenering.</p>
+ <div class="split" style="margin-bottom:clamp(28px,4vw,48px)">
+ <div class="reveal"><h2 class="h1">Een boek om te gebruiken, niet alleen om te bewaren.</h2></div>
+ <div class="reveal d1">
+ <p class="lead measure">Timeline is een werkboek. Het hoort open op tafel te liggen met een potlood in de vouw, en het proces te overleven.</p>
+ <dl class="meta-list mt-32">
+ <dt>Pagina’s</dt><dd>200</dd>
+ <dt>Formaat</dt><dd>170 × 240 mm</dd>
+ <dt>Inbinding</dt><dd>Genaaid</dd>
+ <dt>Levering</dt><dd>Q3 2026</dd>
+ </dl>
  </div>
  </div>
-
- <!-- spec strip -->
- <div class="panel panel--raise spec-grid reveal d1 mt-40">
- <div style="padding:24px 26px;border-right:1px solid var(--line-2)">
- <div class="kicker muted">Pages</div><div class="h3" style="margin-top:8px">200</div>
+ <div class="principles reveal d1">
+ <div class="principle"><span class="pn">01</span><h3>Ligt plat open</h3><p class="muted small">Genaaide band, zodat het open blijft liggen terwijl je werkt. Geen gebroken rug, geen tegenstribbelende pagina.</p></div>
+ <div class="principle"><span class="pn">02</span><h3>Potloodvriendelijk</h3><p class="muted small">Gedrukt op warm, ongecoat papier dat grafiet mooi opneemt en schoon uitgumt.</p></div>
+ <div class="principle"><span class="pn">03</span><h3>Volledig uitgewerkt</h3><p class="muted small">Elke zaak heeft achterin een stap-voor-stap-oplossing: niet alleen het antwoord, maar de redenering.</p></div>
  </div>
- <div style="padding:24px 26px;border-right:1px solid var(--line-2)">
- <div class="kicker muted">Formaat</div><div class="h3" style="margin-top:8px">170×240</div>
- </div>
- <div style="padding:24px 26px;border-right:1px solid var(--line-2)">
- <div class="kicker muted">Inbinding</div><div class="h3" style="margin-top:8px">Genaaid</div>
- </div>
- <div style="padding:24px 26px">
- <div class="kicker muted">Levering</div><div class="h3" style="margin-top:8px">Q3 ’26</div>
- </div>
- </div>
-
- <div class="center reveal d1 mt-40">
+ <div class="reveal d1 mt-40">
  <button class="btn btn--ink" data-open-lookinside type="button">Kijk binnen in het boek <span class="arr">→</span></button>
- <p class="muted mt-12" style="font-family:var(--mono);font-size:12px;letter-spacing:.04em">// Een paar echte pagina's, briefing, uitleg en een volledige voorbeeldzaak.</p>
+ <p class="meta mt-12">// Een paar echte pagina’s: de briefing, de uitleg en een volledige voorbeeldzaak.</p>
  </div>
  </div>
 </section>
 
-<!-- ============ BUY ============ -->
-<section class="section section--tight" id="buy" data-screen-label="Buy">
+<!-- ============ ONLINE ============ -->
+<section class="section section--flush-top" data-screen-label="Online">
  <div class="wrap">
- <div class="center reveal">
- <span class="kicker"><span class="dot"></span>Bestel je exemplaar<span class="dot"></span></span>
- <h2 class="h2 mt-12">Het volledige boek, en een gratis voorproefje online.</h2>
+ <div class="sec-head reveal">
+ <span class="kicker kicker--blue"><span class="dot"></span>Online</span>
+ <span class="num">De digitale ervaring</span>
  </div>
- <div class="ways mt-40 reveal d1">
- <div class="way way--book">
- <div class="row" style="justify-content:space-between">
- <span class="tag tag--solid-red">Het boek</span>
- <span class="way-num">EERSTE EDITIE</span>
- </div>
- <h3 class="h3">Fysiek boek</h3>
- <p class="muted" style="font-size:16px">Het volledige handboek, 80 unieke zaken, gedrukt en gebonden.</p>
- <ul>
- <li>218-page sewn hardback feel</li>
- <li>80 unieke zaken, alleen in print</li>
- <li>Levering Q3 2026, je betaalt pas dan</li>
- </ul>
- <div class="row gap-16 wrap-gap" style="margin-top:auto">
- <span class="price">€24</span>
- <a class="btn btn--red btn--sm" data-open-preorder href="#">Reserveer <span class="arr">→</span></a>
- </div>
- </div>
- <div class="way way--online">
- <div class="row" style="justify-content:space-between">
- <span class="tag tag--blue">Speel online</span>
- <span class="way-num">DIRECT</span>
- </div>
- <h3 class="h3">Een gratis set om te proberen</h3>
- <p class="muted" style="font-size:16px">Begin nu meteen in je browser, een gratis set zaken om te proberen.</p>
- <ul>
- <li>Automatische controle &amp; slimme hints</li>
- <li>Werkt op telefoon, tablet en desktop</li>
- </ul>
- <div class="row gap-16 wrap-gap" style="margin-top:auto">
- <span class="price blue">Gratis<span style="font-size:16px;color:var(--ink-soft);font-family:var(--mono);letter-spacing:.1em">&nbsp;om te beginnen</span></span>
- <a class="btn btn--blue btn--sm" href="play.html">Speel nu <span class="arr">→</span></a>
+ <div class="split">
+ <div class="reveal"><h2 class="h2">Een gratis set zaken, in de browser.</h2></div>
+ <div class="reveal d1">
+ <p class="lead measure">Naast het boek is er een aparte set zaken die je gratis online kunt spelen. Hetzelfde mechanisme, dezelfde standaard — met automatische controle, hints wanneer je ze wilt, en je voortgang opgeslagen in de browser.</p>
+ <p class="lead measure mt-24">Het is geen port van het boek en het zeurt niet. Niets te installeren. Het werkt op een telefoon, een tablet of een desktop.</p>
+ <div class="mt-32"><a class="link" href="play.html" style="color:var(--blue)">Speel online <span aria-hidden="true">→</span></a></div>
  </div>
  </div>
  </div>
+</section>
+
+<!-- ============ FOR WHOM ============ -->
+<section class="section section--flush-top" data-screen-label="For whom">
+ <div class="wrap">
+ <div class="sec-head reveal">
+ <span class="kicker kicker--red"><span class="dot"></span>Voor wie</span>
+ <span class="num">Waarom het interessant is</span>
+ </div>
+ <div class="split">
+ <div class="reveal"><h2 class="h1">Voor mensen die liever redeneren dan onthouden.</h2></div>
+ <div class="reveal d1">
+ <p class="lead measure">Timeline is voor iedereen die houdt van het moment waarop een probleem klikt: kruiswoordoplossers, detectivelezers, mensen die de logicapuzzel af hebben voordat het vliegtuig landt. Je hoeft geen geschiedenis te kennen. Je moet bereid zijn goed te kijken.</p>
+ <p class="lead measure mt-24">Wat het interessant maakt is de beperking. Elke zaak heeft precies één antwoord, en dat is alleen via deductie te bereiken. Er zijn geen weetjes om te kennen en geen geluk om te hebben, dus als de tijdlijn klopt, is dat omdat jij hem kloppend hebt gemaakt.</p>
+ </div>
+ </div>
+ </div>
+</section>
+
+<!-- ============ EDITIONS ============ -->
+<section class="section section--tight" id="buy" data-screen-label="Editions">
+ <div class="wrap" id="editions">
+ <div class="sec-head reveal">
+ <span class="kicker kicker--red"><span class="dot"></span>Edities</span>
+ <span class="num">Zo krijg je het</span>
+ </div>
+ <h2 class="h2 reveal" style="margin-bottom:clamp(28px,4vw,44px)">Het boek, en een gratis voorproefje online.</h2>
+ <div class="editions reveal d1">
+ <div class="edition">
+ <span class="ed-n">Print</span>
+ <div><div class="ed-t">Het boek, eerste druk</div><div class="ed-p">€24</div></div>
+ <p class="ed-d">Het volledige zakenboek: 80 zaken, vijf niveaus, volledige oplossingen. Gesigneerd door de studio. Je betaalt pas bij verzending.</p>
+ <a class="btn btn--ink ed-a" data-open-preorder href="#">Reserveren <span class="arr">→</span></a>
+ </div>
+ <div class="edition">
+ <span class="ed-n">Online</span>
+ <div><div class="ed-t">Een gratis set om te proberen</div><div class="ed-p"><span class="blue">Gratis</span></div></div>
+ <p class="ed-d">Een aparte set zaken in de browser, met controle, hints en automatisch opslaan. Begin nu meteen.</p>
+ <a class="btn btn--ghost ed-a" href="play.html">Speel nu <span class="arr">→</span></a>
+ </div>
+ </div>
+ <p class="meta mt-24 reveal d2">Op zoek naar een winkel, groothandel of rechten? <a class="tlink" href="stockists.html">Verkooppunten &amp; rechten</a></p>
+ </div>
+</section>
+
+<!-- ============ FROM THE ARCHIVE ============ -->
+<section class="section section--tight from-archive" data-screen-label="From the archive">
+ <div class="wrap">
+ <div class="sec-head reveal">
+ <span class="kicker kicker--red"><span class="dot"></span>Uit het archief</span>
+ <span class="num">Alles, genummerd</span>
+ </div>
+ <div class="archive reveal d1" data-archive data-view="list" data-lang="nl" data-base="../"></div>
+ <div class="mt-32 reveal d2"><a class="link" href="archive.html">Betreed het archief <span aria-hidden="true">→</span></a></div>
  </div>
 </section>
 
@@ -995,26 +1209,25 @@ h1, h2, h3 { font-weight: 700; line-height: 1.04; letter-spacing: -0.015em; }
  <text x="77.5" y="66.5" font-family="'IBM Plex Mono', ui-monospace, monospace" font-size="8.6" font-weight="600" letter-spacing="3.1" fill="currentColor" opacity="0.5">INDEPENDENT STUDIO</text>
  </svg>
  </a>
- <p class="muted" style="color:#B9AE9C;max-width:34ch;margin-top:20px;font-size:16px">
- Timeline is onze debuuttitel. De geschiedenis is herschreven, jij bent de correctie.
- </p>
+ <p class="foot-motto">De geschiedenis is herschreven. Jij bent de correctie.</p>
  </div>
  <div>
  <h4>Ontdek</h4>
  <div class="foot-links">
- <a href="index.html">De studio</a>
+ <a href="index.html#work">Het werk</a>
+ <a href="archive.html">Het archief</a>
  <a href="timeline.html">Timeline, het boek</a>
  <a href="play.html">Speel online</a>
- <a href="#sample">Probeer een zaak</a>
+ <a href="about.html">Over de studio</a>
  </div>
  </div>
  <div>
  <h4>Studio</h4>
  <div class="foot-links">
  <a data-open-preorder href="#">Reserveer Timeline</a>
+ <a href="#sample">Los een voorbeeldzaak op</a>
+ <a href="stockists.html">Verkooppunten &amp; rechten</a>
  <a href="mailto:info@southstudio.online">info@southstudio.online</a>
- <a href="../stockists.html">Verkooppunten &amp; rechten</a>
- <a href="about.html">Over de studio</a>
  </div>
  </div>
  </div>
@@ -1394,7 +1607,7 @@ body{background:#211d18;font-family:&quot;IBM Plex Mono&quot;,ui-monospace,monos
  <button class="modal-close" data-close aria-label="Close">✕</button>
  </div>
  <div class="modal-body">
- <p class="muted" style="font-size:15px">Eerste oplage, gesigneerd door de studio. Je betaalt pas bij verzending, we houden je exemplaar voor je apart.</p>
+ <p class="muted small">Eerste oplage, gesigneerd door de studio. Je betaalt pas bij verzending, we houden je exemplaar voor je apart.</p>
  <form novalidate>
  <div class="input-row" data-required style="margin-bottom:12px">
  <label>Naam</label>
@@ -1420,9 +1633,10 @@ body{background:#211d18;font-family:&quot;IBM Plex Mono&quot;,ui-monospace,monos
  </div>
 </div>
 
+<script src="../releases.js"></script>
 <script>
 /* ============================================================
- SouthStudio, shared interactions (v1)
+ SouthStudio, shared interactions (v2)
  ============================================================ */
 (function () {
  "use strict";
@@ -1440,27 +1654,25 @@ body{background:#211d18;font-family:&quot;IBM Plex Mono&quot;,ui-monospace,monos
  var burger = document.querySelector(".burger");
  var menu = document.querySelector(".mobile-menu");
  if (burger && menu) {
- burger.addEventListener("click", function () {
- var open = menu.classList.toggle("open");
+ function setMenu(open) {
+ menu.classList.toggle("open", open);
  burger.classList.toggle("open", open);
+ burger.setAttribute("aria-expanded", open ? "true" : "false");
  document.body.style.overflow = open ? "hidden" : "";
- });
+ }
+ burger.addEventListener("click", function () { setMenu(!menu.classList.contains("open")); });
  menu.querySelectorAll("a").forEach(function (a) {
- a.addEventListener("click", function () {
- menu.classList.remove("open");
- burger.classList.remove("open");
- document.body.style.overflow = "";
- });
+ a.addEventListener("click", function () { setMenu(false); });
  });
  }
 
- /* ---- scroll reveal ---- */
+ /* ---- scroll reveal (fade, line masks, image clip) ---- */
  var io = new IntersectionObserver(function (entries) {
  entries.forEach(function (e) {
  if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
  });
  }, { threshold: 0.12, rootMargin: "0px 0px -8% 0px" });
- document.querySelectorAll(".reveal").forEach(function (el) { io.observe(el); });
+ document.querySelectorAll(".reveal, [data-reveal-host], [data-lines]").forEach(function (el) { io.observe(el); });
 
  /* ---- form submission helper (real POST + mailto fallback) ---- */
  function LQendpoint() {
@@ -1493,7 +1705,7 @@ body{background:#211d18;font-family:&quot;IBM Plex Mono&quot;,ui-monospace,monos
  var ok = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
  if (!note) return;
  if (!ok) {
- note.textContent = "// Vul een geldig e-mailadres in om berichten te ontvangen.";
+ note.textContent = "// Vul een geldig e-mailadres in om de Dispatch te ontvangen.";
  note.className = "form-note err";
  input.focus();
  return;
@@ -1501,10 +1713,10 @@ body{background:#211d18;font-family:&quot;IBM Plex Mono&quot;,ui-monospace,monos
  var nbtn = form.querySelector("button");
  if (nbtn) nbtn.disabled = true;
  note.textContent = "Versturen…"; note.className = "form-note";
- LQsend("Nieuwsbrief", { email: v }, function () {
+ LQsend("Newsletter", { email: v }, function () {
  note.textContent = "// Bevestigd. Je staat op de SouthStudio-lijst.";
  note.className = "form-note ok";
- input.value = ""; input.setAttribute("placeholder", "jij@aangemeld.nu");
+ input.value = ""; input.setAttribute("placeholder", "you@subscribed.now");
  if (nbtn) nbtn.disabled = false;
  }, function () {
  note.textContent = "// Er ging iets mis, probeer het opnieuw of mail info@southstudio.online.";
@@ -1520,11 +1732,14 @@ body{background:#211d18;font-family:&quot;IBM Plex Mono&quot;,ui-monospace,monos
  var modalBody = overlay.querySelector(".modal-body");
  var origBody = modalBody ? modalBody.innerHTML : "";
 
- function openModal() {
+ function openModal(ev) {
+ if (ev) ev.preventDefault();
  if (modalBody) modalBody.innerHTML = origBody;
  wireForm();
  overlay.classList.add("open");
  document.body.style.overflow = "hidden";
+ var first = overlay.querySelector("input");
+ if (first) setTimeout(function () { first.focus(); }, 120);
  }
  function closeModal() {
  overlay.classList.remove("open");
@@ -1559,17 +1774,17 @@ body{background:#211d18;font-family:&quot;IBM Plex Mono&quot;,ui-monospace,monos
  if (!valid) return;
  var consentBox = form.querySelector('[name="consent"]');
  if (consentBox && !consentBox.checked) { var cr = consentBox.closest(".consent-row"); if (cr) cr.classList.add("bad"); return; }
- var name = (form.querySelector('[name="name"]') || {}).value || "Speurder";
+ var name = (form.querySelector('[name="name"]') || {}).value || "Onderzoeker";
  var sbtn = form.querySelector('button[type="submit"]'); if (sbtn) { sbtn.disabled = true; sbtn.textContent = "Versturen…"; }
  var leadData = { name: name, email: (form.querySelector('[name="email"]') || {}).value || "", edition: (form.querySelector('[name="edition"]') || {}).value || "" };
  LQsend("Reservering", leadData, function () { showReserved(); }, function () { if (sbtn) { sbtn.disabled = false; sbtn.textContent = "Opnieuw"; } });
  function showReserved() { modalBody.innerHTML =
  '<div class="stamp" style="align-self:flex-start">● Reservering genoteerd</div>' +
  '<h3 class="h3" style="margin-top:6px">Exemplaar gereserveerd, ' + escapeHtml(name.split(" ")[0]) + '.</h3>' +
- '<p class="muted" style="font-size:16px">Je staat op de eerste oplage van <em>Timeline</em>. ' +
- 'Je krijgt bericht zodra de reserveringen verzonden worden, je betaalt pas dan.</p>' +
+ '<p class="muted small">We hebben je toegevoegd aan de eerste druk van <em>Timeline</em>. ' +
+ 'Je krijgt bericht zodra de reserveringen verzonden worden, tot die tijd betaal je niets.</p>' +
  '<div class="row gap-12 wrap-gap mt-12">' +
- '<span class="tag tag--red">Eerste editie</span>' +
+ '<span class="tag tag--red">Eerste druk</span>' +
  '<span class="tag">Gesigneerd door de studio</span>' +
  '<span class="tag tag--blue">Gratis zaken online</span>' +
  '</div>' +
@@ -1584,95 +1799,7 @@ body{background:#211d18;font-family:&quot;IBM Plex Mono&quot;,ui-monospace,monos
  return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
  });
  }
-
- /* =========================================================
- Sample puzzle, "Restore the Timeline"
- Reorder scrambled events into true chronological order.
- ========================================================= */
- var puzzle = document.querySelector("[data-puzzle]");
- if (puzzle) {
- var EVENTS = [
- { y: -2560, label: "Grote Piramide van Gizeh voltooid", era: "ca. 2560 v.Chr." },
- { y: 79, label: "Vesuvius bedelft Pompeï", era: "79 n.Chr." },
- { y: 1440, label: "Gutenbergs drukpers", era: "ca. 1440" },
- { y: 1903, label: "Eerste gemotoriseerde vlucht, Kitty Hawk", era: "1903" },
- { y: 1969, label: "Apollo 11 landt op de maan", era: "1969" }
- ];
- var order = shuffle(EVENTS.slice());
- // guarantee it starts scrambled
- if (isSorted(order)) order = shuffle(order);
-
- var listEl = puzzle.querySelector("[data-puzzle-list]");
- var statusEl = puzzle.querySelector("[data-puzzle-status]");
- var verifyBtn = puzzle.querySelector("[data-verify]");
- var resetBtn = puzzle.querySelector("[data-reset]");
- var solved = false;
-
- function render() {
- listEl.innerHTML = "";
- order.forEach(function (item, i) {
- var row = document.createElement("div");
- row.className = "pz-row";
- row.innerHTML =
- '<span class="pz-pos">' + String(i + 1).padStart(2, "0") + '</span>' +
- '<span class="pz-label">' + item.label + '</span>' +
- '<span class="pz-era" data-era>' + (solved ? item.era : "????") + '</span>' +
- '<span class="pz-moves">' +
- '<button class="pz-mv" data-up aria-label="Eerder" ' + (i === 0 ? "disabled" : "") + '>▲</button>' +
- '<button class="pz-mv" data-down aria-label="Later" ' + (i === order.length - 1 ? "disabled" : "") + '>▼</button>' +
- '</span>';
- row.querySelector("[data-up]") && row.querySelector("[data-up]").addEventListener("click", function () { move(i, i - 1); });
- row.querySelector("[data-down]") && row.querySelector("[data-down]").addEventListener("click", function () { move(i, i + 1); });
- listEl.appendChild(row);
- });
- }
- function move(from, to) {
- if (solved || to < 0 || to >= order.length) return;
- var t = order[from]; order[from] = order[to]; order[to] = t;
- statusEl.className = "pz-status";
- statusEl.textContent = "// Chronologie niet bevestigd.";
- render();
- }
- function verify() {
- if (isSorted(order)) {
- solved = true;
- render();
- statusEl.className = "pz-status ok";
- statusEl.innerHTML = '<span class="pz-stamp">Tijdlijn hersteld ✓</span> De correctie klopt. Dit is één zet van vele in het volledige boek.';
- verifyBtn.setAttribute("disabled", "");
- } else {
- statusEl.className = "pz-status bad";
- statusEl.textContent = "// Paradox gedetecteerd, de volgorde klopt niet. Blijf corrigeren.";
- listEl.classList.remove("shake"); void listEl.offsetWidth; listEl.classList.add("shake");
- }
- }
- function reset() {
- solved = false;
- order = shuffle(EVENTS.slice());
- if (isSorted(order)) order = shuffle(order);
- verifyBtn.removeAttribute("disabled");
- statusEl.className = "pz-status";
- statusEl.textContent = "// Zet de gebeurtenissen van vroegst naar laatst en controleer.";
- render();
- }
- verifyBtn.addEventListener("click", verify);
- resetBtn.addEventListener("click", reset);
- render();
- }
-
- function isSorted(arr) {
- for (var i = 1; i < arr.length; i++) if (arr[i].y < arr[i - 1].y) return false;
- return true;
- }
- function shuffle(a) {
- for (var i = a.length - 1; i > 0; i--) {
- var j = Math.floor(Math.random() * (i + 1));
- var t = a[i]; a[i] = a[j]; a[j] = t;
- }
- return a;
- }
 })();
-
 </script>
 </body>
 </html>

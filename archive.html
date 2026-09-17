@@ -4,26 +4,26 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="form-endpoint" content="" />
-<title>SouthStudio — Things worth thinking about</title>
-<meta name="description" content="SouthStudio is an independent creative studio making books, games, films, objects, experiences and ideas — unusual things designed to give your attention something worthwhile to do. Timeline, our debut deduction puzzle book, is out now." />
-<link rel="canonical" href="https://southstudio.online/" />
-<link rel="alternate" hreflang="en" href="https://southstudio.online/" />
-<link rel="alternate" hreflang="nl" href="https://southstudio.nl/" />
-<link rel="alternate" hreflang="x-default" href="https://southstudio.online/" />
+<title>The Archive — SouthStudio</title>
+<meta name="description" content="Everything SouthStudio makes, numbered in the order it is finished. Books, games, films, experiences and objects. SouthStudio / 001 — Timeline, a deduction puzzle book." />
+<link rel="canonical" href="https://southstudio.online/archive.html" />
+<link rel="alternate" hreflang="en" href="https://southstudio.online/archive.html" />
+<link rel="alternate" hreflang="nl" href="https://southstudio.nl/archive.html" />
+<link rel="alternate" hreflang="x-default" href="https://southstudio.online/archive.html" />
 
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="SouthStudio" />
 <meta property="og:locale" content="en_US" />
 <meta property="og:locale:alternate" content="nl_NL" />
-<meta property="og:title" content="SouthStudio — Things worth thinking about" />
-<meta property="og:description" content="An independent studio making books, games, films, objects, experiences and ideas. Give your attention something worthwhile to do." />
-<meta property="og:url" content="https://southstudio.online/" />
+<meta property="og:title" content="The Archive — SouthStudio" />
+<meta property="og:description" content="Everything SouthStudio makes, numbered in the order it is finished." />
+<meta property="og:url" content="https://southstudio.online/archive.html" />
 <meta property="og:image" content="https://southstudio.online/icons/og-default.png" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="SouthStudio — Things worth thinking about" />
-<meta name="twitter:description" content="An independent studio making books, games, films, objects, experiences and ideas. Give your attention something worthwhile to do." />
+<meta name="twitter:title" content="The Archive — SouthStudio" />
+<meta name="twitter:description" content="Everything SouthStudio makes, numbered in the order it is finished." />
 <meta name="twitter:image" content="https://southstudio.online/icons/og-default.png" />
 
 <link rel="icon" href="favicon.svg" type="image/svg+xml" />
@@ -31,8 +31,6 @@
 <link rel="apple-touch-icon" href="icons/icon-180.png" />
 <link rel="manifest" href="site.webmanifest" />
 <meta name="theme-color" content="#1A1612" />
-
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"SouthStudio","url":"https://southstudio.online","logo":"https://southstudio.online/icons/icon-512.png","description":"An independent creative studio making books, games, films, objects, experiences and ideas worth thinking about.","foundingDate":"2026","foundingLocation":{"@type":"Place","addressCountry":"NL"},"contactPoint":{"@type":"ContactPoint","email":"info@southstudio.online","contactType":"customer support"}}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -612,32 +610,59 @@ body.intro-hold .reveal-img { clip-path: inset(100% 0 0 0) !important; transitio
  .news-form { flex-wrap: nowrap; }
  .book-stage { padding-right: 20px; }
 }
+
+/* ---------- archive page ---------- */
+.arc-hero { padding-top: clamp(28px, 4vw, 56px); padding-bottom: clamp(40px, 6vw, 80px); }
+.arc-hero .display { margin-top: clamp(20px, 3vw, 36px); }
+.arc-intro { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, .8fr); gap: clamp(32px, 6vw, 96px); align-items: end; }
+
+/* shelves strip */
+.shelves { display: grid; grid-template-columns: repeat(5, 1fr); border-top: 1.5px solid var(--ink); border-bottom: 1px solid var(--line); }
+.shelf { padding: 18px clamp(0px, 1.5vw, 24px) 18px 0; border-right: 1px solid var(--line); display: flex; flex-direction: column; gap: 8px; }
+.shelf:not(:first-child) { padding-left: clamp(0px, 1.5vw, 24px); }
+.shelf:last-child { border-right: 0; }
+.shelf .sh-t { font-family: var(--serif); font-size: clamp(19px, 1.8vw, 24px); font-weight: 500; letter-spacing: -0.015em; }
+.shelf .sh-n { font-family: var(--mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-soft); }
+.shelf .sh-n b { color: var(--ink); font-weight: 600; }
+
+/* release cards */
+.rc-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(28px, 4vw, 56px) clamp(24px, 4vw, 64px); }
+.rc { display: flex; flex-direction: column; gap: 18px; color: inherit; }
+.rc-media { aspect-ratio: 3 / 2; border: 1.5px solid var(--ink); background: var(--paper-2); overflow: hidden; display: flex; align-items: center; justify-content: center; }
+.rc-media img { width: 100%; height: 100%; object-fit: cover; transition: transform .8s var(--ease-out); }
+a.rc:hover .rc-media img { transform: scale(1.02); }
+.rc-placeholder { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background-image: linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px); background-size: 26px 26px; background-position: center; }
+.rc--coming .rc-media { border-style: dashed; border-color: var(--line-2); background: var(--paper); }
+.rc-body { display: flex; flex-direction: column; gap: 8px; }
+.rc-title { font-family: var(--serif); font-size: clamp(28px, 3vw, 44px); font-weight: 500; letter-spacing: -0.03em; line-height: 1; margin-top: 2px; }
+a.rc:hover .rc-title { font-style: italic; }
+.rc--coming .rc-title { color: var(--ink-soft); font-weight: 400; font-style: italic; }
+.rc-cat { font-family: var(--serif); font-style: italic; font-weight: 300; font-size: clamp(17px, 1.5vw, 21px); color: var(--ink-2); }
+.rc-desc { max-width: 48ch; }
+.rc-foot { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; margin-top: 8px; padding-top: 14px; border-top: 1px solid var(--line); }
+
+@media (max-width: 1020px) { .arc-intro { grid-template-columns: 1fr; align-items: start; } }
+@media (max-width: 900px) {
+ .shelves { grid-template-columns: repeat(3, 1fr); border-bottom: 0; }
+ .shelf { border-bottom: 1px solid var(--line); }
+ .shelf:nth-child(3n) { border-right: 0; }
+ .shelf:nth-child(3n+1) { padding-left: 0; }
+ .rc-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 560px) {
+ .shelves { grid-template-columns: 1fr 1fr; }
+ .shelf:nth-child(3n) { border-right: 1px solid var(--line); }
+ .shelf:nth-child(2n) { border-right: 0; }
+ .shelf:nth-child(2n+1) { padding-left: 0; }
+ .shelf:nth-child(3n+1) { padding-left: 0; }
+ .shelf:nth-child(2n) { padding-left: 16px; }
+}
 </style>
 </head>
 <body>
 
-<!-- ============ INTRO OPENER ============ -->
-<div id="intro" aria-hidden="true" data-screen-label="Intro opener">
- <div class="intro-bg"></div>
- <svg class="intro-logo" viewBox="0 0 282 84" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="SouthStudio">
- <rect x="3.8" y="16.8" width="17" height="17" fill="none" stroke="#1A1612" stroke-width="1.7"></rect>
- <rect x="23.8" y="16.8" width="17" height="17" fill="#D2362B" stroke="#D2362B" stroke-width="1.7"></rect>
- <rect x="43.8" y="16.8" width="17" height="17" fill="none" stroke="#1A1612" stroke-width="1.7"></rect>
- <rect x="3.8" y="36.8" width="17" height="17" fill="none" stroke="#1A1612" stroke-width="1.7"></rect>
- <rect x="23.8" y="36.8" width="17" height="17" fill="none" stroke="#1A1612" stroke-width="1.7"></rect>
- <rect x="43.8" y="36.8" width="17" height="17" fill="#1A1612" stroke="#1A1612" stroke-width="1.7"></rect>
- <rect x="3.8" y="56.8" width="17" height="17" fill="#1A1612" stroke="#1A1612" stroke-width="1.7"></rect>
- <rect x="23.8" y="56.8" width="17" height="17" fill="none" stroke="#1A1612" stroke-width="1.7"></rect>
- <rect x="43.8" y="56.8" width="17" height="17" fill="none" stroke="#1A1612" stroke-width="1.7"></rect>
- <text x="76" y="48" font-family="'Spectral', Georgia, serif" font-size="33" font-weight="700" letter-spacing="-0.5"><tspan fill="#1A1612">South</tspan><tspan fill="#D2362B">Studio</tspan></text>
- <text x="77.5" y="66.5" font-family="'IBM Plex Mono', ui-monospace, monospace" font-size="8.6" font-weight="600" letter-spacing="3.1" fill="#1A1612" opacity="0.5">INDEPENDENT STUDIO</text>
- </svg>
- <div class="intro-hint">Click to skip</div>
-</div>
-<script>(function(){try{if(sessionStorage.getItem('ss-intro-played')==='1'){document.getElementById('intro').className='done';}}catch(e){}})();</script>
-
 <!-- ============ HEADER ============ -->
-<header class="site-head" data-screen-label="Home">
+<header class="site-head" data-screen-label="Archive">
  <div class="wrap head-row">
  <a class="wordmark" href="index.html" aria-label="SouthStudio, Independent Studio, home">
  <svg class="logo" viewBox="0 0 282 84" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="SouthStudio">
@@ -655,14 +680,14 @@ body.intro-hold .reveal-img { clip-path: inset(100% 0 0 0) !important; transitio
  </svg>
  </a>
  <nav class="nav" aria-label="Primary">
- <a class="navlink" href="#work">Work</a>
- <a class="navlink" href="archive.html">Archive</a>
+ <a class="navlink" href="index.html#work">Work</a>
+ <a class="navlink active" href="archive.html">Archive</a>
  <a class="navlink" href="timeline.html">Timeline</a>
  <a class="navlink" href="play.html">Play</a>
  <a class="navlink" href="about.html">Studio</a>
  </nav>
  <div class="head-cta">
- <a class="navlink" href="nl/index.html" hreflang="nl" aria-label="Schakel naar Nederlands" style="opacity:.55;align-self:center">NL</a>
+ <a class="navlink" href="nl/archive.html" hreflang="nl" aria-label="Schakel naar Nederlands" style="opacity:.55;align-self:center">NL</a>
  <a class="btn btn--ghost btn--sm" data-open-preorder href="#">Pre-order <span class="arr">→</span></a>
  <button class="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
  </div>
@@ -670,208 +695,72 @@ body.intro-hold .reveal-img { clip-path: inset(100% 0 0 0) !important; transitio
 </header>
 
 <div class="mobile-menu">
- <a href="#work"><span>The work</span><span class="num">01</span></a>
+ <a href="index.html#work"><span>The work</span><span class="num">01</span></a>
  <a href="archive.html"><span>The archive</span><span class="num">02</span></a>
  <a href="timeline.html"><span>Timeline</span><span class="num">03</span></a>
  <a href="play.html"><span>Play online</span><span class="num">04</span></a>
  <a href="about.html"><span>The studio</span><span class="num">05</span></a>
  <div class="mm-foot">
  <a data-open-preorder href="#">Pre-order Timeline →</a>
- <a href="#dispatch">The Dispatch →</a>
- <a href="nl/index.html" hreflang="nl">Nederlands →</a>
+ <a href="index.html#dispatch">The Dispatch →</a>
+ <a href="nl/archive.html" hreflang="nl">Nederlands →</a>
  </div>
 </div>
 
 <!-- ============ HERO ============ -->
-<section class="section hero" data-screen-label="Hero">
+<section class="section arc-hero" data-screen-label="Hero">
  <div class="wrap">
  <div class="reveal eyebrow-rule">
- <span class="kicker kicker--red"><span class="dot"></span>Independent studio</span>
- <span class="ln"></span>
- <span class="kicker">Netherlands · Est. 2026</span>
- </div>
-
- <div class="hero-grid">
- <div>
- <h1 class="display lines" data-lines>
- <span><span>Things worth</span></span>
- <span><span><em>thinking</em> about.</span></span>
- </h1>
- <p class="lead measure hero-lead reveal d2">
- SouthStudio is an independent creative studio. We make books, games, films, objects, experiences and ideas — unusual things, made slowly, designed to give your attention something worthwhile to do.
- </p>
- <div class="hero-ctas reveal d3">
- <a class="btn btn--ink" href="#work">Explore the work <span class="arr">→</span></a>
- <a class="btn btn--ghost" href="#archive">Enter the archive <span class="arr">→</span></a>
- </div>
- </div>
-
- <div class="index reveal d2" aria-label="What the studio makes">
- <div class="index-head">
- <span class="kicker">What we make</span>
- <span class="num">Six shelves</span>
- </div>
- <a class="index-row" href="timeline.html">
- <span class="ix-n">01</span><span class="ix-t">Books</span><span class="ix-s">001 · Timeline</span>
- </a>
- <a class="index-row" href="play.html">
- <span class="ix-n">02</span><span class="ix-t">Games</span><span class="ix-s">Play online</span>
- </a>
- <a class="index-row" href="https://www.youtube.com/@SouthStudio-Official" target="_blank" rel="noopener">
- <span class="ix-n">03</span><span class="ix-t">Films</span><span class="ix-s">On YouTube</span>
- </a>
- <div class="index-row index-row--idle">
- <span class="ix-n">04</span><span class="ix-t">Objects</span><span class="ix-s">In development</span>
- </div>
- <div class="index-row index-row--idle">
- <span class="ix-n">05</span><span class="ix-t">Experiences</span><span class="ix-s">In development</span>
- </div>
- <a class="index-row" href="#dispatch">
- <span class="ix-n">06</span><span class="ix-t">Ideas</span><span class="ix-s">The Dispatch</span>
- </a>
- </div>
- </div>
- </div>
-</section>
-
-<!-- ============ THE WORK ============ -->
-<section class="section section--flush-top" id="work" data-screen-label="The work">
- <div class="wrap">
- <div class="sec-head reveal">
- <span class="kicker kicker--red"><span class="dot"></span>The work</span>
- <span class="num">Selected · One of one, for now</span>
- </div>
-
- <div class="feature-head reveal">
- <span class="num">SouthStudio / <b>001</b></span>
- <h2 class="feature-title">TIME<span>LINE</span></h2>
- <p class="feature-cat">History <i>/</i> Deduction</p>
- </div>
-
- <div class="feature">
- <div class="reveal">
- <p class="lead measure feature-body">
- A deduction puzzle book set inside the Time Correction Agency. Somewhere in the record, history has been quietly rewritten. Eighty self-contained cases, each with exactly one answer, reachable by reasoning alone. No trivia, no luck.
- </p>
- <dl class="meta-list feature-meta">
- <dt>Format</dt><dd>Hardcover puzzle book · 200 pages · 80 cases · five clearances</dd>
- <dt>Also</dt><dd>A separate set of cases, free to play in the browser</dd>
- <dt>Status</dt><dd>First edition · pre-order open · €24</dd>
- </dl>
- <div class="feature-links">
- <a class="btn btn--ink" href="timeline.html">Open the case file <span class="arr">→</span></a>
- <a class="link" href="play.html">Play a case online <span aria-hidden="true">→</span></a>
- </div>
- </div>
-
- <div class="feature-visual">
- <div class="book-stage" data-reveal-host>
- <div class="reveal-img">
- <a class="book" href="timeline.html" aria-label="Timeline, the book">
- <span class="bc-grid" aria-hidden="true"></span>
- <span class="bc-frame" aria-hidden="true"></span>
- <div class="bc-topkick">Time Correction Agency · Puzzlebook</div>
- <div class="bc-stamp">● Debut Title</div>
- <div class="bc-center">
- <span class="mark" aria-hidden="true">
- <span></span><span class="fill"></span><span></span>
- <span></span><span></span><span class="fill-ink"></span>
- <span class="fill-ink"></span><span></span><span></span>
- </span>
- <span class="bc-title">TIME<span>LINE</span></span>
- <p class="bc-tag">History has been edited.<br />You are the correction.</p>
- <span class="bc-rule" aria-hidden="true"></span>
- </div>
- <div class="bc-meta">
- <span class="bc-cases">80 Deduction Cases · Five Clearances</span>
- <span class="bc-byline">SOUTHSTUDIO</span>
- </div>
- </a>
- </div>
- <div class="book-caption reveal d2">
- <span>Fig. 001 — Front cover</span>
- <span>First edition</span>
- </div>
- </div>
- </div>
- </div>
- </div>
-</section>
-
-<!-- ============ THE ARCHIVE ============ -->
-<section class="section section--tight" id="archive" data-screen-label="The archive">
- <div class="wrap">
- <div class="sec-head reveal">
  <span class="kicker kicker--red"><span class="dot"></span>The archive</span>
- <span class="num">Everything, numbered</span>
+ <span class="ln"></span>
+ <span class="kicker">Everything, numbered</span>
  </div>
- <div class="archive reveal d1" data-archive data-view="list" data-lang="en" data-base=""></div>
- <div class="mt-32 reveal d2"><a class="link" href="archive.html">Enter the full archive <span aria-hidden="true">→</span></a></div>
- <p class="meta archive-note reveal d2 measure">Entries marked <em>Concept</em> are not finished work. They are directions the studio is exploring. The archive grows slowly, and nothing is added to fill space.</p>
+ <div class="arc-intro">
+ <h1 class="display lines" data-lines>
+ <span><span>Everything we</span></span>
+ <span><span>have <em>finished</em>.</span></span>
+ </h1>
+ <p class="lead measure-sm reveal d2">Every SouthStudio release gets a number in the order it is finished — a book, a game, a film, an experience or an object. The archive grows slowly, and nothing is added to fill space.</p>
+ </div>
  </div>
 </section>
 
-<!-- ============ THE STUDIO ============ -->
-<section class="section" data-screen-label="The studio">
+<!-- ============ SHELVES ============ -->
+<section class="section section--flush-top section--tight" data-screen-label="Shelves">
+ <div class="wrap">
+ <div class="shelves reveal">
+ <div class="shelf"><span class="sh-t">Books</span><span class="sh-n">Releases · <b data-shelf-count="books">—</b></span></div>
+ <div class="shelf"><span class="sh-t">Games</span><span class="sh-n">Releases · <b data-shelf-count="games">—</b></span></div>
+ <div class="shelf"><span class="sh-t">Films</span><span class="sh-n">Releases · <b data-shelf-count="films">—</b></span></div>
+ <div class="shelf"><span class="sh-t">Experiences</span><span class="sh-n">Releases · <b data-shelf-count="experiences">—</b></span></div>
+ <div class="shelf"><span class="sh-t">Objects</span><span class="sh-n">Releases · <b data-shelf-count="objects">—</b></span></div>
+ </div>
+ </div>
+</section>
+
+<!-- ============ RELEASES ============ -->
+<section class="section section--flush-top" id="releases" data-screen-label="Releases">
  <div class="wrap">
  <div class="sec-head reveal">
- <span class="kicker kicker--red"><span class="dot"></span>The studio</span>
- <span class="num">Why we make things</span>
+ <span class="kicker kicker--red"><span class="dot"></span>Releases</span>
+ <span class="num">In order of completion</span>
  </div>
- <div class="split">
- <div class="reveal">
- <h2 class="h1">Give your attention something worthwhile to do.</h2>
- </div>
- <div class="reveal d1">
- <p class="lead measure">
- Most things made for a screen are built to take attention. We are interested in the opposite: things that reward it. A puzzle that is fair. A book that stays on the shelf. A film that leaves you with a better question than it found you with.
- </p>
- <p class="lead measure mt-24">
- SouthStudio is small on purpose. We make one thing at a time, finish it properly, and then start the next.
- </p>
- <div class="mt-32">
- <a class="link" href="about.html">About the studio <span aria-hidden="true">→</span></a>
- </div>
- </div>
- </div>
- <div class="principles mt-56 reveal d1">
- <div class="principle">
- <span class="pn">I.</span>
- <h3>Made slowly</h3>
- <p class="muted small">Every case, page and frame is tested by a person before it leaves the studio. If it isn't fair, it doesn't ship.</p>
- </div>
- <div class="principle">
- <span class="pn">II.</span>
- <h3>Nothing that nags</h3>
- <p class="muted small">No timers, no streaks, no notifications. Our things wait for you. Pick them up when you have the time to think.</p>
- </div>
- <div class="principle">
- <span class="pn">III.</span>
- <h3>Made to keep</h3>
- <p class="muted small">Good paper, careful typesetting, ideas that hold up on a second visit. Things worth a place on the shelf.</p>
- </div>
- </div>
+ <div class="rc-grid reveal d1" data-archive data-view="cards" data-lang="en" data-base=""></div>
+ <p class="meta mt-40 reveal d2 measure">Entries marked <em>Coming soon</em> are not finished work. They are directions the studio is exploring, and they get a title, a category and a number only when they are done. Films are published on <a class="tlink" href="https://www.youtube.com/@SouthStudio-Official" target="_blank" rel="noopener">YouTube</a> and will be catalogued here as they are finished.</p>
  </div>
 </section>
 
-<!-- ============ DISPATCH / NEWSLETTER ============ -->
-<section class="section section--tight" id="dispatch" data-screen-label="Dispatch">
+<!-- ============ DISPATCH POINTER ============ -->
+<section class="section section--tight" data-screen-label="Dispatch">
  <div class="wrap">
  <div class="dispatch reveal">
  <div>
  <span class="kicker kicker--red"><span class="dot"></span>The Dispatch</span>
- <h2 class="h2 mt-12">One short letter,<br />when something is finished.</h2>
- <p class="lead muted mt-12 measure-sm">Notes from the studio, a new title, a fresh case to play. Sent rarely. Nothing else.</p>
+ <h2 class="h2 mt-12">Hear when the next number is assigned.</h2>
  </div>
  <div>
- <form class="news-form" data-news novalidate>
- <div class="field">
- <input type="email" name="email" placeholder="your@email.com" aria-label="Email address" autocomplete="email" />
- </div>
- <button class="btn" type="submit">Subscribe <span class="arr">→</span></button>
- </form>
- <p class="form-note">// Unsubscribe in one click.</p>
- <p class="form-consent">By subscribing you agree to our <a href="privacy.html">privacy policy</a>.</p>
+ <p class="lead muted measure-sm">One short letter when something new is finished. Sent rarely. Nothing else.</p>
+ <div class="mt-24"><a class="link" href="index.html#dispatch">Subscribe to the Dispatch <span aria-hidden="true">→</span></a></div>
  </div>
  </div>
  </div>
@@ -902,7 +791,7 @@ body.intro-hold .reveal-img { clip-path: inset(100% 0 0 0) !important; transitio
  <div>
  <h4>Explore</h4>
  <div class="foot-links">
- <a href="#work">The work</a>
+ <a href="index.html#work">The work</a>
  <a href="archive.html">The archive</a>
  <a href="timeline.html">Timeline, the book</a>
  <a href="play.html">Play online</a>
@@ -913,7 +802,7 @@ body.intro-hold .reveal-img { clip-path: inset(100% 0 0 0) !important; transitio
  <h4>Studio</h4>
  <div class="foot-links">
  <a data-open-preorder href="#">Pre-order Timeline</a>
- <a href="#dispatch">The Dispatch</a>
+ <a href="index.html#dispatch">The Dispatch</a>
  <a href="stockists.html">Stockists &amp; rights</a>
  <a href="https://www.youtube.com/@SouthStudio-Official" target="_blank" rel="noopener">YouTube</a>
  <a href="mailto:info@southstudio.online">info@southstudio.online</a>
@@ -963,6 +852,7 @@ body.intro-hold .reveal-img { clip-path: inset(100% 0 0 0) !important; transitio
  </div>
  </div>
 </div>
+
 
 <script src="releases.js"></script>
 <script>
@@ -1130,58 +1020,6 @@ body.intro-hold .reveal-img { clip-path: inset(100% 0 0 0) !important; transitio
  return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
  });
  }
-})();
-</script>
-
-<script>
-/* ===== Intro opener: plays once per session, skippable, reduced-motion safe ===== */
-(function () {
- var intro = document.getElementById('intro');
- if (!intro || intro.classList.contains('done')) return;
- var bg = intro.querySelector('.intro-bg');
- var hint = intro.querySelector('.intro-hint');
- var introLogo = intro.querySelector('.intro-logo');
- var headerLogo = document.querySelector('.site-head .logo');
- var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
- var done = false, flyTimer = null;
-
- function finish(instant) {
-  if (done) return;
-  done = true;
-  clearTimeout(flyTimer);
-  document.body.classList.remove('intro-hold');
-  document.body.style.overflow = '';
-  if (instant) {
-   intro.classList.add('done');
-   if (headerLogo) headerLogo.style.opacity = '';
-   return;
-  }
-  var t = headerLogo.getBoundingClientRect();
-  var s = introLogo.getBoundingClientRect();
-  var scale = t.width / s.width;
-  var dx = t.left - s.left, dy = t.top - s.top;
-  introLogo.style.transformOrigin = 'top left';
-  introLogo.style.transition = 'transform .68s cubic-bezier(.7,0,.18,1)';
-  introLogo.style.transform = 'translate(' + dx + 'px,' + dy + 'px) scale(' + scale + ')';
-  hint.style.opacity = '0';
-  bg.style.transition = 'opacity .55s ease .18s';
-  bg.style.opacity = '0';
-  setTimeout(function () {
-   if (headerLogo) headerLogo.style.opacity = '';
-   intro.classList.add('done');
-  }, 700);
- }
-
- if (reduce || window.scrollY > 50 || !headerLogo) { finish(true); return; }
- try { sessionStorage.setItem('ss-intro-played', '1'); } catch (e) {}
-
- document.body.classList.add('intro-hold');
- document.body.style.overflow = 'hidden';
- headerLogo.style.opacity = '0';
- requestAnimationFrame(function () { intro.classList.add('play'); });
- flyTimer = setTimeout(function () { finish(false); }, 2350);
- intro.addEventListener('click', function () { finish(false); });
- window.addEventListener('keydown', function () { finish(false); }, { once: true });
 })();
 </script>
 </body>

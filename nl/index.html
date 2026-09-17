@@ -656,7 +656,7 @@ body.intro-hold .reveal-img { clip-path: inset(100% 0 0 0) !important; transitio
  </a>
  <nav class="nav" aria-label="Primary">
  <a class="navlink" href="#work">Werk</a>
- <a class="navlink" href="#archive">Archief</a>
+ <a class="navlink" href="archive.html">Archief</a>
  <a class="navlink" href="timeline.html">Timeline</a>
  <a class="navlink" href="play.html">Spelen</a>
  <a class="navlink" href="about.html">Studio</a>
@@ -671,7 +671,7 @@ body.intro-hold .reveal-img { clip-path: inset(100% 0 0 0) !important; transitio
 
 <div class="mobile-menu">
  <a href="#work"><span>Het werk</span><span class="num">01</span></a>
- <a href="#archive"><span>Het archief</span><span class="num">02</span></a>
+ <a href="archive.html"><span>Het archief</span><span class="num">02</span></a>
  <a href="timeline.html"><span>Timeline</span><span class="num">03</span></a>
  <a href="play.html"><span>Speel online</span><span class="num">04</span></a>
  <a href="about.html"><span>De studio</span><span class="num">05</span></a>
@@ -805,29 +805,8 @@ body.intro-hold .reveal-img { clip-path: inset(100% 0 0 0) !important; transitio
  <span class="kicker kicker--red"><span class="dot"></span>Het archief</span>
  <span class="num">Alles, genummerd</span>
  </div>
- <div class="archive reveal d1">
- <a class="archive-row" href="timeline.html">
- <span class="ar-n">SS / <b>001</b></span>
- <span class="ar-t">Timeline</span>
- <span class="ar-c">Geschiedenis / Deductie</span>
- <span class="ar-f">Boek · Online</span>
- <span class="ar-s tag tag--solid-red">Nu verkrijgbaar</span>
- </a>
- <div class="archive-row archive-row--concept">
- <span class="ar-n">SS / <b>002</b></span>
- <span class="ar-t"><em>Naamloos</em></span>
- <span class="ar-c">Een andere manier van denken</span>
- <span class="ar-f">Concept</span>
- <span class="ar-s tag tag--dashed">In ontwikkeling</span>
- </div>
- <div class="archive-row archive-row--concept">
- <span class="ar-n">SS / <b>003</b></span>
- <span class="ar-t"><em>Naamloos</em></span>
- <span class="ar-c">Iets tastbaars</span>
- <span class="ar-f">Concept</span>
- <span class="ar-s tag tag--dashed">Op de werkbank</span>
- </div>
- </div>
+ <div class="archive reveal d1" data-archive data-view="list" data-lang="nl" data-base="../"></div>
+ <div class="mt-32 reveal d2"><a class="link" href="archive.html">Betreed het volledige archief <span aria-hidden="true">→</span></a></div>
  <p class="meta archive-note reveal d2 measure">Vermeldingen met <em>Concept</em> zijn geen afgerond werk. Het zijn richtingen die de studio verkent. Het archief groeit langzaam, en er wordt niets toegevoegd om ruimte te vullen.</p>
  </div>
 </section>
@@ -924,7 +903,7 @@ body.intro-hold .reveal-img { clip-path: inset(100% 0 0 0) !important; transitio
  <h4>Ontdek</h4>
  <div class="foot-links">
  <a href="#work">Het werk</a>
- <a href="#archive">Het archief</a>
+ <a href="archive.html">Het archief</a>
  <a href="timeline.html">Timeline, het boek</a>
  <a href="play.html">Speel online</a>
  <a href="about.html">Over de studio</a>
@@ -985,6 +964,7 @@ body.intro-hold .reveal-img { clip-path: inset(100% 0 0 0) !important; transitio
  </div>
 </div>
 
+<script src="../releases.js"></script>
 <script>
 /* ============================================================
  SouthStudio, shared interactions (v2)
