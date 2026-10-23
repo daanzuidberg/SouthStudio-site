@@ -118,7 +118,7 @@
  </dl>
  <div class="proj-ctas reveal d3">
  <a class="btn btn--paper" data-open-preorder href="#">Pre-order · €24 <span class="arr">→</span></a>
- <a class="link" href="#sample">Solve a sample case <span aria-hidden="true">→</span></a>
+ <a class="link" href="play.html">Play a free case online <span aria-hidden="true">→</span></a>
  </div>
  </div>
  <div class="proj-visual">
@@ -246,159 +246,6 @@
  </div>
  </div>
 </section>
-
-<!-- ============ INTERACTIVE SAMPLE ============ -->
-<section class="section section--tight gridfield" id="sample" data-screen-label="Sample case">
- <div class="wrap">
- <div class="center reveal" style="max-width:660px;margin-inline:auto">
- <span class="kicker kicker--red"><span class="dot"></span>Sample case 014<span class="dot"></span></span>
- <h2 class="h2 mt-12">Solve a real case.</h2>
- <p class="lead muted mt-12">This is the actual mechanism of the book, a logic grid. No dates to memorize; everything you need is in the evidence. Mark the grid and verify.</p>
- </div>
-
- <div class="lg reveal d1 mt-40" data-lg style="max-width:780px;margin-inline:auto">
- <div class="lg-head">
- <span class="lg-file" data-lg-file></span>
- <span class="tag tag--red" data-lg-live></span>
- </div>
- <div class="lg-body">
- <p class="lg-scn" data-lg-scn></p>
- <div class="lg-cols">
- <div class="lg-gridwrap" data-lg-grid></div>
- <div class="lg-ev">
- <div class="lg-evhead" data-lg-evhead></div>
- <ol class="lg-clues" data-lg-clues></ol>
- <p class="lg-hint" data-lg-hint></p>
- </div>
- </div>
- </div>
- <div class="lg-foot">
- <span class="lg-status" data-lg-status></span>
- <span class="lg-actions">
- <button class="btn btn--ghost btn--sm" type="button" data-lg-reset></button>
- <button class="btn btn--red btn--sm" type="button" data-lg-verify><span data-lg-verifylabel></span><span class="arr">→</span></button>
- </span>
- </div>
- </div>
- <script type="application/json" data-lg-data>{"file":"Case 01 · DST-1851-A","live":"Live","scn":"A minor distortion. Three anachronistic devices surfaced across three years of the record, each tied to a single investigator. Work the evidence until one timeline holds.","cats":{"Year":["1851","1889","1923"],"Figure":["Aldridge","Marlowe","Voss"],"Artifact":["pendulum core","brass automaton","glass plate"]},"labels":{"Year":"Year","Figure":"Investigator","Artifact":"Artifact"},"evHead":"Evidence · 5 records","clues":["The brass automaton was logged in 1889.","Marlowe's file predates Voss's.","The glass plate belongs to Voss.","Aldridge never touched the pendulum core.","The 1851 file does not belong to Aldridge."],"hint":"Click a box to cycle ✓ / ✕. Mark ✓ where two facts hold true together, one mark rules out the rest of that row and column.","verify":"Verify","reset":"Reset","statusInit":"// Read the evidence, mark the grid, and verify.","statusWrong":"// Not yet, a ✓ contradicts the evidence. Keep reasoning.","statusIncomplete":"// Close, every fact points to one box. Mark the rest.","statusSolved":"Timeline restored ✓","solvedNote":"One answer, reached purely by deduction, no trivia, no luck. The book holds 80 of these.","sol":{"yf":{"1851":"Marlowe","1889":"Aldridge","1923":"Voss"},"ya":{"1851":"pendulum core","1889":"brass automaton","1923":"glass plate"}}}</script>
- <p class="center muted reveal d2 mt-24" style="font-family:var(--mono);font-size:12px;letter-spacing:.06em">
- // This is one of the 80 cases in the book. Play a free set online, with hints and autosave.
- <a class="red" href="play.html" style="border-bottom:1px solid currentColor">Play online →</a>
- </p>
- </div>
-</section>
-
-<script>
-(function(){
- var root=document.querySelector('[data-lg]'); if(!root) return;
- var dataEl=document.querySelector('[data-lg-data]'); if(!dataEl) return;
- var D; try{ D=JSON.parse(dataEl.textContent); }catch(e){ return; }
- var years=D.cats.Year, figs=D.cats.Figure, arts=D.cats.Artifact;
- var solved=false;
-
- // chrome text
- function setTxt(sel,val){ var el=root.querySelector(sel); if(el) el.textContent=val; }
- setTxt('[data-lg-file]', D.file);
- setTxt('[data-lg-live]', D.live);
- setTxt('[data-lg-scn]', D.scn);
- setTxt('[data-lg-evhead]', D.evHead);
- setTxt('[data-lg-hint]', D.hint);
- setTxt('[data-lg-reset]', D.reset);
- setTxt('[data-lg-verifylabel]', D.verify);
- var cluesEl=root.querySelector('[data-lg-clues]');
- D.clues.forEach(function(c){ var li=document.createElement('li'); li.textContent=c; cluesEl.appendChild(li); });
-
- // build grid table
- function th(cls,txt,attrs){ var e=document.createElement('th'); if(cls)e.className=cls; if(txt!=null){var s=document.createElement('span');s.textContent=txt;e.appendChild(s);} if(attrs)for(var k in attrs)e.setAttribute(k,attrs[k]); return e; }
- var tbl=document.createElement('table'); tbl.className='lg-gridtable';
- // header row 1
- var h1=document.createElement('tr');
- var corner=document.createElement('th'); corner.setAttribute('colspan','2'); corner.setAttribute('rowspan','2'); h1.appendChild(corner);
- var gF=document.createElement('th'); gF.className='lg-grouph'; gF.setAttribute('colspan','3'); gF.textContent=D.labels.Figure; h1.appendChild(gF);
- var gA=document.createElement('th'); gA.className='lg-grouph'; gA.setAttribute('colspan','3'); gA.textContent=D.labels.Artifact; h1.appendChild(gA);
- tbl.appendChild(h1);
- // header row 2 (col labels)
- var h2=document.createElement('tr');
- figs.concat(arts).forEach(function(name){ var t=document.createElement('th'); t.className='lg-colh'; var s=document.createElement('span'); s.textContent=name; t.appendChild(s); h2.appendChild(t); });
- tbl.appendChild(h2);
-
- function cell(block,r,c){ var td=document.createElement('td'); td.className='lg-cell'; td.setAttribute('data-b',block); td.setAttribute('data-r',r); td.setAttribute('data-c',c); td.state=0; return td; }
- function blank(){ var td=document.createElement('td'); td.className='lg-blank'; return td; }
-
- // Year rows
- years.forEach(function(yr,i){
- var tr=document.createElement('tr');
- if(i===0){ var cat=document.createElement('th'); cat.className='lg-catrow'; cat.setAttribute('rowspan','3'); cat.textContent=D.labels.Year; tr.appendChild(cat); }
- var rh=document.createElement('th'); rh.className='lg-rowh'; rh.textContent=yr; tr.appendChild(rh);
- figs.forEach(function(f){ tr.appendChild(cell('yf',yr,f)); });
- arts.forEach(function(a){ tr.appendChild(cell('ya',yr,a)); });
- tbl.appendChild(tr);
- });
- // Figure rows
- figs.forEach(function(fg,i){
- var tr=document.createElement('tr');
- if(i===0){ var cat=document.createElement('th'); cat.className='lg-catrow'; cat.setAttribute('rowspan','3'); cat.textContent=D.labels.Figure; tr.appendChild(cat); }
- var rh=document.createElement('th'); rh.className='lg-rowh'; rh.textContent=fg; tr.appendChild(rh);
- figs.forEach(function(){ tr.appendChild(blank()); });
- arts.forEach(function(a){ tr.appendChild(cell('fa',fg,a)); });
- tbl.appendChild(tr);
- });
- root.querySelector('[data-lg-grid]').appendChild(tbl);
-
- // interactions
- root.querySelectorAll('.lg-cell').forEach(function(td){
- td.addEventListener('click',function(){
- if(solved) return;
- td.state=(td.state+1)%3;
- td.classList.toggle('on', td.state===1);
- td.classList.toggle('off', td.state===2);
- setStatus('init');
- });
- });
-
- // solution positive sets
- function isPositive(b,r,c){
- if(b==='yf') return D.sol.yf[r]===c;
- if(b==='ya') return D.sol.ya[r]===c;
- if(b==='fa'){ for(var y in D.sol.yf){ if(D.sol.yf[y]===r && D.sol.ya[y]===c) return true; } return false; }
- return false;
- }
- var statusEl=root.querySelector('[data-lg-status]');
- function setStatus(kind){
- statusEl.className='lg-status';
- if(kind==='init') statusEl.textContent=D.statusInit;
- else if(kind==='wrong'){ statusEl.classList.add('bad'); statusEl.textContent=D.statusWrong; }
- else if(kind==='incomplete'){ statusEl.classList.add('bad'); statusEl.textContent=D.statusIncomplete; }
- }
- setStatus('init');
-
- function verify(){
- var cells=[].slice.call(root.querySelectorAll('.lg-cell'));
- var wrong=false, missing=false;
- cells.forEach(function(td){
- var pos=isPositive(td.getAttribute('data-b'),td.getAttribute('data-r'),td.getAttribute('data-c'));
- if(pos && td.state!==1) missing=true; // a true pairing not marked ✓
- if(!pos && td.state===1) wrong=true; // a false pairing marked ✓
- });
- if(wrong){ setStatus('wrong'); shake(); return; }
- if(missing){ setStatus('incomplete'); return; }
- // solved
- solved=true;
- statusEl.className='lg-status ok';
- statusEl.innerHTML='<span class="lg-stamp">'+D.statusSolved+'</span>'+D.solvedNote;
- root.querySelector('[data-lg-verify]').setAttribute('disabled','');
- }
- function shake(){ root.classList.remove('shake'); void root.offsetWidth; root.classList.add('shake'); }
- function reset(){
- solved=false;
- root.querySelectorAll('.lg-cell').forEach(function(td){ td.state=0; td.classList.remove('on','off'); });
- root.querySelector('[data-lg-verify]').removeAttribute('disabled');
- setStatus('init');
- }
- root.querySelector('[data-lg-verify]').addEventListener('click',verify);
- root.querySelector('[data-lg-reset]').addEventListener('click',reset);
-})();
-</script>
 
 <!-- ============ THE OBJECT ============ -->
 <section class="section" data-screen-label="The object">
@@ -537,7 +384,6 @@
  <h2>Studio</h2>
  <div class="foot-links">
  <a data-open-preorder href="#">Pre-order Timeline</a>
- <a href="#sample">Solve a sample case</a>
  <a href="stockists.html">Stockists &amp; rights</a>
  <a href="mailto:info@southstudio.online">info@southstudio.online</a>
  </div>
