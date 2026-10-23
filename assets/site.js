@@ -11,6 +11,7 @@
  newsBad: "// Enter a valid email to receive the Dispatch.",
  sending: "Sending…",
  newsOk: "// Confirmed. You're on the SouthStudio dispatch list.",
+ newsMail: "// Your email app opens with a message. Send it to complete your signup.",
  newsErr: "// Something went wrong, please try again or email info@southstudio.online.",
  subscribed: "you@subscribed.now",
  required: "Required.",
@@ -19,8 +20,10 @@
  tryAgain: "Try again",
  preorderType: "Pre-order",
  logged: "Reservation logged",
+ loggedMail: "Almost done",
  reserved: "Copy reserved, ",
  reservedNote: "We've added you to the first print run of <em>Timeline</em>. You'll get a dispatch the moment pre-orders ship, no charge until then.",
+ reservedMail: "Your email app opens with your reservation. Send that message to hold your copy of <em>Timeline</em>. No charge until it ships.",
  tag1: "First edition", tag2: "Signed by the studio", tag3: "Free cases online",
  close: "Close"
  },
@@ -28,6 +31,7 @@
  newsBad: "// Vul een geldig e-mailadres in om de Dispatch te ontvangen.",
  sending: "Versturen…",
  newsOk: "// Bevestigd. Je staat op de SouthStudio-lijst.",
+ newsMail: "// Je e-mailapp opent met een bericht. Verstuur het om je inschrijving af te ronden.",
  newsErr: "// Er ging iets mis, probeer het opnieuw of mail info@southstudio.online.",
  subscribed: "jij@ingeschreven.nu",
  required: "Verplicht.",
@@ -36,8 +40,10 @@
  tryAgain: "Opnieuw",
  preorderType: "Reservering",
  logged: "Reservering genoteerd",
+ loggedMail: "Bijna klaar",
  reserved: "Exemplaar gereserveerd, ",
  reservedNote: "We hebben je toegevoegd aan de eerste druk van <em>Timeline</em>. Je krijgt bericht zodra de reserveringen verzonden worden, tot die tijd betaal je niets.",
+ reservedMail: "Je e-mailapp opent met je reservering. Verstuur dat bericht om je exemplaar van <em>Timeline</em> vast te houden. Je betaalt pas bij verzending.",
  tag1: "Eerste druk", tag2: "Gesigneerd door de studio", tag3: "Gratis zaken online",
  close: "Sluiten"
  }
@@ -79,25 +85,44 @@
  document.querySelectorAll(".reveal, [data-reveal-host], [data-lines]").forEach(function (el) { el.classList.add("in"); });
  }
 
- /* ---- form submission helper (real POST + mailto fallback) ---- */
+ /* ---- form submission: POST /api/form, mailto when the endpoint is not available ---- */
  function endpoint() {
  var m = document.querySelector('meta[name="form-endpoint"]');
- return m ? (m.getAttribute("content") || "").trim() : "";
+ var v = m ? (m.getAttribute("content") || "").trim() : "";
+ return v || "/api/form";
  }
- function send(type, data, onOk, onErr) {
- var ep = endpoint();
- if (!ep) {
+ function mailto(label, data) {
  var body = Object.keys(data).map(function (k) { return k + ": " + data[k]; }).join("\n");
- window.location.href = "mailto:info@southstudio.online?subject=" + encodeURIComponent("SouthStudio, " + type) + "&body=" + encodeURIComponent(body);
- setTimeout(onOk, 300);
- return;
+ window.location.href = "mailto:info@southstudio.online?subject=" + encodeURIComponent("SouthStudio, " + label) + "&body=" + encodeURIComponent(body);
  }
+ // onOk(viaMail): viaMail is true when the visitor still has to send the message themselves
+ function send(kind, label, data, onOk, onErr) {
  var fd = new FormData();
  Object.keys(data).forEach(function (k) { fd.append(k, data[k]); });
- fetch(ep, { method: "POST", body: fd, headers: { "Accept": "application/json" } })
- .then(function (r) { if (r.ok) onOk(); else onErr(); })
- .catch(onErr);
+ fd.append("kind", kind);
+ fd.append("lang", LANG);
+ fd.append("page", location.pathname);
+ var trapped = "";
+ document.querySelectorAll('input[name="website"]').forEach(function (t) { if (t.value) trapped = t.value; });
+ fd.append("website", trapped);
+ var fallback = function () { mailto(label, data); setTimeout(function () { onOk(true); }, 300); };
+ fetch(endpoint(), { method: "POST", body: fd, headers: { "Accept": "application/json" } })
+ .then(function (r) {
+ if (r.ok) return onOk(false);
+ if (r.status === 404 || r.status === 405 || r.status === 501 || r.status === 503) return fallback();
+ onErr();
+ })
+ .catch(fallback);
  }
+
+ /* ---- honeypot (hidden from people, tempting to bots) ---- */
+ document.querySelectorAll("[data-news], .modal form").forEach(function (form) {
+ var wrap = document.createElement("div");
+ wrap.setAttribute("aria-hidden", "true");
+ wrap.style.cssText = "position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden";
+ wrap.innerHTML = '<input type="text" name="website" tabindex="-1" autocomplete="off">';
+ form.appendChild(wrap);
+ });
 
  /* ---- newsletter ---- */
  document.querySelectorAll("[data-news]").forEach(function (form) {
@@ -112,8 +137,8 @@
  var btn = form.querySelector("button");
  if (btn) btn.disabled = true;
  note.textContent = T.sending; note.className = "form-note";
- send("Newsletter", { email: v }, function () {
- note.textContent = T.newsOk; note.className = "form-note ok";
+ send("newsletter", "Newsletter", { email: v }, function (viaMail) {
+ note.textContent = viaMail ? T.newsMail : T.newsOk; note.className = "form-note ok";
  input.value = ""; input.setAttribute("placeholder", T.subscribed);
  if (btn) btn.disabled = false;
  }, function () {
@@ -183,11 +208,12 @@
  var sbtn = form.querySelector('button[type="submit"]');
  if (sbtn) { sbtn.disabled = true; sbtn.textContent = T.sending; }
  var lead = { name: name, email: (form.querySelector('[name="email"]') || {}).value || "", edition: (form.querySelector('[name="edition"]') || {}).value || "" };
- send(T.preorderType, lead, function () {
+ lead.consent = "yes";
+ send("preorder", T.preorderType, lead, function (viaMail) {
  modalBody.innerHTML =
- '<span class="tag tag--red" style="align-self:flex-start">' + T.logged + '</span>' +
+ '<span class="tag tag--red" style="align-self:flex-start">' + (viaMail ? T.loggedMail : T.logged) + '</span>' +
  '<h3 class="h3" style="margin-top:6px">' + T.reserved + escapeHtml(name.split(" ")[0]) + '.</h3>' +
- '<p class="muted small">' + T.reservedNote + '</p>' +
+ '<p class="muted small">' + (viaMail ? T.reservedMail : T.reservedNote) + '</p>' +
  '<div class="row gap-12 wrap-gap mt-12"><span class="tag tag--red">' + T.tag1 + '</span><span class="tag">' + T.tag2 + '</span><span class="tag tag--blue">' + T.tag3 + '</span></div>' +
  '<button class="btn btn--ink mt-20" data-close style="align-self:flex-start">' + T.close + ' <span class="arr">→</span></button>';
  var c = modalBody.querySelector("[data-close]"); if (c) c.focus();
