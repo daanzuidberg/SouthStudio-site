@@ -38,32 +38,33 @@
 <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500&family=IBM+Plex+Mono:wght@400;600;700&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="assets/site.css" />
 <link rel="stylesheet" href="assets/releases/timeline.css" />
+<link rel="stylesheet" href="assets/exclusive.css" />
 </head>
-<body>
+<body class="x">
 <a class="skip" href="#main">Skip to content</a>
 
 <!-- ============ INTRO OPENER ============ -->
 <div id="intro" aria-hidden="true" data-screen-label="Intro opener">
  <div class="intro-bg"></div>
  <svg class="intro-logo" viewBox="0 0 282 84" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="SouthStudio">
- <rect x="3.8" y="16.8" width="17" height="17" fill="none" stroke="#1A1612" stroke-width="1.7"></rect>
+ <rect x="3.8" y="16.8" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.7"></rect>
  <rect x="23.8" y="16.8" width="17" height="17" fill="#D2362B" stroke="#D2362B" stroke-width="1.7"></rect>
- <rect x="43.8" y="16.8" width="17" height="17" fill="none" stroke="#1A1612" stroke-width="1.7"></rect>
- <rect x="3.8" y="36.8" width="17" height="17" fill="none" stroke="#1A1612" stroke-width="1.7"></rect>
- <rect x="23.8" y="36.8" width="17" height="17" fill="none" stroke="#1A1612" stroke-width="1.7"></rect>
- <rect x="43.8" y="36.8" width="17" height="17" fill="#1A1612" stroke="#1A1612" stroke-width="1.7"></rect>
- <rect x="3.8" y="56.8" width="17" height="17" fill="#1A1612" stroke="#1A1612" stroke-width="1.7"></rect>
- <rect x="23.8" y="56.8" width="17" height="17" fill="none" stroke="#1A1612" stroke-width="1.7"></rect>
- <rect x="43.8" y="56.8" width="17" height="17" fill="none" stroke="#1A1612" stroke-width="1.7"></rect>
- <text x="76" y="48" font-family="'Spectral', Georgia, serif" font-size="33" font-weight="700" letter-spacing="-0.5"><tspan fill="#1A1612">South</tspan><tspan fill="#D2362B">Studio</tspan></text>
- <text x="77.5" y="66.5" font-family="'IBM Plex Mono', ui-monospace, monospace" font-size="8.6" font-weight="600" letter-spacing="3.1" fill="#1A1612" opacity="0.5">INDEPENDENT STUDIO</text>
+ <rect x="43.8" y="16.8" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.7"></rect>
+ <rect x="3.8" y="36.8" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.7"></rect>
+ <rect x="23.8" y="36.8" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.7"></rect>
+ <rect x="43.8" y="36.8" width="17" height="17" fill="currentColor" stroke="currentColor" stroke-width="1.7"></rect>
+ <rect x="3.8" y="56.8" width="17" height="17" fill="currentColor" stroke="currentColor" stroke-width="1.7"></rect>
+ <rect x="23.8" y="56.8" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.7"></rect>
+ <rect x="43.8" y="56.8" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.7"></rect>
+ <text x="76" y="48" font-family="'Spectral', Georgia, serif" font-size="33" font-weight="700" letter-spacing="-0.5"><tspan fill="currentColor">South</tspan><tspan fill="#D2362B">Studio</tspan></text>
+ <text x="77.5" y="66.5" font-family="'IBM Plex Mono', ui-monospace, monospace" font-size="8.6" font-weight="600" letter-spacing="3.1" fill="currentColor" opacity="0.5">INDEPENDENT STUDIO</text>
  </svg>
  <div class="intro-hint">Click to skip</div>
 </div>
 <script>(function(){try{if(sessionStorage.getItem('ss-intro-played')==='1'){document.getElementById('intro').className='done';}}catch(e){}})();</script>
 
 <!-- ============ HEADER ============ -->
-<header class="site-head" data-screen-label="Home">
+<header class="site-head on-dark" data-screen-label="Home">
  <div class="wrap head-row">
  <a class="wordmark" href="index.html" aria-label="SouthStudio, Independent Studio, home">
  <svg class="logo" viewBox="0 0 282 84" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="SouthStudio">
@@ -113,54 +114,31 @@
 <main id="main" tabindex="-1">
 
 <!-- ============ HERO ============ -->
-<section class="section hero" data-screen-label="Hero">
- <div class="wrap">
- <div class="reveal eyebrow-rule">
- <span class="kicker kicker--red"><span class="dot"></span>Independent studio</span>
- <span class="ln"></span>
- <span class="kicker">Netherlands · Est. 2026</span>
- </div>
-
- <div class="hero-grid">
- <div>
+<section class="chapter chapter--dark hero2" data-screen-label="Hero">
+ <div class="wrap hero2-wrap">
+ <div class="hero2-main">
+ <p class="hero2-kicker reveal"><span>Independent studio</span><span>Netherlands · Est. 2026</span></p>
  <h1 class="display lines" data-lines>
  <span><span>Things worth</span></span>
  <span><span><em>thinking</em> about.</span></span>
  </h1>
- <p class="lead measure hero-lead reveal d2">
- SouthStudio is an independent creative studio. We make books, games, films, objects, experiences and ideas — unusual things, made slowly, designed to give your attention something worthwhile to do.
- </p>
+ <p class="lead hero-lead reveal d2">SouthStudio is an independent creative studio. We make books, games, films, objects, experiences and ideas — unusual things, made slowly, designed to give your attention something worthwhile to do.</p>
  <div class="hero-ctas reveal d3">
- <a class="btn btn--ink" href="#work">Explore the work <span class="arr">→</span></a>
- <a class="btn btn--ghost" href="#archive">Enter the archive <span class="arr">→</span></a>
+ <a class="btn btn--paper" href="#work">Explore the work <span class="arr">→</span></a>
+ <a class="link link--paper" href="#archive">Enter the archive <span aria-hidden="true">→</span></a>
  </div>
  </div>
-
- <div class="index reveal d2" aria-label="What the studio makes">
- <div class="index-head">
- <span class="kicker">What we make</span>
- <span class="num">Six shelves</span>
+ <div class="hero2-mark reveal d2" data-hero-mark aria-hidden="true"><i></i><i class="on"></i><i></i><i></i><i></i><i class="k"></i><i class="k"></i><i></i><i></i></div>
  </div>
- <a class="index-row" href="timeline.html">
- <span class="ix-n">01</span><span class="cell" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span class="ix-t">Books</span><span class="ix-s">001 · Timeline</span>
- </a>
- <a class="index-row" href="play.html">
- <span class="ix-n">02</span><span class="cell" aria-hidden="true"><i></i><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span class="ix-t">Games</span><span class="ix-s">Play online</span>
- </a>
- <a class="index-row" href="films/">
- <span class="ix-n">03</span><span class="cell" aria-hidden="true"><i></i><i></i><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span class="ix-t">Films</span><span class="ix-s">SouthStudio Films</span>
- </a>
- <div class="index-row index-row--idle">
- <span class="ix-n">04</span><span class="cell" aria-hidden="true"><i></i><i></i><i></i><i class="on"></i><i></i><i></i><i></i><i></i><i></i></span><span class="ix-t">Objects</span><span class="ix-s">In development</span>
- </div>
- <a class="index-row" href="experiences/">
- <span class="ix-n">05</span><span class="cell" aria-hidden="true"><i></i><i></i><i></i><i></i><i class="on"></i><i></i><i></i><i></i><i></i></span><span class="ix-t">Experiences</span><span class="ix-s">Play online</span>
- </a>
- <a class="index-row" href="journal/">
- <span class="ix-n">06</span><span class="cell" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i class="on"></i><i></i><i></i><i></i></span><span class="ix-t">Ideas</span><span class="ix-s">The journal</span>
- </a>
- </div>
- </div>
+ <div class="wrap">
+ <nav class="shelves-strip reveal d3" aria-label="What the studio makes">
+ <a class="shelf-link" href="timeline.html" data-cell="1"><span class="sl-n">01</span><span class="sl-t">Books</span><span class="sl-s">001 · Timeline</span></a>
+ <a class="shelf-link" href="play.html" data-cell="2"><span class="sl-n">02</span><span class="sl-t">Games</span><span class="sl-s">Play online</span></a>
+ <a class="shelf-link" href="films/" data-cell="3"><span class="sl-n">03</span><span class="sl-t">Films</span><span class="sl-s">SouthStudio Films</span></a>
+ <div class="shelf-link shelf-link--idle" data-cell="4"><span class="sl-n">04</span><span class="sl-t">Objects</span><span class="sl-s">In development</span></div>
+ <a class="shelf-link" href="experiences/" data-cell="5"><span class="sl-n">05</span><span class="sl-t">Experiences</span><span class="sl-s">Play online</span></a>
+ <a class="shelf-link" href="journal/" data-cell="6"><span class="sl-n">06</span><span class="sl-t">Ideas</span><span class="sl-s">The journal</span></a>
+ </nav>
  </div>
 </section>
 
@@ -168,8 +146,7 @@
 <section class="section section--flush-top" id="work" data-screen-label="The work">
  <div class="wrap">
  <div class="sec-head reveal">
- <span class="kicker kicker--red"><span class="dot"></span>The work</span>
- <span class="num">Selected · One of one, for now</span>
+ <span class="kicker"><span class="kn">01</span>The work</span>
  </div>
 
  <div class="feature-head reveal">
@@ -232,25 +209,22 @@
 <section class="section section--tight" id="archive" data-screen-label="The archive">
  <div class="wrap">
  <div class="sec-head reveal">
- <span class="kicker kicker--red"><span class="dot"></span>The archive</span>
- <span class="num">Everything, numbered</span>
+ <span class="kicker"><span class="kn">02</span>The archive</span>
  </div>
  <div class="archive reveal d1" data-archive data-view="list" data-lang="en" data-base=""></div>
  <div class="mt-32 reveal d2"><a class="link" href="archive.html">Enter the full archive <span aria-hidden="true">→</span></a></div>
- <p class="meta archive-note reveal d2 measure">Entries marked <em>Concept</em> are not finished work. They are directions the studio is exploring. The archive grows slowly, and nothing is added to fill space.</p>
  </div>
 </section>
 
 <!-- ============ THE STUDIO ============ -->
-<section class="section" data-screen-label="The studio">
+<section class="section chapter chapter--dark" id="studio" data-screen-label="The studio">
  <div class="wrap">
  <div class="sec-head reveal">
- <span class="kicker kicker--red"><span class="dot"></span>The studio</span>
- <span class="num">Why we make things</span>
+ <span class="kicker"><span class="kn">03</span>The studio</span>
  </div>
  <div class="split">
  <div class="reveal">
- <h2 class="h1">Give your attention something worthwhile to do.</h2>
+ <h2 class="statement">Give your attention something worthwhile to do.</h2>
  </div>
  <div class="reveal d1">
  <p class="lead measure">
@@ -289,7 +263,7 @@
  <div class="wrap">
  <div class="dispatch reveal">
  <div>
- <span class="kicker kicker--red"><span class="dot"></span>The Dispatch</span>
+ <span class="kicker"><span class="kn">04</span>The Dispatch</span>
  <h2 class="h2 mt-12">One short letter,<br />when something is finished.</h2>
  <p class="lead muted mt-12 measure-sm">Notes from the studio, a new title, a fresh case to play. Sent rarely. Nothing else.</p>
  </div>
@@ -399,6 +373,7 @@
 
 <script src="releases.js"></script>
 <script src="assets/site.js"></script>
+<script src="assets/exclusive.js"></script>
 
 <script>
 /* ===== Intro opener: plays once per session, skippable, reduced-motion safe ===== */
@@ -428,8 +403,9 @@
   var scale = t.width / s.width;
   var dx = t.left - s.left, dy = t.top - s.top;
   introLogo.style.transformOrigin = 'top left';
-  introLogo.style.transition = 'transform .68s cubic-bezier(.7,0,.18,1)';
+  introLogo.style.transition = 'transform .68s cubic-bezier(.7,0,.18,1), color .68s ease';
   introLogo.style.transform = 'translate(' + dx + 'px,' + dy + 'px) scale(' + scale + ')';
+  introLogo.style.color = '#E9E1D0';
   hint.style.opacity = '0';
   bg.style.transition = 'opacity .55s ease .18s';
   bg.style.opacity = '0';

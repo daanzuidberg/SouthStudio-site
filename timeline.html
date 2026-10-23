@@ -39,12 +39,13 @@
 <link rel="stylesheet" href="assets/site.css" />
 <link rel="stylesheet" href="assets/releases/timeline.css" />
 <link rel="stylesheet" href="assets/releases/timeline-page.css" />
+<link rel="stylesheet" href="assets/exclusive.css" />
 </head>
-<body>
+<body class="x">
 <a class="skip" href="#main">Skip to content</a>
 
 <!-- ============ HEADER ============ -->
-<header class="site-head" data-screen-label="Timeline page">
+<header class="site-head on-dark" data-screen-label="Timeline page">
  <div class="wrap head-row">
  <a class="wordmark" href="index.html" aria-label="SouthStudio, Independent Studio, home">
  <svg class="logo" viewBox="0 0 282 84" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="SouthStudio">
@@ -94,11 +95,11 @@
 <main id="main" tabindex="-1">
 
 <!-- ============ HERO ============ -->
-<section class="section proj-hero" data-screen-label="Hero">
+<section class="section chapter chapter--dark proj-hero" data-screen-label="Hero">
  <div class="wrap">
  <div class="proj-head reveal">
  <span class="num">SouthStudio / <b>001</b></span>
- <span class="kicker kicker--red"><span class="dot"></span>First release</span>
+ <span class="kicker"><span class="dot"></span>First release</span>
  <span class="num">Pre-orders open · First edition</span>
  </div>
  <div class="proj-title-block">
@@ -116,7 +117,7 @@
  <dt>Status</dt><dd>First edition · ships Q3 2026 · €24</dd>
  </dl>
  <div class="proj-ctas reveal d3">
- <a class="btn btn--ink" data-open-preorder href="#">Pre-order · €24 <span class="arr">→</span></a>
+ <a class="btn btn--paper" data-open-preorder href="#">Pre-order · €24 <span class="arr">→</span></a>
  <a class="link" href="#sample">Solve a sample case <span aria-hidden="true">→</span></a>
  </div>
  </div>
@@ -158,8 +159,7 @@
 <section class="section section--flush-top" data-screen-label="360 book">
  <div class="wrap">
  <div class="sec-head reveal">
- <span class="kicker kicker--red"><span class="dot"></span>In three dimensions</span>
- <span class="num">Fig. 002</span>
+ <span class="kicker"><span class="kn">01</span>In three dimensions</span>
  </div>
  <div class="split reveal" style="margin-bottom:clamp(28px,4vw,44px)">
  <h2 class="h2">Turn it over in your hands.</h2>
@@ -188,8 +188,7 @@
 <section class="section" data-screen-label="The premise">
  <div class="wrap">
  <div class="sec-head reveal">
- <span class="kicker kicker--red"><span class="dot"></span>The premise</span>
- <span class="num">What Timeline is</span>
+ <span class="kicker"><span class="kn">02</span>The premise</span>
  </div>
  <div class="split">
  <div class="reveal"><h2 class="h1">A small paradox, and the reasoning that resolves it.</h2></div>
@@ -210,8 +209,7 @@
 <section class="section section--flush-top" data-screen-label="How it works">
  <div class="wrap">
  <div class="sec-head reveal">
- <span class="kicker kicker--red"><span class="dot"></span>How it works</span>
- <span class="num">The mechanism</span>
+ <span class="kicker"><span class="kn">03</span>How it works</span>
  </div>
  <h2 class="h2 reveal measure" style="margin-bottom:clamp(28px,4vw,48px)">Read the file. Work the evidence. Restore the timeline.</h2>
  <div class="steps reveal d1">
@@ -226,8 +224,7 @@
 <section class="section section--flush-top" data-screen-label="Clearances">
  <div class="wrap">
  <div class="sec-head reveal">
- <span class="kicker kicker--red"><span class="dot"></span>Five clearances</span>
- <span class="num">Difficulty</span>
+ <span class="kicker"><span class="kn">04</span>Five clearances</span>
  </div>
  <div class="split" style="margin-bottom:clamp(28px,4vw,48px)">
  <div class="reveal"><h2 class="h2">From a coffee-break warm-up to a genuine head-scratcher.</h2></div>
@@ -407,8 +404,7 @@
 <section class="section" data-screen-label="The object">
  <div class="wrap">
  <div class="sec-head reveal">
- <span class="kicker kicker--red"><span class="dot"></span>The object</span>
- <span class="num">The physical experience</span>
+ <span class="kicker"><span class="kn">05</span>The object</span>
  </div>
  <div class="split" style="margin-bottom:clamp(28px,4vw,48px)">
  <div class="reveal"><h2 class="h1">A book built to be used, not just kept.</h2></div>
@@ -438,8 +434,7 @@
 <section class="section section--flush-top" data-screen-label="Online">
  <div class="wrap">
  <div class="sec-head reveal">
- <span class="kicker kicker--blue"><span class="dot"></span>Online</span>
- <span class="num">The digital experience</span>
+ <span class="kicker"><span class="kn">06</span>Online</span>
  </div>
  <div class="split">
  <div class="reveal"><h2 class="h2">A free set of cases, in the browser.</h2></div>
@@ -453,14 +448,13 @@
 </section>
 
 <!-- ============ FOR WHOM ============ -->
-<section class="section section--flush-top" data-screen-label="For whom">
+<section class="section chapter chapter--dark" data-screen-label="For whom">
  <div class="wrap">
  <div class="sec-head reveal">
- <span class="kicker kicker--red"><span class="dot"></span>For whom</span>
- <span class="num">Why it is interesting</span>
+ <span class="kicker"><span class="kn">07</span>For whom</span>
  </div>
  <div class="split">
- <div class="reveal"><h2 class="h1">For people who would rather reason than remember.</h2></div>
+ <div class="reveal"><h2 class="statement">For people who would rather reason than remember.</h2></div>
  <div class="reveal d1">
  <p class="lead measure">Timeline is for anyone who likes the moment a problem clicks: crossword solvers, detective readers, people who finish the logic puzzle before the flight lands. You do not need to know history. You need to be willing to look carefully.</p>
  <p class="lead measure mt-24">What makes it interesting is the constraint. Every case has exactly one answer, and it can only be reached by deduction. There is no trivia to know and no luck to have, so when the timeline holds, it is because you made it hold.</p>
@@ -473,8 +467,7 @@
 <section class="section section--tight" id="buy" data-screen-label="Editions">
  <div class="wrap" id="editions">
  <div class="sec-head reveal">
- <span class="kicker kicker--red"><span class="dot"></span>Editions</span>
- <span class="num">How to get it</span>
+ <span class="kicker"><span class="kn">08</span>Editions</span>
  </div>
  <h2 class="h2 reveal" style="margin-bottom:clamp(28px,4vw,44px)">The book, and a free taster online.</h2>
  <div class="editions reveal d1">
@@ -499,8 +492,7 @@
 <section class="section section--tight from-archive" data-screen-label="From the archive">
  <div class="wrap">
  <div class="sec-head reveal">
- <span class="kicker kicker--red"><span class="dot"></span>From the archive</span>
- <span class="num">Everything, numbered</span>
+ <span class="kicker"><span class="kn">09</span>From the archive</span>
  </div>
  <div class="archive reveal d1" data-archive data-view="list" data-lang="en" data-base=""></div>
  <div class="mt-32 reveal d2"><a class="link" href="archive.html">Enter the archive <span aria-hidden="true">→</span></a></div>
@@ -618,5 +610,6 @@
 
 <script src="releases.js"></script>
 <script src="assets/site.js"></script>
+<script src="assets/exclusive.js"></script>
 </body>
 </html>
