@@ -97,12 +97,10 @@ body.x::after {
 .x .hero2 .hero-ctas { margin-top: clamp(28px, 4vh, 44px); }
 
 /* the mark: 3x3, one red cell that follows the shelves */
-.x .hero2-mark { --mark: clamp(190px, 21vw, 290px); display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(8px, 1.2vw, 14px); width: var(--mark); aspect-ratio: 1; justify-self: end; }
+.x .hero2-mark { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(8px, 1.2vw, 14px); width: clamp(190px, 21vw, 290px); aspect-ratio: 1; justify-self: end; }
 .x .hero2-mark i { display: block; border: 1.5px solid rgba(233, 225, 208, .34); transition: background .55s ease, border-color .55s ease; }
 .x .hero2-mark i.k { background: rgba(233, 225, 208, .72); border-color: transparent; }
 .x .hero2-mark i.on { background: var(--red); border-color: var(--red); }
-.x .hero2-mark i.dim { background: rgba(210, 54, 43, .4); border-color: rgba(210, 54, 43, .55); }
-.x .hero2-mark i.off { background: transparent; border-color: rgba(233, 225, 208, .22); }
 
 /* the six shelves, along the foot of the hero */
 .x .shelves-strip { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); border-top: 1px solid var(--on-d-line); }
@@ -129,7 +127,7 @@ body.x::after {
 /* ---------- responsive ---------- */
 @media (max-width: 1020px) {
  .x .hero2-wrap { grid-template-columns: 1fr; align-items: start; }
- .x .hero2-mark { --mark: 112px; order: -1; justify-self: start; gap: 6px; }
+ .x .hero2-mark { order: -1; width: 112px; justify-self: start; gap: 6px; }
  .x .shelves-strip { grid-template-columns: repeat(3, minmax(0, 1fr)); }
  .x .shelf-link { border-bottom: 1px solid var(--on-d-line-soft); }
  .x .shelf-link:nth-child(3n) { border-right: 0; }
