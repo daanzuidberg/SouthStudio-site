@@ -1,5 +1,5 @@
 /* ============================================================
- SouthStudio — shared interactions
+ SouthStudio, shared interactions
  header state · mobile menu · scroll reveals · forms · pre-order modal
  ============================================================ */
 (function () {

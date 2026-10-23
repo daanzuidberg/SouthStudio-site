@@ -1,5 +1,5 @@
 /* ============================================================
- SouthStudio — "exclusive" layer (opt-in: <body class="x">)
+ SouthStudio, "exclusive" layer (opt-in: <body class="x">)
 
  Loaded only on pages that have been moved over (home, Timeline).
  Everything is scoped under body.x so the other pages are untouched.

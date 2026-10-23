@@ -1,4 +1,4 @@
-/* SouthStudio — exclusive layer behaviour (pages with <body class="x">) */
+/* SouthStudio - exclusive layer behaviour (pages with <body class="x">) */
 (function () {
  "use strict";
 

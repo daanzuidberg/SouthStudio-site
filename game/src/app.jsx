@@ -1,4 +1,4 @@
-/* TIMELINE — shared UI atoms */
+/* TIMELINE - shared UI atoms */
 
 const { useState, useEffect, useRef } = React;
 
@@ -84,7 +84,7 @@ Object.assign(window, { ParadoxMeter, Transmission, TransmissionLog });
 
 /* === */
 
-/* TIMELINE — LogicGrid: generic pairwise deduction grid.
+/* TIMELINE - LogicGrid: generic pairwise deduction grid.
  * marks[pairKey][aId][bId] = 0 (blank) | 1 (true / ✓) | 2 (ruled out / ✗)
  * pairKey = `${catA.id}__${catB.id}` (catA precedes catB in puzzle order)
  */
@@ -192,7 +192,7 @@ Object.assign(window, { LogicGrid, pairKey, buildPairs });
 
 /* === */
 
-/* TIMELINE — TimelineViz: live chronological visualization of confirmed marks.
+/* TIMELINE - TimelineViz: live chronological visualization of confirmed marks.
  * Anchor category = categories[0]; its items are listed in chronological order.
  * For each anchor item we surface whatever the player has confirmed (✓).
  */
@@ -217,7 +217,7 @@ function TimelineViz({ puzzle, marks, solved }) {
       <div className="tlviz-head mono">
         <span className="kicker">Timeline Visualization</span>
         <span className="tlviz-state">
-          {solved ? "● restored — chain stable" : "● reconstructing — confirmed links only"}
+          {solved ? "● restored, chain stable" : "● reconstructing, confirmed links only"}
         </span>
       </div>
 
@@ -234,7 +234,7 @@ function TimelineViz({ puzzle, marks, solved }) {
                   <div className="tlviz-attr" key={c.id}>
                     <span className="tlviz-cat mono">{c.name}</span>
                     <span className={"tlviz-val" + (hit ? "" : " unknown")}>
-                      {hit ? hit.label : "—"}
+                      {hit ? hit.label : "·"}
                     </span>
                   </div>
                 );
@@ -261,7 +261,7 @@ Object.assign(window, { TimelineViz });
 
 /* === */
 
-/* TIMELINE — PuzzleView: one full case (scenario, clues, grid, hints, answer, solution) */
+/* TIMELINE - PuzzleView: one full case (scenario, clues, grid, hints, answer, solution) */
 
 function PuzzleView(props) {
   const { puzzle, marks, setMarks, hintsUsed, onUseHint,
@@ -459,7 +459,7 @@ function PuzzleView(props) {
                                 value={(finalSel[a.id] && finalSel[a.id][c.id]) || ""}
                                 onChange={(e) => setSel(a.id, c.id, e.target.value)}
                               >
-                                <option value="">— select —</option>
+                                <option value="">Select</option>
                                 {c.items.map((it) => (
                                   <option key={it.id} value={it.id}>{it.label}</option>
                                 ))}
@@ -485,7 +485,7 @@ function PuzzleView(props) {
                 <button className="btn-link mono" onClick={giveUp}>Reveal solution</button>
                 {submitted && rowResults && !rowResults.every((r) => r.correct) && (
                   <span className="ans-feedback mono">
-                    {rowResults.filter((r) => r.correct).length}/{anchor.items.length} rows correct — paradox deepening
+                    {rowResults.filter((r) => r.correct).length}/{anchor.items.length} rows correct, paradox deepening
                   </span>
                 )}
               </div>
@@ -537,14 +537,14 @@ Object.assign(window, { PuzzleView });
 
 /* === */
 
-/* TIMELINE — App orchestrator: intro → Case Index → puzzles → beats → epilogue */
+/* TIMELINE - App orchestrator: intro → Case Index → puzzles → beats → epilogue */
 
 const TL = window.TIMELINE;
 const SAVE_KEY = "timeline.save.v3";
 const TIER_META = {
   1: { label: "Tier I", name: "Minor Distortions", note: "Single-change fractures. Direct records, clean elimination." },
   2: { label: "Tier II", name: "Multi-Event Divergence", note: "Conflicting anomalies share an era. Cross-reference to resolve." },
-  3: { label: "Tier III", name: "Collapse Events", note: "Relational logic only — and one record in each case is a lie." },
+  3: { label: "Tier III", name: "Collapse Events", note: "Relational logic only, and one record in each case is a lie." },
 };
 
 function loadSave() {
@@ -657,7 +657,7 @@ function CaseIndex({ save, onOpen, unlocked }) {
                 <span className="ci-tier-note">{meta.note}</span>
               </div>
               <div className="ci-tier-count mono">
-                {open ? `${solvedInTier}/${list.length} restored` : `Sealed — clear the Tier ${t - 1} priority directive`}
+                {open ? `${solvedInTier}/${list.length} restored` : `Sealed, clear the Tier ${t - 1} priority directive`}
               </div>
             </div>
             <div className="ci-rows">
@@ -685,7 +685,7 @@ function Epilogue({ onReview, onRestart }) {
         <h1 className="epi-title">The loop is closed.<br/>It always was.</h1>
         <p className="epi-body">
           You restored timeline after timeline and uncovered the one fracture that cannot be
-          restored — because the hand that broke it is your own. The Agency was founded by the
+          restored, because the hand that broke it is your own. The Agency was founded by the
           investigator it recruited to repair the damage that founding caused.
         </p>
         <p className="epi-body epi-dim">

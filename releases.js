@@ -1,5 +1,5 @@
 /* ============================================================
- SouthStudio — catalogue (single source of truth)
+ SouthStudio, catalogue (single source of truth)
 
  Everything the studio makes lives here, in five collections:
    projects     ideas that can run across formats (a "thread")
@@ -187,7 +187,7 @@
  '<span class="ar-n">' + UI.studioPrefix + ' / <b>' + esc(r.number) + '</b></span>' +
  '<span class="ar-t">' + title + '</span>' +
  '<span class="ar-c">' + esc(t(r.category, lang)) + '</span>' +
- '<span class="ar-f">' + esc(released ? t(r.type, lang) : (r.release ? r.release : "—")) + '</span>' +
+ '<span class="ar-f">' + esc(released ? t(r.type, lang) : (r.release ? r.release : "·")) + '</span>' +
  '<span class="ar-s ' + tag + '">' + esc(t(r.statusLabel, lang)) + '</span>';
  if (released) return '<a class="archive-row" href="' + esc(root + r.url) + '">' + inner + '</a>';
  return '<div class="archive-row archive-row--concept">' + inner + '</div>';
@@ -276,7 +276,7 @@
  function kindsHTML(lang) {
  return EXPERIENCE_KINDS.map(function (k, i) {
  var n = EXPERIENCES.filter(function (x) { return x.kind === k.id && x.status === "released"; }).length;
- return '<div class="kind"><span class="num">' + pad(i + 1) + '</span><span class="kind-t">' + esc(t(k, lang)) + '</span><span class="meta">' + (n ? pad(n) : "—") + '</span></div>';
+ return '<div class="kind"><span class="num">' + pad(i + 1) + '</span><span class="kind-t">' + esc(t(k, lang)) + '</span><span class="meta">' + (n ? pad(n) : "00") + '</span></div>';
  }).join("");
  }
 
@@ -298,7 +298,7 @@
  '</div></div>';
  function slotRow(label, item, href, statusObj, lang) {
  var status = item ? t(statusObj, lang) : t(UI.notYet, lang);
- var title = item ? esc(t(item.title, lang)) : "—";
+ var title = item ? esc(t(item.title, lang)) : "·";
  var inner = '<span class="th-f">' + esc(label) + '</span><span class="th-t' + (item ? "" : " th-t--empty") + '">' + title + '</span><span class="th-s">' + esc(status) + '</span>';
  return href ? '<a class="th-row" href="' + esc(href) + '">' + inner + '</a>' : '<div class="th-row">' + inner + '</div>';
  }
@@ -340,11 +340,11 @@
  });
  doc.querySelectorAll("[data-shelf-count]").forEach(function (el) {
  var n = shelfCounts()[el.getAttribute("data-shelf-count")] || 0;
- el.textContent = n > 0 ? pad(n) : "—";
+ el.textContent = n > 0 ? pad(n) : "00";
  });
  doc.querySelectorAll("[data-journal-count]").forEach(function (el) {
  var n = journalCounts()[el.getAttribute("data-journal-count")] || 0;
- el.textContent = n > 0 ? pad(n) : "—";
+ el.textContent = n > 0 ? pad(n) : "00";
  });
  doc.querySelectorAll("[data-films-channel]").forEach(function (el) { el.setAttribute("href", FILMS_CHANNEL); });
  }

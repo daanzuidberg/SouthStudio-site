@@ -1,5 +1,5 @@
 /* ============================================================
- SouthStudio — form handler (Cloudflare Worker)
+ SouthStudio, form handler (Cloudflare Worker)
 
  Serves POST /api/form for the newsletter ("Dispatch") and the
  Timeline pre-order reservation. Everything else is static assets.
@@ -95,7 +95,7 @@ async function notify(env, lead) {
       from: env.NOTIFY_FROM,
       to: [env.NOTIFY_TO],
       reply_to: lead.email,
-      subject: "SouthStudio — " + KINDS[lead.kind],
+      subject: "SouthStudio, " + KINDS[lead.kind],
       text: lines.join("\n"),
     }),
   });
