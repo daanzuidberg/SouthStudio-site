@@ -97,10 +97,15 @@ body.x::after {
 .x .hero2 .hero-ctas { margin-top: clamp(28px, 4vh, 44px); }
 
 /* the mark: 3x3, one red cell that follows the shelves */
-.x .hero2-mark { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(8px, 1.2vw, 14px); width: clamp(190px, 21vw, 290px); aspect-ratio: 1; justify-self: end; }
+.x .hero2-mark { --mark: clamp(190px, 21vw, 290px); position: relative; display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(8px, 1.2vw, 14px); width: var(--mark); aspect-ratio: 1; justify-self: end; }
 .x .hero2-mark i { display: block; border: 1.5px solid rgba(233, 225, 208, .34); transition: background .55s ease, border-color .55s ease; }
 .x .hero2-mark i.k { background: rgba(233, 225, 208, .72); border-color: transparent; }
 .x .hero2-mark i.on { background: var(--red); border-color: var(--red); }
+.x .hero2-letter { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; padding: .06em 0 0; font-family: var(--serif); font-weight: 300; font-size: calc(var(--mark) * 1.04); line-height: 1; letter-spacing: 0; color: var(--red); opacity: 0; transform: scale(.94); transition: opacity .4s ease, transform .6s var(--ease-out); pointer-events: none; }
+.x .hero2-mark.has-letter .hero2-letter { opacity: 1; transform: none; }
+.x .hero2-mark.has-letter i { border-color: rgba(233, 225, 208, .2); }
+.x .hero2-mark.has-letter i.k { background: rgba(233, 225, 208, .16); }
+.x .hero2-mark.has-letter i.on { background: transparent; border-color: rgba(233, 225, 208, .2); }
 
 /* the six shelves, along the foot of the hero */
 .x .shelves-strip { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); border-top: 1px solid var(--on-d-line); }
@@ -127,7 +132,7 @@ body.x::after {
 /* ---------- responsive ---------- */
 @media (max-width: 1020px) {
  .x .hero2-wrap { grid-template-columns: 1fr; align-items: start; }
- .x .hero2-mark { order: -1; width: 112px; justify-self: start; gap: 6px; }
+ .x .hero2-mark { --mark: 112px; order: -1; justify-self: start; gap: 6px; }
  .x .shelves-strip { grid-template-columns: repeat(3, minmax(0, 1fr)); }
  .x .shelf-link { border-bottom: 1px solid var(--on-d-line-soft); }
  .x .shelf-link:nth-child(3n) { border-right: 0; }
@@ -149,7 +154,7 @@ body.x::after {
  .x .eyebrow-rule .kicker { white-space: nowrap; }
  .x .eyebrow-rule .cell { margin-left: auto; }
 }
-@media (prefers-reduced-motion: reduce) { .x .hero2-mark i, .x .site-head { transition: none; } }
+@media (prefers-reduced-motion: reduce) { .x .hero2-mark i, .x .hero2-letter, .x .site-head { transition: none; } }
 
 /* ---------- project page (Timeline): dark hero, the book as an object ---------- */
 .x .proj-hero { margin-top: calc(-1 * var(--header-h)); padding-top: calc(var(--header-h) + clamp(32px, 6vh, 72px)); padding-bottom: clamp(64px, 9vh, 112px); }

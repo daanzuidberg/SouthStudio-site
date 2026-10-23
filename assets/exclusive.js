@@ -21,15 +21,18 @@
  window.addEventListener("resize", function () { clearTimeout(timer); timer = setTimeout(setup, 200); });
  }
 
- /* the red cell of the big mark follows the shelf you point at */
+ /* the big mark shows the first letter of the shelf you point at, in red */
  var mark = document.querySelector("[data-hero-mark]");
  if (mark) {
- var cells = [].slice.call(mark.children), home = 1;
- var light = function (n) { cells.forEach(function (c, i) { c.classList.toggle("on", i === n); }); };
+ var letter = mark.querySelector(".hero2-letter");
+ var show = function (txt) { letter.textContent = txt; mark.classList.add("has-letter"); };
+ var hide = function () { mark.classList.remove("has-letter"); };
  document.querySelectorAll("[data-cell]").forEach(function (el) {
- var n = parseInt(el.getAttribute("data-cell"), 10) - 1;
- ["mouseenter", "focus"].forEach(function (ev) { el.addEventListener(ev, function () { light(n); }); });
- ["mouseleave", "blur"].forEach(function (ev) { el.addEventListener(ev, function () { light(home); }); });
+ var t = el.querySelector(".sl-t");
+ var ch = t ? t.textContent.trim().charAt(0).toUpperCase() : "";
+ if (!ch) return;
+ ["mouseenter", "focus"].forEach(function (ev) { el.addEventListener(ev, function () { show(ch); }); });
+ ["mouseleave", "blur"].forEach(function (ev) { el.addEventListener(ev, hide); });
  });
  }
 })();
