@@ -197,3 +197,7 @@ body.x::after {
 .x .thread { border-width: 1px; border-color: var(--ink); }
 .x .thread-rows { border-top-width: 1px; }
 .x .rc-media { border-width: 1px; }
+
+/* tags on dark chapters */
+.x .chapter--dark .tag { color: var(--on-d); border-color: var(--on-d-line); }
+.x .chapter--dark .tag--blue { color: #AFC2F2; border-color: rgba(175,194,242,.55); }

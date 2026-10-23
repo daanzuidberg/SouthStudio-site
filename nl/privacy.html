@@ -37,12 +37,13 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500&family=IBM+Plex+Mono:wght@400;600;700&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="../assets/site.css" />
+<link rel="stylesheet" href="../assets/exclusive.css" />
 </head>
-<body>
+<body class="x">
 <a class="skip" href="#main">Ga naar de inhoud</a>
 
 <!-- ============ HEADER ============ -->
-<header class="site-head" data-screen-label="Home">
+<header class="site-head on-dark" data-screen-label="Home">
  <div class="wrap head-row">
  <a class="wordmark" href="index.html" aria-label="SouthStudio, Independent Studio, home">
  <svg class="logo" viewBox="0 0 282 84" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="SouthStudio">
@@ -68,7 +69,7 @@
  </nav>
  <div class="head-cta">
  <a class="navlink" href="../privacy.html" hreflang="en" aria-label="Switch to English" style="opacity:.55;align-self:center">EN</a>
- <a class="btn btn--ghost btn--sm" data-open-preorder href="#">Reserveer <span class="arr">→</span></a>
+ <a class="btn btn--ghost btn--sm" data-open-preorder href="#">Reserveren <span class="arr">→</span></a>
  <button class="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
  </div>
  </div>
@@ -84,19 +85,26 @@
  <a href="play.html"><span>Speel online</span><span class="num">07</span></a>
  <a href="about.html"><span>De studio</span><span class="num">08</span></a>
  <div class="mm-foot">
-  <a data-open-preorder href="#">Reserveer het boek →</a>
+ <a data-open-preorder href="#">Reserveer Timeline →</a>
+ <a href="index.html#dispatch">De Dispatch →</a>
+ <a href="../privacy.html" hreflang="en">English →</a>
  </div>
 </div>
 <main id="main" tabindex="-1">
 
 
-<section class="section" data-screen-label="Privacy">
+<section class="section chapter chapter--dark sec-hero" data-screen-label="Privacy">
  <div class="wrap">
  <a class="link muted" href="index.html"><span aria-hidden="true">←</span> Terug naar de studio</a>
  <div style="margin-top:26px"><span class="kicker kicker--red"><span class="dot"></span>Juridisch</span></div>
  <h1 class="h1 mt-12">Privacyverklaring</h1>
  <p class="lead measure mt-12">SouthStudio respecteert je privacy. Op deze pagina lees je wat we bewaren als je je aanmeldt voor de nieuwsbrief of Timeline reserveert, waarom we dat doen, en welke rechten je over je gegevens hebt.</p>
- <div class="measure" style="display:flex;flex-direction:column;gap:26px;margin-top:52px">
+ </div>
+</section>
+
+<section class="section" data-screen-label="Policy">
+ <div class="wrap">
+ <div class="measure" style="display:flex;flex-direction:column;gap:26px">
  <div><h2 class="h3">Wie we zijn</h3><p class="muted mt-12" style="font-size:16px">SouthStudio is een onafhankelijke studio. Voor elke privacyvraag mail je info@southstudio.online.</p></div>
  <div><h2 class="h3">Wat we bewaren</h3><p class="muted mt-12" style="font-size:16px">Nieuwsbrief: je e-mailadres. Reserveringen: je naam, e-mailadres en de gekozen editie. We vragen nooit meer dan nodig, en we verzamelen op deze site geen betaalgegevens.</p></div>
  <div><h2 class="h3">Waarom &amp; rechtsgrond</h3><p class="muted mt-12" style="font-size:16px">We gebruiken je gegevens alleen om de nieuwsbrief te sturen waar je om vroeg, of om je reservering vast te leggen en later te leveren. De rechtsgrond is je toestemming, die je geeft door het formulier te versturen.</p></div>
@@ -200,5 +208,6 @@
 </div>
 
 <script src="../assets/site.js"></script>
+<script src="../assets/exclusive.js"></script>
 </body>
 </html>

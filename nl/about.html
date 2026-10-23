@@ -33,6 +33,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500&family=IBM+Plex+Mono:wght@400;600;700&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="../assets/site.css" />
+<link rel="stylesheet" href="../assets/exclusive.css" />
 <style>
 /* page-specific (about.html) */
 /* about-page extra */
@@ -52,10 +53,10 @@
 @media (max-width: 900px) { .about-grid--3 .principle { border-right: 0; } }
 </style>
 </head>
-<body>
+<body class="x">
 <a class="skip" href="#main">Ga naar de inhoud</a>
 <!-- ============ HEADER ============ -->
-<header class="site-head" data-screen-label="Home">
+<header class="site-head on-dark" data-screen-label="Home">
  <div class="wrap head-row">
  <a class="wordmark" href="index.html" aria-label="SouthStudio, Independent Studio, home">
  <svg class="logo" viewBox="0 0 282 84" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="SouthStudio">
@@ -81,7 +82,7 @@
  </nav>
  <div class="head-cta">
  <a class="navlink" href="../about.html" hreflang="en" aria-label="Switch to English" style="opacity:.55;align-self:center">EN</a>
- <a class="btn btn--ghost btn--sm" data-open-preorder href="#">Pre-order <span class="arr">→</span></a>
+ <a class="btn btn--ghost btn--sm" data-open-preorder href="#">Reserveren <span class="arr">→</span></a>
  <button class="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
  </div>
  </div>
@@ -97,19 +98,21 @@
  <a href="play.html"><span>Speel online</span><span class="num">07</span></a>
  <a href="about.html"><span>De studio</span><span class="num">08</span></a>
  <div class="mm-foot">
-  <a data-open-preorder href="#">Reserveer het boek →</a>
+ <a data-open-preorder href="#">Reserveer Timeline →</a>
+ <a href="index.html#dispatch">De Dispatch →</a>
+ <a href="../about.html" hreflang="en">English →</a>
  </div>
 </div>
 <main id="main" tabindex="-1">
 
 
 <!-- ============ OVER DE STUDIO ============ -->
-<section class="section" data-screen-label="About">
+<section class="section chapter chapter--dark sec-hero" data-screen-label="About">
  <div class="wrap">
   <a class="link muted" href="index.html"><span aria-hidden="true">←</span> Terug naar de studio</a>
   <div style="margin-top:26px"><span class="kicker kicker--red"><span class="dot"></span>De Studio</span></div>
-  <h1 class="h1 mt-12">Een onafhankelijke studio<br>voor de <em>lange weg.</em></h1>
-  <p class="lead measure mt-20">SouthStudio maakt met intentie. Tijdloos in ontwerp, betekenisvol in gebruik, en gemaakt om te blijven.</p>
+  <h1 class="display mt-12">Een onafhankelijke studio<br>voor de <em>lange weg.</em></h1>
+  <p class="lead measure mt-20">Een kleine studio die boeken, games, films, objecten, ervaringen en ideeën maakt — elk langzaam afgemaakt, en gemaakt om te bewaren.</p>
  </div>
 </section>
 
@@ -167,7 +170,7 @@
    <div class="principle" style="background:var(--paper-2)">
     <div class="kicker" style="margin-bottom:8px">Nr. 001</div>
     <h3 class="h3">Timeline</h3>
-    <p style="font-size:15px;line-height:1.6;color:var(--ink-2)">80 deductiezaken. Vijf niveaus. Nu beschikbaar.</p>
+    <p style="font-size:15px;line-height:1.6;color:var(--ink-2)">80 deductiezaken. Vijf niveaus. Verschijnt Q1 2027; de online zaken kun je nu gratis spelen.</p>
     <a class="link" href="timeline.html" style="margin-top:auto">Open het dossier <span aria-hidden="true">→</span></a>
    </div>
   </div>
@@ -298,6 +301,7 @@
 
 <script src="../releases.js"></script>
 <script src="../assets/site.js"></script>
+<script src="../assets/exclusive.js"></script>
 </body>
 </html>
 

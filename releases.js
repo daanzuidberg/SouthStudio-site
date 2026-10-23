@@ -52,8 +52,8 @@
  nl: "Een deductie-puzzelboek binnen de Time Correction Agency. Tachtig op zichzelf staande zaken, elk met precies één antwoord, alleen bereikbaar door te redeneren."
  },
  status: "released",
- statusLabel: { en: "Out now", nl: "Nu verkrijgbaar" },
- release: "2026",
+ statusLabel: { en: "Q1 2027", nl: "Q1 2027" },
+ release: "Q1 2027",
  hero: "icons/og-timeline.png",
  gallery: [],
  url: "timeline.html",
