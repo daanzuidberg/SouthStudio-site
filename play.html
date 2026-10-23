@@ -4,8 +4,8 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="form-endpoint" content="" />
-<title>Free Logic Deduction Puzzles Online — Play Timeline · SouthStudio</title>
-<meta name="description" content="Solve free logic deduction puzzles in your browser — no install, no account needed. A free set of Timeline cases from SouthStudio, the independent puzzle studio." />
+<title>Play Timeline Online — Free Deduction Cases · SouthStudio</title>
+<meta name="description" content="Solve free logic deduction puzzles in your browser — no install, no account needed. A free set of Timeline cases from SouthStudio, an independent studio." />
 <link rel="canonical" href="https://southstudio.online/play.html" />
 <link rel="alternate" hreflang="en" href="https://southstudio.online/play.html" />
 <link rel="alternate" hreflang="nl" href="https://southstudio.nl/play.html" />
@@ -32,11 +32,12 @@
 <link rel="manifest" href="site.webmanifest" />
 <meta name="theme-color" content="#1A1612" />
 
-<script type="application/ld+json">[{"@context":"https://schema.org","@type":"WebApplication","name":"Timeline — Free Logic Deduction Puzzles","applicationCategory":"GameApplication","operatingSystem":"any","offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"},"description":"Play free logic deduction puzzles in your browser. A free set of Timeline cases from SouthStudio, no install required.","url":"https://southstudio.online/play.html","author":{"@type":"Organization","name":"SouthStudio","url":"https://southstudio.online"}},{"@context":"https://schema.org","@type":"Organization","name":"SouthStudio","url":"https://southstudio.online"}]</script>
+<script type="application/ld+json">[{"@context":"https://schema.org","@type":"WebApplication","name":"Timeline — Free Deduction Cases","applicationCategory":"GameApplication","operatingSystem":"any","offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"},"description":"Play free deduction cases in your browser. A free set of Timeline cases from SouthStudio, no install required.","url":"https://southstudio.online/play.html","author":{"@type":"Organization","name":"SouthStudio","url":"https://southstudio.online"}},{"@context":"https://schema.org","@type":"Organization","name":"SouthStudio","url":"https://southstudio.online"}]</script>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500&family=IBM+Plex+Mono:wght@400;600;700&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="assets/site.css" />
+<link rel="stylesheet" href="assets/exclusive.css" />
 <style>
 /* page-specific (play.html) */
 .host-shell, .panel--raise { box-shadow: none !important; }
@@ -53,11 +54,11 @@
 .host-frame { width: 100%; height: 100%; min-height: 540px; border: 0; display: block; }
 </style>
 </head>
-<body>
+<body class="x">
 <a class="skip" href="#main">Skip to content</a>
 
 <!-- ============ HEADER ============ -->
-<header class="site-head" data-screen-label="Play page">
+<header class="site-head on-dark" data-screen-label="Home">
  <div class="wrap head-row">
  <a class="wordmark" href="index.html" aria-label="SouthStudio, Independent Studio, home">
  <svg class="logo" viewBox="0 0 282 84" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="SouthStudio">
@@ -83,7 +84,7 @@
  </nav>
  <div class="head-cta">
  <a class="navlink" href="nl/play.html" hreflang="nl" aria-label="Schakel naar Nederlands" style="opacity:.55;align-self:center">NL</a>
- <a class="btn btn--blue btn--sm" href="#stage">Start solving <span class="arr">→</span></a>
+ <a class="btn btn--ghost btn--sm" data-open-preorder href="#">Pre-order <span class="arr">→</span></a>
  <button class="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
  </div>
  </div>
@@ -97,19 +98,24 @@
  <a href="experiences/"><span>Experiences</span><span class="num">05</span></a>
  <a href="timeline.html"><span>Timeline</span><span class="num">06</span></a>
  <a href="play.html"><span>Play online</span><span class="num">07</span></a>
- <a href="timeline.html#buy"><span>Buy the book</span><span class="num">08</span></a>
+ <a href="about.html"><span>The studio</span><span class="num">08</span></a>
+ <div class="mm-foot">
+ <a data-open-preorder href="#">Pre-order Timeline →</a>
+ <a href="index.html#dispatch">The Dispatch →</a>
+ <a href="nl/play.html" hreflang="nl">Nederlands →</a>
+ </div>
 </div>
 <main id="main" tabindex="-1">
 
 <!-- ============ INTRO ============ -->
-<section class="section section--tight" style="padding-top:clamp(36px,5vw,64px)">
+<section class="section chapter chapter--dark sec-hero">
  <div class="wrap">
  <div class="row gap-12 wrap-gap reveal" style="margin-bottom:22px">
  <span class="tag tag--blue">Free to play</span>
  <span class="tag">No install</span>
  </div>
- <h1 class="h1 reveal d1" style="max-width:20ch">
- Play <span style="color:var(--ink)">TIME</span><span class="red">LINE</span> in your browser.
+ <h1 class="display reveal d1">
+ Play <span>TIME</span><span class="red">LINE</span> in your browser.
  </h1>
  <p class="lead measure mt-12 reveal d1">A free set of Time Correction Agency cases, playable right in your browser, a taste of the deduction. Solve in the field console below or launch it fullscreen. The full 80 unique cases live in the book.</p>
  </div>
@@ -269,6 +275,7 @@
 </div>
 
 <script src="assets/site.js"></script>
+<script src="assets/exclusive.js"></script>
 <script>
 /* Pass the preview auth token through to the embedded game so its relative
  subresource request is authorized. In production (no ?t= token) this is a

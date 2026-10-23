@@ -37,12 +37,13 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500&family=IBM+Plex+Mono:wght@400;600;700&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="assets/site.css" />
+<link rel="stylesheet" href="assets/exclusive.css" />
 </head>
-<body>
+<body class="x">
 <a class="skip" href="#main">Skip to content</a>
 
 <!-- ============ HEADER ============ -->
-<header class="site-head" data-screen-label="Home">
+<header class="site-head on-dark" data-screen-label="Home">
  <div class="wrap head-row">
  <a class="wordmark" href="index.html" aria-label="SouthStudio, Independent Studio, home">
  <svg class="logo" viewBox="0 0 282 84" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="SouthStudio">
@@ -84,19 +85,26 @@
  <a href="play.html"><span>Play online</span><span class="num">07</span></a>
  <a href="about.html"><span>The studio</span><span class="num">08</span></a>
  <div class="mm-foot">
-  <a data-open-preorder href="#">Pre-order the book →</a>
+ <a data-open-preorder href="#">Pre-order Timeline →</a>
+ <a href="index.html#dispatch">The Dispatch →</a>
+ <a href="nl/privacy.html" hreflang="nl">Nederlands →</a>
  </div>
 </div>
 <main id="main" tabindex="-1">
 
 
-<section class="section" data-screen-label="Privacy">
+<section class="section chapter chapter--dark sec-hero" data-screen-label="Privacy">
  <div class="wrap">
  <a class="link muted" href="index.html"><span aria-hidden="true">←</span> Back to the studio</a>
  <div style="margin-top:26px"><span class="kicker kicker--red"><span class="dot"></span>Legal</span></div>
  <h1 class="h1 mt-12">Privacy policy</h1>
  <p class="lead measure mt-12">SouthStudio respects your privacy. This page explains what we collect when you subscribe to our dispatch or pre-order Timeline, why we collect it, and the rights you have over your data.</p>
- <div class="measure" style="display:flex;flex-direction:column;gap:26px;margin-top:52px">
+ </div>
+</section>
+
+<section class="section" data-screen-label="Policy">
+ <div class="wrap">
+ <div class="measure" style="display:flex;flex-direction:column;gap:26px">
  <div><h2 class="h3">Who we are</h3><p class="muted mt-12" style="font-size:16px">SouthStudio is an independent studio. For any privacy question, email info@southstudio.online.</p></div>
  <div><h2 class="h3">What we collect</h3><p class="muted mt-12" style="font-size:16px">Newsletter: your email address. Pre-orders: your name, email address and the edition you chose. We never ask for more than we need, and we don't collect payment details on this site.</p></div>
  <div><h2 class="h3">Why we collect it &amp; legal basis</h3><p class="muted mt-12" style="font-size:16px">We use your details only to send the dispatch you asked for, or to reserve and later fulfil your pre-order. The legal basis is your consent, which you give by submitting the form.</p></div>
@@ -200,5 +208,6 @@
 </div>
 
 <script src="assets/site.js"></script>
+<script src="assets/exclusive.js"></script>
 </body>
 </html>

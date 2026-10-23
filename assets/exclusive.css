@@ -144,6 +144,10 @@ body.x::after {
  .x .shelf-link:nth-child(3n+1) { padding-left: 16px; }
  .x .shelf-link:nth-child(2n+1) { padding-left: 0; }
  .x .btn { padding: 15px 20px; }
+ .x .eyebrow-rule { flex-wrap: wrap; gap: 8px 16px; }
+ .x .eyebrow-rule .ln { display: none; }
+ .x .eyebrow-rule .kicker { white-space: nowrap; }
+ .x .eyebrow-rule .cell { margin-left: auto; }
 }
 @media (prefers-reduced-motion: reduce) { .x .hero2-mark i, .x .site-head { transition: none; } }
 
@@ -163,3 +167,37 @@ body.x::after {
 .x .steps, .x .ladder, .x .editions, .x .principles { border-top-color: var(--line-2); }
 .x .lad-row--top .lt { color: var(--ink); }
 .x .lad-row--top .ln { color: var(--red); }
+
+/* ---------- section pages (archive, films, journal, experiences) ---------- */
+.x .sec-hero, .x .arc-hero { margin-top: calc(-1 * var(--header-h)); padding-top: calc(var(--header-h) + clamp(40px, 8vh, 96px)); padding-bottom: clamp(48px, 7vh, 96px); }
+.x .chapter--dark .eyebrow-rule .ln { background: var(--on-d-line); }
+.x .chapter--dark .display { color: var(--on-d); }
+.x .chapter--dark .display em { color: #D8CFBB; }
+.x .chapter--dark .sec-intro .lead { color: #BDB3A1; }
+.x .cell--md { width: 26px; height: 26px; gap: 2px; }
+.x .eyebrow-rule .cell { margin-left: 2px; }
+.x .chapter--dark .cell i { background: rgba(233, 225, 208, .26); }
+.x .chapter--dark .cell i.on { background: var(--red); }
+
+/* shelves (archive) and categories (journal) continue the dark hero */
+.x .chapter--dark .shelves, .x .chapter--dark .jr-cats { border-top-color: var(--on-d-line); border-bottom-color: var(--on-d-line-soft); }
+.x .chapter--dark .shelf, .x .chapter--dark .jr-cat { border-right-color: var(--on-d-line-soft); border-bottom-color: var(--on-d-line-soft); }
+.x .chapter--dark .sh-t, .x .chapter--dark .jc-t { color: var(--on-d); }
+.x .chapter--dark .sh-n, .x .chapter--dark .jc-n { color: var(--on-d-soft); }
+.x .chapter--dark .sh-n b, .x .chapter--dark .jc-n b { color: var(--on-d); }
+.x a.shelf:hover .sh-n { color: var(--on-d); }
+
+/* films: the cinematic band and the hero become one dark chapter */
+.x .films-band { background: var(--ink-d); }
+.x .sec-hero + .films-band { padding-top: 0; }
+
+/* paper pages */
+.x .jr-list, .x .xp-list, .x .kinds { border-top-color: var(--line-2); }
+.x .jr-cats, .x .shelves { border-top-width: 1px; }
+.x .thread { border-width: 1px; border-color: var(--ink); }
+.x .thread-rows { border-top-width: 1px; }
+.x .rc-media { border-width: 1px; }
+
+/* tags on dark chapters */
+.x .chapter--dark .tag { color: var(--on-d); border-color: var(--on-d-line); }
+.x .chapter--dark .tag--blue { color: #AFC2F2; border-color: rgba(175,194,242,.55); }

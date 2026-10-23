@@ -35,6 +35,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500&family=IBM+Plex+Mono:wght@400;600;700&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="../../assets/site.css" />
+<link rel="stylesheet" href="../../assets/exclusive.css" />
 <style>
 
 
@@ -141,11 +142,11 @@ a.th-row:hover .th-t { font-style: italic; }
 
 </style>
 </head>
-<body>
+<body class="x">
 <a class="skip" href="#main">Ga naar de inhoud</a>
 
 <!-- ============ HEADER ============ -->
-<header class="site-head" data-screen-label="journal">
+<header class="site-head on-dark" data-screen-label="journal">
  <div class="wrap head-row">
  <a class="wordmark" href="../index.html" aria-label="SouthStudio, Independent Studio, home">
  <svg class="logo" viewBox="0 0 282 84" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="SouthStudio">
@@ -195,12 +196,13 @@ a.th-row:hover .th-t { font-style: italic; }
 <main id="main" tabindex="-1">
 
 <!-- ============ HERO ============ -->
-<section class="section sec-hero" data-screen-label="Hero">
+<section class="section chapter chapter--dark sec-hero" data-screen-label="Hero">
  <div class="wrap">
  <div class="reveal eyebrow-rule">
  <span class="kicker kicker--red"><span class="dot"></span>Het journal</span>
  <span class="ln"></span>
  <span class="kicker">Plank VI · Ideeën</span>
+ <span class="cell cell--md" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i class="on"></i><i></i><i></i><i></i></span>
  </div>
  <div class="sec-intro">
  <h1 class="display lines" data-lines>
@@ -213,7 +215,7 @@ a.th-row:hover .th-t { font-style: italic; }
 </section>
 
 <!-- ============ CATEGORIES ============ -->
-<section class="section section--flush-top section--tight" data-screen-label="Categories">
+<section class="section section--flush-top section--tight chapter chapter--dark" data-screen-label="Categories">
  <div class="wrap">
  <div class="jr-cats reveal">
  <div class="jr-cat"><span class="jc-t">Ideeën</span><span class="jc-n">Gepubliceerd · <b data-journal-count="ideas">—</b></span></div>
@@ -232,8 +234,7 @@ a.th-row:hover .th-t { font-style: italic; }
  <p class="lead muted measure mt-12">De eerste stukken worden geschreven. Ze verschijnen hier, één voor één, wanneer ze af zijn — en nooit eerder.</p>
  </div>
  <div class="sec-head reveal" style="margin-top:clamp(40px,6vw,80px)">
- <span class="kicker kicker--red"><span class="dot"></span>In het notitieboek</span>
- <span class="num">Wordt geschreven · Nog niet gepubliceerd</span>
+ <span class="kicker"><span class="kn">01</span>In het notitieboek</span>
  </div>
  <div class="jr-list reveal d1" data-collection="journal" data-lang="nl" data-root="../"></div>
  </div>
@@ -243,8 +244,7 @@ a.th-row:hover .th-t { font-style: italic; }
 <section class="section section--tight section--flush-top" data-screen-label="Thread">
  <div class="wrap">
  <div class="sec-head reveal">
- <span class="kicker kicker--red"><span class="dot"></span>Een draad</span>
- <span class="num">Eén idee, meerdere vormen</span>
+ <span class="kicker"><span class="kn">02</span>Een draad</span>
  </div>
  <div class="reveal d1" data-thread="silence" data-lang="nl" data-root="../"></div>
  </div>
@@ -255,7 +255,7 @@ a.th-row:hover .th-t { font-style: italic; }
  <div class="wrap">
  <div class="dispatch reveal">
  <div>
- <span class="kicker kicker--red"><span class="dot"></span>The Dispatch</span>
+ <span class="kicker"><span class="kn">03</span>The Dispatch</span>
  <h2 class="h2 mt-12">Lees het wanneer het er is.</h2>
  </div>
  <div>
@@ -359,5 +359,6 @@ a.th-row:hover .th-t { font-style: italic; }
 
 <script src="../../releases.js"></script>
 <script src="../../assets/site.js"></script>
+<script src="../../assets/exclusive.js"></script>
 </body>
 </html>
