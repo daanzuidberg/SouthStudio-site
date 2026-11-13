@@ -201,3 +201,24 @@ body.x::after {
 /* tags on dark chapters */
 .x .chapter--dark .tag { color: var(--on-d); border-color: var(--on-d-line); }
 .x .chapter--dark .tag--blue { color: #AFC2F2; border-color: rgba(175,194,242,.55); }
+
+/* ---------- studio pages: about / stockists / privacy ---------- */
+.x .thick-rule { display: none; }
+.x .about-grid--3 { border-top: 1px solid var(--line-2); }
+.x .about-grid--3 .principle:nth-child(3n+1) { padding-left: 0; }
+.x .about-grid--3 .principle[style] { padding-left: clamp(16px, 2vw, 32px); }
+.x .sr-card { border-width: 1px; }
+.x .sr-card--primary:hover { transform: none; box-shadow: none; }
+.x .sr-num { text-transform: uppercase; font-size: 10.5px; }
+
+/* concept films: a quiet numbered list instead of empty frames */
+.x .film--concept .film-frame { display: none; }
+.x .film--concept { border-top: 1px solid var(--on-d-line); padding-top: 22px; }
+
+/* empty catalogue slots stay quiet */
+.x .kind .meta:empty, .x .ar-f:empty, .x .th-t--empty:empty { visibility: hidden; }
+
+/* section heroes: room between the eyebrow and the title */
+.x .sec-hero .display, .x .sec-hero .h1 { margin-top: clamp(20px, 3vw, 36px); }
+/* release cards show the whole image */
+.x .rc-media img { object-fit: contain; }

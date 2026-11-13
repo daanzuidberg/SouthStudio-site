@@ -8,11 +8,11 @@
  var LANG = (document.documentElement.lang || "en").slice(0, 2);
  var I18N = {
  en: {
- newsBad: "// Enter a valid email to receive the Dispatch.",
+ newsBad: "Enter a valid email to receive the Dispatch.",
  sending: "Sending…",
- newsOk: "// Confirmed. You're on the SouthStudio dispatch list.",
- newsMail: "// Your email app opens with a message. Send it to complete your signup.",
- newsErr: "// Something went wrong, please try again or email info@southstudio.online.",
+ newsOk: "Confirmed. You're on the SouthStudio dispatch list.",
+ newsMail: "Your email app opens with a message. Send it to complete your signup.",
+ newsErr: "Something went wrong, please try again or email info@southstudio.online.",
  subscribed: "you@subscribed.now",
  required: "Required.",
  badEmail: "Enter a valid email.",
@@ -28,11 +28,11 @@
  close: "Close"
  },
  nl: {
- newsBad: "// Vul een geldig e-mailadres in om de Dispatch te ontvangen.",
+ newsBad: "Vul een geldig e-mailadres in om de Dispatch te ontvangen.",
  sending: "Versturen…",
- newsOk: "// Bevestigd. Je staat op de SouthStudio-lijst.",
- newsMail: "// Je e-mailapp opent met een bericht. Verstuur het om je inschrijving af te ronden.",
- newsErr: "// Er ging iets mis, probeer het opnieuw of mail info@southstudio.online.",
+ newsOk: "Bevestigd. Je staat op de SouthStudio-lijst.",
+ newsMail: "Je e-mailapp opent met een bericht. Verstuur het om je inschrijving af te ronden.",
+ newsErr: "Er ging iets mis, probeer het opnieuw of mail info@southstudio.online.",
  subscribed: "jij@ingeschreven.nu",
  required: "Verplicht.",
  badEmail: "Vul een geldig e-mailadres in.",

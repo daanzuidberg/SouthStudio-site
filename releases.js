@@ -164,6 +164,8 @@
  experience: { en: "Experience", nl: "Ervaring" },
  object: { en: "Object", nl: "Object" },
  notYet: { en: "Not yet", nl: "Nog niet" },
+ inDevelopment: { en: "In development", nl: "In ontwikkeling" },
+ nothingYet: { en: "Nothing published yet", nl: "Nog niets gepubliceerd" },
  studioPrefix: "SS"
  };
  function byId(list, id) { for (var i = 0; i < list.length; i++) if (list[i].id === id) return list[i]; return null; }
@@ -187,7 +189,7 @@
  '<span class="ar-n">' + UI.studioPrefix + ' / <b>' + esc(r.number) + '</b></span>' +
  '<span class="ar-t">' + title + '</span>' +
  '<span class="ar-c">' + esc(t(r.category, lang)) + '</span>' +
- '<span class="ar-f">' + esc(released ? t(r.type, lang) : (r.release ? r.release : "·")) + '</span>' +
+ '<span class="ar-f">' + esc(released ? t(r.type, lang) : (r.release ? r.release : "")) + '</span>' +
  '<span class="ar-s ' + tag + '">' + esc(t(r.statusLabel, lang)) + '</span>';
  if (released) return '<a class="archive-row" href="' + esc(root + r.url) + '">' + inner + '</a>';
  return '<div class="archive-row archive-row--concept">' + inner + '</div>';
@@ -206,7 +208,7 @@
  '<p class="rc-cat">' + esc(t(r.category, lang)) + '</p>' +
  '<p class="small muted rc-desc">' + esc(t(r.description, lang)) + '</p>' +
  '<div class="rc-foot">' +
- '<span class="meta">' + esc(released ? [t(r.type, lang), shelfNames(r, lang), r.release].filter(Boolean).join(" · ") : "") + '</span>' +
+ '<span class="meta">' + esc(released ? [t(r.type, lang), r.release].filter(Boolean).join(" · ") : "") + '</span>' +
  '<span class="' + (released ? "tag tag--solid-red" : "tag tag--dashed") + '">' + esc(t(r.statusLabel, lang)) + '</span>' +
  '</div>' +
  '</div>';
@@ -276,7 +278,7 @@
  function kindsHTML(lang) {
  return EXPERIENCE_KINDS.map(function (k, i) {
  var n = EXPERIENCES.filter(function (x) { return x.kind === k.id && x.status === "released"; }).length;
- return '<div class="kind"><span class="num">' + pad(i + 1) + '</span><span class="kind-t">' + esc(t(k, lang)) + '</span><span class="meta">' + (n ? pad(n) : "00") + '</span></div>';
+ return '<div class="kind"><span class="num">' + pad(i + 1) + '</span><span class="kind-t">' + esc(t(k, lang)) + '</span><span class="meta">' + (n ? pad(n) : "") + '</span></div>';
  }).join("");
  }
 
@@ -298,7 +300,7 @@
  '</div></div>';
  function slotRow(label, item, href, statusObj, lang) {
  var status = item ? t(statusObj, lang) : t(UI.notYet, lang);
- var title = item ? esc(t(item.title, lang)) : "·";
+ var title = item ? esc(t(item.title, lang)) : "";
  var inner = '<span class="th-f">' + esc(label) + '</span><span class="th-t' + (item ? "" : " th-t--empty") + '">' + title + '</span><span class="th-s">' + esc(status) + '</span>';
  return href ? '<a class="th-row" href="' + esc(href) + '">' + inner + '</a>' : '<div class="th-row">' + inner + '</div>';
  }
@@ -307,6 +309,7 @@
  /* ============================================================ mount */
  function mount(rootEl) {
  var doc = rootEl || document;
+ var pageLang = (doc.documentElement.lang || "en").slice(0, 2);
  doc.querySelectorAll("[data-archive]").forEach(function (el) {
  var lang = el.getAttribute("data-lang") || document.documentElement.lang || "en";
  var base = el.getAttribute("data-base") || "";
@@ -340,11 +343,13 @@
  });
  doc.querySelectorAll("[data-shelf-count]").forEach(function (el) {
  var n = shelfCounts()[el.getAttribute("data-shelf-count")] || 0;
- el.textContent = n > 0 ? pad(n) : "00";
+ if (n > 0) el.textContent = pad(n);
+ else if (el.parentNode) el.parentNode.textContent = t(UI.inDevelopment, pageLang);
  });
  doc.querySelectorAll("[data-journal-count]").forEach(function (el) {
  var n = journalCounts()[el.getAttribute("data-journal-count")] || 0;
- el.textContent = n > 0 ? pad(n) : "00";
+ if (n > 0) el.textContent = pad(n);
+ else if (el.parentNode) el.parentNode.textContent = t(UI.nothingYet, pageLang);
  });
  doc.querySelectorAll("[data-films-channel]").forEach(function (el) { el.setAttribute("href", FILMS_CHANNEL); });
  }
