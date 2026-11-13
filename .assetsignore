@@ -2,5 +2,11 @@ worker/
 wrangler.jsonc
 .assetsignore
 .gitignore
+.git
+.wrangler
+.dev.vars*
+.env*
+node_modules
 scripts/
 game/src/
+*.md

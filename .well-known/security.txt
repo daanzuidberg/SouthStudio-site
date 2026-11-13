@@ -1,0 +1,4 @@
+Contact: mailto:info@southstudio.online
+Expires: 2027-11-13T00:00:00.000Z
+Preferred-Languages: en, nl
+Canonical: https://southstudio.online/.well-known/security.txt

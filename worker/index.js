@@ -26,14 +26,22 @@
 
 const ALLOWED_HOSTS = ["southstudio.online", "www.southstudio.online", "southstudio.nl", "www.southstudio.nl"];
 const MAX_BODY = 8 * 1024;
-const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const EMAIL_RE = /^[^\s@<>"'`\\,;:()[\]]+@[a-z0-9](?:[a-z0-9.-]*[a-z0-9])?\.[a-z]{2,24}$/i;
 const KINDS = { newsletter: "Newsletter signup", preorder: "Timeline pre-order" };
 const RATE_LIMIT = { max: 6, windowSeconds: 600 };
 
 function json(body, status = 200, extra = {}) {
   return new Response(JSON.stringify(body), {
     status,
-    headers: { "content-type": "application/json; charset=utf-8", "cache-control": "no-store", ...extra },
+    headers: {
+      "content-type": "application/json; charset=utf-8",
+      "cache-control": "no-store",
+      "x-content-type-options": "nosniff",
+      "x-frame-options": "DENY",
+      "referrer-policy": "no-referrer",
+      "content-security-policy": "default-src 'none'; frame-ancestors 'none'",
+      ...extra,
+    },
   });
 }
 
@@ -57,9 +65,23 @@ function originAllowed(request, url) {
   }
 }
 
+// Fallback limiter for when no KV namespace is bound. It lives in one worker
+// instance's memory, so it is best effort; bind FORMS for a real limit.
+const memoryHits = new Map();
+function memoryLimited(ip) {
+  const now = Date.now();
+  const windowMs = RATE_LIMIT.windowSeconds * 1000;
+  if (memoryHits.size > 5000) memoryHits.clear();
+  const hits = (memoryHits.get(ip) || []).filter((t) => now - t < windowMs);
+  if (hits.length >= RATE_LIMIT.max) { memoryHits.set(ip, hits); return true; }
+  hits.push(now);
+  memoryHits.set(ip, hits);
+  return false;
+}
+
 async function rateLimited(env, request) {
-  if (!env.FORMS) return false;
   const ip = request.headers.get("cf-connecting-ip") || "unknown";
+  if (!env.FORMS) return memoryLimited(ip);
   const key = "rl:" + (await sha(ip)).slice(0, 24);
   const current = parseInt((await env.FORMS.get(key)) || "0", 10);
   if (current >= RATE_LIMIT.max) return true;
@@ -103,16 +125,41 @@ async function notify(env, lead) {
   return true;
 }
 
+async function readCapped(request, max) {
+  if (!request.body) return new Uint8Array(0);
+  const reader = request.body.getReader();
+  const chunks = [];
+  let total = 0;
+  for (;;) {
+    const { done, value } = await reader.read();
+    if (done) break;
+    total += value.byteLength;
+    if (total > max) { try { await reader.cancel(); } catch (e) {} return null; }
+    chunks.push(value);
+  }
+  const out = new Uint8Array(total);
+  let offset = 0;
+  for (const c of chunks) { out.set(c, offset); offset += c.byteLength; }
+  return out;
+}
+
 async function handleForm(request, env, url) {
   if (request.method !== "POST") return json({ ok: false, error: "method" }, 405, { allow: "POST" });
   if (!originAllowed(request, url)) return json({ ok: false, error: "origin" }, 403);
 
+  const type = (request.headers.get("content-type") || "").toLowerCase();
+  if (!type.startsWith("multipart/form-data") && !type.startsWith("application/x-www-form-urlencoded")) {
+    return json({ ok: false, error: "content_type" }, 415);
+  }
   const length = parseInt(request.headers.get("content-length") || "0", 10);
   if (length > MAX_BODY) return json({ ok: false, error: "too_large" }, 413);
 
+  // the content-length header can be missing or wrong, so the size is checked on the bytes actually read
   let form;
   try {
-    form = await request.formData();
+    const body = await readCapped(request, MAX_BODY);
+    if (body === null) return json({ ok: false, error: "too_large" }, 413);
+    form = await new Response(body, { headers: { "content-type": request.headers.get("content-type") } }).formData();
   } catch (e) {
     return json({ ok: false, error: "body" }, 400);
   }
@@ -132,7 +179,7 @@ async function handleForm(request, env, url) {
     name: clean(form.get("name"), 100),
     edition: clean(form.get("edition"), 80),
     lang: clean(form.get("lang"), 2) === "nl" ? "nl" : "en",
-    page: clean(form.get("page"), 120),
+    page: clean(form.get("page"), 120).replace(/[^\w\-./]/g, ""),
     ts: new Date().toISOString(),
   };
   if (kind === "preorder") {

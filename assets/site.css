@@ -535,3 +535,7 @@ body.intro-hold .reveal-img { clip-path: inset(100% 0 0 0) !important; transitio
  .news-form { flex-wrap: nowrap; }
  .book-stage { padding-right: 20px; }
 }
+
+/* play page: open-fullscreen link on the console bar */
+.console-open { font-family: var(--mono); font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--paper); border: 1px solid rgba(255,255,255,.32); padding: 6px 12px; border-radius: 3px; transition: background .15s ease, border-color .15s ease; }
+.console-open:hover, .console-open:focus-visible { background: var(--red); border-color: var(--red); }
